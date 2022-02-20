@@ -1,5 +1,5 @@
 {
-	"name": "react-hello-webapp",
+	"name": "tvp-final-project",
 	"engines": {
 		"node": "16.x"
 	},
@@ -10,18 +10,18 @@
 		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
 		"build": "webpack --config webpack.prod.js"
 	},
-	"author": {
-		"name": "Alejandro Sanchez",
-		"url": "http://alesanchezr.com/"
-	},
 	"contributors": [
 		{
-			"name": "Alejandro Sanchez",
-			"url": "http://alesanchezr.com/"
+			"name": "Adrián Duta",
+			"url": "https://github.com/adrianchange"
 		},
 		{
-			"name": "Ignacio Cordoba",
-			"url": "http://github.com/nachovz"
+			"name": "Emmanuel Leyan Guacache Rodríguez",
+			"url": "https://github.com/LeyCod"
+		},
+		{
+			"name": "Jose Clemente García Rodríguez",
+			"url": "https://github.com/m4n50n"
 		}
 	],
 	"license": "ISC",
