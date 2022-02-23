@@ -6,7 +6,7 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Welcome to homepage!</h1>
+			
 		</div>
 	);
 };
