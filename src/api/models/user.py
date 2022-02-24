@@ -6,7 +6,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nif = db.Column(db.String(9), unique=True)
     created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    is_admin = db.Column(db.Boolean(), default=False, nullable=False)    
+    is_admin = db.Column(db.Boolean(), nullable=False)    
     name = db.Column(db.String(70), nullable=False)
     email = db.Column(db.String(60), unique=True, nullable=False)
     phone = db.Column(db.Integer)

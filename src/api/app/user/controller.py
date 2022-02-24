@@ -3,11 +3,12 @@ from api.shared.validate_email import check_email
 from api.shared.response import success_response, error_response
 from api.models.index import db, User
 
-def register_user(request):
+def register_user(body):
     try:
-        body = request.get_json()
+        if body is None: 
+            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
 
-        if "company_id" not in body or len(body["company_id"]) == 0:
+        if "company_id" not in body:
             return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
         
         if "nif" not in body or len(body["nif"]) == 0:
@@ -25,8 +26,11 @@ def register_user(request):
         if "password" not in body or len(body["password"]) == 0:
             return error_response("Debes escribir una contraseña.", 400)
 
+        if "is_admin" not in body:
+            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.", 400)
+
         hash_pass = encrypt_pass(body["password"])
-        new_user = User(company_id=body["company_id"], nif=body["nif"], name=body["name"], email=body["email"], password=hash_pass)
+        new_user = User(company_id=body["company_id"], is_admin=body["is_admin"], nif=body["nif"], name=body["name"], email=body["email"], password=hash_pass)
 
         db.session.add(new_user)
         db.session.commit()

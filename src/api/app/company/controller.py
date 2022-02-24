@@ -3,9 +3,10 @@ from api.shared.validate_email import check_email
 from api.shared.response import success_response, error_response
 from api.models.index import db, Company
 
-def register_company(request):
+def register_company(body):
     try:
-        body = request.get_json()
+        if body is None: 
+            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
 
         if "name" not in body or len(body["name"]) == 0:
             return error_response("Debes escribir un nombre.", 400)

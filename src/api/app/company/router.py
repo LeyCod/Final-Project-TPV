@@ -5,4 +5,5 @@ companys = Blueprint("companys", __name__)
 
 @companys.route("/register", methods=["POST"])
 def create_company():
-    return register_company(request)
+    body = request.get_json()
+    return register_company(body)

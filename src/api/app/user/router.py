@@ -5,4 +5,5 @@ users = Blueprint("users", __name__)
 
 @users.route("/register", methods=["POST"])
 def create_user():
-    return register_user(request)
+    body = request.get_json()
+    return register_user(body)
