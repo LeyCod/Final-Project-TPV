@@ -6,6 +6,9 @@ from api.models.index import db, User
 def register_user(request):
     try:
         body = request.get_json()
+
+        if "company_id" not in body or len(body["company_id"]) == 0:
+            return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
         
         if "nif" not in body or len(body["nif"]) == 0:
             return error_response("Debes escribir un NIF.", 400)
@@ -23,7 +26,7 @@ def register_user(request):
             return error_response("Debes escribir una contraseña.", 400)
 
         hash_pass = encrypt_pass(body["password"])
-        new_user = User(nif=body["nif"], name=body["name"], email=body["email"], password=hash_pass)
+        new_user = User(company_id=body["company_id"], nif=body["nif"], name=body["name"], email=body["email"], password=hash_pass)
 
         db.session.add(new_user)
         db.session.commit()
