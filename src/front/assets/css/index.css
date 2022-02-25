@@ -1,0 +1,21 @@
+:root {
+    --green: #83a638;
+    --yellow: #f2a30f;
+    --orange: #f2780c;
+    --red: #d93d1a;
+    --gray: #f2f2f2;
+    --dark-gray: #ebedf0;
+    --hover-brightness: 1.1;
+}
+
+.green-button {
+    border-color: var(--green);
+    background-color: var(--green);
+    color: #ffffff;
+}
+.green-button:hover {
+    border-color: var(--green);
+    background-color: var(--green);
+    color: #ffffff;
+    filter: brightness(var(--hover-brightness));
+}
