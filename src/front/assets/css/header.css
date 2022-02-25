@@ -1,0 +1,27 @@
+.navbar {
+    display:flex;
+    height: 100px;
+    background: white;
+    position: relative;
+}
+.navbar-brand {
+    padding-right: 50px;
+    height: 0px;
+}
+.nav-item1 {
+    padding-left: 600px;
+    position: relative;
+}
+
+.nav-link {
+    position: relative;
+    right: 250px;
+}
+.btn1 {
+   position: relative; 
+   right: 50px;
+}
+.btn2 {
+    right: 50px;
+    position: relative;
+}

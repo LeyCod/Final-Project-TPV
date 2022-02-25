@@ -1,0 +1,26 @@
+.navbar-brand-menu {
+    color: black;
+    
+}
+.navbar-menu {
+    height:100px;
+    color: black;
+}
+#menu {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+}
+
+.navbar-brand-menu1 {
+    position: relative;
+    left: 400px;
+}
+.navbar-brand-menu2 {
+    position: relative;
+    left: 150px;
+}
+.navbar-brand-menu3 {
+    position: relative;
+    right: 100px;
+}
