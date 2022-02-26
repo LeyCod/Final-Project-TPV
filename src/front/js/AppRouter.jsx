@@ -23,6 +23,9 @@ const AppRouter = () => {
 							<Route exact path="/">
 								<Home />
 							</Route>
+							<Route exact path="/register">
+								<Register />
+							</Route>
 							<Route>
 								<h1>Not found!</h1>
 							</Route>
