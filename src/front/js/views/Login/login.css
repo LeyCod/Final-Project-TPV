@@ -3,9 +3,6 @@
 	width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center top;
     background-color: #e0ad50;
 }
 
@@ -18,7 +15,6 @@
 .form-content-left {
     justify-content: space-evenly;
     height: 240px;
-    border-left: 3px solid #cfa049;
     background-image: url("https://www.datocms-assets.com/38036/1633069437-p4-2x.png");
     background-repeat: no-repeat;
     background-position: right bottom;
@@ -37,6 +33,10 @@
     animation: fadein 0.8s;
 }
 
+.form-content-right > .form-title img {
+    border-radius: 50%;
+}
+
 .form-content-right input {
     border: 0;
     background-color: var(--dark-gray);
@@ -46,36 +46,4 @@
 
 .form-content-right input:focus {
     background-color: var(--dark-gray);
-}
-
-/* -- CSS ANIMATIONS -- */
-@keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeintop {
-    0% {
-       opacity: 0;
-       transform: translateY(-500px);
-    }
-    100% {
-       opacity: 1;
-       transform: translateX(0);
-    }
-}
-
-@keyframes fadeinright {
-    0% {
-       opacity: 0;
-       transform: translateX(350px);
-    }
-    100% {
-       opacity: 1;
-       transform: translateX(0);
-    }
 }

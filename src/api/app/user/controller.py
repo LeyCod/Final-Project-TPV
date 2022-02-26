@@ -64,7 +64,7 @@ def login_user(body):
             return error_response("Nombre de usuario o contraseña no válidos. Por favor, inténtalo de nuevo.", 401)
 
         new_token = create_access_token(identity={ "id": user.id })
-        return success_response({ "token": new_token })
+        return success_response({ "token": new_token, "is_admin": user.is_admin })
         
     except Exception as err:
         print("[ERROR LOGIN USER]: ", err)
@@ -89,6 +89,9 @@ def delete_user(body):
             return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
         
         delete_user = User.query.filter((User.id == body["id"]) & (User.is_admin == False)).first()
+
+        if delete_user is None:
+                return error_response("Usuario no encontrado", 400)
         
         db.session.delete(delete_user)
         db.session.commit()
@@ -101,4 +104,16 @@ def delete_user(body):
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
 
 def update_user(body):
-    pass
+    try:
+        if body is None: 
+            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
+        
+        update_user = User.query.filter(User.id == body["id"]).update(dict(body))
+        db.session.commit()
+
+        return success_response("Información actualizada correctamente", 201)
+
+    except Exception as err:
+        db.session.rollback()
+        print("[ERROR UPDATE USER]: ", err)
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")

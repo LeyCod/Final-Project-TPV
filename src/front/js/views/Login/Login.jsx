@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 // Styles
 import "./login.css";
 import background from "../../../assets/img/login-bg.png";
+import logo from "../../../assets/img/LogoMG-54px.png";
 
 // Functions
 import { ApiUserLogin } from "../../service/user";
@@ -12,27 +13,32 @@ export const Login = () => {
     const [loading, setLoading] = useState(false);
     const [userCredentials, setUserCredentials] = useState({ user: "", password: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
-    const [loginCorrect, setLoginCorrect] = useState(false);
+    const [userLogged, setUserLogged] = useState(false);
 
     const userLogin = async () => {
         try {
+            setNotifyMessage(false);
+
             const response = await ApiUserLogin(userCredentials);
             const status = response.status;
             const data = await response.json();
 
+            console.log("data", data);
+
             if (status === 200) {
                 localStorage.setItem("api-flask-token", data.token);
-                setLoginCorrect(true);
+                setUserLogged(true);
+                setNotifyMessage("Inicio de sesión correcto. Accediendo al área privada ...");
             }
             else {
-                setNotifyMessage(data)
+                setNotifyMessage(data);
             }
         }
         catch (err) {
             setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
         }
         finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
 
@@ -45,18 +51,18 @@ export const Login = () => {
                 <div className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white shadow-sm">
                     <div>
                         <h1 className="mb-3 text-nowrap fw-bold">Iniciar sesión</h1>
-                        <p className="p-1 bg-white bg-opacity-50">Accede ahora a nuestra plataforma de gestión.<br /><br />Si tienes algún problema, contacta con nosotros.</p>
+                        <p className="p-1 bg-white bg-opacity-50">Bienvenid@ a <i>MasterGest</i>.
+                            <br /><br />Accede ahora a nuestra plataforma de gestión.</p>
                     </div>
                 </div>
                 <div className="form-content-right col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 p-4 bg-light">
                     <div className="form-title d-flex justify-content-between align-items-center">
                         <div>
-                            Bievenid@ a
-                            <h4 className="fw-bold">MasterGest</h4>
+                            <p className="m-0">Área de Usuario</p>
+                            <h4>MasterGest</h4>
                         </div>
-                        <div>
-                            <i className="fab fa-css3-alt fa-4x"></i>
-                        </div>
+
+                        <img src={logo} alt="LogoMG" className={loading ? "rotate" : null} />
                     </div>
 
                     <div className="my-3">
@@ -79,8 +85,8 @@ export const Login = () => {
                         />
                     </div>
 
-                    <div className={`text-danger text-center fw-normal ${!notifyMessage ? "d-none" : ""}`}>
-                        <small>{notifyMessage}</small>
+                    <div className={`${!userLogged ? "text-danger" : "text-success"} text-center fw-normal ${!notifyMessage ? "invisible" : ""}`}>
+                        <small>{notifyMessage}&nbsp;</small>
                     </div>
 
                     <button
@@ -89,12 +95,6 @@ export const Login = () => {
                         onClick={() => { setLoading(true); userLogin(); }}
                     >
                         Iniciar sesión
-
-                        {
-                            loading
-                                ? <span className="spinner-border spinner-border-sm ms-2"></span>
-                                : null
-                        }
                     </button>
 
                     <div className="mt-4 text-end">

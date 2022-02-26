@@ -1,5 +1,4 @@
-
-seed = "python3 src/seed.py"[[source]]
+[[source]]
 name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
@@ -18,8 +17,6 @@ flask-cors = "*"
 gunicorn = "*"
 cloudinary = "*"
 flask-admin = "*"
-bcrypt = "*"
-flask-jwt-extended = "*"
 
 [requires]
 python_version = "3.8"
