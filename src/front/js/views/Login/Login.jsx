@@ -28,7 +28,7 @@ export const Login = () => {
             if (status === 200) {
                 localStorage.setItem("api-flask-token", data.token);
                 setUserLogged(true);
-                setNotifyMessage("Inicio de sesión correcto. Accediendo al área privada ...");
+                setNotifyMessage("Inicio de sesión correcto. Accediendo al área de usuario ...");
             }
             else {
                 setNotifyMessage(data);
