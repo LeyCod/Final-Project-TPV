@@ -1,5 +1,5 @@
 import React from "react";
-import { Context } from "../../store/appContext";
+import { Link } from "react-router-dom";
 
 //Styles
 import "./Register.css";
@@ -50,9 +50,9 @@ export const Register = () => {
             <div className="row justify-content-center align-items-center mx-2 my-5">
                 <div className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white shadow-sm">
                     <div>
-                        <h1 className="mb-3 text-nowrap fw-bold">Company Registrer</h1>
+                        <h1 className="mb-3 text-nowrap fw-bold">Company Register</h1>
                         <p className="p-1 bg-white bg-opacity-50">Bienvenid@ a <i>MasterGest</i>.
-                            <br /><br />Accede ahora a nuestra plataforma de gestión.</p>
+                            <br /><br />Estas un paso mas cerca de facilitar tu trabajo con nuestra plataforma de gestión.</p>
                     </div>
                 </div>
                 <div className="form-content-right col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 p-4 bg-light">
