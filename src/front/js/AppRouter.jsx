@@ -8,6 +8,7 @@ import { Home } from "./views/Home.jsx";
 
 // Layout
 import Layout from "./layout/Layout.jsx";
+import Register from "./views/register/Register.jsx";
 
 const AppRouter = () => {
 	// The basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -22,6 +23,9 @@ const AppRouter = () => {
 						<Switch>
 							<Route exact path="/">
 								<Home />
+							</Route>
+							<Route exact path="/register">
+								<Register />
 							</Route>
 							<Route>
 								<h1>Not found!</h1>
