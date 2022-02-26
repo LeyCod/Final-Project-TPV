@@ -7,7 +7,7 @@ export const Register = () => {
     return (
         <div 
             className="form-view"
-            style={{ backgroundImage: `url(${pass})` }}
+            //Style
         >
             <div className="row justify-content-center align-items-center mx-2 my-5">
                 <div className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white shadow-sm">
