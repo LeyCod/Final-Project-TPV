@@ -75,3 +75,11 @@ export const Register = () => {
         </div>
     );
 };
+
+export default Register
+
+/**
+ * TODO aun queda por revision
+ * !este registro debe setearse en el store, falta por hacer 
+ * !faltan imports 
+ */
