@@ -69,3 +69,36 @@ def login_user(body):
     except Exception as err:
         print("[ERROR LOGIN USER]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+
+def validate_user(token):
+        try: 
+            user = User.query.get(token)
+
+            if user is None:
+                return error_response("Usuario no encontrado", 400)
+            else:
+                return success_response(user.serialize())
+        
+        except Exception as err:
+            print("[ERROR VALIDATE USER]: ", err)
+            return error_response("Error interno del servidor. Por favor, inténtalo más tarde")
+
+def delete_user(body):
+    try:
+        if body is None: 
+            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
+        
+        delete_user = User.query.filter((User.id == body["id"]) & (User.is_admin == False)).first()
+        
+        db.session.delete(delete_user)
+        db.session.commit()
+
+        return success_response("Usuario eliminado correctamente", 201)
+
+    except Exception as err:
+        db.session.rollback()
+        print("[ERROR DELETE USER]: ", err)
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+
+def update_user(body):
+    pass
