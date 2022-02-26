@@ -1,11 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 
 // Styles
 import "./login.css";
 import background from "../../../assets/img/login-bg.png";
 
 export const Login = () => {
+    const [userCredentials, setUserCredentials] = useState({ user: "", password:"" });
+
     return (
         <div 
             className="form-view"
@@ -14,7 +16,7 @@ export const Login = () => {
             <div className="row justify-content-center align-items-center mx-2 my-5">
                 <div className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white shadow-sm">
                     <div>
-                        <h1 className="mb-3 fw-bold">Iniciar sesión</h1>
+                        <h1 className="mb-3 text-nowrap fw-bold">Iniciar sesión</h1>
                         <p  className="p-1 bg-white bg-opacity-50">Accede ahora a nuestra plataforma de gestión.<br/><br/>Si tienes algún problema, contacta con nosotros.</p>
                     </div>
                 </div>
@@ -36,6 +38,7 @@ export const Login = () => {
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
+                            onChange={ (e) => setUserCredentials({ ...userCredentials, user: e.target.value.trim() }) }
                         />
                     </div>
                     <div className="mb-3">
@@ -44,6 +47,7 @@ export const Login = () => {
                             type="password"
                             className="form-control shadow-sm"
                             autoComplete="off"
+                            onChange={ (e) => setUserCredentials({ ...userCredentials, password: e.target.value }) }
                         />
                     </div>
 
