@@ -5,11 +5,39 @@ import { Link, Redirect } from "react-router-dom";
 import "./login.css";
 import background from "../../../assets/img/login-bg.png";
 
+// Functions
+import { ApiUserLogin } from "../../service/user";
+
 export const Login = () => {
-    const [userCredentials, setUserCredentials] = useState({ user: "", password:"" });
+    const [loading, setLoading] = useState(false);
+    const [userCredentials, setUserCredentials] = useState({ user: "", password: "" });
+    const [notifyMessage, setNotifyMessage] = useState(false);
+    const [loginCorrect, setLoginCorrect] = useState(false);
+
+    const userLogin = async () => {
+        try {
+            const response = await ApiUserLogin(userCredentials);
+            const status = response.status;
+            const data = await response.json();
+
+            if (status === 200) {
+                localStorage.setItem("api-flask-token", data.token);
+                setLoginCorrect(true);
+            }
+            else {
+                setNotifyMessage(data)
+            }
+        }
+        catch (err) {
+            setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
+        }
+        finally {
+            setLoading(false)
+        }
+    }
 
     return (
-        <div 
+        <div
             className="form-view"
             style={{ backgroundImage: `url(${background})` }}
         >
@@ -17,11 +45,11 @@ export const Login = () => {
                 <div className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white shadow-sm">
                     <div>
                         <h1 className="mb-3 text-nowrap fw-bold">Iniciar sesión</h1>
-                        <p  className="p-1 bg-white bg-opacity-50">Accede ahora a nuestra plataforma de gestión.<br/><br/>Si tienes algún problema, contacta con nosotros.</p>
+                        <p className="p-1 bg-white bg-opacity-50">Accede ahora a nuestra plataforma de gestión.<br /><br />Si tienes algún problema, contacta con nosotros.</p>
                     </div>
                 </div>
                 <div className="form-content-right col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 p-4 bg-light">
-                    <div className="d-flex justify-content-between align-items-center">
+                    <div className="form-title d-flex justify-content-between align-items-center">
                         <div>
                             Bievenid@ a
                             <h4 className="fw-bold">MasterGest</h4>
@@ -38,7 +66,7 @@ export const Login = () => {
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={ (e) => setUserCredentials({ ...userCredentials, user: e.target.value.trim() }) }
+                            onChange={(e) => setUserCredentials({ ...userCredentials, user: e.target.value.trim() })}
                         />
                     </div>
                     <div className="mb-3">
@@ -47,26 +75,33 @@ export const Login = () => {
                             type="password"
                             className="form-control shadow-sm"
                             autoComplete="off"
-                            onChange={ (e) => setUserCredentials({ ...userCredentials, password: e.target.value }) }
+                            onChange={(e) => setUserCredentials({ ...userCredentials, password: e.target.value })}
                         />
                     </div>
 
-                    <div className={`d-none text-danger text-center fw-normal`}>
-                        <small>Notificación de error</small>
+                    <div className={`text-danger text-center fw-normal ${!notifyMessage ? "d-none" : ""}`}>
+                        <small>{notifyMessage}</small>
                     </div>
 
                     <button
                         type="button"
                         className="btn green-button mt-2 mb-0 shadow-sm"
+                        onClick={() => { setLoading(true); userLogin(); }}
                     >
                         Iniciar sesión
+
+                        {
+                            loading
+                                ? <span className="spinner-border spinner-border-sm ms-2"></span>
+                                : null
+                        }
                     </button>
 
                     <div className="mt-4 text-end">
                         <small>¿No tienes una cuenta?</small>
 
                         <Link to="/register" className="ms-2 text-dark text-nowrap text-decoration-none fw-bold">
-                                Regístrate ahora
+                            Regístrate ahora
                         </Link>
                     </div>
                 </div>

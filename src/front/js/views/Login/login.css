@@ -33,7 +33,7 @@
     z-index: 10;
 }
 
-.form-content-right * {
+.form-content-right > .form-title {
     animation: fadein 0.8s;
 }
 
