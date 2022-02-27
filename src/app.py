@@ -8,8 +8,12 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models.db import db
-from api.app.user.router import users
 from api.app.company.router import companys
+from api.app.user.router import users
+from api.app.table.router import tables
+from api.app.menu_item.router import menu_items
+from api.app.order.router import orders
+from api.app.order_item.router import order_items
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
 
@@ -42,6 +46,10 @@ setup_admin(app)
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(companys, url_prefix="/api/company")
 app.register_blueprint(users, url_prefix="/api/user")
+app.register_blueprint(tables, url_prefix="/api/table")
+app.register_blueprint(menu_items, url_prefix="/api/menu_item")
+app.register_blueprint(orders, url_prefix="/api/order")
+app.register_blueprint(order_items, url_prefix="/api/order_item")
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
