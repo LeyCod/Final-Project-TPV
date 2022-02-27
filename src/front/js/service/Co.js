@@ -4,10 +4,7 @@ import { BASE_URL } from "./index";
 export const ApiCoLogin = (CoCredentials) =>
     fetch(`${BASE_URL}/api/Co/register`, {
         method: "POST",
-        body: JSON.stringify(userCredentials)
+        body: JSON.stringify(CoCredentials)
     });
 
 
-/**
-*  TODO Revisar
-*/
