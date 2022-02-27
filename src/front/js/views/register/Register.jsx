@@ -76,7 +76,7 @@ export const Register = () => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label mb-1">CIF / CORREO ELECTRONICO</label>
+                        <label className="form-label mb-1">CIF</label>
                         <input
                             type="text"
                             className="form-control shadow-sm"
