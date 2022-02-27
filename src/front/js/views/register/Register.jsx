@@ -10,16 +10,16 @@ import logo from "../../../assets/img/LogoMG-54px.png";
 import { ApiUserLogin } from "../../service/user";
 
 export const Register = () => {
-/**     const [loading, setLoading] = useState(false);
-    const [userCredentials, setUserCredentials] = useState({ user: "", password: "" });
+    const [loading, setLoading] = useState(false);
+    const [CoCredentials, setCoCredentials] = useState({ user: "", password: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
-    const [userLogged, setUserLogged] = useState(false);
+    const [CoLogged, setCoLogged] = useState(false);
 
-    const userLogin = async () => {
+    const CoRegister = async () => {
         try {
             setNotifyMessage(false);
 
-            const response = await ApiUserLogin(userCredentials);
+            const response = await ApiCoLogin(CoCredentials);
             const status = response.status;
             const data = await response.json();
 
@@ -36,12 +36,12 @@ export const Register = () => {
         }
         catch (err) {
             setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
-        }
+        } 
         finally {
             setLoading(false);
         }
     }
-*/
+
     return (
         <div
             className="form-view"
@@ -58,7 +58,7 @@ export const Register = () => {
                 <div className="form-content-right col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 p-4 bg-light">
                     <div className="form-title d-flex justify-content-between align-items-center">
                         <div>
-                            <p className="m-0">Área de Usuario</p>
+                            <p className="m-0">Registro de Empresa</p>
                             <h4>MasterGest</h4>
                         </div>
 
@@ -66,13 +66,13 @@ export const Register = () => {
                     </div>
 
                     <div className="my-3">
-                        <label className="form-label mb-1">NIF / Correo electrónico</label>
+                        <label className="form-label mb-1">CIF / Correo electrónico</label>
                         <input
                             type="text"
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            //onChange={(e) => setUserCredentials({ ...userCredentials, user: e.target.value.trim() })}
+                            onChange={(e) => setCoCredentials({ ...CoCredentials, user: e.target.value.trim() })}
                         />
                     </div>
                     <div className="mb-3">
@@ -81,16 +81,14 @@ export const Register = () => {
                             type="password"
                             className="form-control shadow-sm"
                             autoComplete="off"
-                            //onChange={(e) => setUserCredentials({ ...userCredentials, password: e.target.value })}
+                            onChange={(e) => setCoCredentials({ ...CoCredentials, password: e.target.value })}
                         />
                     </div>
-
-                    /** */ 
 
                     <button
                         type="button"
                         className="btn green-button mt-2 mb-0 shadow-sm"
-                        //onClick={() => { setLoading(true); userLogin(); }}
+                        onClick={() => { setLoading(true); CoRegister(); }}
                     >
                         Iniciar sesión
                     </button>
