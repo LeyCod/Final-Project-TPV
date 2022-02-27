@@ -14,7 +14,7 @@ export const Home = () => {
 		<>
       <Menu></Menu>
       <h4 id="services">Services</h4>
-      <div className="d-flex col-md-5 col-sm-12">
+      <div className="d-flex col-sm-12 col-lg-2 col-xl-2">
           
         <Card
           nameClass={"service1"}

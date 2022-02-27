@@ -1,10 +1,9 @@
 
 #menu {
-    display: flex;
-    align-items: center !important;
     margin: 30px;
     height: 150px;
-    
+}
+#navbarSupportedContent2 {
     
 }
 
