@@ -11,7 +11,7 @@ import { ApiCoRegister } from "../../service/Co.js";
 
 export const Register = () => {
     const [loading, setLoading] = useState(false);
-    const [CoCredentials, setCoCredentials] = useState({ user: "", password: "" });
+    const [CoCredentials, setCoCredentials] = useState({ coName: "", cifOrEmail: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
     const [CoLogged, setCoLogged] = useState(false);
 
@@ -66,23 +66,25 @@ export const Register = () => {
                     </div>
 
                     <div className="my-3">
-                        <label className="form-label mb-1">Nombre de la empresa</label>
+                        <label htmlFor="coname" className="form-label mb-1">Nombre de la empresa</label>
                         <input
+                            name="coname"
                             type="text"
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={(e) => setCoCredentials({ ...CoCredentials, user: e.target.value.trim() })}
+                            onChange={(e) => setCoCredentials({ ...CoCredentials, coName: e.target.value.trim() })}
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label mb-1">CIF</label>
+                        <label htmlFor="cif" className="form-label mb-1"> CIF / Correo electronico </label>
                         <input
+                            name="cif"
                             type="text"
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={(e) => setCoCredentials({ ...CoCredentials, password: e.target.value })}
+                            onChange={(e) => setCoCredentials({ ...CoCredentials, cifOrEmail: e.target.value.trim() })}
                         />
                     </div>
 
@@ -91,7 +93,7 @@ export const Register = () => {
                         className="btn green-button mt-2 mb-0 shadow-sm"
                         onClick={() => { setLoading(true); CoRegister(); }}
                     >
-                        registrate
+                        Aceptar
                     </button>
 
                     <div className="mt-4 text-end">
