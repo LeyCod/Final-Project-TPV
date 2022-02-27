@@ -77,7 +77,7 @@ export const Register = () => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label mb-1">Contraseña</label>
+                        <label className="form-label mb-1">Nombre de la empresa</label>
                         <input
                             type="password"
                             className="form-control shadow-sm"
@@ -91,7 +91,7 @@ export const Register = () => {
                         className="btn green-button mt-2 mb-0 shadow-sm"
                         onClick={() => { setLoading(true); CoRegister(); }}
                     >
-                        Iniciar sesión
+                        registrate
                     </button>
 
                     <div className="mt-4 text-end">
