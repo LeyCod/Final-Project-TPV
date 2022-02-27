@@ -10,7 +10,7 @@ import logo from "../../../assets/img/LogoMG-54px.png";
 import { ApiUserLogin } from "../../service/user";
 
 export const Register = () => {
-/*    const [loading, setLoading] = useState(false);
+/**     const [loading, setLoading] = useState(false);
     const [userCredentials, setUserCredentials] = useState({ user: "", password: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
     const [userLogged, setUserLogged] = useState(false);
@@ -72,7 +72,7 @@ export const Register = () => {
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...userCredentials, user: e.target.value.trim() })}
+                            //onChange={(e) => setUserCredentials({ ...userCredentials, user: e.target.value.trim() })}
                         />
                     </div>
                     <div className="mb-3">
@@ -81,18 +81,16 @@ export const Register = () => {
                             type="password"
                             className="form-control shadow-sm"
                             autoComplete="off"
-                            onChange={(e) => setUserCredentials({ ...userCredentials, password: e.target.value })}
+                            //onChange={(e) => setUserCredentials({ ...userCredentials, password: e.target.value })}
                         />
                     </div>
 
-                    <div className={`${!userLogged ? "text-danger" : "text-success"} text-center fw-normal ${!notifyMessage ? "invisible" : ""}`}>
-                        <small>{notifyMessage}&nbsp;</small>
-                    </div>
+                    /** */ 
 
                     <button
                         type="button"
                         className="btn green-button mt-2 mb-0 shadow-sm"
-                        onClick={() => { setLoading(true); userLogin(); }}
+                        //onClick={() => { setLoading(true); userLogin(); }}
                     >
                         Iniciar sesión
                     </button>
