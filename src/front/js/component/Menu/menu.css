@@ -1,0 +1,31 @@
+
+#menu {
+    display: flex;
+    align-items: center !important;
+    margin: 30px;
+    height: 150px;
+    
+    
+}
+
+#menu1 {
+    position: relative;
+    left: 400px;
+    margin-top: 100px;
+    
+}
+#menu2 {
+    position: relative;
+    left: 150px;
+    margin-top: 100px;
+}
+#menu3 {
+    position: relative;
+    right: 100px;
+    margin-top: 100px;
+}
+.back-img {
+    background-image: url("https://res.cloudinary.com/da5uckicu/image/upload/v1645871221/cld-sample.jpg");
+    background-size: cover;
+    background-position: center;
+}

@@ -1,0 +1,29 @@
+#services {
+    text-align: center;
+}
+.d-flex {
+    justify-content: space-between;
+}
+.service1 {
+    width: 300px;
+    margin: 5px;
+    justify-content: space-between;
+}
+.service2 {
+    width: 300px;
+    margin: 5px ;
+}
+.service3 {
+    width: 300px;
+    margin: 5px ;
+}
+.service4 {
+    width: 300px;
+    margin: 5px;
+}
+
+
+
+    
+    
+

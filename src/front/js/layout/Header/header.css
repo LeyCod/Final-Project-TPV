@@ -1,8 +1,11 @@
-.navbar {
-    display:flex;
-    height: 100px;
-    background: white;
+#nav-head {
+    display:flex !important;
+    height: 50px;
+    background: yellow !important;
     position: relative;
+    margin: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 50px;
 }
 .navbar-brand {
     padding-right: 50px;

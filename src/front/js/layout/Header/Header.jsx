@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../../assets/css/header.css"
+import "../Header/header.css";
 
   export const Header = () => {
 	return (
-		<nav className="navbar navbar-light bg-light">
+		<nav id="nav-head" className="navbar navbar-light bg-light ">
 		<div className="container-fluid">
 			<span className="navbar-brand mb-0 h1">Logo/MasterGest</span>
 		</div>
