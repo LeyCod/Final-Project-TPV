@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState }from "react";
+import { Link, Redirect } from "react-router-dom";
 
 //Styles
 import "./Register.css";
@@ -8,7 +8,6 @@ import logo from "../../../assets/img/LogoMG-54px.png";
 
 // Functions
 import { ApiCoRegister } from "../../service/Co.js";
-import { useState } from "react";
 
 export const Register = () => {
     const [loading, setLoading] = useState(false);
@@ -51,7 +50,7 @@ export const Register = () => {
             <div className="row justify-content-center align-items-center mx-2 my-5">
                 <div className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white shadow-sm">
                     <div>
-                        <h1 className="mb-3 text-nowrap fw-bold">Company Register</h1>
+                        <h1 className="mb-3 text-nowrap fw-bold">Registro</h1>
                         <p className="p-1 bg-white bg-opacity-50">Bienvenid@ a <i>MasterGest</i>.
                             <br /><br />Estas un paso mas cerca de facilitar tu trabajo con nuestra plataforma de gestión.</p>
                     </div>
@@ -67,7 +66,7 @@ export const Register = () => {
                     </div>
 
                     <div className="my-3">
-                        <label className="form-label mb-1">CIF / Correo electrónico</label>
+                        <label className="form-label mb-1">Nombre de la empresa</label>
                         <input
                             type="text"
                             className="form-control shadow-sm"
@@ -77,11 +76,12 @@ export const Register = () => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label mb-1">Nombre de la empresa</label>
+                        <label className="form-label mb-1">CIF / CORREO ELECTRONICO</label>
                         <input
-                            type="password"
+                            type="text"
                             className="form-control shadow-sm"
                             autoComplete="off"
+                            autoFocus="on"
                             onChange={(e) => setCoCredentials({ ...CoCredentials, password: e.target.value })}
                         />
                     </div>
@@ -95,10 +95,10 @@ export const Register = () => {
                     </button>
 
                     <div className="mt-4 text-end">
-                        <small>¿Ya tienes una cuenta?</small>
+                        <small>¿Ya tienes cuenta?</small>
 
                         <Link to="/login" className="ms-2 text-dark text-nowrap text-decoration-none fw-bold">
-                            Regístrate ahora
+                            Acceder
                         </Link>
                     </div>
                 </div>
