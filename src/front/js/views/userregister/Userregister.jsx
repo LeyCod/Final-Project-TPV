@@ -7,7 +7,7 @@ import background from "../../../assets/img/pexels-pixabay-326268.png";
 import logo from "../../../assets/img/LogoMG-54px.png";
 
 // Functions
-import { ApiCoRegister } from "../../service/Co.js";
+import { ApiRegister } from "../../service/Co.js";
 
 export const Register = () => {
     const [loading, setLoading] = useState(false);
