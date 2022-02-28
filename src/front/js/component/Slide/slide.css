@@ -1,11 +1,9 @@
 
 #menu {
-    margin: 30px;
+    margin: 20px;
     height: 150px;
 }
-#navbarSupportedContent2 {
-    
-}
+
 
 #menu1 {
     position: relative;
@@ -27,4 +25,6 @@
     background-image: url("https://res.cloudinary.com/da5uckicu/image/upload/v1645871221/cld-sample.jpg");
     background-size: cover;
     background-position: center;
+    border-radius: 1rem;
+    margin: 0px;
 }

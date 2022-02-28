@@ -1,21 +1,22 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
-
 // Components
+import { Header } from "../component/Header/Header.jsx";
 import { Card } from "../component/Card/Card.jsx";
 import { Features } from "../component/Features/Features.jsx";
-import { Menu } from "../component/Menu/Menu.jsx";
+import { Slide } from "../component/Slide/Slide.jsx";
+import { Footer } from "../component/Footer/Footer.jsx";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	return (
-		<>
-      <Menu></Menu>
+  return (
+    <>
+      <Header></Header>
+      <Slide></Slide>
       <h4 id="services">Services</h4>
-      <div className="d-flex col-sm-12 col-lg-2 col-xl-2">
-          
+      <div className="d-flex col-sm-12 col-md-6 col-lg-2 col-xl-2">
         <Card
           nameClass={"service1"}
           title={"Card1"}
@@ -62,9 +63,8 @@ export const Home = () => {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis pretium ipsum ac molestie. Aliquam dapibus feugiat faucibus. Vestibulum accumsan."
           }
         ></Features>
+        <Footer></Footer>
       </div>
     </>
-		
-	);
+  );
 };
-
