@@ -27,7 +27,7 @@ const AppRouter = () => {
 							<Route exact path="/register">
 								<Register />
 							</Route>
-							<Route exact path="/register/userregister">
+							<Route exact path="/userregister">
 								<Userregister />
 							</Route>
 							<Route>

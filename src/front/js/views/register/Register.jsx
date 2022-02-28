@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 
 //Styles
 import "./Register.css";
-import background from "../../../assets/img/pexels-pixabay-326268.png";
+import background from "../../../assets/img/login-bg.png";
 import logo from "../../../assets/img/LogoMG-54px.png";
 
 // Functions
@@ -46,7 +46,7 @@ export const Register = () => {
     return (
         <div
             className="form-view"
-            style={{ }}
+            style={{backgroundImage = `url(${background})` }}
         >
             <div className="row justify-content-center align-items-center mx-2 my-5">
                 <div className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white shadow-sm">

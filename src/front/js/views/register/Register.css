@@ -15,9 +15,9 @@
 .form-content-left {
     justify-content: space-evenly;
     height: 240px;
-    background-image: url("https://www.pexels.com/es-es/foto/menu-restaurante-rojo-escritorio-4033638/");
+    background-image: url("https://www.datocms-assets.com/38036/1633069437-p4-2x.png");
     background-repeat: no-repeat;
-    background-position: right top;
+    background-position: right bottom;
     background-size: 85%;
     animation: fadeinright 0.8s;
 }
