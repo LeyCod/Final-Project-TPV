@@ -11,9 +11,12 @@ import { ApiCoRegister } from "../../service/Co.js";
 
 export const Register = () => {
     const [loading, setLoading] = useState(false);
-    const [CoCredentials, setCoCredentials] = useState({ coName: "", cifOrEmail: "" });
+    const [CoCredentials, setCoCredentials] = useState({ coName: "", Cif: "" });
+    const [UserCredentials, setUserCredentials] = useState({NIF: "", Name: "", Email: "", Password: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
     const [CoLogged, setCoLogged] = useState(false);
+    const [CoRegistered, setCoRegistered] = useState(false);
+
 
 
     const CoRegister = async () => {
@@ -43,7 +46,14 @@ export const Register = () => {
         }
     }
 
+    const checkCompany = () => {
+        if ( CoCredentials["coName"].length !== 0 && CoCredentials["Cif"].length !== 0) {
+            setCoRegistered(true) 
+                } 
+            }
+            
     return (
+
         <div
             className="form-view"
             style={{backgroundImage = `url(${background})` }}
@@ -66,8 +76,11 @@ export const Register = () => {
                         <img src={logo} alt="LogoMG" className={loading ? "rotate" : null} />
                     </div>
 
+                //Company Register
+                { !CoRegistered ? <div>
+
                     <div className="my-3">
-                        <label htmlFor="coname" className="form-label mb-1">Nombre de la empresa</label>
+                        <label htmlFor="coname" className="form-label mb-1"> Nombre de la empresa </label>
                         <input
                             name="coname"
                             type="text"
@@ -78,25 +91,86 @@ export const Register = () => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="cif" className="form-label mb-1"> CIF / Correo electronico </label>
+                        <label htmlFor="cif" className="form-label mb-1"> CIF </label>
                         <input
                             name="cif"
                             type="text"
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={(e) => setCoCredentials({ ...CoCredentials, cifOrEmail: e.target.value.trim() })}
+                            onChange={(e) => setCoCredentials({ ...CoCredentials, Cif: e.target.value.trim() })}
                         />
                     </div>
+                </div> 
+                :
+                //User Register
+            <div> 
+                <div className="my-3">
+                        <label htmlFor="nif" className="form-label mb-1"> NIF </label>
+                        <input
+                            name="nif"
+                            type="text"
+                            className="form-control shadow-sm"
+                            autoComplete="off"
+                            autoFocus="on"
+                            onChange={(e) => setCoCredentials({ ...UserCredentials, NIF: e.target.value.trim() })}
+                        />
+                </div>
+                <div className="mb-3">
+                        <label htmlFor="name" className="form-label mb-1"> Name </label>
+                        <input
+                            name="name"
+                            type="text"
+                            className="form-control shadow-sm"
+                            autoComplete="off"
+                            autoFocus="on"
+                            onChange={(e) => setCoCredentials({ ...UserCredentials, Name: e.target.value.trim() })}
+                        />
+                </div>
+                <div className="my-3">
+                        <label htmlFor="email" className="form-label mb-1"> Email </label>
+                        <input
+                            name="email"
+                            type="text"
+                            className="form-control shadow-sm"
+                            autoComplete="off"
+                            autoFocus="on"
+                            onChange={(e) => setCoCredentials({ ...UserCredentials, Email: e.target.value.trim() })}
+                        />
+                </div>
+                <div className="mb-3">
+                        <label htmlFor="password" className="form-label mb-1"> Password </label>
+                        <input
+                            name="password"
+                            type="text"
+                            className="form-control shadow-sm"
+                            autoComplete="off"
+                            autoFocus="on"
+                            onChange={(e) => setCoCredentials({ ...UserCredentials, Password: e.target.value })}
+                        />
+                </div>
+            </div> 
+                }
+
+                    //button
+                    { !CoRegistered ?
 
                     <button
                         type="button"
                         className="btn green-button mt-2 mb-0 shadow-sm"
-                        onClick={() => { setLoading(true); CoRegister(); }}
+                        onClick={() => { checkCompany()  }} 
+                    >
+                        Siguiente
+                    </button>
+                    :
+                    <button
+                        type="button"
+                        className="btn green-button mt-2 mb-0 shadow-sm"
+                        onClick={() => { CoRegister()  }} 
                     >
                         Aceptar
                     </button>
-
+                    }
                     <div className="mt-4 text-end">
                         <small>¿Ya tienes cuenta?</small>
 
