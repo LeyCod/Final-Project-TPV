@@ -1,7 +1,7 @@
 from api.shared.encrypt_password import encrypt_pass
 from api.shared.validate_email import check_email
 from api.shared.response import success_response, error_response
-from api.models.index import db, Company
+from api.models.index import db, Company, User
 
 def register_company(body):
     try:
@@ -25,3 +25,19 @@ def register_company(body):
         db.session.rollback()
         print("[ERROR REGISTER COMPANY]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+
+def company_get(user_id):
+    user = User.query.get(user_id)
+    try:
+        if user is None:
+          return None
+        company = Company.query.get(user.company_id)
+        if company is None:
+          return None
+        return success_response(company.serialize(),200)
+
+    except Exception as err:
+        print("[ERROR GET COMPANY]: ", err)
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+
+   
