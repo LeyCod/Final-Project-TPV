@@ -5,6 +5,7 @@ import injectContext from "./store/appContext";
 
 // Views
 import { Home } from "./views/Home.jsx";
+import { Register } from "./views/register/Register.jsx"
 
 // Layout
 import Layout from "./layout/Layout.jsx";

@@ -56,7 +56,7 @@ export const Register = () => {
 
         <div
             className="form-view"
-            style={{backgroundImage = `url(${background})` }}
+            style={{backgroundImage : `url(${background})` }}
         >
             <div className="row justify-content-center align-items-center mx-2 my-5">
                 <div className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white shadow-sm">
@@ -76,7 +76,6 @@ export const Register = () => {
                         <img src={logo} alt="LogoMG" className={loading ? "rotate" : null} />
                     </div>
 
-                //Company Register
                 { !CoRegistered ? <div>
 
                     <div className="my-3">
@@ -152,8 +151,7 @@ export const Register = () => {
             </div> 
                 }
 
-                    //button
-                    { !CoRegistered ?
+                { !CoRegistered ?
 
                     <button
                         type="button"
@@ -187,7 +185,5 @@ export const Register = () => {
 export default Register;
 
 /**
- * TODO aun queda por revision
- * !este registro debe setearse en el store, falta por hacer 
- * !faltan imports 
+ * 
  */
