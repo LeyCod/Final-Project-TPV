@@ -3,12 +3,13 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop.jsx";
 import injectContext from "./store/appContext";
 
+// Layout
+import Layout from "./layout/Layout.jsx";
+
 // Views
 import { Home } from "./views/Home.jsx";
 import { Login } from "./views/Login/Login.jsx";
-
-// Layout
-import Layout from "./layout/Layout.jsx";
+import { Dashboard } from "./views/Dashboard/Dashboard.jsx";
 
 const AppRouter = () => {
 	// The basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -26,6 +27,9 @@ const AppRouter = () => {
 							</Route>
 							<Route exact path="/login">
 								<Login />
+							</Route>
+							<Route exact path="/dashboard">
+								<Dashboard />
 							</Route>
 							<Route>
 								<h1>Not found!</h1>

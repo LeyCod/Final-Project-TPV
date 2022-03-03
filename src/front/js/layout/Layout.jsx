@@ -4,14 +4,7 @@ import PropTypes from "prop-types";
 // Styles
 import "../../assets/css/index.css";
 
-// Components
-
-
-
-
-
 const Layout = (props) => {
-   
     return (
         <>
             <main>
@@ -26,4 +19,3 @@ Layout.propTypes = {
 }
 
 export default Layout;
-
