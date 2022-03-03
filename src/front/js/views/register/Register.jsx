@@ -112,7 +112,7 @@ export const Register = () => {
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={(e) => setCoCredentials({ ...UserCredentials, NIF: e.target.value.trim() })}
+                            onChange={(e) => setUserCredentials({ ...UserCredentials, NIF: e.target.value.trim() })}
                         />
                 </div>
                 <div className="mb-3">
@@ -123,7 +123,7 @@ export const Register = () => {
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={(e) => setCoCredentials({ ...UserCredentials, Name: e.target.value.trim() })}
+                            onChange={(e) => setUserCredentials({ ...UserCredentials, Name: e.target.value.trim() })}
                         />
                 </div>
                 <div className="my-3">
@@ -134,7 +134,7 @@ export const Register = () => {
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={(e) => setCoCredentials({ ...UserCredentials, Email: e.target.value.trim() })}
+                            onChange={(e) => setUserCredentials({ ...UserCredentials, Email: e.target.value.trim() })}
                         />
                 </div>
                 <div className="mb-3">
@@ -145,7 +145,7 @@ export const Register = () => {
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            onChange={(e) => setCoCredentials({ ...UserCredentials, Password: e.target.value })}
+                            onChange={(e) => setUserCredentials({ ...UserCredentials, Password: e.target.value })}
                         />
                 </div>
             </div> 
