@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 
 
 // Styles
-import "../assets/css/index.css";
+/* import "../assets/css/index.css"; */
 
 // Components
 import AppRouter from "./AppRouter.jsx";

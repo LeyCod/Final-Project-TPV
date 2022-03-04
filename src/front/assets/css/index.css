@@ -1,3 +1,4 @@
+/* Color Palette */
 :root {
     --green: #83a638;
     --yellow: #f2a30f;
@@ -6,6 +7,15 @@
     --gray: #f2f2f2;
     --dark-gray: #ebedf0;
     --hover-brightness: 1.1;
+}
+
+/* General */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h1,
@@ -36,7 +46,7 @@ small {
     filter: brightness(var(--hover-brightness));
 }
 
-/* -- CSS ANIMATIONS -- */
+/* Animation */
 .rotate {
     animation: rotation 0.3s infinite linear;
 }
