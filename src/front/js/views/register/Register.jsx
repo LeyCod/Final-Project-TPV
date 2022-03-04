@@ -1,4 +1,5 @@
-import React, { useState }from "react";
+import React, { useState, useContext }from "react";
+import { Context } from "../../store/appContext";
 import { Link, Redirect } from "react-router-dom";
 
 //Styles
@@ -10,47 +11,17 @@ import logo from "../../../assets/img/LogoMG-54px.png";
 import { ApiCoRegister } from "../../service/Co.js";
 
 export const Register = () => {
+    const {store, actions} = useContext(Context)
     const [loading, setLoading] = useState(false);
     const [CoCredentials, setCoCredentials] = useState({ coName: "", Cif: "" });
-    const [UserCredentials, setUserCredentials] = useState({NIF: "", Name: "", Email: "", Password: "" });
-    const [notifyMessage, setNotifyMessage] = useState(false);
-    const [CoLogged, setCoLogged] = useState(false);
-    const [CoRegistered, setCoRegistered] = useState(false);
-
-
-
-    const CoRegister = async () => {
-        try {
-            setNotifyMessage(false);
-
-            const response = await ApiCoLogin(CoCredentials);
-            const status = response.status;
-            const data = await response.json();
-
-            console.log("data", data);
-
-            if (status === 200) {
-                localStorage.setItem("api-flask-token", data.token);
-                setUserLogged(true);
-                setNotifyMessage("Inicio de sesión correcto. Accediendo al área de usuario ...");
-            }
-            else {
-                setNotifyMessage(data);
-            }
-        }
-        catch (err) {
-            setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
-        } 
-        finally {
-            setLoading(false);
-        }
-    }
-
+    const [redirect, setRedirect] = useState(false)
+    console.log(actions)
     const checkCompany = () => {
         if ( CoCredentials["coName"].length !== 0 && CoCredentials["Cif"].length !== 0) {
-            setCoRegistered(true) 
-                } 
-            }
+            actions.setCompany(CoCredentials);
+            setRedirect(true)
+        } 
+    }
             
     return (
 
@@ -72,12 +43,8 @@ export const Register = () => {
                             <p className="m-0">Registro de Empresa</p>
                             <h4>MasterGest</h4>
                         </div>
-
                         <img src={logo} alt="LogoMG" className={loading ? "rotate" : null} />
                     </div>
-
-                { !CoRegistered ? <div>
-
                     <div className="my-3">
                         <label htmlFor="coname" className="form-label mb-1"> Nombre de la empresa </label>
                         <input
@@ -100,75 +67,10 @@ export const Register = () => {
                             onChange={(e) => setCoCredentials({ ...CoCredentials, Cif: e.target.value.trim() })}
                         />
                     </div>
-                </div> 
-                :
-                //User Register
-            <div> 
-                <div className="my-3">
-                        <label htmlFor="nif" className="form-label mb-1"> NIF </label>
-                        <input
-                            name="nif"
-                            type="text"
-                            className="form-control shadow-sm"
-                            autoComplete="off"
-                            autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...UserCredentials, NIF: e.target.value.trim() })}
-                        />
-                </div>
-                <div className="mb-3">
-                        <label htmlFor="name" className="form-label mb-1"> Name </label>
-                        <input
-                            name="name"
-                            type="text"
-                            className="form-control shadow-sm"
-                            autoComplete="off"
-                            autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...UserCredentials, Name: e.target.value.trim() })}
-                        />
-                </div>
-                <div className="my-3">
-                        <label htmlFor="email" className="form-label mb-1"> Email </label>
-                        <input
-                            name="email"
-                            type="text"
-                            className="form-control shadow-sm"
-                            autoComplete="off"
-                            autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...UserCredentials, Email: e.target.value.trim() })}
-                        />
-                </div>
-                <div className="mb-3">
-                        <label htmlFor="password" className="form-label mb-1"> Password </label>
-                        <input
-                            name="password"
-                            type="text"
-                            className="form-control shadow-sm"
-                            autoComplete="off"
-                            autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...UserCredentials, Password: e.target.value })}
-                        />
-                </div>
-            </div> 
-                }
-
-                { !CoRegistered ?
-
-                    <button
-                        type="button"
-                        className="btn green-button mt-2 mb-0 shadow-sm"
-                        onClick={() => { checkCompany()  }} 
-                    >
-                        Siguiente
+                    <button className="btn green-button mt-2 mb-0 shadow-sm" onClick={checkCompany}>
+                            Acceder
+                            
                     </button>
-                    :
-                    <button
-                        type="button"
-                        className="btn green-button mt-2 mb-0 shadow-sm"
-                        onClick={() => { CoRegister()  }} 
-                    >
-                        Aceptar
-                    </button>
-                    }
                     <div className="mt-4 text-end">
                         <small>¿Ya tienes cuenta?</small>
 
@@ -176,6 +78,7 @@ export const Register = () => {
                             Acceder
                         </Link>
                     </div>
+                    {redirect ? <Redirect to="/user/register"/> : null}
                 </div>
             </div>
         </div>

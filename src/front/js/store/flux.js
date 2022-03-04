@@ -1,7 +1,14 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {},
-		actions: {}
+		store: {
+			company:{}
+		},
+		actions: {
+			setCompany:(company)=>{
+				const store = getStore()
+				setStore({...store, company:company})
+			}
+		}
 	};
 };
 
