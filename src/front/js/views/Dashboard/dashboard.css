@@ -1,12 +1,28 @@
 /* Color Palette */
 :root {
-  --green: #83a638;
+  --green: #297f00;
   --yellow: #f2a30f;
   --orange: #f2780c;
   --red: #d93d1a;
   --gray: #f2f2f2;
   --dark-gray: #ebedf0;
   --hover-brightness: 1.1;
+  --hover-darkness: .98;
+  --theme-color: var(--orange);
+}
+
+/* Simple theme colors */
+.dashboard-theme-orange {
+  --theme-color: var(--orange);
+}
+.dashboard-theme-yellow {
+  --theme-color: var(--yellow);
+}
+.dashboard-theme-red {
+  --theme-color: var(--red);
+}
+.dashboard-theme-green {
+  --theme-color: var(--green);
 }
 
 /* General */
@@ -22,11 +38,19 @@
 }
 
 #dashboard-wrapper h4 {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    color: #000000;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+}
+
+#dashboard-wrapper h5 {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #000000;
 }
 
 #dashboard-sidebar {
@@ -38,9 +62,8 @@
   background-repeat: no-repeat;
   background-position: center;
   color: #ffffff;
-  box-shadow: -11px 4px 15px 5px #000000e1;
+  box-shadow: -7px 0px 15px 5px #000000e1;
   z-index: 1;
-  transition: width 0.3s;
 }
 
 #dashboard-sidebar > div {
@@ -51,6 +74,8 @@
 
 #dashboard-sidebar .company-logo {
   text-align: center;
+  background-color: #ffffff21;
+  padding: 10px 0;
 }
 
 #dashboard-sidebar li {
@@ -62,7 +87,7 @@
 }
 
 #dashboard-sidebar li.active {
-  background-color: var(--orange);
+  background-color: var(--theme-color);
 }
 
 #dashboard-sidebar .nav-link {
@@ -74,18 +99,20 @@
   padding-left: 1rem;
   letter-spacing: 2px;
   color: inherit;
-  transition: width 0.3s;
 }
 
 #dashboard-sidebar li.active .nav-link {
   font-weight: 500;
 }
 
-#dashboard-sidebar .nav-link i {
-  width: 26px;
-  margin-right: 10px;
-  font-size: 1.7rem;
+.user-notifications-number {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background-color: var(--red);
+  font-size: 0.7rem;
   text-align: center;
+  color: #ffffff;
 }
 
 #dashboard-sidebar hr {
@@ -103,31 +130,56 @@
   flex-flow: column nowrap;
   justify-content: space-between;
   width: calc(100% - 200px);
-  transition: all 0.3s;
 }
 
 #dashboard-content-header {
-    background-color: #ffffff;
-}
-
-#dashboard-main-menu a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 400;
-}
-
-#dashboard-main-menu a:hover {
-    font-weight: 600;
+  background-color: #ffffff;
 }
 
 #dashboard-content-header .avatar-image img {
-    max-width: 45px;
-    border-radius: 50%;
+  max-width: 45px;
+  border-radius: 50%;
+}
+
+#dashboard-main-menu .nav-link {
+  border-radius: 50%;
+  background-color: #f2f2f2b3;
+  padding: 10px 12px;
+  color: var(--theme-color);
+  font-weight: 400;
+}
+
+#dashboard-main-menu .nav-link:hover {
+  filter: brightness(var(--hover-darkness));
+}
+
+#dashboard-content-main {
+  position: relative;
+  flex-grow: 1;
+}
+
+.dashboard-new-order-button {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+}
+
+.dashboard-new-order-button button {
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--theme-color);
+  color: #ffffff;
+  box-shadow: 3px 3px 13px -6px #000000d6;
+}
+
+.dashboard-new-order-button button:hover {
+  filter: brightness(var(--hover-brightness));
 }
 
 #dashboard-footer {
-  background-color: var(--green);
+  background-color: var(--theme-color);
   color: #ffffff;
   text-align: center;
 }
@@ -138,21 +190,25 @@
   text-decoration: none;
 }
 
+.dashboard-theme-switch {
+  display: inline-block;
+  margin: 0 0.5rem;
+  border: 0;
+  background: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 /* -- Media Queries -- */
 @media (max-width: 768px) {
   #dashboard-sidebar {
     width: 115px;
-    transition: margin 0.3s;
   }
 
   #dashboard-sidebar .nav-link {
     flex-flow: column nowrap;
     width: 99px;
     padding: 0.5rem 0;
-  }
-
-  #dashboard-sidebar .nav-link i {
-    margin: 0;
   }
 
   #dashboard-sidebar.inactive {
