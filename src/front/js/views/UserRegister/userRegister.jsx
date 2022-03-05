@@ -11,7 +11,7 @@ import logo from "../../../assets/img/LogoMG-54px.png";
 import { ApiUserRegister } from "../../service/user.js";
 
 export const UserRegister = () => {
-    const {store, actions} = useContext(Context)
+    const {store, actions} = useContext( Context )
     const [loading, setLoading] = useState(false);
     const [UserCredentials, setUserCredentials] = useState({NIF: "", Name: "", Email: "", Password: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
@@ -22,7 +22,7 @@ export const UserRegister = () => {
         try {
             setNotifyMessage(false);
 
-            const response = await ApiCoLogin(CoCredentials);
+            const response = await ApiUserLogin(UserCredentials);
             const status = response.status;
             const data = await response.json();
 
@@ -60,68 +60,72 @@ export const UserRegister = () => {
                     </div>
                 </div>
                 <div className="form-content-right col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 p-4 bg-light">
-                    <div className="form-title d-flex justify-content-between align-items-center">
-                        <div>
-                            <p className="m-0">Registro de Empresa</p>
-                            <h4>MasterGest</h4>
+                        <div className="form-title d-flex justify-content-between align-items-center">
+                            <div>
+                                <p className="m-0">Registro de Empresa</p>
+                                <h4>MasterGest</h4>
+                            </div>
+
+                            <img src={logo} alt="LogoMG" className={loading ? "rotate" : null} />
                         </div>
 
-                        <img src={logo} alt="LogoMG" className={loading ? "rotate" : null} />
+                    <div className="my-3">
+                            <label htmlFor="nif" className="form-label mb-1"> NIF </label>
+                            <input
+                                name="nif"
+                                type="text"
+                                className="form-control shadow-sm"
+                                autoComplete="off"
+                                value={UserCredentials.NIF}
+                                autoFocus="on"
+                                onChange={(e) => setUserCredentials({ ...UserCredentials, NIF: e.target.value.trim() })}
+                            />
                     </div>
- 
-                <div className="my-3">
-                        <label htmlFor="nif" className="form-label mb-1"> NIF </label>
-                        <input
-                            name="nif"
-                            type="text"
-                            className="form-control shadow-sm"
-                            autoComplete="off"
-                            value={UserCredentials.NIF}
-                            autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...UserCredentials, NIF: e.target.value.trim() })}
-                        />
-                </div>
-                <div className="mb-3">
-                        <label htmlFor="name" className="form-label mb-1"> Name </label>
-                        <input
-                            name="name"
-                            type="text"
-                            className="form-control shadow-sm"
-                            autoComplete="off"
-                            autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...UserCredentials, Name: e.target.value.trim() })}
-                        />
-                </div>
-                <div className="my-3">
-                        <label htmlFor="email" className="form-label mb-1"> Email </label>
-                        <input
-                            name="email"
-                            type="text"
-                            className="form-control shadow-sm"
-                            autoComplete="off"
-                            autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...UserCredentials, Email: e.target.value.trim() })}
-                        />
-                </div>
-                <div className="mb-3">
-                        <label htmlFor="password" className="form-label mb-1"> Password </label>
-                        <input
-                            name="password"
-                            type="text"
-                            className="form-control shadow-sm"
-                            autoComplete="off"
-                            autoFocus="on"
-                            onChange={(e) => setUserCredentials({ ...UserCredentials, Password: e.target.value })}
-                        />
-                </div>
+
+                    <div className="mb-3">
+                            <label htmlFor="name" className="form-label mb-1"> Name </label>
+                            <input
+                                name="name"
+                                type="text"
+                                className="form-control shadow-sm"
+                                autoComplete="off"
+                                autoFocus="on"
+                                onChange={(e) => setUserCredentials({ ...UserCredentials, Name: e.target.value.trim() })}
+                            />
+                    </div>
+
+                    <div className="my-3">
+                            <label htmlFor="email" className="form-label mb-1"> Email </label>
+                            <input
+                                name="email"
+                                type="text"
+                                className="form-control shadow-sm"
+                                autoComplete="off"
+                                autoFocus="on"
+                                onChange={(e) => setUserCredentials({ ...UserCredentials, Email: e.target.value.trim() })}
+                            />
+                    </div>
+
+                    <div className="mb-3">
+                            <label htmlFor="password" className="form-label mb-1"> Password </label>
+                            <input
+                                name="password"
+                                type="text"
+                                className="form-control shadow-sm"
+                                autoComplete="off"
+                                autoFocus="on"
+                                onChange={(e) => setUserCredentials({ ...UserCredentials, Password: e.target.value })}
+                            />
+                    </div>
+
                     <button
-                        type="button"
-                        className="btn green-button mt-2 mb-0 shadow-sm"
-                        onClick={() => {  }} 
-                    >
-                        Aceptar
+                            type="button"
+                            className="btn green-button mt-2 mb-0 shadow-sm accept-btn"
+                            onClick={() => {  }} 
+                        >
+                            Aceptar
                     </button>
-                    
+
                     <div className="mt-4 text-end">
                         <small>¿Ya tienes cuenta?</small>
 

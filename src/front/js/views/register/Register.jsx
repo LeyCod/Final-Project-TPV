@@ -16,6 +16,7 @@ export const Register = () => {
     const [CoCredentials, setCoCredentials] = useState({ coName: "", Cif: "" });
     const [redirect, setRedirect] = useState(false)
     console.log(actions)
+
     const checkCompany = () => {
         if ( CoCredentials["coName"].length !== 0 && CoCredentials["Cif"].length !== 0) {
             actions.setCompany(CoCredentials);
@@ -56,6 +57,9 @@ export const Register = () => {
                             onChange={(e) => setCoCredentials({ ...CoCredentials, coName: e.target.value.trim() })}
                         />
                     </div>
+                    <div class="alert alert-warning" role="alert">
+                        A simple warning alert—check it out!
+                    </div>
                     <div className="mb-3">
                         <label htmlFor="cif" className="form-label mb-1"> CIF </label>
                         <input
@@ -67,6 +71,9 @@ export const Register = () => {
                             onChange={(e) => setCoCredentials({ ...CoCredentials, Cif: e.target.value.trim() })}
                         />
                     </div>
+                    {/* <div className={${!userLogged ? "text-danger" : "text-success"} text-center fw-normal ${!notifyMessage ? "invisible" : ""}}>
+                        <small>{notifyMessage}&nbsp;</small>
+                    </div> */}
                     <button className="btn green-button mt-2 mb-0 shadow-sm" onClick={checkCompany}>
                             Acceder
                             
