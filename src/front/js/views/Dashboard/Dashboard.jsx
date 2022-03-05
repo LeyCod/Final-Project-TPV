@@ -2,12 +2,9 @@ import React, { useState, useRef } from "react";
 
 // Styles 
 import "./dashboard.css";
-import companyLogo from "../../../assets/img/BeerLogo.png";
+import companyLogo from "../../../assets/img/LogoDesign.png";
 import avatarImage from "../../../assets/img/AvatarTest.jpg";
-import dashboardBG from "../../../assets/img/DashboardBG_size.jpg";
-
-// Components
-import { DashboardCard } from "../../component/DashboardCard/DashboardCard.jsx";
+import dashboardBG from "../../../assets/img/DashboardBG.jpg";
 
 export const Dashboard = () => {
     const dashBoardThemeColors = ["orange", "yellow", "red", "green"];
@@ -35,9 +32,7 @@ export const Dashboard = () => {
                         <div>
                             <div className="company-logo">
                                 <div className="logo">
-                                    Company<br />
-                                    <strong>Logo</strong>
-                                    {/* <img className="img-fluid p-0" src={companyLogo} alt="companyLogo" /> */}
+                                    <img className="img-fluid p-2" src={companyLogo} alt="companyLogo" />
                                 </div>
                             </div>
                             <ul className="navbar-nav mt-3">
@@ -147,21 +142,10 @@ export const Dashboard = () => {
                             </div>
                         </div>
 
-                        <div className="p-4" id="dashboard-content-main">
-                            asdfasdfa
-                            sdfa
-                            sdfasdf
-                            <br />
-                            <br /><br /><br />
-                            asdfas<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />dfasdfasdfadsadsf
-                            sdfasdf
-                            asdfasdfasdfasd<br /><br /><br />fadsadsf
-                            sdfasdf
-                            asdfasdfasdfasdfadsadsf<br /><br />
-                            sdfasdf
-                            asdfasdfasdfasdfadsads<br /><br />f
-                            sdfasdf<br /><br /><br />
-                            asdfasdfasdfasdfadsadsf
+                        <div className="p-2" id="dashboard-content-main">
+                            <div className="p-2 rounded-3" id="dashboard-views-content">
+                                {/* VIEWS CONTENT */}
+                            </div>
                         </div>
                     </main>
 

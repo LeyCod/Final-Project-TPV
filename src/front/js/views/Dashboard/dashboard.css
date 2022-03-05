@@ -29,7 +29,7 @@
 #dashboard-wrapper {
   min-height: 100vh;
   min-height: fill-available;
-  background-color: #f9f9f9;
+  background-color: #f1f1f1;
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
@@ -75,7 +75,6 @@
 #dashboard-sidebar .company-logo {
   text-align: center;
   background-color: #ffffff21;
-  padding: 10px 0;
 }
 
 #dashboard-sidebar li {
@@ -157,6 +156,11 @@
 #dashboard-content-main {
   position: relative;
   flex-grow: 1;
+}
+
+#dashboard-views-content {
+  background-color: #ffffff;
+  height: 100%;
 }
 
 .dashboard-new-order-button {
