@@ -40,4 +40,19 @@ def company_get(user_id):
         print("[ERROR GET COMPANY]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
 
+def update_company(body):
+    try:
+        if body is None:
+            return error_response("Error interno del servidor.Por favor,intentalo de nuevo.")
+        update_company = Company.query.filter(Company.id == body["company_id"] ).update(dict(body))
+        db.session.commit() 
+        
+        return succes_response("Información actualizada correctamente", 201)
+
+    except Excepcion as err:
+        db.session.rollback()
+        print("[ERROR UPDATE COMPANY]: ", err)
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+
+
    
