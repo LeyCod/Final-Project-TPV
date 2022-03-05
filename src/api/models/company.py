@@ -26,4 +26,6 @@ class Company(db.Model):
             "name": self.name,
             "cif": self.cif,
             "is_active": self.is_active
+
         }
+
