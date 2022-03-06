@@ -7,6 +7,13 @@ export const apiUserLogin = (userCredentials) =>
         body: JSON.stringify(userCredentials)
     });
 
+// Register User
+export const apiUserRegister = (userCredentials) =>
+    fetch(`${BASE_URL}/api/user/register`, {
+        method: "POST",
+        body: JSON.stringify(userCredentials)
+    });
+
 // User Validation
 export const apiUserValidation = () =>
     fetch(`${BASE_URL}/api/user/validate`, {

@@ -42,7 +42,7 @@ export const Header = () => {
           </ul>
 
           <div className="d-flex gap-2">
-            <Link to="/register" className="btn outline-green-button rounded-button px-5 shadow-sm">
+            <Link to="/register-company" className="btn outline-green-button rounded-button px-5 shadow-sm">
               Registro
             </Link>
 

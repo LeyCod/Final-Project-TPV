@@ -16,7 +16,7 @@ const Layout = (props) => {
     return (
         locationPath === "/dashboard"
             ? props.children
-            : locationPath === "/login" || locationPath === "/register"
+            : locationPath === "/login" || locationPath === "/register-company" || locationPath === "/register-user"
              ? props.children
              : <>
                 <Header />

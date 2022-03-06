@@ -1,7 +1,7 @@
 import React from "react";
 
 // Styles
-import "./landing_page.css";
+import "./landing-page.css";
 
 // Components
 import { Slide } from "../../component/LandingPage/Slide/Slide.jsx";

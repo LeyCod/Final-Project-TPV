@@ -9,6 +9,8 @@ import Layout from "./layout/Layout.jsx";
 // Views
 import { LandingPage } from "./views/LandingPage/LandingPage.jsx";
 import { Login } from "./views/Login/Login.jsx";
+import { RegisterCompany } from "./views/RegisterCompany/RegisterCompany.jsx";
+import { RegisterUser } from "./views/RegisterUser/RegisterUser.jsx";
 import { Dashboard } from "./views/Dashboard/Dashboard.jsx";
 
 const AppRouter = () => {
@@ -27,6 +29,12 @@ const AppRouter = () => {
 							</Route>
 							<Route exact path="/login">
 								<Login />
+							</Route>
+							<Route exact path="/register-company">
+								<RegisterCompany />
+							</Route>
+							<Route exact path="/register-user">
+								<RegisterUser />
 							</Route>
 							<Route exact path="/dashboard">
 								<Dashboard />
