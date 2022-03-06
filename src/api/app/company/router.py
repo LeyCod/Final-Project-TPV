@@ -16,7 +16,8 @@ def create_company():
 def get_company():
     user_id = get_jwt_identity()
     print (user_id)
-    return jsonify("Hola"),200
+    return company_get(user_id["id"])
+    
 
 @companys.route("/", methods=["PUT"])
 def company_update():
