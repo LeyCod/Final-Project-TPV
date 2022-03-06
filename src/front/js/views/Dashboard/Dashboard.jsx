@@ -73,7 +73,7 @@ export const Dashboard = () => {
 
                 <div className={`col-auto p-0 ${activeSidebar ? "" : "inactive"}`} id="dashboard-content">
                     <main className="flex-grow-1 d-flex flex-column flex-nowrap overflow-auto">
-                        <div className="navbar navbar-expand-md navbar-light sticky-top p-2 shadow-sm" id="dashboard-content-header">
+                        <div className="navbar navbar-expand-md navbar-light sticky-top px-2 py-3 shadow-sm" id="dashboard-content-header">
                             <div className="container-fluid px-2 px-md-4">
                                 <button
                                     type="button"
@@ -88,7 +88,7 @@ export const Dashboard = () => {
 
                                 </button>
 
-                                <h4 className="d-none d-sm-block">Dashboard</h4>
+                                <h4>Dashboard</h4>
 
                                 <div
                                     className="navbar-toggler border-0 avatar-image"
@@ -134,7 +134,7 @@ export const Dashboard = () => {
                                         </li>
                                     </ul>
 
-                                    <div className="d-flex flex-column">
+                                    <div className="d-flex flex-column mt-3 mt-md-0">
                                         <p className="dashboard-username m-0 text-dark fw-bold">Jose Clemente</p>
                                         <small className="dashboard-user-rol text-muted">Admin</small>
                                     </div>
@@ -168,7 +168,7 @@ export const Dashboard = () => {
                             title="Crear nuevo pedido"
                             type="button"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                             </svg>
                         </button>

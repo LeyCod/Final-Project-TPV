@@ -1,9 +1,7 @@
 import React from "react";
-import "../Features/features.css";
 import PropTypes from "prop-types";
 
 export const Features = (props) => {
-  console.log(props);
   return (
     <div
       className={`row ${

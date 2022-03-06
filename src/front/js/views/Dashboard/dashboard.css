@@ -1,16 +1,3 @@
-/* Color Palette */
-:root {
-  --green: #297f00;
-  --yellow: #f2a30f;
-  --orange: #f2780c;
-  --red: #d93d1a;
-  --gray: #f2f2f2;
-  --dark-gray: #ebedf0;
-  --hover-brightness: 1.1;
-  --hover-darkness: 0.98;
-  --theme-color: var(--orange);
-}
-
 /* Simple theme colors */
 .dashboard-theme-orange {
   --theme-color: var(--orange);
@@ -42,14 +29,6 @@
   font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 600;
-  color: #000000;
-}
-
-#dashboard-wrapper h5 {
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 24px;
-  font-weight: 400;
   color: #000000;
 }
 
@@ -104,7 +83,7 @@
   font-weight: 500;
 }
 
-.user-notifications-number {
+#dashboard-sidebar .user-notifications-number {
   width: 19px;
   height: 19px;
   border-radius: 50%;
@@ -203,7 +182,6 @@
   border: 0;
   background: none;
   color: #ffffff;
-  cursor: pointer;
 }
 
 /* -- Media Queries -- */
@@ -233,12 +211,13 @@
   /* --- User mobile menú --- */
   #dashboard-content .navbar-collapse {
     position: absolute;
-    top: 75px;
+    top: 70px;
     right: 10px;
     width: fit-content;      
     border-radius: 0.3rem;
     padding: 0.5rem;
     background-color: #ffffff;
+    box-shadow: 0px 0px 11px -5px #00000094;
   }
 
   .navbar-collapse #dashboard-main-menu .nav-link {

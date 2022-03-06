@@ -23,8 +23,6 @@ export const Login = () => {
             const status = response.status;
             const data = await response.json();
 
-            console.log("data", data);
-
             if (status === 200) {
                 localStorage.setItem("api-flask-token", data.token);
                 setUserLogged(true);

@@ -1,9 +1,7 @@
 import React from "react";
-import "../Card/card.css";
 import PropTypes from "prop-types";
 
 export const Card = (props) => {
-  console.log(props);
   return (
     <div className="card border-0">
       <div className="text-center py-2 ">

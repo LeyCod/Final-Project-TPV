@@ -1,20 +1,14 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
+import React from "react";
 
 // Components
-import { Header } from "../component/Header/Header.jsx";
-import { Card } from "../component/Card/Card.jsx";
-import { Features } from "../component/Features/Features.jsx";
-import { Slide } from "../component/Slide/Slide.jsx";
-import { Footer } from "../component/Footer/Footer.jsx";
+import { Card } from "../../component/LandingPage/Card/Card.jsx";
+import { Features } from "../../component/LandingPage/Features/Features.jsx";
 
-export const Home = () => {
-  const { store, actions } = useContext(Context);
-
+export const LandingPage = () => {
   return (
-    <div className="container-fluid p-0">
-      <Header></Header>
-      <Slide></Slide>
+    <div className="container p-0">
+      
+      
       <h4 className="text-center">Servicios</h4>
       <div className="row gap-4 justify-content-evenly my-4">
         <div className="col-5 col-md-2 p-0">
@@ -64,7 +58,6 @@ export const Home = () => {
         ></Features>
         
       </div>
-      <Footer></Footer>
     </div>
   );
 };

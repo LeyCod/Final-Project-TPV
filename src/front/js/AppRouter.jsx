@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop.jsx";
 import injectContext from "./store/appContext";
 
@@ -7,7 +7,7 @@ import injectContext from "./store/appContext";
 import Layout from "./layout/Layout.jsx";
 
 // Views
-import { Home } from "./views/Home.jsx";
+import { LandingPage } from "./views/LandingPage/LandingPage.jsx";
 import { Login } from "./views/Login/Login.jsx";
 import { Dashboard } from "./views/Dashboard/Dashboard.jsx";
 
@@ -23,7 +23,7 @@ const AppRouter = () => {
 					<Layout>
 						<Switch>
 							<Route exact path="/">
-								<Home />
+								<LandingPage />
 							</Route>
 							<Route exact path="/login">
 								<Login />
