@@ -43,16 +43,21 @@ def company_get(user_id):
         print("[ERROR GET COMPANY]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
 
-def update_company(body):
+def update_company(body, user_id):
     try:
-        if body is None:
-            return error_response("Error interno del servidor.Por favor,intentalo de nuevo.")
-        update_company = Company.query.filter(Company.id == body["company_id"] ).update(dict(body))
+        user = User.query.get(user_id)
+        if user is None:
+            return error_response("El usuario no existe", 404)
+        if user.is_admin == False:
+            return error_response("No autorizado", 401)
+
+        update_company = Company.query.filter(Company.id == body["id"]).update(dict(body))
         db.session.commit() 
         
-        return succes_response("Información actualizada correctamente", 201)
+        return success_response("Los datos se han actualizado")
+        
 
-    except Excepcion as err:
+    except Exception as err:
         db.session.rollback()
         print("[ERROR UPDATE COMPANY]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")

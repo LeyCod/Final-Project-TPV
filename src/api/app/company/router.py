@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.company.controller import register_company, company_get
+from api.app.company.controller import register_company, company_get, update_company
 from flask_jwt_extended import get_jwt_identity 
 from flask_jwt_extended import jwt_required 
 
@@ -19,7 +19,9 @@ def get_company():
     return company_get(user_id["id"])
     
 
-@companys.route("/", methods=["PUT"])
+@companys.route("/update", methods=["PUT"])
+@jwt_required()
 def company_update():
+    user_id = get_jwt_identity()
     body = request.get_json(force = True)
-    return update_company(body)
+    return update_company(body, user_id)
