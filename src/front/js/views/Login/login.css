@@ -1,49 +1,51 @@
-.form-view {
-	position: absolute;    
-	width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: #e0ad50;
+#login-form.form-view {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f1f1f1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
 }
 
-.form-content-left,
-.form-content-right {
-    display: flex;
-    flex-flow: column nowrap;    
+#login-form.form-view > div {
+    margin-top: 6rem;
 }
 
-.form-content-left {
-    justify-content: space-evenly;
-    height: 240px;
-    background-image: url("https://www.datocms-assets.com/38036/1633069437-p4-2x.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    background-size: 85%;
-    animation: fadeinright 0.8s;
+#login-form .form-content-left,
+#login-form .form-content-right {
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-.form-content-right {
-    justify-content: space-between;
-    height: 400px;
-    box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
-    z-index: 10;
+#login-form .form-content-left {
+  justify-content: space-evenly;
+  height: 240px;
+  background-color: #f1f1f1;
+  background-repeat: no-repeat;
+  background-size: 85%;
+  background-position: right bottom;
+  animation: fadeinright 0.8s;
+  box-shadow: 0px 0px 26px -2px rgb(0 0 0 / 24%);
 }
 
-.form-content-right > .form-title {
-    animation: fadein 0.8s;
+#login-form .form-content-right {
+  justify-content: space-between;
+  box-shadow: 0px 0px 40px 16px rgba(0, 0, 0, 0.22);
+  z-index: 10;
 }
 
-.form-content-right > .form-title img {
-    border-radius: 50%;
+#login-form .form-content-right > .form-title {
+  animation: fadein 0.8s;
 }
 
-.form-content-right input {
-    border: 0;
-    background-color: var(--dark-gray);
-    caret-color: #198754;
-    animation: fadeintop .6s;
+#login-form .form-content-right input {
+  border: 0;
+  background-color: var(--dark-gray);
+  caret-color: #198754;
+  animation: fadeintop 0.6s;
 }
 
-.form-content-right input:focus {
-    background-color: var(--dark-gray);
+#login-form .form-content-right input:focus {
+  background-color: var(--dark-gray);
 }

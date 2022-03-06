@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 // Styles 
 import "./dashboard.css";
@@ -150,8 +151,12 @@ export const Dashboard = () => {
                     </main>
 
                     <footer className="py-1 px-3" id="dashboard-footer">
-                        <div>2022. © By <a href="https://github.com/m4n50n" target="_blank">MasterGest</a></div>
-                        
+                        <div>2022. © By&nbsp;
+                            <Link to="/" target="_blank">
+                                MasterGest
+                            </Link>
+                        </div>
+
                         <button
                             type="button"
                             className="dashboard-theme-switch"

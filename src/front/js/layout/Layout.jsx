@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // Components
@@ -6,16 +7,22 @@ import PropTypes from "prop-types";
 import { Header } from "../component/LandingPage/Header/Header.jsx";
 import { Footer } from "../component/LandingPage/Footer/Footer.jsx";
 
+// -- Dashboard
+
 const Layout = (props) => {
-    console.log("propslayaout", props);
+    const location = useLocation();
+    const locationPath = location.pathname;
+
     return (
-        <>
-            <Header />
-            <main>
+        locationPath === "/dashboard"
+            ? props.children
+            : locationPath === "/login" || locationPath === "/register"
+             ? props.children
+             : <>
+                <Header />
                 {props.children}
-            </main>
-            <Footer />
-        </>
+                <Footer />
+            </>
     );
 };
 

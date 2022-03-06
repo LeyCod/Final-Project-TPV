@@ -1,63 +1,60 @@
 import React from "react";
 
+// Styles
+import "./landing_page.css";
+
 // Components
+import { Slide } from "../../component/LandingPage/Slide/Slide.jsx";
 import { Card } from "../../component/LandingPage/Card/Card.jsx";
 import { Features } from "../../component/LandingPage/Features/Features.jsx";
 
 export const LandingPage = () => {
   return (
-    <div className="container p-0">
-      
-      
-      <h4 className="text-center">Servicios</h4>
-      <div className="row gap-4 justify-content-evenly my-4">
-        <div className="col-5 col-md-2 p-0">
+    <main id="landing-page-wrapper">
+      <Slide />
+
+      <div className="container">
+        <div className="row flex-column flex-md-row gap-3 gap-md-0 my-5 py-3 pb-4">
+          <h2 className="mb-3 text-center">Nuestros servicios de gestión</h2>
+
           <Card
             title="Servicio1"
             subtitle="Este es uno de los servicios."
             icono="utensils"
-          ></Card>
-        </div>
-        <div className="col-5 col-md-2 p-0">
+          />
+
           <Card
             title="Servicio2"
             subtitle="Este es el segundo servicio."
             icono="utensils"
-          ></Card>
-        </div>
-        <div className="col-5 col-md-2 p-0">
+          />
+
           <Card
             title="Servicio3"
             subtitle="Esto es el tercer servicio."
             icono="utensils"
-          ></Card>
+          />
         </div>
-        <div className="col-5 col-md-2 p-0">
-          <Card
-            title="Servicio4"
-            subtitle="Este es el cuarto servicio."
-            icono="utensils"
-          ></Card>
-        </div>
-      </div>
-      <div className="offset-5 col-md-5 col-sm-12 ">
+
+        <hr />
+
         <Features
           title="#Feature1"
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis pretium ipsum ac molestie. Aliquam dapibus feugiat faucibus. Vestibulum accumsan."
-          img="https://placeimg.com/640/480/any"
-          type={false}
+          img="https://3seis.com/wp-content/uploads/1_diseno_web_3.png"
+          reverse={false}
         ></Features>
-      </div>
-      <div className="col-md-5 col-sm-12">
+
+        <hr />
+
         <Features
           title="#Feature2"
           text=
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis pretium ipsum ac molestie. Aliquam dapibus feugiat faucibus. Vestibulum accumsan."
-            img="https://placeimg.com/640/480/tech"
-            type={true}
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis pretium ipsum ac molestie. Aliquam dapibus feugiat faucibus. Vestibulum accumsan."
+          img="https://3seis.com/wp-content/uploads/2_diseno_web_1.png"
+          reverse={true}
         ></Features>
-        
       </div>
-    </div>
+    </main >
   );
 };

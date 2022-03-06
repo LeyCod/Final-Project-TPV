@@ -1,3 +1,13 @@
-footer {
-    background: green;
+#landing-page-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--green);
+  color: #ffffff;
+}
+
+#landing-page-footer a {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: none;
 }

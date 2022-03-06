@@ -35,6 +35,7 @@ small {
   font-family: "Roboto", sans-serif;
 }
 
+/* Custom buttons */
 .green-button {
   border-color: var(--green);
   background-color: var(--green);
@@ -46,6 +47,17 @@ small {
   background-color: var(--green);
   color: #ffffff;
   filter: brightness(var(--hover-brightness));
+}
+
+.outline-green-button {
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 500;
+}
+
+
+.rounded-button {
+  border-radius: 25px;
 }
 
 /* Animation */
