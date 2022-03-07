@@ -8,27 +8,24 @@ import formBackground from "../../../assets/img/FormsBG.jpg";
 import formBanner from "../../../assets/img/FormLoginBanner-BG.png";
 import logoMasterGest from "../../../assets/img/LogoMG-45px.png";
 
-// Functions
-import { apiCompanyRegister } from "../../service/company.js";
-
 export const RegisterCompany = () => {
     const { store, actions } = useContext(Context);
 
-    const [companyCredentials, setCompanyCredentials] = useState({ name: "", cif: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
+    const [nextStep, setNextStep] = useState(false);
 
     const checkCompanyData = () => {
         setNotifyMessage(false);
 
-        if (companyCredentials["name"].length !== 0 && companyCredentials["cif"].length !== 0) {
-            actions.setCompanyRegisterCredentials(companyCredentials);
-        }
-        else {
+        if (!actions.checkCompanyRegisterData()) {        
             setNotifyMessage("Por favor, introduce los datos de empresa antes de continuar.")
+            return false;
         }
+
+        return true;
     }
 
-    return Object.keys(store.companyRegisterCredentials).length !== 0
+    return Object.keys(store.companyRegisterData).length !== 0 && nextStep
         ? <Redirect to="/register-user" />
         : (
             <div
@@ -64,7 +61,8 @@ export const RegisterCompany = () => {
                                     className="form-control shadow-sm"
                                     autoComplete="off"
                                     autoFocus="on"
-                                    onChange={(e) => setCompanyCredentials({ ...companyCredentials, name: e.target.value.trim() })}
+                                    onChange={(e) => actions.setCompanyRegisterData("name", e.target.value.trim() ) }
+                                    defaultValue={ store.companyRegisterData.name.length !== 0 ? store.companyRegisterData.name : "" }
                                 />
                             </div>
                             <div className="mb-3">
@@ -73,7 +71,8 @@ export const RegisterCompany = () => {
                                     type="text"
                                     className="form-control shadow-sm"
                                     autoComplete="off"
-                                    onChange={(e) => setCompanyCredentials({ ...companyCredentials, cif: e.target.value.trim() })}
+                                    onChange={(e) => actions.setCompanyRegisterData("cif", e.target.value.trim() ) }
+                                    defaultValue={ store.companyRegisterData.cif.length !== 0 ? store.companyRegisterData.cif : "" }
                                 />
                             </div>
 
@@ -84,7 +83,7 @@ export const RegisterCompany = () => {
                             <button
                                 type="button"
                                 className="btn green-button mt-2 mb-0 shadow-sm"
-                                onClick={checkCompanyData}
+                                onClick={ () => setNextStep(checkCompanyData() ? true : false) }
                             >
                                 Siguiente
                             </button>

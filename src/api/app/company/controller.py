@@ -8,13 +8,7 @@ def register_company(body):
         if body is None: 
             return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
 
-        if "name" not in body or len(body["name"]) == 0:
-            return error_response("Debes escribir un nombre.", 400)
-
-        if "cif" not in body or len(body["cif"]) == 0:
-            return error_response("Debes escribir el CIF.", 400)
-
-        new_company = Company(name=body["name"], cif=body["cif"])
+        new_company = Company(name=body["name"].upper(), cif=body["cif"].upper())
 
         db.session.add(new_company)
         db.session.commit()

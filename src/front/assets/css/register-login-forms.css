@@ -10,7 +10,7 @@
 }
 
 .main-form.form-view > div {
-  margin-top: 6rem;
+  margin-top: 3.5rem;
 }
 
 .main-form .form-content-left,
@@ -44,7 +44,7 @@
   border: 0;
   background-color: var(--dark-gray);
   caret-color: #198754;
-  animation: fadeintop 0.6s;
+  animation: fadeintop 0.5s;
 }
 
 .main-form .form-content-right input:focus {

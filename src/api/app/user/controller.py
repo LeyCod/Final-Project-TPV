@@ -31,7 +31,7 @@ def register_user(body):
             return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.", 400)
 
         hash_pass = encrypt_pass(body["password"])
-        new_user = User(company_id=body["company_id"], is_admin=body["is_admin"], nif=body["nif"], name=body["name"], email=body["email"], password=hash_pass)
+        new_user = User(company_id=body["company_id"], is_admin=body["is_admin"], nif=body["nif"].upper(), name=body["name"].upper(), email=body["email"], password=hash_pass)
 
         db.session.add(new_user)
         db.session.commit()

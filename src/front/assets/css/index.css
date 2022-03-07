@@ -55,6 +55,11 @@ small {
   font-weight: 500;
 }
 
+.outline-green-button:hover {
+  border-color: var(--green);
+  background-color: var(--green);
+  color: #ffffff;
+}
 
 .rounded-button {
   border-radius: 25px;
