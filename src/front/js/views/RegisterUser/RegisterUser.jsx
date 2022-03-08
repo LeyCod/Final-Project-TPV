@@ -184,7 +184,7 @@ export const RegisterUser = () => {
                     </div>
                 </div>
 
-                <SuccessModalOnRegister show={ registerCompleted ? "show" : null } />
+                <SuccessModalOnRegister show={ registerCompleted ? true : false } />
             </div>
         );
 };
