@@ -10,7 +10,7 @@ import logoMasterGest from "../../../assets/img/LogoMG-45px.png";
 // Functions
 import { apiUserLogin } from "../../service/user";
 
-export const Login = () => {
+export const Login = () => {    
     const [loading, setLoading] = useState(false);
     const [userCredentials, setUserCredentials] = useState({ user: "", password: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
@@ -50,7 +50,7 @@ export const Login = () => {
                 <div>
                     <div className="row justify-content-center align-items-center h-100 mx-2">
                         <div
-                            className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-2 p-4 bg-white"
+                            className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white"
                             style={{ backgroundImage: `url(${formBanner})` }}
                         >
                             <div>

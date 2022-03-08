@@ -57,11 +57,11 @@ def login_user(body):
         user = db.session.query(User).filter((User.nif == body["user"]) | (User.email == body["user"])).first()
 
         if user is None:
-            return error_response("Lo sentimos, no reconocemos esta cuenta. Por favor, inténtalo de nuevo.", 404)
+            return error_response("Lo sentimos, no reconocemos esta cuenta. Inténtalo de nuevo.", 404)
 
         validate_pass = check_pass(body["password"], user.password)
         if validate_pass == False:
-            return error_response("Nombre de usuario o contraseña no válidos. Por favor, inténtalo de nuevo.", 401)
+            return error_response("Nombre de usuario o contraseña no válidos. Inténtalo de nuevo.", 401)
 
         new_token = create_access_token(identity={ "id": user.id })
         return success_response({ "token": new_token, "is_admin": user.is_admin })
