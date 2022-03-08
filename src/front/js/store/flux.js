@@ -8,11 +8,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userRegisterData: {
 				company_id: "",
 				nif: "",
-				name: "",
+				first_name: "",
+				last_name: "",
 				email: "",
 				password: "",
 				is_admin: false			
-			}
+			},
+			companyRegistered: false,
+			loggedUserData: {}
 		},
 		actions: {
 			checkCompanyRegisterData: () => {
@@ -31,6 +34,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setUserRegisterData: (input, value) => {
 				getStore().userRegisterData[[input]] = value;
+			},
+			setCompanyRegistered: () => {
+				getStore().companyRegistered = true;	
+			},
+			setLoggedUserData: (userData) => {
+				getStore().loggedUserData = userData;
+				console.log(getStore());
 			}
 		}
 	};

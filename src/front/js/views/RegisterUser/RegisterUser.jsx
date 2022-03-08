@@ -20,11 +20,10 @@ export const RegisterUser = () => {
 
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
-    const [companyRegistered, setCompanyRegistered] = useState(false);
     const [registerCompleted, setRegisterCompleted] = useState(false);
 
     const companyRegister = async () => {
-        if (companyRegistered) {
+        if (store.companyRegistered) {
             userRegister();
             return false;
         }
@@ -41,7 +40,7 @@ export const RegisterUser = () => {
             actions.setRegisteredCompanyID(data.id);
 
             if (status === 201) {
-                setCompanyRegistered(true);
+                actions.setCompanyRegistered();
                 userRegister();
             }
             else {
@@ -122,16 +121,29 @@ export const RegisterUser = () => {
                                     defaultValue={store.userRegisterData.nif}
                                 />
                             </div>
-                            <div className="mb-3">
-                                <label className="form-label mb-1">Nombre completo</label>
-                                <input
-                                    type="text"
-                                    className="form-control shadow-sm"
-                                    autoComplete="off"
-                                    maxLength={70}
-                                    onChange={(e) => actions.setUserRegisterData("name", e.target.value.trim())}
-                                    defaultValue={store.userRegisterData.name}
-                                />
+                            <div className="d-flex justify-content-between flex-wrap gap-sm-4">
+                                <div className="col-12 col-sm-5 mb-3">
+                                    <label className="form-label mb-1">Nombre</label>
+                                    <input
+                                        type="text"
+                                        className="form-control shadow-sm"
+                                        autoComplete="off"
+                                        maxLength={70}
+                                        onChange={(e) => actions.setUserRegisterData("first_name", e.target.value.trim())}
+                                        defaultValue={store.userRegisterData.first_name}
+                                    />
+                                </div>
+                                <div className="flex-grow-1 col-12 col-sm-6 mb-3">
+                                    <label className="form-label mb-1">Apellidos</label>
+                                    <input
+                                        type="text"
+                                        className="form-control shadow-sm"
+                                        autoComplete="off"
+                                        maxLength={70}
+                                        onChange={(e) => actions.setUserRegisterData("last_name", e.target.value.trim())}
+                                        defaultValue={store.userRegisterData.last_name}
+                                    />
+                                </div>
                             </div>
                             <div className="mb-3">
                                 <label className="form-label mb-1">Email</label>
@@ -184,7 +196,7 @@ export const RegisterUser = () => {
                     </div>
                 </div>
 
-                <SuccessModalOnRegister show={ registerCompleted ? true : false } />
+                <SuccessModalOnRegister show={registerCompleted ? true : false} />
             </div>
         );
 };

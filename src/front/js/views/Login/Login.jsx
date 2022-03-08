@@ -10,7 +10,7 @@ import logoMasterGest from "../../../assets/img/LogoMG-45px.png";
 // Functions
 import { apiUserLogin } from "../../service/user";
 
-export const Login = () => {    
+export const Login = () => {
     const [loading, setLoading] = useState(false);
     const [userCredentials, setUserCredentials] = useState({ user: "", password: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
@@ -30,12 +30,11 @@ export const Login = () => {
             }
             else {
                 setNotifyMessage(data);
+                setLoading(false);
             }
         }
         catch (err) {
             setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
-        }
-        finally {
             setLoading(false);
         }
     }
@@ -92,7 +91,7 @@ export const Login = () => {
                             <div className={`text-danger text-center fw-normal ${!notifyMessage ? "invisible" : ""}`}>
                                 <small>{notifyMessage}&nbsp;</small>
                             </div>
-                            
+
                             <button
                                 type="button"
                                 className="btn green-button mt-2 mb-0 shadow-sm"

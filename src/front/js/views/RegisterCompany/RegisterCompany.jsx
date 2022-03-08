@@ -18,7 +18,7 @@ export const RegisterCompany = () => {
         setNotifyMessage(false);
 
         if (!actions.checkCompanyRegisterData()) {        
-            setNotifyMessage("Introduce los datos de tu empresa antes de continuar.")
+            setNotifyMessage("Introduce los datos de tu empresa antes de continuar")
             return false;
         }
 

@@ -6,7 +6,7 @@ from api.models.index import db, Company
 def register_company(body):
     try:
         if body is None: 
-            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
+            return error_response("Solicitud incorrecta", 400)
 
         new_company = Company(name=body["name"].upper(), cif=body["cif"].upper())
 

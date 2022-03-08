@@ -7,31 +7,34 @@ from flask_jwt_extended import create_access_token
 def register_user(body):
     try:
         if body is None: 
-            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
+            return error_response("Solicitud incorrecta", 400)
 
         if "company_id" not in body:
             return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
         
         if "nif" not in body or len(body["nif"]) == 0:
-            return error_response("Debes escribir un NIF.", 400)
+            return error_response("Debes escribir tu NIF", 400)
 
-        if "name" not in body or len(body["name"]) == 0:
-            return error_response("Debes escribir un nombre.", 400)
+        if "first_name" not in body or len(body["first_name"]) == 0:
+            return error_response("Debes escribir tu nombre", 400)
+
+        if "last_name" not in body or len(body["last_name"]) == 0:
+            return error_response("Debes escribir tus apellidos", 400)
         
         if "email" not in body or len(body["email"]) == 0:
-            return error_response("Debes escribir un email.", 400)
+            return error_response("Debes escribir tu email", 400)
 
         if check_email(body["email"]) == False:
-            return error_response("El email no es válido.", 400)
+            return error_response("El email que has introducido no es válido", 400)
 
         if "password" not in body or len(body["password"]) == 0:
-            return error_response("Debes escribir una contraseña.", 400)
+            return error_response("Debes escribir una contraseña", 400)
 
         if "is_admin" not in body:
             return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.", 400)
 
         hash_pass = encrypt_pass(body["password"])
-        new_user = User(company_id=body["company_id"], is_admin=body["is_admin"], nif=body["nif"].upper(), name=body["name"].upper(), email=body["email"], password=hash_pass)
+        new_user = User(company_id=body["company_id"], is_admin=body["is_admin"], nif=body["nif"].upper(), first_name=body["first_name"].upper(), last_name=body["last_name"].upper(), email=body["email"].lower(), password=hash_pass)
 
         db.session.add(new_user)
         db.session.commit()
@@ -46,13 +49,13 @@ def register_user(body):
 def login_user(body):
     try:
         if body is None:
-            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
+            return error_response("Solicitud incorrecta", 400)
 
         if "user" not in body or len(body["user"]) == 0:
-            return error_response("Escribe un NIF o correo electrónico.", 400)
+            return error_response("Escribe un NIF o correo electrónico", 400)
 
         if "password" not in body or len(body["password"]) == 0:
-            return error_response("Debes escribir una contraseña.", 400)
+            return error_response("Debes escribir una contraseña", 400)
         
         user = db.session.query(User).filter((User.nif == body["user"]) | (User.email == body["user"])).first()
 
@@ -86,7 +89,7 @@ def validate_user(token):
 def delete_user(body):
     try:
         if body is None: 
-            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
+            return error_response("Solicitud incorrecta", 400)
         
         delete_user = User.query.filter((User.id == body["id"]) & (User.is_admin == False)).first()
 
@@ -106,7 +109,7 @@ def delete_user(body):
 def update_user(body):
     try:
         if body is None: 
-            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
+            return error_response("Solicitud incorrecta", 400)
         
         update_user = User.query.filter(User.id == body["id"]).update(dict(body))
         db.session.commit()
