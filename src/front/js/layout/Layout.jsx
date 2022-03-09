@@ -7,22 +7,18 @@ import PropTypes from "prop-types";
 import { Header } from "../component/LandingPage/Header/Header.jsx";
 import { Footer } from "../component/LandingPage/Footer/Footer.jsx";
 
-// -- Dashboard
-
 const Layout = (props) => {
     const location = useLocation();
     const locationPath = location.pathname;
 
     return (
-        locationPath === "/dashboard"
-            ? props.children
-            : locationPath === "/login" || locationPath === "/register-company" || locationPath === "/register-user"
-             ? props.children
-             : <>
+        locationPath === "/"
+            ? <>
                 <Header />
                 {props.children}
                 <Footer />
             </>
+            : props.children
     );
 };
 

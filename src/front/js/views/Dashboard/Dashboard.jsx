@@ -94,7 +94,7 @@ export const Dashboard = () => {
                                 <div>
                                     <div className="company-logo">
                                         <div className="logo">
-                                            <img className="img-fluid p-2" src={ !store.loggedUserCompanyData.image_url ? defaultCompanyLogo : store.loggedUserCompanyData.image_url } alt="companyLogo" />
+                                            <img className="img-fluid p-2" src={ !store.loggedUserCompanyData.logo_url ? defaultCompanyLogo : store.loggedUserCompanyData.logo_url } alt="companyLogo" />
                                         </div>
                                     </div>
                                     <ul className="navbar-nav mt-3">

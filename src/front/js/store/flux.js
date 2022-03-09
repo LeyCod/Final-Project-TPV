@@ -42,12 +42,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getStore().companyRegistered = true;	
 			},
 			setLoggedUserData: (userData) => {
-				getStore().loggedUserData = userData;
-				console.log(getStore());
+				getStore().loggedUserData = userData;				
 			},
 			setLoggedUserCompanyData: (companyData) => {
-				getStore().loggedUserCompanyData = companyData;
-				console.log(getStore());
+				getStore().loggedUserCompanyData = companyData;				
 			},
 			changeDashboardThemeColor: () => {
 				const nextIndex = getStore().selectedDashboardThemeColor + 1;
