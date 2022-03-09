@@ -65,6 +65,17 @@ small {
   border-radius: 25px;
 }
 
+/* Custom scrollbar */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #ffffff59;
+}
+
 /* Animation */
 .rotate {
   animation: rotation 0.3s infinite linear;

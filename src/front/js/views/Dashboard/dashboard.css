@@ -22,6 +22,7 @@
   line-height: 1.5;
   font-weight: 300;
   color: #7e7e7e;
+  overflow: hidden;
 }
 
 #dashboard-wrapper h4 {
@@ -35,7 +36,7 @@
 #dashboard-sidebar {
   max-height: 100vh;
   display: flex;
-  width: 200px;
+  width: 220px;
   background-color: #000000;
   background-size: cover;
   background-repeat: no-repeat;
@@ -43,6 +44,7 @@
   color: #ffffff;
   box-shadow: -8px 0px 15px 5px #000000e1;
   z-index: 9999;
+  overflow: auto;
 }
 
 #dashboard-sidebar > div {
@@ -107,7 +109,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  width: calc(100% - 200px);
+  width: calc(100% - 220px);
   max-height: 100vh;
 }
 
@@ -187,7 +189,7 @@
 /* -- Media Queries -- */
 @media (max-width: 768px) {
   #dashboard-sidebar {
-    width: 115px;
+    width: 123px;
   }
 
   #dashboard-sidebar .nav-link {
@@ -197,11 +199,11 @@
   }
 
   #dashboard-sidebar.inactive {
-    margin-left: -115px;
+    margin-left: -123px;
   }
 
   #dashboard-content {
-    width: calc(100% - 115px);
+    width: calc(100% - 123px);
   }
 
   #dashboard-content.inactive {

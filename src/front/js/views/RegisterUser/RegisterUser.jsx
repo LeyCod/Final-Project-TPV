@@ -13,7 +13,7 @@ import { apiCompanyRegister } from "../../service/company.js";
 import { apiUserRegister } from "../../service/user.js";
 
 // Components
-import { SuccessModalOnRegister } from "../../component/LandingPage/Modal/SuccessModalOnRegister.jsx";
+import { SuccessModalOnRegister } from "../../component/Modal/SuccessModalOnRegister.jsx";
 
 export const RegisterUser = () => {
     const { store, actions } = useContext(Context);

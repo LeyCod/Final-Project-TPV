@@ -15,7 +15,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				is_admin: false			
 			},
 			companyRegistered: false,
-			loggedUserData: {}
+			loggedUserData: {},
+			loggedUserCompanyData: {},
+			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
+			selectedDashboardThemeColor: 0
 		},
 		actions: {
 			checkCompanyRegisterData: () => {
@@ -41,6 +44,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setLoggedUserData: (userData) => {
 				getStore().loggedUserData = userData;
 				console.log(getStore());
+			},
+			setLoggedUserCompanyData: (companyData) => {
+				getStore().loggedUserCompanyData = companyData;
+				console.log(getStore());
+			},
+			changeDashboardThemeColor: () => {
+				const nextIndex = getStore().selectedDashboardThemeColor + 1;
+				setStore({ ...getStore(), selectedDashboardThemeColor: !getStore().dashBoardThemeColors[nextIndex] ? 0 : nextIndex });
 			}
 		}
 	};

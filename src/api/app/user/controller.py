@@ -57,7 +57,7 @@ def login_user(body):
         if "password" not in body or len(body["password"]) == 0:
             return error_response("Debes escribir una contraseña", 400)
         
-        user = db.session.query(User).filter((User.nif == body["user"]) | (User.email == body["user"])).first()
+        user = db.session.query(User).filter((User.nif == body["user"].upper()) | (User.email == body["user"].lower())).first()
 
         if user is None:
             return error_response("Lo sentimos, no reconocemos esta cuenta. Inténtalo de nuevo.", 404)
@@ -78,7 +78,7 @@ def validate_user(token):
             user = User.query.get(token)
 
             if user is None:
-                return error_response("Usuario no encontrado", 400)
+                return error_response("Usuario no encontrado", 404)
             else:
                 return success_response(user.serialize())
         
@@ -94,7 +94,7 @@ def delete_user(body):
         delete_user = User.query.filter((User.id == body["id"]) & (User.is_admin == False)).first()
 
         if delete_user is None:
-                return error_response("Usuario no encontrado", 400)
+                return error_response("Usuario no encontrado", 404)
         
         db.session.delete(delete_user)
         db.session.commit()
