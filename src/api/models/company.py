@@ -32,4 +32,6 @@ class Company(db.Model):
             "external_url": self.external_url,
             "logo_url": self.logo_url,
             "is_active": self.is_active
+
         }
+
