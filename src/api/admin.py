@@ -1,4 +1,3 @@
-
 import os
 from flask_admin import Admin
 from api.models.index import db, Company, User, Table, MenuItem, Order, OrderItem, OrderStatus, PaymentMethod

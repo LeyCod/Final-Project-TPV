@@ -62,41 +62,5 @@ data = {
             "email": "blake@abg.com",
             "password": "654321"
         }
-    ],
-    "OrderStatus":[
-        {
-            "id": 1,
-            "name": "Pendiente"
-        },
-        {
-            "id": 2,
-            "name": "En espera"
-        },
-        {
-            "id": 3,
-            "name": "Pagado"
-        },
-        {
-            "id": 4,
-            "name": "Eliminado"
-        }
-    ],
-    "PaymentMethod":[
-        {
-            "id": 1,
-            "name": "Efectivo"
-        },
-        {
-            "id": 2,
-            "name": "Tarjeta"
-        },
-        {
-            "id": 3,
-            "name": "Bizum"
-        },
-        {
-            "id": 4,
-            "name": "Paypal"
-        }
     ]
 }
