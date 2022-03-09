@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 // Styles 
 import "./dashboard.css";
-import companyLogo from "../../../assets/img/LogoDesign.png";
-import avatarImage from "../../../assets/img/AvatarTest.jpg";
+import defaultCompanyLogo from "../../../assets/img/DefaultLogo.png";
+import defaultAvatarImage from "../../../assets/img/DefaultAvatar.png";
 import dashboardBG from "../../../assets/img/DashboardBG.jpg";
 
 // Functions
@@ -94,7 +94,7 @@ export const Dashboard = () => {
                                 <div>
                                     <div className="company-logo">
                                         <div className="logo">
-                                            <img className="img-fluid p-2" src={companyLogo} alt="companyLogo" />
+                                            <img className="img-fluid p-2" src={ !store.loggedUserCompanyData.image_url ? defaultCompanyLogo : store.loggedUserCompanyData.image_url } alt="companyLogo" />
                                         </div>
                                     </div>
                                     <ul className="navbar-nav mt-3">
@@ -161,7 +161,7 @@ export const Dashboard = () => {
                                             data-bs-toggle="collapse"
                                             data-bs-target="#navbarNav"
                                         >
-                                            <img className="img-fluid" src={avatarImage} alt="avatarImg" />
+                                            <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="avatarImg" />
                                         </div>
 
                                         <div className="collapse navbar-collapse gap-2" id="navbarNav">
@@ -201,7 +201,7 @@ export const Dashboard = () => {
                                                     </Link>
                                                 </li>
                                                 <li className="avatar-image d-none d-md-block">
-                                                    <img className="img-fluid" src={avatarImage} alt="avatarImg" />
+                                                    <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="avatarImg" />
                                                 </li>
                                             </ul>
 

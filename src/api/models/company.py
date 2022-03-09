@@ -25,5 +25,11 @@ class Company(db.Model):
             "updated_at": self.updated_at,
             "name": self.name,
             "cif": self.cif,
+            "description": self.description,
+            "address": self.address,
+            "province": self.province,
+            "postal_code": self.postal_code,
+            "external_url": self.external_url,
+            "logo_url": self.logo_url,
             "is_active": self.is_active
         }
