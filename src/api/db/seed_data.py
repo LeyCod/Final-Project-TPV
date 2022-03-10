@@ -98,5 +98,27 @@ data = {
             "id": 4,
             "name": "Paypal"
         }
+    ],
+    "MenuItem":[
+        {
+            "company_id":1,
+            "name": "menu1",
+            "price": 10.5
+        },
+        {
+            "company_id": 2,
+            "name": "menu2",
+            "price": 12.5
+        },
+        {
+            "company_id": 3,
+            "name": "menu3",
+            "price": 15.5
+        },
+        {
+            "company_id":4,
+            "name": "menu4",
+            "price": 20.5
+        }
     ]
 }
