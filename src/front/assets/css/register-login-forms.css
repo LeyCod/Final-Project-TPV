@@ -1,0 +1,52 @@
+/* Same CSS for all registration and login forms */
+.main-form.form-view {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f1f1f1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.main-form.form-view > div {
+  margin-top: 3.5rem;
+}
+
+.main-form .form-content-left,
+.main-form .form-content-right {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.main-form .form-content-left {
+  justify-content: space-evenly;
+  height: 240px;
+  background-color: #f1f1f1;
+  background-repeat: no-repeat;
+  background-size: 85%;
+  background-position: right bottom;
+  animation: fadeinright 0.8s;
+  box-shadow: 0px 0px 26px -2px rgb(0 0 0 / 24%);
+}
+
+.main-form .form-content-right {
+  justify-content: space-between;
+  box-shadow: 0px 0px 40px 16px rgba(0, 0, 0, 0.22);
+  z-index: 10;
+}
+
+.main-form .form-content-right > .form-title {
+  animation: fadein 0.8s;
+}
+
+.main-form .form-content-right input {
+  border: 0;
+  background-color: var(--dark-gray);
+  caret-color: #198754;
+  animation: fadeintop 0.5s;
+}
+
+.main-form .form-content-right input:focus {
+  background-color: var(--dark-gray);
+}

@@ -1,1 +1,1 @@
-export const BASE_URL = "https://3001-leycod-finalprojecttpv-qj3ng9pnhf9.ws-eu34xl.gitpod.io";
+export const BASE_URL = "https://3001-leycod-finalprojecttpv-g535sf628ht.ws-eu34.gitpod.io";

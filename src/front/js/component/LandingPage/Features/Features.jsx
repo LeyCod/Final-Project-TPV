@@ -1,20 +1,15 @@
 import React from "react";
-import "../Features/features.css";
 import PropTypes from "prop-types";
 
 export const Features = (props) => {
-  console.log(props);
   return (
-    <div
-      className={`row ${
-        props.type ? "" : "flex-row-reverse"
-      } justify-content-center`}
-    >
-      <div className="col-12 col-md-6 p-0">
+    <div className={`row ${!props.reverse ? "" : "flex-row-reverse"} justify-content-evenly gap-2 my-5 py-2`}>
+      <div className="col-11 col-md-5">
         <img src={props.img} className="img-fluid" />
       </div>
-      <div className="col-12 col-md-6 p-3">
-        <h1 className={`${props.type ? "text-start" : "text-end"}`}>
+
+      <div className="col-11 col-md-5">
+        <h1>
           {props.title}
         </h1>
         {props.text}
@@ -22,9 +17,10 @@ export const Features = (props) => {
     </div>
   );
 };
+
 Features.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   img: PropTypes.string,
-  type: PropTypes.bool,
+  reverse: PropTypes.bool,
 };

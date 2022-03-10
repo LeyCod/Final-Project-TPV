@@ -1,0 +1,24 @@
+.loading-spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f27e191a;
+  z-index: 99999;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading-spinner > div > h5 {
+    color: var(--theme-color);
+}
+
+.loading-spinner > div > span > span {
+    background-color: var(--theme-color);
+}

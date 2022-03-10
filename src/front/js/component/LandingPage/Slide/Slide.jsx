@@ -1,9 +1,10 @@
 import React from "react";
+
+// Styles
 import "../Slide/slide.css";
 
 export const Slide = () => {
   return (
-    
     <div
       id="carouselExampleCaptions"
       className="carousel slide col-sm-12 col-md-6 col-lg-3 w-100"
@@ -57,7 +58,7 @@ export const Slide = () => {
             src="https://placeimg.com/640/480/any"
             className="d-block w-100"
           />
-          <div classNameName="carousel-caption d-none d-sm-md-block text-center">
+          <div className="carousel-caption d-none d-sm-md-block text-center">
             <h5>Third slide label</h5>
             <p>Some representative placeholder content for the third slide.</p>
           </div>

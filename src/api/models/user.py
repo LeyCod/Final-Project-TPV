@@ -7,7 +7,8 @@ class User(db.Model):
     nif = db.Column(db.String(9), unique=True)
     created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     is_admin = db.Column(db.Boolean(), nullable=False)    
-    name = db.Column(db.String(70), nullable=False)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(60), unique=True, nullable=False)
     phone = db.Column(db.Integer)
     password = db.Column(db.String(150), nullable=False)
@@ -25,7 +26,8 @@ class User(db.Model):
             "nif": self.nif,
             "created_at": self.created_at,
             "is_admin": self.is_admin,
-            "name": self.name,
+            "first_name": self.first_name.title(),
+            "last_name": self.last_name.title(),
             "email": self.email,
             "phone": self.phone,
             "image_url": self.image_url,
