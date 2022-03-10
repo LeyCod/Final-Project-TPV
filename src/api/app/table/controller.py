@@ -6,29 +6,26 @@ def register_table(body):
         if body is None: 
             return error_response("Solicitud incorrecta", 400)
 
-        if "table_id" not in body:
-            return error_response("Solicitud incorrecta", 400)
-
         if "name" not in body or len(body["name"]) == 0:
             return error_response("Debes escribir un nombre.", 400)
 
-        if check_table_side(body["outside"]) == False:
-            return error_response("Debes indicar si esta en terraza.", 400)
+        if "outside" in body :
+            outside = body["outside"]
         
         if "capacity" not in body or len(body["capacity"]) == 0:
             return error_response("Debes escribir una capacidad.", 400)
 
-        if "table_qr" not in body or len(body["table_qr"]) == 0:
-            return error_response("Debes asignar un QR a la mesa.", 400)
+        if "company_id" not in body:
+            return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
 
-        new_table = User(company_id=body["company_id"], is_admin=body["is_admin"], nif=body["nif"], name=body["name"], email=body["email"], password=hash_pass)
+        new_table = Table(company_id=body["company_id"], is_admin=body["is_admin"], name=body["name"] 
 
         db.session.add(new_table)
         db.session.commit()
 
         return success_response(new_user.serialize(), 201)
 
-    except Exception as err:
+    except Exception as err: 
         db.session.rollback()
         print("[ERROR REGISTER USER]: ", err)
         return error_response("Solicitud incorrecta", 400)

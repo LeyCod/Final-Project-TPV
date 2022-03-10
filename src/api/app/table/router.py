@@ -3,6 +3,12 @@ from api.app.table.controller import register_table
 
 tables = Blueprint("tables", __name__)
 
+@tables.route("/validate", methods=["GET"])
+@jwt_required()
+def validate_table():
+    table_id = get_jwt_identity()
+    return table_validate(table_id["id"])
+
 @tables.route("/register", methods=["POST"])
 def create_table():
     body = request.get_json(force = True)
