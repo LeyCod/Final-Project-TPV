@@ -1,46 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../../store/appContext";
 import { Link, Redirect } from "react-router-dom";
 
-// Styles
+//Styles
 import "../../../assets/css/register-login-forms.css";
 import formBackground from "../../../assets/img/FormsBG.jpg";
 import formBanner from "../../../assets/img/FormLoginBanner-BG.png";
 import logoMasterGest from "../../../assets/img/LogoMG-45px.png";
 
-// Functions
-import { apiUserLogin } from "../../service/user";
+export const RegisterCompany = () => {
+    const { store, actions } = useContext(Context);
 
-export const Login = () => {
-    const [loading, setLoading] = useState(false);
-    const [userCredentials, setUserCredentials] = useState({ user: "", password: "" });
     const [notifyMessage, setNotifyMessage] = useState(false);
-    const [userLogged, setUserLogged] = useState(false);
+    const [nextStep, setNextStep] = useState(false);
 
-    const userLogin = async () => {
-        try {
-            setNotifyMessage(false);
+    const checkCompanyData = () => {
+        setNotifyMessage(false);
 
-            const response = await apiUserLogin(userCredentials);
-            const status = response.status;
-            const data = await response.json();
-
-            if (status === 200) {
-                localStorage.setItem("api-flask-token", data.token);
-                setUserLogged(true);
-            }
-            else {
-                setNotifyMessage(data);
-                setLoading(false);
-            }
+        if (!actions.checkCompanyRegisterData()) {        
+            setNotifyMessage("Introduce los datos de tu empresa antes de continuar")
+            return false;
         }
-        catch (err) {
-            setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
-            setLoading(false);
-        }
+
+        return true;
     }
 
-    return userLogged
-        ? <Redirect to="/dashboard" />
+    return Object.keys(store.companyRegisterData).length !== 0 && nextStep
+        ? <Redirect to="/register-user" />
         : (
             <div
                 className="main-form form-view"
@@ -53,38 +39,41 @@ export const Login = () => {
                             style={{ backgroundImage: `url(${formBanner})` }}
                         >
                             <div>
-                                <h1 className="mb-3 text-nowrap fw-bold">Iniciar sesión</h1>
-                                <p className="p-1 bg-white bg-opacity-50">Bienvenid@ a <i>MasterGest</i>.
-                                    <br /><br />Accede ahora a nuestra plataforma de gestión.</p>
+                                <h1 className="mb-3 text-nowrap fw-bold">Bienvenid@</h1>
+                                <p className="p-1 bg-white bg-opacity-50">Estás un paso más cerca de incrementar la productividad de tu negocio.</p>
                             </div>
                         </div>
                         <div className="form-content-right col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-3 p-3 bg-light">
                             <div className="form-title d-flex justify-content-between align-items-center">
                                 <div>
-                                    <p className="m-0">Área de Usuario</p>
+                                    <p className="m-0">Registro de Empresa</p>
                                     <h4>MasterGest</h4>
                                 </div>
                                 <Link to="/" title="MasterGest">
-                                    <img src={logoMasterGest} alt="LogoMG" className={loading ? "rotate" : null} />
+                                    <img src={logoMasterGest} alt="LogoMG" />
                                 </Link>
                             </div>
                             <div className="my-3">
-                                <label className="form-label mb-1">NIF / Correo electrónico</label>
+                                <label className="form-label mb-1">Nombre de la empresa</label>
                                 <input
                                     type="text"
                                     className="form-control shadow-sm"
                                     autoComplete="off"
                                     autoFocus="on"
-                                    onChange={(e) => setUserCredentials({ ...userCredentials, user: e.target.value.trim() })}
+                                    maxLength={70}
+                                    onChange={(e) => actions.setCompanyRegisterData("name", e.target.value.trim() ) }
+                                    defaultValue={ store.companyRegisterData.name }
                                 />
                             </div>
                             <div className="mb-3">
-                                <label className="form-label mb-1">Contraseña</label>
+                                <label className="form-label mb-1">CIF</label>
                                 <input
-                                    type="password"
+                                    type="text"
                                     className="form-control shadow-sm"
                                     autoComplete="off"
-                                    onChange={(e) => setUserCredentials({ ...userCredentials, password: e.target.value })}
+                                    maxLength={9}
+                                    onChange={(e) => actions.setCompanyRegisterData("cif", e.target.value.trim() ) }
+                                    defaultValue={ store.companyRegisterData.cif }
                                 />
                             </div>
 
@@ -95,15 +84,15 @@ export const Login = () => {
                             <button
                                 type="button"
                                 className="btn green-button mt-2 mb-0 shadow-sm"
-                                onClick={() => { setLoading(true); userLogin(); }}
+                                onClick={ () => setNextStep(checkCompanyData() ? true : false) }
                             >
-                                Iniciar sesión
+                                Siguiente
                             </button>
 
                             <div className="mt-4 small text-end">
-                                ¿No tienes una cuenta?
-                                <Link to="/register-company" className="ms-1 text-dark text-nowrap text-decoration-none fw-bold">
-                                    Regístrate ahora
+                                ¿Ya tienes una cuenta?
+                                <Link to="/login" className="ms-1 text-dark text-nowrap text-decoration-none fw-bold">
+                                    Inicia sesión
                                 </Link>
                             </div>
                         </div>
