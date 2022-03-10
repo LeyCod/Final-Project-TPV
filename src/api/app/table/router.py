@@ -7,3 +7,13 @@ tables = Blueprint("tables", __name__)
 def create_table():
     body = request.get_json(force = True)
     return register_table(body)
+
+@tables.route("/delete", methods=["DELETE"])
+def delete_table():
+    body = request.get_json(force = True)
+    return table_delete(body)
+
+@tables.route("/update", methods=["PUT"])
+def update_table():
+    body = request.get_json(force = True)
+    return table_update(body)
