@@ -116,7 +116,7 @@ export const Dashboard = () => {
                                         </div>
                                     </div>
                                     <ul className="navbar-nav mt-3">
-                                        <li className="active">
+                                        <li className={`${actualDashboardView === "general" ? "active" : ""}`}>
                                             <a
                                                 className="nav-link"
                                                 href="#"
@@ -125,7 +125,7 @@ export const Dashboard = () => {
                                                 <i className="fas fa-server"></i> General
                                             </a>
                                         </li>
-                                        <li>
+                                        <li className={`${actualDashboardView === "orders" ? "active" : ""}`}>
                                             <a
                                                 className="nav-link"
                                                 href="#"
@@ -139,7 +139,7 @@ export const Dashboard = () => {
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
+                                        <li className={`${actualDashboardView === "tables" ? "active" : ""}`}>
                                             <a
                                                 className="nav-link"
                                                 href="#"
@@ -148,7 +148,7 @@ export const Dashboard = () => {
                                                 <i className="fas fa-th-large"></i> Mesas
                                             </a>
                                         </li>
-                                        <li>
+                                        <li className={`${actualDashboardView === "items" ? "active" : ""}`}>
                                             <a
                                                 className="nav-link"
                                                 href="#"
