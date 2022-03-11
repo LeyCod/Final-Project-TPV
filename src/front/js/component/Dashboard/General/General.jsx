@@ -6,6 +6,6 @@ export const General = () => {
     const { store, actions } = useContext(Context);
     
     return (
-        <h1>General</h1>
+        <h4 className="fw-normal">Bienvenid@, { store.loggedUserData.first_name }</h4>
     );
 };

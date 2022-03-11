@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 export const UserConfiguration = () => {
     const { store, actions } = useContext(Context);
-    
+
     return (
-        <h1>Configuración de usuario</h1>
+        <h4 className="fw-normal">Configuración de usuario</h4>
     );
 };

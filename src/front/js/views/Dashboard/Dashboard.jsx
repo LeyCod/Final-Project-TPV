@@ -268,7 +268,7 @@ export const Dashboard = () => {
                                 </div>
 
                                 <div className="p-2" id="dashboard-content-main">
-                                    <div className="p-2 rounded-3" id="dashboard-views-content">
+                                    <div className="p-4 rounded-3" id="dashboard-views-content">
                                         {dashboardViews[actualDashboardView]}
                                     </div>
                                 </div>
