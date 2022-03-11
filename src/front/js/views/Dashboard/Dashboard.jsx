@@ -16,10 +16,18 @@ import { apiCompanyGetData } from "../../service/company";
 import { Spinner } from "../../component/Spinner/Spinner.jsx";
 import { ExpiredSessionModal } from "../../component/Modal/ExpiredSessionModal.jsx";
 
+import { General } from "../../component/Dashboard/General/General.jsx";
+import { Orders } from "../../component/Dashboard/Orders/Orders.jsx";
+import { Tables } from "../../component/Dashboard/Tables/Tables.jsx";
+import { Items } from "../../component/Dashboard/Items/Items.jsx";
+import { UserConfiguration } from "../../component/Dashboard/UserConfiguration/UserConfiguration.jsx";
+import { AdminConfiguration } from "../../component/Dashboard/AdminConfiguration/AdminConfiguration.jsx";
+
 export const Dashboard = () => {
     const { store, actions } = useContext(Context);
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); // Loading spinner control
+    const [actualDashboardView, setActualDashboardView] = useState("general");
 
     /* Sidebar control */
     const [activeSidebar, setActiveSidebar] = useState(true);
@@ -35,7 +43,7 @@ export const Dashboard = () => {
                 const status = response.status;
 
                 if (status === 200) {
-                    actions.setLoggedUserData(data);
+                    actions.setLoggedUserData(data); // Save user data in the store
                     getUserCompanyData();
                 }
                 else {
@@ -59,7 +67,7 @@ export const Dashboard = () => {
             const status = response.status;
 
             if (status === 200) {
-                actions.setLoggedUserCompanyData(data);
+                actions.setLoggedUserCompanyData(data); // Save company data in the store
                 setValidatedUser(true);
             }
             else {
@@ -73,6 +81,16 @@ export const Dashboard = () => {
         finally {
             setLoading(false);
         }
+    }
+
+    /* Dashboard contents definition */
+    const dashboardViews = {
+        "general": <General />,
+        "orders": <Orders />,
+        "tables": <Tables />,
+        "items": <Items />,
+        "user_configuration": <UserConfiguration />,
+        "admin_configuration": <AdminConfiguration />
     }
 
     return validatedUser === null
@@ -99,12 +117,20 @@ export const Dashboard = () => {
                                     </div>
                                     <ul className="navbar-nav mt-3">
                                         <li className="active">
-                                            <a className="nav-link" href="#">
+                                            <a 
+                                                className="nav-link" 
+                                                href="#"
+                                                onClick={ () => setActualDashboardView("general") }
+                                            >
                                                 <i className="fas fa-server"></i> General
                                             </a>
                                         </li>
                                         <li>
-                                            <a className="nav-link" href="#">
+                                            <a 
+                                                className="nav-link" 
+                                                href="#"
+                                                onClick={ () => setActualDashboardView("orders") }
+                                            >
                                                 <i className="fas fa-clipboard-list"></i>
                                                 <div className="d-flex flex-nowrap align-items-center gap-2">
                                                     Pedidos
@@ -114,12 +140,20 @@ export const Dashboard = () => {
                                             </a>
                                         </li>
                                         <li>
-                                            <a className="nav-link" href="#">
+                                            <a 
+                                                className="nav-link" 
+                                                href="#"
+                                                onClick={ () => setActualDashboardView("tables") }
+                                            >
                                                 <i className="fas fa-th-large"></i> Mesas
                                             </a>
                                         </li>
                                         <li>
-                                            <a className="nav-link" href="#">
+                                            <a 
+                                                className="nav-link" 
+                                                href="#"
+                                                onClick={ () => setActualDashboardView("items") }
+                                            >
                                                 <i className="fas fa-map"></i> Carta
                                             </a>
                                         </li>
@@ -167,7 +201,11 @@ export const Dashboard = () => {
                                         <div className="collapse navbar-collapse gap-2" id="navbarNav">
                                             <ul className="navbar-nav justify-content-start align-items-start gap-md-3 ms-auto" id="dashboard-main-menu">
                                                 <li className="nav-item">
-                                                    <a className="nav-link" href="#">
+                                                    <a 
+                                                        className="nav-link" 
+                                                        href="#"
+                                                        onClick={ () => setActualDashboardView("user_configuration") }
+                                                    >
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
                                                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                                         </svg>
@@ -176,7 +214,11 @@ export const Dashboard = () => {
                                                     </a>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <a className="nav-link" href="#">
+                                                    <a 
+                                                        className="nav-link" 
+                                                        href="#"
+                                                        onClick={ () => setActualDashboardView("admin_configuration") }
+                                                    >
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-gear" viewBox="0 0 16 16">
                                                             <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
                                                             <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
@@ -223,7 +265,7 @@ export const Dashboard = () => {
 
                                 <div className="p-2" id="dashboard-content-main">
                                     <div className="p-2 rounded-3" id="dashboard-views-content">
-                                        {/* VIEWS CONTENT */}
+                                        {dashboardViews[actualDashboardView]}
                                     </div>
                                 </div>
                             </main>
@@ -250,6 +292,7 @@ export const Dashboard = () => {
                                 <button
                                     title="Crear nuevo pedido"
                                     type="button"
+                                    onClick={ () => setActualDashboardView("orders") }
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
