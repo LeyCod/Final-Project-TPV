@@ -1,6 +1,18 @@
 from api.shared.response import success_response, error_response
 from api.models.index import db, MenuItem, User
 from flask_jwt_extended import create_access_token
+'''
+def get_menu_item(user_id):
+    try:
+        user = User.query.get(user_id)
+        if user is None:
+            return error_response("User dont exist", 401)
+            menu_item = db.query(MenuItem).filter(MenuItem.company_id == user.company_id)
+
+    except Exception as error:
+        print("Error in get menu_item", error)
+        return error_response("Internal server error")
+'''
 
 def register_menu_item(body):
     try:
@@ -28,7 +40,7 @@ def register_menu_item(body):
     except Exception as err:
         db.session.rollback()
         print("[ERROR REGISTER MENU_ITEM]:",err)
-        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+        return error_response("Error interno del servidor", 500)
 
 def update_menu_item(body):
     try:
