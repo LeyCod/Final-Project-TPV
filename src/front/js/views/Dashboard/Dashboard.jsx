@@ -175,11 +175,11 @@ export const Dashboard = () => {
                             <main className="flex-grow-1 d-flex flex-column flex-nowrap align-items-end overflow-auto">
                                 <a className="autoclose-responsive-navbar collapsed" data-bs-toggle="collapse" data-bs-target="#userNavBar"></a> {/* This element helps to autoclose the responsive top menu when user clicked outside it */}
 
-                                <div className="navbar navbar-expand-md navbar-light sticky-top px-2 py-3 shadow-sm" id="dashboard-content-header">
+                                <div className="navbar navbar-expand-md navbar-light sticky-top px-2 py-3 bg-white shadow-sm" id="dashboard-content-header">
                                     <div className="container-fluid px-2 px-md-4">
                                         <button
                                             type="button"
-                                            className="order-2 order-sm-1 btn d-md-none p-0 text-warning shadow-none"
+                                            className="btn d-md-none p-0 shadow-none"
                                             onClick={() => setActiveSidebar(!activeSidebar)}
                                         >
                                             {
@@ -190,17 +190,23 @@ export const Dashboard = () => {
 
                                         </button>
 
-                                        <h4 className="order-sm-2 order-md-1 d-none d-sm-block">Dashboard</h4>
+                                        <h4
+                                            id="dashboard-title"
+                                            onClick={() => setActualDashboardView("general")}
+                                            role="button"
+                                        >
+                                            Dashboard
+                                        </h4>
 
                                         <div
-                                            className="order-3 order-md-2 navbar-toggler border-0 p-0 avatar-image"
+                                            className="navbar-toggler border-0 p-0 avatar-image"
                                             data-bs-toggle="collapse"
                                             data-bs-target="#userNavBar"
                                         >
                                             <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="avatarImg" />
                                         </div>
 
-                                        <div className="order-md-4 collapse navbar-collapse gap-2" id="userNavBar">
+                                        <div className="collapse navbar-collapse gap-2" id="userNavBar">
                                             <ul className="navbar-nav justify-content-start align-items-start gap-md-3 ms-auto" id="dashboard-main-menu">
                                                 <li className="nav-item">
                                                     <a
@@ -269,8 +275,8 @@ export const Dashboard = () => {
                                     </div>
                                 </div>
 
-                                <div className="p-2" id="dashboard-content-main">
-                                    <div className="p-4 rounded-3" id="dashboard-views-content">
+                                <div id="dashboard-content-main">
+                                    <div className="px-3 py-4 px-sm-4" id="dashboard-views-content">
                                         {dashboardViews[actualDashboardView]}
                                     </div>
                                 </div>

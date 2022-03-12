@@ -6,6 +6,7 @@
   --red: #d93d1a;
   --gray: #f2f2f2;
   --dark-gray: #ebedf0;
+  --blue: #445cc8;
   --hover-brightness: 1.1;
   --hover-darkness: 0.98;
   --theme-color: var(--orange);
@@ -36,6 +37,19 @@ small {
 }
 
 /* Custom buttons */
+.theme-color-button {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: #ffffff;
+}
+
+.theme-color-button:hover {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: #ffffff;
+  filter: brightness(var(--hover-brightness));
+}
+
 .green-button {
   border-color: var(--green);
   background-color: var(--green);
@@ -45,6 +59,32 @@ small {
 .green-button:hover {
   border-color: var(--green);
   background-color: var(--green);
+  color: #ffffff;
+  filter: brightness(var(--hover-brightness));
+}
+
+.yellow-button {
+  border-color: var(--yellow);
+  background-color: var(--yellow);
+  color: #ffffff;
+}
+
+.yellow-button:hover {
+  border-color: var(--yellow);
+  background-color: var(--yellow);
+  color: #ffffff;
+  filter: brightness(var(--hover-brightness));
+}
+
+.blue-button {
+  border-color: var(--blue);
+  background-color: var(--blue);
+  color: #ffffff;
+}
+
+.blue-button:hover {
+  border-color: var(--blue);
+  background-color: var(--blue);
   color: #ffffff;
   filter: brightness(var(--hover-brightness));
 }

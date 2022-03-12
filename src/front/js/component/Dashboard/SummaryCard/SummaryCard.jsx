@@ -19,7 +19,7 @@ export const SummaryCard = (props) => {
     }
 
     return (
-        <div className="summary-card rounded-3 p-3 bg-secondary bg-opacity-10 bg-gradient shadow-sm">
+        <div className="summary-card rounded-3 p-3 bg-white shadow-sm">
             <div className="flex-grow-1">
                 <div className="d-flex justify-content-start align-items-start gap-4">
                     <div className="summary-card-icon align-self-center">
@@ -37,7 +37,7 @@ export const SummaryCard = (props) => {
 
                 {props.progress
                     ? <ProgressBar animated label={`${props.progress}%`} now={props.progress} />
-                    : <div className="cursor-pointer" role="button"> <i className="fas fa-user-check"></i> <small className="ms-2"><span>5</span> asignados</small></div>
+                    : <div> <i className="fas fa-user-check"></i> <small className="ms-2"><span>5</span> asignados</small></div>
                 }
             </div>
         </div>

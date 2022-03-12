@@ -115,28 +115,18 @@
   max-height: 100vh;
 }
 
-#dashboard-content .autoclose-responsive-navbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
-
-#dashboard-content .autoclose-responsive-navbar.collapsed {
-  z-index: -1;
-}
-
 #dashboard-content-header {
   width: 100%;
-  background-color: #ffffff;
   z-index: 2;
 }
 
 #dashboard-content-header .avatar-image img {
   max-width: 45px;
   border-radius: 50%;
+}
+
+#dashboard-content-header > div > button {
+  color: var(--theme-color);
 }
 
 #dashboard-main-menu .nav-link {
@@ -158,14 +148,14 @@
 }
 
 #dashboard-views-content {
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   height: 100%;
 }
 
 .dashboard-new-order-button {
-  position: absolute;
-  bottom: 3.6rem;
-  right: 2.5rem;
+  position: fixed;
+  bottom: 3rem;
+  right: 1.2rem;
 }
 
 .dashboard-new-order-button button {
@@ -238,6 +228,20 @@
     padding: 0.5rem;
     background-color: #ffffff;
     box-shadow: 0px 0px 11px -5px #00000094;
+    transition: height 0s;
+  }
+
+  #dashboard-content .autoclose-responsive-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+  #dashboard-content .autoclose-responsive-navbar.collapsed {
+    z-index: -1;
   }
 
   .navbar-collapse #dashboard-main-menu .nav-link {
@@ -250,17 +254,21 @@
   }
 }
 
-@media (max-width: 300px) { 
+@media (max-width: 400px) {
   #dashboard-sidebar {
     position: fixed;
     height: 100vh;
   }
 
   #dashboard-content-header {
-    width: calc(100% - 123px);    
+    width: calc(100% - 123px);
   }
 
   #dashboard-content.inactive #dashboard-content-header {
-    width: calc(100%);    
+    width: calc(100%);
+  }
+
+  h4#dashboard-title {
+    font-size: 20px;
   }
 }
