@@ -19,30 +19,28 @@ export const SummaryCard = (props) => {
     }
 
     return (
-        <>
-            <div className="summary-card rounded-3 p-3 bg-secondary bg-opacity-10 bg-gradient shadow-sm">
-                <div className="flex-grow-1">
-                    <div className="d-flex justify-content-start align-items-start gap-4">
-                        <div className="summary-card-icon align-self-center">
-                            {cardIcons[props.icon]}
-                        </div>
-
-                        <div>
-                            <h2 className="m-0 fw-bold">{props.counter}</h2>
-
-                            <h6 className="m-0 fw-normal">{props.title}</h6>
-                        </div>
+        <div className="summary-card rounded-3 p-3 bg-secondary bg-opacity-10 bg-gradient shadow-sm">
+            <div className="flex-grow-1">
+                <div className="d-flex justify-content-start align-items-start gap-4">
+                    <div className="summary-card-icon align-self-center">
+                        {cardIcons[props.icon]}
                     </div>
 
-                    <hr />
+                    <div>
+                        <h3 className="m-0 fw-bold">{props.counter}</h3>
 
-                    {props.progress
-                        ? <ProgressBar animated label={`${props.progress}%`} now={props.progress} />
-                        : <> <i class="fas fa-user-check"></i> <small className="ms-2">5 asignados</small></>
-                    }
+                        <h6 className="m-0 fw-normal">{props.title}</h6>
+                    </div>
                 </div>
+
+                <hr />
+
+                {props.progress
+                    ? <ProgressBar animated label={`${props.progress}%`} now={props.progress} />
+                    : <div className="cursor-pointer" role="button"> <i className="fas fa-user-check"></i> <small className="ms-2"><span>5</span> asignados</small></div>
+                }
             </div>
-        </>
+        </div>
     );
 };
 

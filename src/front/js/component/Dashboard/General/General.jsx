@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types"
 
 // Components
 import { SummaryCard } from "../SummaryCard/SummaryCard.jsx";
+import { OrdersTable } from "../OrdersTable/OrdersTable.jsx";
 
 export const General = (props) => {
     const { store, actions } = useContext(Context);
@@ -32,6 +32,10 @@ export const General = (props) => {
                         progress={65} 
                     />
                 </div>
+            </div>
+
+            <div className="row my-3">
+                <OrdersTable />
             </div>
         </>
     );
