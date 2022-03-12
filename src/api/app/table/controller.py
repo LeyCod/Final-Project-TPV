@@ -9,7 +9,7 @@ def get_all_tables(user_id):
         if user is None: 
             return error_response("User not exist", 401)
         tables = db.query(Table).filter(Table.company_id == user.company_id)
-        print(Table)
+        print(tables)
         
     except Exception as error: 
         print ("Error in get tables", error)
