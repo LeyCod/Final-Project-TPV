@@ -97,10 +97,12 @@
 
 #dashboard-sidebar hr {
   height: 0.5px;
+  margin-top: 2rem;
   color: #c0c0c0;
 }
 
 #dashboard-company-name {
+  flex-grow: 1;
   text-align: center;
 }
 
@@ -127,6 +129,7 @@
 }
 
 #dashboard-content-header {
+  width: 100%;
   background-color: #ffffff;
   z-index: 2;
 }
@@ -150,6 +153,7 @@
 
 #dashboard-content-main {
   position: relative;
+  width: 100%;
   flex-grow: 1;
 }
 
@@ -208,7 +212,7 @@
 
   #dashboard-sidebar .nav-link {
     flex-flow: column nowrap;
-    width: 99px;
+    width: 100%;
     padding: 0.5rem 0;
   }
 
@@ -243,5 +247,20 @@
     background-color: transparent;
     border-radius: 0;
     padding-left: 0;
+  }
+}
+
+@media (max-width: 300px) { 
+  #dashboard-sidebar {
+    position: fixed;
+    height: 100vh;
+  }
+
+  #dashboard-content-header {
+    width: calc(100% - 123px);    
+  }
+
+  #dashboard-content.inactive #dashboard-content-header {
+    width: calc(100%);    
   }
 }

@@ -85,7 +85,7 @@ export const Dashboard = () => {
 
     /* Dashboard contents definition */
     const dashboardViews = {
-        "general": <General />,
+        "general": <General setActualDashboardView={setActualDashboardView} />,
         "orders": <Orders />,
         "tables": <Tables />,
         "items": <Items />,
@@ -135,7 +135,7 @@ export const Dashboard = () => {
                                                 <div className="d-flex flex-nowrap align-items-center gap-2">
                                                     Pedidos
 
-                                                    <div className="user-notifications-number d-flex justify-content-center align-items-center">6</div>
+                                                    {/* <div className="user-notifications-number d-flex justify-content-center align-items-center">6</div> */}
                                                 </div>
                                             </a>
                                         </li>
@@ -162,24 +162,24 @@ export const Dashboard = () => {
 
                                 <div id="dashboard-company-name">
                                     <hr />
-                                    <small>
-                                        {
+                                    <small className="text-muted">
+                                        - {
                                             store.loggedUserCompanyData.name
-                                        }
+                                        } -
                                     </small>
                                 </div>
                             </div>
                         </aside>
 
                         <div className={`col-auto p-0 ${activeSidebar ? "" : "inactive"}`} id="dashboard-content">
-                            <main className="flex-grow-1 d-flex flex-column flex-nowrap overflow-auto">
+                            <main className="flex-grow-1 d-flex flex-column flex-nowrap align-items-end overflow-auto">
                                 <a className="autoclose-responsive-navbar collapsed" data-bs-toggle="collapse" data-bs-target="#userNavBar"></a> {/* This element helps to autoclose the responsive top menu when user clicked outside it */}
 
                                 <div className="navbar navbar-expand-md navbar-light sticky-top px-2 py-3 shadow-sm" id="dashboard-content-header">
                                     <div className="container-fluid px-2 px-md-4">
                                         <button
                                             type="button"
-                                            className="btn d-md-none p-0 text-warning shadow-none"
+                                            className="order-2 order-sm-1 btn d-md-none p-0 text-warning shadow-none"
                                             onClick={() => setActiveSidebar(!activeSidebar)}
                                         >
                                             {
@@ -190,17 +190,17 @@ export const Dashboard = () => {
 
                                         </button>
 
-                                        <h4>Dashboard</h4>
+                                        <h4 className="order-sm-2 order-md-1 d-none d-sm-block">Dashboard</h4>
 
                                         <div
-                                            className="navbar-toggler border-0 avatar-image"
+                                            className="order-3 order-md-2 navbar-toggler border-0 p-0 avatar-image"
                                             data-bs-toggle="collapse"
                                             data-bs-target="#userNavBar"
                                         >
                                             <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="avatarImg" />
                                         </div>
 
-                                        <div className="collapse navbar-collapse gap-2" id="userNavBar">
+                                        <div className="order-md-4 collapse navbar-collapse gap-2" id="userNavBar">
                                             <ul className="navbar-nav justify-content-start align-items-start gap-md-3 ms-auto" id="dashboard-main-menu">
                                                 <li className="nav-item">
                                                     <a
