@@ -113,8 +113,22 @@
   max-height: 100vh;
 }
 
+#dashboard-content .autoclose-responsive-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+#dashboard-content .autoclose-responsive-navbar.collapsed {
+  z-index: -1;
+}
+
 #dashboard-content-header {
   background-color: #ffffff;
+  z-index: 2;
 }
 
 #dashboard-content-header .avatar-image img {
@@ -215,7 +229,7 @@
     position: absolute;
     top: 70px;
     right: 10px;
-    width: fit-content;      
+    width: fit-content;
     border-radius: 0.3rem;
     padding: 0.5rem;
     background-color: #ffffff;
