@@ -1,18 +1,20 @@
 from api.shared.response import success_response, error_response
 from api.models.index import db, MenuItem, User
 from flask_jwt_extended import create_access_token
-'''
-def get_menu_item(user_id):
+
+def get_menu_item(company_id):
     try:
-        user = User.query.get(user_id)
-        if user is None:
-            return error_response("User dont exist", 401)
-            menu_item = db.query(MenuItem).filter(MenuItem.company_id == user.company_id)
+        
+        menu_item = db.session.query(MenuItem).filter(MenuItem.company_id == company_id)
+        list_menu_item = []
+        for menu in menu_item:
+            list_menu_item.append(menu.serialize())
+        return success_response(list_menu_item)
 
     except Exception as error:
         print("Error in get menu_item", error)
         return error_response("Internal server error")
-'''
+
 
 def register_menu_item(body):
     try:
@@ -30,6 +32,14 @@ def register_menu_item(body):
 
         if body["price"]  == 0:
             return error_response("Solicitud incorrecta", 400)
+
+        user = user.query.get(user_id)
+
+        if user is None:
+            return error_response("No estas autorizado", 401)
+
+        if user.is_admin == False:
+            return error_response("No estas autorizado", 401)
         
         new_menu_item = MenuItem(name=body["name"],price=body["price"], company_id=body["company_id"])
 
@@ -40,7 +50,7 @@ def register_menu_item(body):
     except Exception as err:
         db.session.rollback()
         print("[ERROR REGISTER MENU_ITEM]:",err)
-        return error_response("Error interno del servidor", 500)
+        return error_response("Hola", 500)
 
 def update_menu_item(body):
     try:

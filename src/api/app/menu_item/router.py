@@ -1,21 +1,20 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.menu_item.controller import  register_menu_item, update_menu_item, delete_menu_item
+from api.app.menu_item.controller import get_menu_item, register_menu_item, update_menu_item, delete_menu_item
 from flask_jwt_extended import jwt_required
 
 menu_items = Blueprint("menu_items", __name__)
-'''
-@menu_items.route("/", methods=["GET"])
-def get_menu_item():
-    return get_menu_item
+
+@menu_items.route("/<company_id>", methods=["GET"])
+def get_menu(company_id):
+    return get_menu_item(company_id)
 
 
-@menu_items.route("/", methods=["GET"])
-def get_menu_item():
-    return jsonify(get_menu_item(["id"]))
-'''
+
+
     
 
 @menu_items.route("/register", methods=["POST"])
+@jwt_required()
 def create_menu_item():
     body = request.get_json(force = True)
     return register_menu_item(body)
