@@ -77,5 +77,118 @@ data = {
             "phone": "123456789",
             "image_url": ""
         }
+    ],
+    "Table":[
+        {
+            "id": 7000,
+            "name": "Mesa 1",
+            "outside": False,
+            "capacity": 4,
+            "qr_url": "urlqr",
+            "occupied": False,
+            "is_active": False,
+            "company_id": 9001
+        }, 
+                {
+            "id": 7001,
+            "name": "Barra 1",
+            "outside": False,
+            "capacity": 1,
+            "qr_url": "urlqr",
+            "occupied": False,
+            "is_active": False,
+            "company_id": 9001
+        }, 
+                {
+            "id": 7002,
+            "name": "Mesa 1",
+            "outside": False,
+            "capacity": 3,
+            "qr_url": "urlqr",
+            "occupied": False,
+            "is_active": False,
+            "company_id": 9001
+        }
+    ], 
+    "MenuItem":[
+        {
+            "id": 6000,
+            "name": "tortilla",
+            "description": "huevo y patatas",
+            "price": 3.0,
+            "image_url": "",
+            "is_active": True,
+            "company_id": 9001
+        }, 
+        {
+            "id": 6001,
+            "name": "pabellon",
+            "description": "alubias negras, arroz, platano macho, carne mechada",
+            "price": 12.0,
+            "image_url": "",
+            "is_active": True,
+            "company_id": 9002
+        },
+        {
+            "id": 6002,
+            "name": "pizza margarita",
+            "description": "pizza sencilla",
+            "price": 4.30,
+            "image_url": "",
+            "is_active": True,
+            "company_id": 9003
+        }
+    ],
+    "Order":[
+        {
+            "id": 5000,
+            "ticket_url": "ticketURL",
+            "total_price": 12.50,
+            "is_active": True,
+            "user_id": 8001,
+            "table_id": 7000,
+            "status_id": self.order_status_id,
+            "payment_method_id": self.payment_method_id
+        },
+        {
+            "id": 5000,
+            "ticket_url": "ticketURL",
+            "total_price": 12.50,
+            "is_active": True,
+            "user_id": 8003,
+            "table_id": 7001,
+            "status_id": self.order_status_id,
+            "payment_method_id": self.payment_method_id
+        },
+        {
+            "id": 5000,
+            "ticket_url": "ticketURL",
+            "total_price": 12.50,
+            "is_active": True,
+            "user_id": 8005,
+            "table_id": 7002,
+            "status_id": self.order_status_id,
+            "payment_method_id": self.payment_method_id
+        }
+    ],
+    "OrderItem":[
+        {
+            "id": 4001,
+            "quantity": 1,
+            "item_id": 6001,
+            "order_id": 1
+        }, 
+        {
+            "id": 4002,
+            "quantity": 1,
+            "item_id": 6002,
+            "order_id": 1
+        },
+        {
+            "id": 4003,
+            "quantity": 1,
+            "item_id": 6003,
+            "order_id": 1
+        }
     ]
 }
