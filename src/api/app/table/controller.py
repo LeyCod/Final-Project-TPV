@@ -1,5 +1,19 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, Table
+from api.models.index import db, Table, User
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+
+def get_all_tables(user_id):
+    try:
+        user = User.query.get(user_id)
+        if user is None: 
+            return error_response("User not exist", 401)
+        tables = db.query(Table).filter(Table.company_id == user.company_id)
+        print(Table)
+        
+    except Exception as error: 
+        print ("Error in get tables", error)
+        return error_response("internal server error")
 
 def register_table(body):
     try: 
@@ -18,8 +32,7 @@ def register_table(body):
         if "company_id" not in body:
             return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
 
-        new_table = Table(company_id=body["company_id"], is_admin=body["is_admin"], name=body["name"] 
-
+        new_table = Table(company_id=body["company_id"], is_admin=body["is_admin"], name=body["name"])
         db.session.add(new_table)
         db.session.commit()
 

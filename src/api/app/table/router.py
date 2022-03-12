@@ -1,13 +1,15 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.app.table.controller import register_table
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 tables = Blueprint("tables", __name__)
 
-@tables.route("/validate", methods=["GET"])
+@tables.route("/", methods=["GET"])
 @jwt_required()
 def validate_table():
-    table_id = get_jwt_identity()
-    return table_validate(table_id["id"])
+    user_id = get_jwt_identity()
+    return jsonify("Hola"), 200
 
 @tables.route("/register", methods=["POST"])
 def create_table():
