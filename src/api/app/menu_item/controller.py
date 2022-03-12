@@ -1,5 +1,5 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, MenuItem
+from api.models.index import db, MenuItem, User
 from flask_jwt_extended import create_access_token
 
 def register_menu_item(body):
@@ -56,7 +56,7 @@ def delete_menu_item(body):
         if delete_menu_item is None:
             return error_response("Menu_Item no encontrado", 400)
 
-        if "user_id" == 0:
+        if body["is_admin"] is False:
             return error_response("No tienes permiso", 400)
 
         

@@ -1,12 +1,18 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.menu_item.controller import register_menu_item, update_menu_item, delete_menu_item
+from api.app.menu_item.controller import get_menu_item, register_menu_item, update_menu_item, delete_menu_item
 from flask_jwt_extended import jwt_required
 
 menu_items = Blueprint("menu_items", __name__)
 
 @menu_items.route("/", methods=["GET"])
 def get_menu_item():
-    pass
+    return jsonify("Hola",200)
+'''
+
+@menu_items.route("/", methods=["GET"])
+def get_menu_item():
+    return get_menu_item(["id"])
+'''
     
 
 @menu_items.route("/register", methods=["POST"])
@@ -24,7 +30,7 @@ def menu_item_update():
 def menu_item_delete():
     body = request.get_json(force=True)
     user_id = get_jwt_identity()
-    return delete_menu_item(body, user_id["id"])
+    return delete_menu_item(body, user_id["is_admin"])
 
 
 
