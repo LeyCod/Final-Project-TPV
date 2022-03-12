@@ -69,5 +69,5 @@ export const OrdersTable = (props) => {
 };
 
 OrdersTable.proptypes = {
-    setActualDashboardView: PropTypes.func
+    handleChangeView: PropTypes.func
 }

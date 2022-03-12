@@ -27,7 +27,7 @@ export const Dashboard = () => {
     const { store, actions } = useContext(Context);
 
     const [loading, setLoading] = useState(true); // Loading spinner control
-    const [actualDashboardView, setActualDashboardView] = useState("general");
+    const [responsiveTopMenu, setResponsiveTopMenu] = useState(false);
 
     /* Sidebar control */
     const [activeSidebar, setActiveSidebar] = useState(true);
@@ -83,15 +83,22 @@ export const Dashboard = () => {
         }
     }
 
-    /* Dashboard contents definition */
+    /* Dashboard contents definition and control */
+    const [actualDashboardView, setActualDashboardView] = useState("general");
+    
+    const handleChangeView = (viewName) => { /* This handle helps to hide the responsive user top menu when a new view is clicked */
+        setActualDashboardView(viewName);
+        setResponsiveTopMenu(false);
+    }
+
     const dashboardViews = {
-        "general": <General setActualDashboardView={setActualDashboardView} />,
+        "general": <General handleChangeView={handleChangeView} />,
         "orders": <Orders />,
         "tables": <Tables />,
         "items": <Items />,
         "user_configuration": <UserConfiguration />,
         "admin_configuration": <AdminConfiguration />
-    }
+    }    
 
     return validatedUser === null
         ? <Spinner />
@@ -120,7 +127,7 @@ export const Dashboard = () => {
                                             <a
                                                 className="nav-link"
                                                 href="#"
-                                                onClick={() => setActualDashboardView("general")}
+                                                onClick={() => handleChangeView("general")}
                                             >
                                                 <i className="fas fa-server"></i> General
                                             </a>
@@ -129,7 +136,7 @@ export const Dashboard = () => {
                                             <a
                                                 className="nav-link"
                                                 href="#"
-                                                onClick={() => setActualDashboardView("orders")}
+                                                onClick={() => handleChangeView("orders")}
                                             >
                                                 <i className="fas fa-clipboard-list"></i>
                                                 <div className="d-flex flex-nowrap align-items-center gap-2">
@@ -143,7 +150,7 @@ export const Dashboard = () => {
                                             <a
                                                 className="nav-link"
                                                 href="#"
-                                                onClick={() => setActualDashboardView("tables")}
+                                                onClick={() => handleChangeView("tables")}
                                             >
                                                 <i className="fas fa-th-large"></i> Mesas
                                             </a>
@@ -152,7 +159,7 @@ export const Dashboard = () => {
                                             <a
                                                 className="nav-link"
                                                 href="#"
-                                                onClick={() => setActualDashboardView("items")}
+                                                onClick={() => handleChangeView("items")}
                                             >
                                                 <i className="fas fa-map"></i> Carta
                                             </a>
@@ -173,9 +180,7 @@ export const Dashboard = () => {
 
                         <div className={`col-auto p-0 ${activeSidebar ? "" : "inactive"}`} id="dashboard-content">
                             <main className="flex-grow-1 d-flex flex-column flex-nowrap align-items-end overflow-auto">
-                                <a className="autoclose-responsive-navbar collapsed" data-bs-toggle="collapse" data-bs-target="#userNavBar"></a> {/* This element helps to autoclose the responsive top menu when user clicked outside it */}
-
-                                <div className="navbar navbar-expand-md navbar-light sticky-top px-2 py-3 bg-white shadow-sm" id="dashboard-content-header">
+                                <div className="navbar navbar-expand-md navbar-light sticky-top px-2 py-2 py-md-3 bg-white shadow-sm" id="dashboard-content-header">
                                     <div className="container-fluid px-2 px-md-4">
                                         <button
                                             type="button"
@@ -192,7 +197,7 @@ export const Dashboard = () => {
 
                                         <h4
                                             id="dashboard-title"
-                                            onClick={() => setActualDashboardView("general")}
+                                            onClick={() => handleChangeView("general")}
                                             role="button"
                                         >
                                             Dashboard
@@ -200,19 +205,25 @@ export const Dashboard = () => {
 
                                         <div
                                             className="navbar-toggler border-0 p-0 avatar-image"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#userNavBar"
+                                            /* data-bs-toggle="collapse"
+                                            data-bs-target="#userNavBar" */
+                                            onClick={() => setResponsiveTopMenu(!responsiveTopMenu)}
                                         >
                                             <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="avatarImg" />
                                         </div>
 
-                                        <div className="collapse navbar-collapse gap-2" id="userNavBar">
-                                            <ul className="navbar-nav justify-content-start align-items-start gap-md-3 ms-auto" id="dashboard-main-menu">
+                                        <div className={`collapse navbar-collapse gap-2 ${responsiveTopMenu ? "d-block" : ""}`} id="userNavBar">
+                                            <ul 
+                                                className="navbar-nav justify-content-start align-items-start gap-md-3 ms-auto" 
+                                                id="dashboard-main-menu"
+                                            >
                                                 <li className="nav-item">
                                                     <a
                                                         className="nav-link"
                                                         href="#"
-                                                        onClick={() => setActualDashboardView("user_configuration")}
+                                                        onClick={() => { setResponsiveTopMenu(!responsiveTopMenu); handleChangeView("user_configuration") }}
+                                                        /* data-bs-toggle="collapse"
+                                                        data-bs-target="#userNavBar" */
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
                                                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
@@ -227,7 +238,9 @@ export const Dashboard = () => {
                                                             <a
                                                                 className="nav-link"
                                                                 href="#"
-                                                                onClick={() => setActualDashboardView("admin_configuration")}
+                                                                onClick={() => { setResponsiveTopMenu(!responsiveTopMenu); handleChangeView("admin_configuration") }}
+                                                                /* data-bs-toggle="collapse"
+                                                                data-bs-target="#userNavBar" */
                                                             >
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-gear" viewBox="0 0 16 16">
                                                                     <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
@@ -304,7 +317,7 @@ export const Dashboard = () => {
                                 <button
                                     title="Crear nuevo pedido"
                                     type="button"
-                                    onClick={() => setActualDashboardView("orders")}
+                                    onClick={() => handleChangeView("orders")}
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />

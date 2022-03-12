@@ -221,7 +221,7 @@
   /* --- User mobile menú --- */
   #dashboard-content .navbar-collapse {
     position: absolute;
-    top: 70px;
+    top: 58px;
     right: 10px;
     width: fit-content;
     border-radius: 0.3rem;
@@ -229,19 +229,6 @@
     background-color: #ffffff;
     box-shadow: 0px 0px 11px -5px #00000094;
     transition: height 0s;
-  }
-
-  #dashboard-content .autoclose-responsive-navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
-  }
-
-  #dashboard-content .autoclose-responsive-navbar.collapsed {
-    z-index: -1;
   }
 
   .navbar-collapse #dashboard-main-menu .nav-link {

@@ -37,7 +37,7 @@ export const General = (props) => {
                             <button 
                                 type="button" 
                                 className="btn theme-color-button shadow-none"
-                                onClick={() => props.setActualDashboardView("orders")}
+                                onClick={() => props.handleChangeView("orders")}
                             >
                                 <small>Ver todos</small>
                             </button>
@@ -56,5 +56,5 @@ export const General = (props) => {
 };
 
 General.proptypes = {
-    setActualDashboardView: PropTypes.func
+    handleChangeView: PropTypes.func
 }
