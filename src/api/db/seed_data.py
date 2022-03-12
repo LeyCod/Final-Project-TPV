@@ -22,7 +22,7 @@ data = {
             "company_id": 9000,
             "is_admin": 1,
             "nif": "65748390A",
-            "name": "Varg Vikernes",
+            "firstname": "Varg Vikernes",
             "email": "mytest@email.com",
             "password": "123456"
         },
@@ -31,7 +31,7 @@ data = {
             "company_id": 9000,
             "is_admin": 0,
             "nif": "89548378B",
-            "name": "Johny Employee of the Month",
+            "firstname": "Johny Employee of the Month",
             "email": "johny@monthly.com",
             "password": "John10"
         },
@@ -40,7 +40,7 @@ data = {
             "company_id": 9001,
             "is_admin": 0,
             "nif": "89762717H",
-            "name": "George Van duck",
+            "firstname": "George Van duck",
             "email": "geor@gino.com",
             "password": "George66"
         },
@@ -49,7 +49,7 @@ data = {
             "company_id": 9001,
             "is_admin": 1,
             "nif": "95847367V",
-            "name": "Jane Doe",
+            "firstname": "Jane Doe",
             "email": "doe@dot.com",
             "password": "4923746"
         },
@@ -58,7 +58,7 @@ data = {
             "company_id": 9002,
             "is_admin": 1,
             "nif": "54987651K",
-            "name": "Abigail Blake",
+            "firstname": "Abigail Blake",
             "email": "blake@abg.com",
             "password": "654321"
         }, 
