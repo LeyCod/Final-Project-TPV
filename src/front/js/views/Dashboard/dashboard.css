@@ -1,0 +1,247 @@
+/* Simple theme colors */
+.dashboard-theme-orange {
+  --theme-color: var(--orange);
+}
+.dashboard-theme-yellow {
+  --theme-color: var(--yellow);
+}
+.dashboard-theme-red {
+  --theme-color: var(--red);
+}
+.dashboard-theme-green {
+  --theme-color: var(--green);
+}
+
+/* General */
+#dashboard-wrapper {
+  min-height: 100vh;
+  min-height: fill-available;
+  background-color: #f1f1f1;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #7e7e7e;
+  overflow: hidden;
+}
+
+#dashboard-wrapper h4 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+}
+
+#dashboard-sidebar {
+  max-height: 100vh;
+  display: flex;
+  width: 220px;
+  background-color: #000000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #ffffff;
+  box-shadow: -8px 0px 15px 5px #000000e1;
+  z-index: 9999;
+  overflow: auto;
+}
+
+#dashboard-sidebar > div {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+#dashboard-sidebar .company-logo {
+  text-align: center;
+  background-color: #ffffff21;
+}
+
+#dashboard-sidebar li {
+  margin-top: 0.8rem;
+}
+
+#dashboard-sidebar li:hover {
+  background-color: #ffffff25;
+}
+
+#dashboard-sidebar li.active {
+  background-color: var(--theme-color);
+}
+
+#dashboard-sidebar .nav-link {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  width: 184px;
+  padding-left: 1rem;
+  letter-spacing: 2px;
+  color: inherit;
+}
+
+#dashboard-sidebar li.active .nav-link {
+  font-weight: 500;
+}
+
+#dashboard-sidebar .user-notifications-number {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background-color: var(--red);
+  font-size: 0.7rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+#dashboard-sidebar hr {
+  height: 0.5px;
+  color: #c0c0c0;
+}
+
+#dashboard-company-name {
+  text-align: center;
+}
+
+#dashboard-content {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  width: calc(100% - 220px);
+  max-height: 100vh;
+}
+
+#dashboard-content .autoclose-responsive-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+#dashboard-content .autoclose-responsive-navbar.collapsed {
+  z-index: -1;
+}
+
+#dashboard-content-header {
+  background-color: #ffffff;
+  z-index: 2;
+}
+
+#dashboard-content-header .avatar-image img {
+  max-width: 45px;
+  border-radius: 50%;
+}
+
+#dashboard-main-menu .nav-link {
+  border-radius: 50%;
+  background-color: #f2f2f2b3;
+  padding: 10px 12px;
+  color: var(--theme-color);
+  font-weight: 400;
+}
+
+#dashboard-main-menu .nav-link:hover {
+  filter: brightness(var(--hover-darkness));
+}
+
+#dashboard-content-main {
+  position: relative;
+  flex-grow: 1;
+}
+
+#dashboard-views-content {
+  background-color: #ffffff;
+  height: 100%;
+}
+
+.dashboard-new-order-button {
+  position: absolute;
+  bottom: 3.6rem;
+  right: 2.5rem;
+}
+
+.dashboard-new-order-button button {
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--theme-color);
+  color: #ffffff;
+  box-shadow: 3px 3px 13px -6px #000000d6;
+}
+
+.dashboard-new-order-button button:hover {
+  filter: brightness(var(--hover-brightness));
+}
+
+#dashboard-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--theme-color);
+  color: #ffffff;
+}
+
+#dashboard-footer a {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dashboard-theme-switch {
+  display: inline-block;
+  margin-left: 0.5rem;
+  border: 0;
+  background: none;
+  color: #ffffff;
+}
+
+/* -- Media Queries -- */
+@media (max-width: 768px) {
+  #dashboard-sidebar {
+    width: 123px;
+  }
+
+  #dashboard-sidebar .nav-link {
+    flex-flow: column nowrap;
+    width: 99px;
+    padding: 0.5rem 0;
+  }
+
+  #dashboard-sidebar.inactive {
+    margin-left: -123px;
+  }
+
+  #dashboard-content {
+    width: calc(100% - 123px);
+  }
+
+  #dashboard-content.inactive {
+    width: 100%;
+  }
+
+  /* --- User mobile menú --- */
+  #dashboard-content .navbar-collapse {
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    width: fit-content;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 11px -5px #00000094;
+  }
+
+  .navbar-collapse #dashboard-main-menu .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border-radius: 0;
+    padding-left: 0;
+  }
+}

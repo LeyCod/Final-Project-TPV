@@ -1,23 +1,24 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
-// Styles
-import "../../assets/css/index.css";
-
 // Components
-
-
-
-
+// -- Landing Page
+import { Header } from "../component/LandingPage/Header/Header.jsx";
+import { Footer } from "../component/LandingPage/Footer/Footer.jsx";
 
 const Layout = (props) => {
-   
+    const location = useLocation();
+    const locationPath = location.pathname;
+
     return (
-        <>
-            <main>
+        locationPath === "/"
+            ? <>
+                <Header />
                 {props.children}
-            </main>
-        </>
+                <Footer />
+            </>
+            : props.children
     );
 };
 
@@ -26,4 +27,3 @@ Layout.propTypes = {
 }
 
 export default Layout;
-

@@ -2,7 +2,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-
 // Styles
 import "../assets/css/index.css";
 
