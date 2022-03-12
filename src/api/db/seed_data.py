@@ -19,7 +19,7 @@ data = {
     "User":[
         {
             "id": 8001,
-            "company_id": 1,
+            "company_id": 9000,
             "is_admin": 1,
             "nif": "65748390A",
             "name": "Varg Vikernes",
@@ -27,8 +27,8 @@ data = {
             "password": "123456"
         },
         {
-            "id": 2,
-            "company_id": 1,
+            "id": 8002,
+            "company_id": 9000,
             "is_admin": 0,
             "nif": "89548378B",
             "name": "Johny Employee of the Month",
@@ -36,8 +36,8 @@ data = {
             "password": "John10"
         },
         {
-            "id": 3,
-            "company_id": 1,
+            "id": 8003,
+            "company_id": 9001,
             "is_admin": 0,
             "nif": "89762717H",
             "name": "George Van duck",
@@ -45,8 +45,8 @@ data = {
             "password": "George66"
         },
         {
-            "id": 4,
-            "company_id": 2,
+            "id": 8004,
+            "company_id": 9001,
             "is_admin": 1,
             "nif": "95847367V",
             "name": "Jane Doe",
@@ -54,8 +54,8 @@ data = {
             "password": "4923746"
         },
         {
-            "id": 5,
-            "company_id": 3,
+            "id": 8005,
+            "company_id": 9002,
             "is_admin": 1,
             "nif": "54987651K",
             "name": "Abigail Blake",
@@ -63,36 +63,36 @@ data = {
             "password": "654321"
         }, 
     ],
-    "table":[
+    "Table":[
         {
-            "id": 1,
+            "id": 7000,
             "name": "Mesa 1",
             "outside": False,
             "capacity": 4,
             "qr_url": "urlqr",
             "occupied": False,
             "is_active": False,
-            "company_id": 1
+            "company_id": 9001
         }, 
                 {
-            "id": 2,
+            "id": 7001,
             "name": "Barra 1",
             "outside": False,
             "capacity": 1,
             "qr_url": "urlqr",
             "occupied": False,
             "is_active": False,
-            "company_id": 1
+            "company_id": 9001
         }, 
                 {
-            "id": 1,
+            "id": 7002,
             "name": "Mesa 1",
             "outside": False,
             "capacity": 3,
             "qr_url": "urlqr",
             "occupied": False,
             "is_active": False,
-            "company_id": 2
+            "company_id": 9001
         }
     ]
 }
