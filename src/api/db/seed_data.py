@@ -1,66 +1,81 @@
 data = {
     "Company":[
         {
-            "id": 1,
+            "id": 9001,
             "name": "Fake BD Company SL",
             "cif": "K2345678A"
         },
         {
-            "id": 2,
+            "id": 9002,
             "name": "Seed Business SA",
             "cif": "X1234567A"
         },
         {
-            "id": 3,
+            "id": 9003,
             "name": "Reactive Frontend Corp.",
             "cif": "B12345666"
         }
     ],
     "User":[
         {
-            "id": 1,
-            "company_id": 1,
-            "is_admin": 1,
-            "nif": "65748390A",
-            "name": "Varg Vikernes",
+            "id": 8001,
+            "company_id": 9000,
+            "is_admin": True,
+            "nif": "12345678A",
+            "first_name": "Varg",
+            "last_name":"Vikernes",
             "email": "mytest@email.com",
-            "password": "123456"
+            "password": "123456",
+            "phone": "123456789",
+            "image_url": ""
         },
-        {
-            "id": 2,
-            "company_id": 1,
-            "is_admin": 0,
-            "nif": "89548378B",
-            "name": "Johny Employee of the Month",
-            "email": "johny@monthly.com",
-            "password": "John10"
+                {
+            "id": 8002,
+            "company_id": 9000,
+            "is_admin": False,
+            "nif": "65748390A",
+            "first_name": "Joe",
+            "last_name":"Vikernes",
+            "email": "mytest2@email.com",
+            "password": "123456",
+            "phone": "123456789",
+            "image_url": ""
         },
-        {
-            "id": 3,
-            "company_id": 1,
-            "is_admin": 0,
-            "nif": "89762717H",
-            "name": "George Van duck",
-            "email": "geor@gino.com",
-            "password": "George66"
+                {
+            "id": 8003,
+            "company_id": 9001,
+            "is_admin": True,
+            "nif": "12345678A",
+            "first_name": "Varg",
+            "last_name":"Vikernes",
+            "email": "mytest@email.com",
+            "password": "123456",
+            "phone": "123456789",
+            "image_url": ""
         },
-        {
-            "id": 4,
-            "company_id": 2,
-            "is_admin": 1,
-            "nif": "95847367V",
-            "name": "Jane Doe",
-            "email": "doe@dot.com",
-            "password": "4923746"
+                {
+            "id": 8004,
+            "company_id": 9001,
+            "is_admin": False,
+            "nif": "65748390A",
+            "first_name": "Varg",
+            "last_name":"Vikernes",
+            "email": "mytest@email.com",
+            "password": "123456",
+            "phone": "123456789",
+            "image_url": ""
         },
-        {
-            "id": 5,
-            "company_id": 3,
-            "is_admin": 1,
-            "nif": "54987651K",
-            "name": "Abigail Blake",
-            "email": "blake@abg.com",
-            "password": "654321"
+                {
+            "id": 8005,
+            "company_id": 9003,
+            "is_admin": True,
+            "nif": "65748390A",
+            "first_name": "Varg",
+            "last_name":"Vikernes",
+            "email": "mytest@email.com",
+            "password": "123456",
+            "phone": "123456789",
+            "image_url": ""
         }
     ]
 }
