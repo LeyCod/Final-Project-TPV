@@ -31,9 +31,7 @@ def register_table(body, user_id):
         if "capacity" not in body:
             return error_response("Debes escribir una capacidad.", 400)
 
-        print(user_id)
         user = User.query.get(user_id)
-        print(user)
         if user is None or user.is_admin == False :
             return error_response("No tienes autorizacion", 401)
 

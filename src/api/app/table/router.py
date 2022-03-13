@@ -16,9 +16,7 @@ def validate_table():
 @jwt_required()
 def create_table():
     user_id = get_jwt_identity()
-    print(user_id)
     body = request.get_json(force = True)
-    print(body)
     return register_table(body, user_id["id"])
 
 
