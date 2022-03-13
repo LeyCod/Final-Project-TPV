@@ -10,12 +10,17 @@ tables = Blueprint("tables", __name__)
 def validate_table():
     user_id = get_jwt_identity()
     tables = get_all_tables(user_id["id"])
-    return jsonify("Hola"), 200
+    return jsonify(tables), 200
 
 @tables.route("/register", methods=["POST"])
+@jwt_required()
 def create_table():
+    user_id = get_jwt_identity()
+    print(user_id)
     body = request.get_json(force = True)
-    return register_table(body)
+    print(body)
+    return register_table(body, user_id["id"])
+
 
 @tables.route("/delete", methods=["DELETE"])
 def delete_table():

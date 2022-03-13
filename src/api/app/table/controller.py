@@ -8,40 +8,45 @@ def get_all_tables(user_id):
         user = User.query.get(user_id)
         if user is None: 
             return error_response("User not exist", 401)
-        tables = db.query(Table).filter(Table.company_id == user.company_id)
+        tables = db.session.query(Table).filter(Table.company_id == user.company_id)
         print(tables)
+        list_tables = []
+        for table in tables: 
+            list_tables.append(table.serialize())
+        print(list_tables)
+        return list_tables
         
     except Exception as error: 
         print ("Error in get tables", error)
         return error_response("internal server error")
 
-def register_table(body):
+def register_table(body, user_id):
     try: 
         if body is None: 
             return error_response("Solicitud incorrecta", 400)
 
         if "name" not in body or len(body["name"]) == 0:
             return error_response("Debes escribir un nombre.", 400)
-
-        if "outside" in body :
-            outside = body["outside"]
         
-        if "capacity" not in body or len(body["capacity"]) == 0:
+        if "capacity" not in body:
             return error_response("Debes escribir una capacidad.", 400)
 
-        if "company_id" not in body:
-            return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+        print(user_id)
+        user = User.query.get(user_id)
+        print(user)
+        if user is None or user.is_admin == False :
+            return error_response("No tienes autorizacion", 401)
 
-        new_table = Table(company_id=body["company_id"], is_admin=body["is_admin"], name=body["name"])
+        new_table = Table(company_id=user.company_id, name=body["name"], capacity=body["capacity"], qr_url=body["qr_url"])
         db.session.add(new_table)
         db.session.commit()
 
-        return success_response(new_user.serialize(), 201)
+        return success_response(new_table.serialize(), 201)
 
     except Exception as err: 
         db.session.rollback()
-        print("[ERROR REGISTER USER]: ", err)
-        return error_response("Solicitud incorrecta", 400)
+        print("[ERROR REGISTER TABLE]: ", err)
+        return error_response("Solicitud incorrecta", 500)
 
 def delete_table(body):
     try:
@@ -77,3 +82,7 @@ def update_table(body):
         db.session.rollback()
         print("[ERROR UPDATE USER]: ", err)
         return error_response("Solicitud incorrecta", 400)
+
+
+#TODO Crear dos rutas para el update, una para el admin y otra general para cambiar el ocupado.
+#! Terminar los endpoints de Update y Delete. 

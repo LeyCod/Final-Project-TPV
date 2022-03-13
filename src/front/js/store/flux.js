@@ -25,8 +25,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 
 				return store.companyRegisterData.name.length !== 0 && store.companyRegisterData.cif.length !== 0 
-					 ? true
-					 : false;
+					? true
+					: false;
 			},
 			setCompanyRegisterData: (input, value) => {
 				getStore().companyRegisterData[[input]] = value;

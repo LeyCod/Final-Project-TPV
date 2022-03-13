@@ -6,7 +6,7 @@ class Table(db.Model):
     name = db.Column(db.String(20), nullable=False)
     outside = db.Column(db.Boolean(), default=False, nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
-    qr_url = db.Column(db.String(120))
+    qr_url = db.Column(db.String(120), nullable=True)
     occupied = db.Column(db.Boolean(), default=False, nullable=False)
     is_active = db.Column(db.Boolean(), default=True, nullable=False)
     company_id = db.Column(db.Integer, db.ForeignKey("company.id"), nullable=False)
