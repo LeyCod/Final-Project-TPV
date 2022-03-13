@@ -39,7 +39,7 @@ export const General = (props) => {
                                 className="btn theme-color-button shadow-none"
                                 onClick={() => props.handleChangeView("orders")}
                             >
-                                <small>Ver todos</small>
+                                <small>Ver todo</small>
                             </button>
                         </div>
 

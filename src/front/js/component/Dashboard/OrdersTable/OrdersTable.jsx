@@ -17,15 +17,16 @@ export const OrdersTable = (props) => {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Mesa</th>
-                        <th>Estado</th>
-                        <th>Importe</th>
+                        <th>Creación</th>
+                        <th>Mesa</th>                        
+                        <th>Estado</th>                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>3</td>
-                        <td>Mesa 2</td>
+                        <td>#4</td>
+                        <td>22:10</td>
+                        <td>Mesa 2</td>                        
                         <td>
                             <button
                                 type="button"
@@ -33,12 +34,12 @@ export const OrdersTable = (props) => {
                             >
                                 Pendiente
                             </button>
-                        </td>
-                        <td>10 €</td>
+                        </td>                        
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>Mesa 5</td>
+                        <td>#3</td>
+                        <td>21:05</td>
+                        <td>Mesa 5</td>                        
                         <td>
                             <button
                                 type="button"
@@ -46,12 +47,12 @@ export const OrdersTable = (props) => {
                             >
                                 Pagado
                             </button>
-                        </td>
-                        <td>15 €</td>
+                        </td>                        
                     </tr>
                     <tr>
-                        <td>1</td>
-                        <td>Mesa 1</td>
+                        <td>#2</td>
+                        <td>20:45</td>
+                        <td>Mesa 1</td>                        
                         <td>
                             <button
                                 type="button"
@@ -59,8 +60,20 @@ export const OrdersTable = (props) => {
                             >
                                 En espera
                             </button>
-                        </td>
-                        <td>17 €</td>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>#1</td>
+                        <td>19:55</td>
+                        <td>Mesa 5</td>                        
+                        <td>
+                            <button
+                                type="button"
+                                className="btn btn-sm red-button shadow-none"
+                            >
+                                Eliminado
+                            </button>
+                        </td>                        
                     </tr>
                 </tbody>
             </Table>

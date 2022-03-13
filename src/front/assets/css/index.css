@@ -76,6 +76,19 @@ small {
   filter: brightness(var(--hover-brightness));
 }
 
+.red-button {
+  border-color: var(--red);
+  background-color: var(--red);
+  color: #ffffff;
+}
+
+.red-button:hover {
+  border-color: var(--red);
+  background-color: var(--red);
+  color: #ffffff;
+  filter: brightness(var(--hover-brightness));
+}
+
 .blue-button {
   border-color: var(--blue);
   background-color: var(--blue);
