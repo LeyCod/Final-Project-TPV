@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.app.menu_item.controller import get_menu_item, register_menu_item, update_menu_item, delete_menu_item
+from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
 menu_items = Blueprint("menu_items", __name__)
@@ -16,6 +17,7 @@ def get_menu(company_id):
 @menu_items.route("/register", methods=["POST"])
 @jwt_required()
 def create_menu_item():
+    user_id = get_jwt_identity()
     body = request.get_json(force = True)
     return register_menu_item(body)
 

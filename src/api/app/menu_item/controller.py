@@ -34,14 +34,16 @@ def register_menu_item(body):
             return error_response("Solicitud incorrecta", 400)
 
         user = user.query.get(user_id)
+        company_id = user.query.get(user_id)
 
         if user is None:
             return error_response("No estas autorizado", 401)
 
-        if user.is_admin == False:
+        if "is_admin" not in  body:
             return error_response("No estas autorizado", 401)
+
         
-        new_menu_item = MenuItem(name=body["name"],price=body["price"], company_id=body["company_id"])
+        new_menu_item = MenuItem(name=body["name"],price=body["price"], company_id=body["user.company_id"],is_admin=body["is_admin"])
 
         db.session.add(new_menu_item)
         db.session.commit()
