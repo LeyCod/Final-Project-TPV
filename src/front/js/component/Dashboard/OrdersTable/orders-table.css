@@ -1,3 +1,7 @@
 #orders-table table tr td {
     vertical-align: middle;    
 }
+
+#orders-table table tr td button {
+    width: 90px;
+}

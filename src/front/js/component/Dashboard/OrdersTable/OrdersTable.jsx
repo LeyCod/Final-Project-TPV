@@ -17,7 +17,7 @@ export const OrdersTable = (props) => {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Creación</th>
+                        <th>Hora</th>
                         <th>Mesa</th>                        
                         <th>Estado</th>                        
                     </tr>
@@ -26,7 +26,7 @@ export const OrdersTable = (props) => {
                     <tr>
                         <td>#4</td>
                         <td>22:10</td>
-                        <td>Mesa 2</td>                        
+                        <td>2</td>                        
                         <td>
                             <button
                                 type="button"
@@ -39,7 +39,7 @@ export const OrdersTable = (props) => {
                     <tr>
                         <td>#3</td>
                         <td>21:05</td>
-                        <td>Mesa 5</td>                        
+                        <td>5</td>                        
                         <td>
                             <button
                                 type="button"
@@ -52,7 +52,7 @@ export const OrdersTable = (props) => {
                     <tr>
                         <td>#2</td>
                         <td>20:45</td>
-                        <td>Mesa 1</td>                        
+                        <td>1</td>                        
                         <td>
                             <button
                                 type="button"
@@ -65,7 +65,7 @@ export const OrdersTable = (props) => {
                     <tr>
                         <td>#1</td>
                         <td>19:55</td>
-                        <td>Mesa 5</td>                        
+                        <td>5</td>                        
                         <td>
                             <button
                                 type="button"
