@@ -18,7 +18,7 @@ export const ExpiredSessionModal = (props) => {
                 <p className="text-center">Por favor, vuelve a iniciar sesión para continuar usando la plataforma. Muchas gracias.</p>
             </Modal.Body>
             <Modal.Footer className="justify-content-center">
-                <Link to="/login" className="btn green-button flex-grow-1">
+                <Link to="/login" className="btn green-button flex-grow-1 shadow-none">
                     Iniciar sesión
                 </Link>
             </Modal.Footer>

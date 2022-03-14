@@ -6,6 +6,6 @@ export const AdminConfiguration = () => {
     const { store, actions } = useContext(Context);
     
     return (
-        <h1>Configuración admin</h1>
+        <h4 className="fw-normal">Configuración admin</h4>
     );
 };

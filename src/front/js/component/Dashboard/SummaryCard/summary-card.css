@@ -1,0 +1,24 @@
+.summary-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+  gap: 0;
+  height: 130px;
+  margin: 0.5rem 0;
+  color: #000000;
+}
+
+.summary-card .progress-bar {
+  background-color: var(--theme-color);
+}
+
+.summary-card hr {
+  margin: 0.7rem 0;
+  border-top: 1px solid #0000001a;
+  color: #c7c7c7;
+}
+
+.summary-card-icon {
+  color: var(--theme-color);
+}
