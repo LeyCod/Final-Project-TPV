@@ -49,11 +49,11 @@ def register_table(body, user_id):
 def table_delete(body):
     try:
         if body is None: 
-            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
+            return error_response("Solicitud incorrecta", 400)
         
         user = User.query.get(user_id)
         if user is None:
-            return error_response("No tienes autorizacion", 401)
+            return error_response("Solicitud incorrecta", 400)
         
         table_delete = Table.query.filter((Table.id == body["id"])).first()
 
