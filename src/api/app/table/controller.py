@@ -46,32 +46,36 @@ def register_table(body, user_id):
         print("[ERROR REGISTER TABLE]: ", err)
         return error_response("Solicitud incorrecta", 500)
 
-def delete_table(body):
+def table_delete(body):
     try:
         if body is None: 
             return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
         
-        delete_user = User.query.filter((User.id == body["id"]) & (User.is_admin == False)).first()
-
-        if delete_user is None:
-                return error_response("Usuario no encontrado", 400)
+        user = User.query.get(user_id)
+        if user is None:
+            return error_response("No tienes autorizacion", 401)
         
-        db.session.delete(delete_user)
+        table_delete = Table.query.filter((Table.id == body["id"])).first()
+
+        if table_delete is None:
+            return error_response("Mesa no encontrada", 400)
+        
+        db.session.delete(delete_table)
         db.session.commit()
 
-        return success_response("Usuario eliminado correctamente", 201)
+        return success_response("Mesa eliminada correctamente", 201)
 
     except Exception as err:
         db.session.rollback()
-        print("[ERROR DELETE USER]: ", err)
+        print("[ERROR DELETE TABLE]: ", err)
         return error_response("Solicitud incorrecta", 400)
 
-def update_table(body):
+def table_update(body):
     try:
         if body is None: 
             return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
         
-        update_user = User.query.filter(User.id == body["id"]).update(dict(body))
+        table_update = Table.query.filter(Table.id == body["id"]).update(dict(body))
         db.session.commit()
 
         return success_response("Información actualizada correctamente", 201)
