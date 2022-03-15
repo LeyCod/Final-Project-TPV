@@ -46,21 +46,21 @@ def register_table(body, user_id):
         print("[ERROR REGISTER TABLE]: ", err)
         return error_response("Solicitud incorrecta", 500)
 
-def table_delete(body):
+def table_delete(body, user_id):
     try:
         if body is None: 
             return error_response("Solicitud incorrecta", 400)
         
         user = User.query.get(user_id)
-        if user is None:
-            return error_response("Solicitud incorrecta", 400)
+        if user is None or user.is_admin == False :
+            return error_response("No tienes autorizacion", 401)
         
         table_delete = Table.query.filter((Table.id == body["id"])).first()
 
         if table_delete is None:
             return error_response("Mesa no encontrada", 400)
         
-        db.session.delete(delete_table)
+        db.session.delete(table_delete)
         db.session.commit()
 
         return success_response("Mesa eliminada correctamente", 201)
