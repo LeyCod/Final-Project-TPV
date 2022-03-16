@@ -13,7 +13,7 @@ def get_menu_item(company_id):
 
     except Exception as error:
         print("Error in get menu_item", error)
-        return error_response("Internal server error")
+        return error_response("Error interno del servidor",500)
 
 def get_item(id):
     try:
@@ -26,22 +26,22 @@ def get_item(id):
 
     except Exception as error:
         print("Error in get item", error)
-        return error_response("Internal server error")
+        return error_response("Error interno del servidor", 500)
 
 
 def register_menu_item(body, user_id):
     try:
         if body is None:
-            return error_response("Solicitud incorrecta 1", 400)
+            return error_response("Solicitud incorrecta ", 400)
 
         if "name" not in body or len(body["name"]) == 0:
             return error_response("", 400)
 
         if body["price"]is None:
-            return error_response("Solicitud incorrecta 3", 400)
+            return error_response("Solicitud incorrecta ", 400)
 
         if body["price"]  == 0:
-            return error_response("Solicitud incorrecta 4", 400)
+            return error_response("Solicitud incorrecta ", 400)
 
         user = User.query.get(user_id)
         
@@ -81,7 +81,7 @@ def update_menu_item(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERRPR UPDATE MENU_ITEM]", err)
-        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.", 500)
 
 def delete_menu_item(body,user_id):
     try:
@@ -109,4 +109,4 @@ def delete_menu_item(body,user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR DELETE MENU_ITEM]:", err )
-        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.", 500)
