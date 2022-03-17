@@ -25,7 +25,6 @@ def register_order(body, table_id):
              return error_response("Solicitud incorrecta", 400)
         user = User.query.get(user_id)
         company_id = user.company_id
-        print(user_id.serialize())
 
         if "company_id" not in body:
             return error_response("Solicitud incorrecta", 400)
