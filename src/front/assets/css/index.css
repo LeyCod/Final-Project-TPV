@@ -129,6 +129,15 @@ small {
   background-color: #ffffff59;
 }
 
+.scrollbar-custom-lg::-webkit-scrollbar {
+  width: 13px;
+  background-color: #0000003d;
+}
+
+.scrollbar-custom-lg::-webkit-scrollbar-thumb {
+  background-color: #ffffff59;
+}
+
 /* Animation */
 .rotate {
   animation: rotation 0.3s infinite linear;
