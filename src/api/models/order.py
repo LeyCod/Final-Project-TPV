@@ -6,6 +6,7 @@ from api.models.payment_method import PaymentMethod
 from datetime import datetime
 
 class Order(db.Model):
+    
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
@@ -13,14 +14,13 @@ class Order(db.Model):
     ticket_url = db.Column(db.String(120))
     total_price = db.Column(db.Float)
     is_active = db.Column(db.Boolean(), default=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     table_id = db.Column(db.Integer, db.ForeignKey("table.id"), nullable=False)
-    status_id = db.Column(db.Integer, db.ForeignKey("order_status.id"), nullable=False)
-    payment_method_id = db.Column(db.Integer, db.ForeignKey("payment_method.id"))
-    user = db.relationship(User)    
+    payment_method_id = db.Column(db.Integer, db.ForeignKey("payment_method.id"), nullable=True)
+    company_id = db.Column(db.Integer,db.ForeignKey("company.id"))    
     table = db.relationship(Table)    
-    status = db.relationship(OrderStatus)    
-    payment_method = db.relationship(PaymentMethod)       
+    payment_method = db.relationship(PaymentMethod)
+    company = db.relationship("Company") 
+          
 
     def __repr__(self):
         return "<Order %r>" % self.id
@@ -34,8 +34,6 @@ class Order(db.Model):
             "ticket_url": self.ticket_url,
             "total_price": self.total_price,
             "is_active": self.is_active,
-            "user_id": self.user_id,
             "table_id": self.table_id,
-            "status_id": self.order_status_id,
             "payment_method_id": self.payment_method_id
         }
