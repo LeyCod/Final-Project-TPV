@@ -25,6 +25,12 @@
   overflow: hidden;
 }
 
+#dashboard-wrapper p {
+  font-family: "Poppins", sans-serif;
+  color: #000; 
+  font-size: 15px;
+}
+
 #dashboard-wrapper h4 {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -141,15 +147,19 @@
   filter: brightness(var(--hover-darkness));
 }
 
+#dashboard-views-content {
+  background-color: #f2f2f2;
+  height: 100%;
+}
+
 #dashboard-content-main {
   position: relative;
   width: 100%;
   flex-grow: 1;
 }
 
-#dashboard-views-content {
-  background-color: #f2f2f2;
-  height: 100%;
+#dashboard-content-wrapper {
+  overflow-x: hidden !important;
 }
 
 #dashboard-views-content .dashboard-view-title {  

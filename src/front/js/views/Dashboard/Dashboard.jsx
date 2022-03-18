@@ -183,7 +183,7 @@ export const Dashboard = () => {
                         </aside>
 
                         <div className={`col-auto p-0 ${activeSidebar ? "" : "inactive"}`} id="dashboard-content">
-                            <main className="flex-grow-1 d-flex flex-column flex-nowrap align-items-end overflow-auto scrollbar-custom-lg">
+                            <main className="flex-grow-1 d-flex flex-column flex-nowrap align-items-end overflow-auto scrollbar-custom-lg" id="dashboard-content-wrapper">
                                 <div className="navbar navbar-expand-md navbar-light sticky-top px-2 py-2 py-md-3 bg-white shadow-sm" id="dashboard-content-header">
                                     <div className="container-fluid px-2 px-md-4">
                                         <button

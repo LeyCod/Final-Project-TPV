@@ -5,40 +5,26 @@ import { Link } from "react-router-dom";
 // Styles
 import "./new-order.css";
 
+// Components
+import { MenuItemCard } from "../MenuItemCard/MenuItemCard.jsx";
+import { NewOrderSummary } from "../NewOrderSummary/NewOrderSummary.jsx";
+
 export const NewOrder = () => {
     const { store, actions } = useContext(Context);
 
     return (
         <div className="dashboard-view-content">
             <div className="row justify-content-start gap-3">
-                <div className="coo-12 col-lg-7 grid-container">
-                    <div className="menu-item-card">
-                        <div>
-                            <div>
-                                <img className="img-fluid" src="https://placeimg.com/300/300/nature" alt="ALT" />
-                            </div>
-                            <div>
-                                <p>Grid Item 1</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, velit.</p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div>9,90 €</div>
-
-                            <div>
-                                +
-                            </div>
-                        </div>
-                    </div>
+                <div className="col-12 col-lg-7 grid-container">
+                    <MenuItemCard title="Plato 1" description="Descripción plato 1" price="20.8" image_url="https://placeimg.com/300/300/nature" />
+                    <MenuItemCard title="Plato 2" description="Descripción plato 2" price="1.8" image_url="https://placeimg.com/300/300/nature" />
+                    <MenuItemCard title="Plato 3" description="Descripción plato 3" price="90" image_url="https://placeimg.com/300/300/nature" />
+                    <MenuItemCard title="Plato 4" description="Descripción plato 4" price="16.95" image_url="https://placeimg.com/300/300/nature" />
+                    <MenuItemCard title="Plato 5" description="Descripción plato 5" price="8" image_url="https://placeimg.com/300/300/nature" />
                 </div>
-                <div className="col-4 col-xl-3 col-xxl-2 d-none d-lg-block bg-danger">
-                    asdfasdf
-                    asdfasdfasdf
-                    asdf
-                    asdf
-                    asd
-                    f
+
+                <div className="col-lg-4 col-xl-3 col-xxl-4 d-none d-lg-block">
+                    <NewOrderSummary />
                 </div>
             </div>
         </div>
