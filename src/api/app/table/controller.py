@@ -59,7 +59,7 @@ def table_delete(body, user_id):
 
         if table_delete is None:
             return error_response("Mesa no encontrada", 400)
-        
+
         db.session.delete(table_delete)
         db.session.commit()
 
@@ -70,21 +70,32 @@ def table_delete(body, user_id):
         print("[ERROR DELETE TABLE]: ", err)
         return error_response("Solicitud incorrecta", 400)
 
-def table_update(body):
+def table_update(body, user_id, table_id):
     try:
         if body is None: 
-            return error_response("Error interno del servidor. Por favor, inténtalo de nuevo.")
-        
+            return error_response("Solicitud incorrecta 1", 400)
+
+        table = Table.query.get(table_id)
+        print(table)
+        if table not in body:
+            return error_response("Selecciona una mesa", 401)
+
+        user = User.query.get(user_id)
+        if user is None:
+            return error_response("Tienes que iniciar sesion", 401)
+
         table_update = Table.query.filter(Table.id == body["id"]).update(dict(body))
+        if table_update is None: 
+            return error_response("Aqui hay un error...")
         db.session.commit()
 
         return success_response("Información actualizada correctamente", 201)
 
     except Exception as err:
         db.session.rollback()
-        print("[ERROR UPDATE USER]: ", err)
-        return error_response("Solicitud incorrecta", 400)
+        print("[ERROR UPDATE TABLE]: ", err)
+        return error_response("Solicitud incorrecta 2", 400)
 
 
 #TODO Crear dos rutas para el update, una para el admin y otra general para cambiar el ocupado.
-#! Terminar los endpoints de Update y Delete. 
+#! Terminar los endpoints de Update. 

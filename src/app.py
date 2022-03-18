@@ -15,6 +15,7 @@ from api.app.menu_item.router import menu_items
 from api.app.order.router import orders
 from api.app.order_item.router import order_items
 from api.admin import setup_admin
+from datetime import timedelta
 from flask_jwt_extended import JWTManager
 
 ENV = os.getenv("FLASK_ENV")
@@ -32,6 +33,7 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_KEY")
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours = 1)
 
 MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)

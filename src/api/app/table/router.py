@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.table.controller import register_table, get_all_tables, table_delete
+from api.app.table.controller import register_table, get_all_tables, table_delete, table_update
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
@@ -28,6 +28,8 @@ def delete_table():
     return table_delete(body, user_id["id"])
 
 @tables.route("/update", methods=["PUT"])
+@jwt_required()
 def update_table():
+    user_id = get_jwt_identity()
     body = request.get_json(force = True)
-    return table_update(body)
+    return table_update(body, user_id["id"], table_id["id"])
