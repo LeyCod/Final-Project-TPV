@@ -4,6 +4,9 @@ import { Context } from "../../../store/appContext";
 // Styles
 import "./new-order-summary.css";
 
+// Components
+import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.jsx";
+
 export const NewOrderSummary = () => {
     const { store, actions } = useContext(Context);
 
@@ -28,36 +31,54 @@ export const NewOrderSummary = () => {
 
                 <div className="new-order-summary-item">
                     <div>
-                        <p>1 px</p>
+                        <p>1px</p>
                         <p>Tabla de quesos y jamón</p>
                     </div>
 
-                    <p>12 €</p>
+                    <div>
+                        <p className="m-0 fw-normal">12 €</p>
+
+                        <div className="text-nowrap">
+                            <NewOrderItemControl />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="new-order-summary-item">
                     <div>
-                        <p>1 px</p>
+                        <p>3px</p>
                         <p>Cerveza</p>
                     </div>
 
-                    <p>46 €</p>
+                    <div>
+                        <p className="m-0 fw-normal">46.2 €</p>
+
+                        <div className="text-nowrap">
+                            <NewOrderItemControl />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="new-order-summary-item">
                     <div>
-                        <p>9 px</p>
+                        <p>9px</p>
                         <p>Gambas al pil pil</p>
                     </div>
 
-                    <p>406 €</p>
+                    <div>
+                        <p className="m-0 fw-normal">406.55 €</p>
+
+                        <div className="text-nowrap">
+                            <NewOrderItemControl />
+                        </div>
+                    </div>
                 </div>
 
                 <hr />
 
                 <div id="new-order-summary-total">
-                    <p className="h5 fw-bold">Total</p>
-                    <p className="h5">110 €</p>
+                    <p className="h5 fw-normal">Total</p>
+                    <p className="h5">110.85 €</p>
                 </div>
             </div>
         </div>

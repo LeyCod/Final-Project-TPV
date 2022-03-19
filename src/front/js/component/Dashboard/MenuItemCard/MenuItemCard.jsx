@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 // Styles
 import "./menu-item-card.css";
 
+// Component
+import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.jsx";
+
 export const MenuItemCard = (props) => {
     return (
         <div className="menu-item-card">
@@ -19,17 +22,8 @@ export const MenuItemCard = (props) => {
 
                 <div>
                     <p>{props.price} €</p>
-
-                    <div>
-                        <button type="button" className="btn btn-sm xs-button outline-theme-color-button">
-                            <i className="fas fa-minus align-middle"></i>
-                        </button>
-
-                        <span>2</span>
-
-                        <button type="button" className="btn btn-sm xs-button theme-color-button">
-                            <i className="fas fa-plus align-middle"></i>                        </button>
-                    </div>
+                    
+                    <NewOrderItemControl item_id={12} />                    
                 </div>
             </div>
         </div>

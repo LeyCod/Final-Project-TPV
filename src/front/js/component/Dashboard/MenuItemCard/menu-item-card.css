@@ -49,13 +49,7 @@
 }
 
 .menu-item-card > div:nth-child(2) > div:nth-child(2) p {
-  font-weight: bold;
-}
-
-.menu-item-card > div:nth-child(2) > div:nth-child(2) div > span {
-  margin: 0 0.8rem;
-  color: #000000;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 /* -- Media Queries -- */
