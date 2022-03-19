@@ -1,5 +1,17 @@
-.grid-container {
+#new-order-wrapper > div {
+  height: max-content;
+}
+
+#new-order-wrapper > div:nth-child(1) {
+  flex-grow: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-gap: 1rem;
+}
+
+/* -- Media Queries -- */
+@media (min-width: 576px) {
+  #new-order-wrapper > div:nth-child(1) {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  }
 }
