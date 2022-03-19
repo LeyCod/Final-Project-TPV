@@ -80,6 +80,16 @@ export const NewOrderSummary = () => {
                     <p className="h5 fw-normal">Total</p>
                     <p className="h5">110.85 €</p>
                 </div>
+
+                <div className="d-flex flex-column gap-2 mt-4">
+                    <button type="button" title="Añadir estos elementos al pedido actual" className="btn outline-theme-color-button shadow-none">
+                        ENVIAR PEDIDO
+                    </button>
+
+                    <button type="button" title="Finalizar y pagar el pedido actual" className="btn theme-color-button fw-bold shadow-sm">
+                        FINALIZAR Y PAGAR
+                    </button>
+                </div>
             </div>
         </div>
     );
