@@ -50,6 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			changeDashboardThemeColor: () => {
 				const nextIndex = getStore().selectedDashboardThemeColor + 1;
 				setStore({ ...getStore(), selectedDashboardThemeColor: !getStore().dashBoardThemeColors[nextIndex] ? 0 : nextIndex });
+				localStorage.setItem("dashboard-theme-color", getStore().selectedDashboardThemeColor);
 			}
 		}
 	};

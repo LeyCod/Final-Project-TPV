@@ -113,7 +113,7 @@ export const Dashboard = () => {
 
                     {loading ? <Spinner /> : null}
 
-                    <div className={`row dashboard-theme-${store.dashBoardThemeColors[store.selectedDashboardThemeColor]}`} id="dashboard-wrapper">
+                    <div className={`row dashboard-theme-${store.dashBoardThemeColors[localStorage.getItem("dashboard-theme-color") !== null ? localStorage.getItem("dashboard-theme-color") : store.selectedDashboardThemeColor]}`} id="dashboard-wrapper">
                         <aside
                             className={`col-auto p-0 ${activeSidebar ? "" : "inactive"} scrollbar-custom`}
                             id="dashboard-sidebar"
