@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {  useContext } from "react";
 import { Context } from "../../../store/appContext";
 
 // Styles
@@ -16,7 +16,7 @@ export const NewOrderSummary = () => {
                 <div className="new-order-summary-title">
                     <div>
                         <h4>Resumen del pedido</h4>
-                        <p className="m-0">2 productos</p>
+                        <p className="m-0">Detalle de los productos añadidos:</p>
                     </div>
 
                     <div>
@@ -29,7 +29,7 @@ export const NewOrderSummary = () => {
 
                 <hr />
 
-                <div className="new-order-summary-item">
+                {/* <div className="new-order-summary-item">
                     <div>
                         <p>1px</p>
                         <p>Tabla de quesos y jamón</p>
@@ -42,43 +42,13 @@ export const NewOrderSummary = () => {
                             <NewOrderItemControl />
                         </div>
                     </div>
-                </div>
-
-                <div className="new-order-summary-item">
-                    <div>
-                        <p>3px</p>
-                        <p>Cerveza</p>
-                    </div>
-
-                    <div>
-                        <p className="m-0 fw-normal">46.2 €</p>
-
-                        <div className="text-nowrap">
-                            <NewOrderItemControl />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="new-order-summary-item">
-                    <div>
-                        <p>9px</p>
-                        <p>Gambas al pil pil</p>
-                    </div>
-
-                    <div>
-                        <p className="m-0 fw-normal">406.55 €</p>
-
-                        <div className="text-nowrap">
-                            <NewOrderItemControl />
-                        </div>
-                    </div>
-                </div>
+                </div> */}
 
                 <hr />
 
                 <div id="new-order-summary-total">
                     <p className="h5 fw-normal">Total</p>
-                    <p className="h5">110.85 €</p>
+                    <p className="h5">{store.totalPrice} €</p>
                 </div>
 
                 <div className="d-flex flex-column gap-2 mt-4">

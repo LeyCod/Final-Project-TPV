@@ -130,30 +130,6 @@ data = {
     ], 
     "MenuItem":[
         {
-            "id": 6000,
-            "name": "tortilla",
-            "description": "huevo y patatas",
-            "price": 3.0,
-            "image_url": "",
-            "company_id": 9000
-        }, 
-        {
-            "id": 6001,
-            "name": "pabellon",
-            "description": "alubias negras, arroz, platano macho, carne mechada",
-            "price": 12.0,
-            "image_url": "",
-            "company_id": 9001
-        },
-        {
-            "id": 6002,
-            "name": "pizza margarita",
-            "description": "pizza sencilla",
-            "price": 4.30,
-            "image_url": "",
-            "company_id": 9002
-        },
-        {
             "id": 6003,
             "name": "Cerveza",
             "description": "Jarra de cerveza",
@@ -285,19 +261,19 @@ data = {
         {
             "id": 4001,
             "quantity": 1,
-            "item_id": 6000,
+            "item_id": 6003,
             "order_id": 5000
         }, 
         {
             "id": 4002,
             "quantity": 1,
-            "item_id": 6001,
+            "item_id": 6004,
             "order_id": 5001
         },
         {
             "id": 4003,
             "quantity": 1,
-            "item_id": 6002,
+            "item_id": 6005,
             "order_id": 5002
         }
     ] 
