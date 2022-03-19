@@ -32,4 +32,4 @@ def delete_table():
 def update_table():
     user_id = get_jwt_identity()
     body = request.get_json(force = True)
-    return table_update(body, user_id["id"], table_id["id"])
+    return table_update(body, user_id["id"])
