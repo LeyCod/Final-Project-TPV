@@ -97,10 +97,12 @@
 
 #dashboard-sidebar hr {
   height: 0.5px;
+  margin-top: 2rem;
   color: #c0c0c0;
 }
 
 #dashboard-company-name {
+  flex-grow: 1;
   text-align: center;
 }
 
@@ -113,27 +115,18 @@
   max-height: 100vh;
 }
 
-#dashboard-content .autoclose-responsive-navbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
-
-#dashboard-content .autoclose-responsive-navbar.collapsed {
-  z-index: -1;
-}
-
 #dashboard-content-header {
-  background-color: #ffffff;
+  width: 100%;
   z-index: 2;
 }
 
 #dashboard-content-header .avatar-image img {
   max-width: 45px;
   border-radius: 50%;
+}
+
+#dashboard-content-header > div > button {
+  color: var(--theme-color);
 }
 
 #dashboard-main-menu .nav-link {
@@ -150,18 +143,19 @@
 
 #dashboard-content-main {
   position: relative;
+  width: 100%;
   flex-grow: 1;
 }
 
 #dashboard-views-content {
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   height: 100%;
 }
 
 .dashboard-new-order-button {
-  position: absolute;
-  bottom: 3.6rem;
-  right: 2.5rem;
+  position: fixed;
+  bottom: 3rem;
+  right: 1.2rem;
 }
 
 .dashboard-new-order-button button {
@@ -208,7 +202,7 @@
 
   #dashboard-sidebar .nav-link {
     flex-flow: column nowrap;
-    width: 99px;
+    width: 100%;
     padding: 0.5rem 0;
   }
 
@@ -227,13 +221,14 @@
   /* --- User mobile menú --- */
   #dashboard-content .navbar-collapse {
     position: absolute;
-    top: 70px;
+    top: 58px;
     right: 10px;
     width: fit-content;
     border-radius: 0.3rem;
     padding: 0.5rem;
     background-color: #ffffff;
     box-shadow: 0px 0px 11px -5px #00000094;
+    transition: height 0s;
   }
 
   .navbar-collapse #dashboard-main-menu .nav-link {
@@ -243,5 +238,24 @@
     background-color: transparent;
     border-radius: 0;
     padding-left: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  #dashboard-sidebar {
+    position: fixed;
+    height: 100vh;
+  }
+
+  #dashboard-content-header {
+    width: calc(100% - 123px);
+  }
+
+  #dashboard-content.inactive #dashboard-content-header {
+    width: calc(100%);
+  }
+
+  h4#dashboard-title {
+    font-size: 20px;
   }
 }
