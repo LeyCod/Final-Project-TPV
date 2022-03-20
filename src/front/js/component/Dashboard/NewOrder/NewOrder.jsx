@@ -65,6 +65,8 @@ export const NewOrder = (props) => {
                                         description={store.menuItems[menuItemIndex].description}
                                         price={store.menuItems[menuItemIndex].price}
                                         image_url={store.menuItems[menuItemIndex].image_url}
+                                        order_item_control={true}
+                                        item_edit_control={true}
                                     />
                                 )
                             }

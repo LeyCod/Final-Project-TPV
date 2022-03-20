@@ -26,8 +26,8 @@ export const NewOrderSummaryShortcutButton = () => {
                 onClick={() => setOrderSummaryOnModal(true)}
             >
                 <div>
-                    <span>Ver pedido</span>
-                    <span><strong>{store.totalPrice} €</strong></span>
+                    <p className="fw-normal">Ver pedido</p>
+                    <p><strong>{store.totalPrice} €</strong></p>
                 </div>
             </button>
         </div>

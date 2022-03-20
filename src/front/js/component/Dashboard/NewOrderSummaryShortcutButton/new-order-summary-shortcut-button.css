@@ -6,8 +6,8 @@
 }
 
 .new-order-summary-shortcut-button button {
-  min-width: 220px;
-  padding: .6rem 1rem;
+  min-width: 240px;
+  padding: .8rem 1rem;
   border: none;
   background-color: var(--theme-color);
   color: #ffffff;
@@ -29,5 +29,8 @@
 
 .new-order-summary-shortcut-button button > div > p {
   margin: 0;
+  font-size: 17px;  
+  line-height: 18px;
+  color: #ffffff !important;
   white-space: nowrap;
 }

@@ -7,7 +7,7 @@ import "./menu-item-card.css";
 // Component
 import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.jsx";
 
-export const MenuItemCard = (props) => {        
+export const MenuItemCard = (props) => {
     return (
         <div className="menu-item-card">
             <div>
@@ -22,8 +22,12 @@ export const MenuItemCard = (props) => {
 
                 <div>
                     <p>{props.price} €</p>
-                    
-                    <NewOrderItemControl item_index={props.item_index} />
+
+                    {
+                        props.order_item_control
+                            ? <NewOrderItemControl item_index={props.item_index} />
+                            : null
+                    }
                 </div>
             </div>
         </div>
@@ -35,5 +39,7 @@ MenuItemCard.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     price: PropTypes.number,
-    image_url: PropTypes.string
+    image_url: PropTypes.string,
+    order_item_control: PropTypes.bool,
+    item_edit_control: PropTypes.bool
 };

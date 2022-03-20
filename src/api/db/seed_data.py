@@ -19,7 +19,8 @@ data = {
             "id": 9003,
             "name": "Jose's Fake Corp.",
             "cif": "B12345666",
-            "logo_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647108989/LogoDesign4_zrx29z.png"
+            "logo_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647108989/LogoDesign4_zrx29z.png",
+            "description": "Comida tradicional casera: tapas y raciones, menú del día, menú especial, etc..."
         }
     ],
     "User":[

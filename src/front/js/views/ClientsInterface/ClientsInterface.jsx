@@ -20,16 +20,13 @@ export const ClientsInterface = () => {
             id="clients-interface"
         >
             <div>
-                <div className="clients-interface-company-description">
+                <div className="clients-interface-company-banner">
                     <div>
                         <img className="img-fluid" src="https://res.cloudinary.com/dxbcvuacb/image/upload/v1647108989/LogoDesign4_zrx29z.png" alt="CompanyLogo" />
                     </div>
 
-                    <h5 className="m-0"><strong>Jose's Fake Corp.</strong></h5>
-                </div>
+                    <h4 className="m-2">Nuestra <strong>carta</strong></h4>
 
-                <div className="clients-interface-company-banner">
-                    <h4 className="m-2 text-center">Menú</h4>
                     <hr />
 
                     <p>Descripción de la empresa</p>
@@ -41,9 +38,9 @@ export const ClientsInterface = () => {
                 <NewOrderSummaryShortcutButton />
             </main>
 
-            <div className="h-auto py-3 bg-white bg-opacity-75 text-white text-center">
+            <div className="h-auto py-3 bg-white bg-opacity-75 text-center">
                 2022© By&nbsp;
-                <Link to="/" target="_blank" className="text-decoration-none text-white fw-bold">
+                <Link to="/" target="_blank" className="text-decoration-none text-black fw-bold">
                     MasterGest
                 </Link>
                 &nbsp;| 4Geeks Academy
