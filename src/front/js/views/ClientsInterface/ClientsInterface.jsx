@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Styles 
 import "./clients-interface.css";
@@ -41,7 +42,11 @@ export const ClientsInterface = () => {
             </main>
 
             <div className="h-auto py-3 bg-white bg-opacity-75 text-white text-center">
-                2022© By <strong>MasterGest</strong> | 4Geeks Academy
+                2022© By&nbsp;
+                <Link to="/" target="_blank" className="text-decoration-none text-white fw-bold">
+                    MasterGest
+                </Link>
+                &nbsp;| 4Geeks Academy
             </div>
         </div>
     );
