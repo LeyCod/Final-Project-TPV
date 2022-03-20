@@ -28,7 +28,7 @@ export const ClientsInterface = () => {
                 </div>
 
                 <div className="clients-interface-company-banner">
-                    <h4 className="m-2">Menú</h4>
+                    <h4 className="m-2 text-center">Menú</h4>
                     <hr />
 
                     <p>Descripción de la empresa</p>
@@ -39,6 +39,10 @@ export const ClientsInterface = () => {
                 <NewOrder company_id={9003} />
                 <NewOrderSummaryShortcutButton />
             </main>
+
+            <div className="h-auto py-3 bg-white bg-opacity-75 text-white text-center">
+                2022© By <strong>MasterGest</strong> | 4Geeks Academy
+            </div>
         </div>
     );
 };
