@@ -79,6 +79,7 @@
 		"react-bootstrap": "^2.2.1",
 		"react-dom": "^16.8.4",
 		"react-polyfills": "0.0.1",
+		"react-qr-code": "^2.0.3",
 		"react-router-dom": "^5.2.0",
 		"react-spinners": "^0.11.0"
 	}
