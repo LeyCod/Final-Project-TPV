@@ -21,6 +21,7 @@ import { General } from "../../component/Dashboard/General/General.jsx";
 import { Orders } from "../../component/Dashboard/Orders/Orders.jsx";
 import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
 import { NewOrderButton } from "../../component/Dashboard/NewOrderButton/NewOrderButton.jsx";
+import { NewOrderSummaryShortcutButton } from "../../component/Dashboard/NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
 import { Tables } from "../../component/Dashboard/Tables/Tables.jsx";
 import { Items } from "../../component/Dashboard/Items/Items.jsx";
 import { UserConfiguration } from "../../component/Dashboard/UserConfiguration/UserConfiguration.jsx";
@@ -313,7 +314,12 @@ export const Dashboard = () => {
                                 </div>
                             </main>
 
-                            <NewOrderButton handleChangeView={handleChangeView} />
+                            {actualDashboardView === "new_order"
+                                ? null
+                                : <NewOrderButton handleChangeView={handleChangeView} />
+                            }
+
+                            <NewOrderSummaryShortcutButton />
                         </div>
                     </div>
                 </div>

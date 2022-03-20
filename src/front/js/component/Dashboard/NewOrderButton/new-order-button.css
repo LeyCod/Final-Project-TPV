@@ -17,9 +17,3 @@
 .dashboard-new-order-button button:hover {
   filter: brightness(var(--hover-brightness));
 }
-
-.dashboard-new-order-button .order-active-button {
-  width: auto;
-  padding: 0 1.5rem;
-  letter-spacing: 1.5px;
-}

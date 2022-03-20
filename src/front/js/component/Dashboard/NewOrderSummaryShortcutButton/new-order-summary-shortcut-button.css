@@ -1,0 +1,33 @@
+.new-order-summary-shortcut-button {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.new-order-summary-shortcut-button button {
+  min-width: 220px;
+  padding: .6rem 1rem;
+  border: none;
+  background-color: var(--theme-color);
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  box-shadow: 3px 3px 13px -6px #000000d6;
+}
+
+.new-order-summary-shortcut-button button:hover {
+  filter: brightness(var(--hover-brightness));
+}
+
+.new-order-summary-shortcut-button button > div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0rem;  
+}
+
+.new-order-summary-shortcut-button button > div > p {
+  margin: 0;
+  white-space: nowrap;
+}

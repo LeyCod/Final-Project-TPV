@@ -6,7 +6,7 @@ import "./new-order-summary-modal.css";
 
 // Components
 import Modal from "react-bootstrap/Modal";
-import { NewOrderSummary } from "../NewOrderSummary/NewOrderSummary.jsx";
+import { NewOrderSummary } from "../../NewOrderSummary/NewOrderSummary.jsx";
 
 export const NewOrderSummaryModal = (props) => {
     return (
