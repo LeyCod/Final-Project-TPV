@@ -191,26 +191,6 @@
   height: calc(100% - 68px);
 }
 
-.dashboard-new-order-button {
-  position: fixed;
-  bottom: 2.5rem;
-  right: 1.2rem;
-}
-
-.dashboard-new-order-button button {
-  width: 46px;
-  height: 46px;
-  border: none;
-  border-radius: 50%;
-  background-color: var(--theme-color);
-  color: #ffffff;
-  box-shadow: 3px 3px 13px -6px #000000d6;
-}
-
-.dashboard-new-order-button button:hover {
-  filter: brightness(var(--hover-brightness));
-}
-
 #dashboard-footer {
   display: flex;
   justify-content: center;

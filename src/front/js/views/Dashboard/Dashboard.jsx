@@ -20,6 +20,7 @@ import { ViewTitle } from "../../component/Dashboard/ViewTitle/ViewTitle.jsx";
 import { General } from "../../component/Dashboard/General/General.jsx";
 import { Orders } from "../../component/Dashboard/Orders/Orders.jsx";
 import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
+import { NewOrderButton } from "../../component/Dashboard/NewOrderButton/NewOrderButton.jsx";
 import { Tables } from "../../component/Dashboard/Tables/Tables.jsx";
 import { Items } from "../../component/Dashboard/Items/Items.jsx";
 import { UserConfiguration } from "../../component/Dashboard/UserConfiguration/UserConfiguration.jsx";
@@ -97,7 +98,7 @@ export const Dashboard = () => {
     const dashboardViews = {
         "general": { "title": "General", "component": <General handleChangeView={handleChangeView} /> },
         "orders": { "title": "Pedidos", "component": <Orders /> },
-        "new_order": { "title": "Crear nuevo pedido", "component": <NewOrder /> },
+        "new_order": { "title": "Nuevo pedido", "component": <NewOrder /> },
         "tables": { "title": "Mesas", "component": <Tables /> },
         "items": { "title": "Carta", "component": <Items /> },
         "user_configuration": { "title": "Configuración de usuario", "component": <UserConfiguration /> },
@@ -312,17 +313,7 @@ export const Dashboard = () => {
                                 </div>
                             </main>
 
-                            <div className="dashboard-new-order-button">
-                                <button
-                                    title="Crear nuevo pedido"
-                                    type="button"
-                                    onClick={() => handleChangeView("new_order")}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                    </svg>
-                                </button>
-                            </div>
+                            <NewOrderButton handleChangeView={handleChangeView} />
                         </div>
                     </div>
                 </div>

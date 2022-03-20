@@ -131,7 +131,7 @@ small {
 }
 
 .rounded-button {
-  border-radius: 25px;
+  border-radius: 25px !important;
 }
 
 /* Custom scrollbar */

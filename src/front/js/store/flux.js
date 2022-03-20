@@ -65,6 +65,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				itemCounter === undefined
 					? store.orderItems[itemID] = 1
 					: store.orderItems[itemID] = add ? itemCounter + 1 : itemCounter - 1;
+
+				if (store.orderItems[itemID] === 0) { // delete item in case of 0
+					delete store.orderItems[itemID];
+				}
 				
 				setStore({ ...store });
 				getActions().setTotalPrice();

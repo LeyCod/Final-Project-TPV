@@ -1,4 +1,4 @@
-import React, {  useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
 
 // Styles
@@ -29,20 +29,27 @@ export const NewOrderSummary = () => {
 
                 <hr />
 
-                {/* <div className="new-order-summary-item">
-                    <div>
-                        <p>1px</p>
-                        <p>Tabla de quesos y jamón</p>
-                    </div>
+                <div className="order-summary-body">
+                    {Object.keys(store.orderItems).map(itemIndex =>
+                        <div key={itemIndex} className="new-order-summary-item">
+                            <div>
+                                <small className="text-nowrap">{store.orderItems[itemIndex]} uds</small>
+                                <p>
+                                    {store.menuItems[itemIndex].name} <br />
+                                    <small className="text-muted">{store.menuItems[itemIndex].description}</small>
+                                </p>
+                            </div>
 
-                    <div>
-                        <p className="m-0 fw-normal">12 €</p>
+                            <div>
+                                <p className="m-0 fw-normal">{Math.floor(store.menuItems[itemIndex].price * store.orderItems[itemIndex] * 100) / 100} €</p>
 
-                        <div className="text-nowrap">
-                            <NewOrderItemControl />
+                                <div className="text-nowrap">
+                                    <NewOrderItemControl key={itemIndex} item_index={itemIndex} />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div> */}
+                    )}
+                </div>
 
                 <hr />
 
