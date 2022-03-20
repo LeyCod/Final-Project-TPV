@@ -8,7 +8,3 @@ def create_order():
     body = request.get_json(force = True)
     return register_order(body)
 
-@orders.route("/register", methods=["POST"])
-def create_order():
-    body = request.get_json(force = True)
-    return register_order(body)

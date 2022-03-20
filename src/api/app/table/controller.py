@@ -84,6 +84,7 @@ def table_update(body, user_id):
         table_update = Table.query.filter(Table.id == table_id).update(dict(body))
         if table_update is None: 
             return error_response("Aqui hay un error...")
+
         db.session.commit()
 
         return success_response("Información actualizada correctamente", 201)
@@ -94,7 +95,5 @@ def table_update(body, user_id):
         return error_response("Solicitud incorrecta 2", 400)
 
 
-#TODO Crear dos rutas para el update, una para el admin y otra general para cambiar el ocupado.
-#! Terminar los endpoints de Update. 
 
 #TODO Crear front de mesas con sus caracteristicas, crear, actualizar, borrar. 
