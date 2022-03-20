@@ -1,15 +1,39 @@
+#clients-interface > div {
+  height: 27vh;
+  background: url(https://res.cloudinary.com/dxbcvuacb/image/upload/v1647785927/ClientsInteface-BG_wcs4l2.jpg) no-repeat center center fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 #clients-interface {
   text-align: center;
 }
 
 .clients-interface-company-description {
-  padding: 0.7rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;  
+  padding: .5rem 1.5rem;
   background-color: #ffffff;
   font-weight: 600;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  z-index: 1;
+}
+
+.clients-interface-company-description img {
+  max-width: 75px;
 }
 
 .clients-interface-company-banner {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 1.5rem 0;
   color: #ffffff;
 }
@@ -24,4 +48,10 @@
 
 .clients-interface-company-banner p {
     margin: 1rem 0 0 0;
+}
+
+#clients-interface main .dashboard-view-content {
+  background: url(https://res.cloudinary.com/dxbcvuacb/image/upload/v1647785927/ClientsInteface-BG_wcs4l2.jpg) no-repeat center center fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

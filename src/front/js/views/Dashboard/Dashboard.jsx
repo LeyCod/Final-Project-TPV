@@ -125,7 +125,7 @@ export const Dashboard = () => {
                                 <div>
                                     <div className="company-logo">
                                         <div className="logo">
-                                            <img className="img-fluid p-2" src={!store.loggedUserCompanyData.logo_url ? defaultCompanyLogo : store.loggedUserCompanyData.logo_url} alt="companyLogo" />
+                                            <img className="img-fluid p-2" src={!store.loggedUserCompanyData.logo_url ? defaultCompanyLogo : store.loggedUserCompanyData.logo_url} alt="CompanyLogo" />
                                         </div>
                                     </div>
                                     <ul className="navbar-nav mt-3">
@@ -213,7 +213,7 @@ export const Dashboard = () => {
                                             className="navbar-toggler border-0 p-0 avatar-image"
                                             onClick={() => setResponsiveTopMenu(!responsiveTopMenu)}
                                         >
-                                            <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="avatarImg" />
+                                            <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="AvatarImg" />
                                         </div>
 
                                         <div className={`collapse navbar-collapse gap-2 ${responsiveTopMenu ? "d-block" : ""}`} id="userNavBar">
@@ -268,7 +268,7 @@ export const Dashboard = () => {
                                                     </Link>
                                                 </li>
                                                 <li className="avatar-image d-none d-md-block">
-                                                    <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="avatarImg" />
+                                                    <img className="img-fluid" src={!store.loggedUserData.image_url ? defaultAvatarImage : store.loggedUserData.image_url} alt="AvatarImg" />
                                                 </li>
                                             </ul>
 

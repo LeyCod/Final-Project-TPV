@@ -7,7 +7,6 @@ import "./clients-interface.css";
 // Components
 import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
 import { NewOrderSummaryShortcutButton } from "../../component/Dashboard/NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
-import clientsInterfaceBG from "../../../assets/img/ClientsInteface-BG.jpg";
 
 export const ClientsInterface = () => {
     const { table_id } = useParams();
@@ -18,21 +17,28 @@ export const ClientsInterface = () => {
     return (
         <div
             id="clients-interface"
-            style={{ backgroundImage: `url(${clientsInterfaceBG})` }}
         >
-            <div className="clients-interface-company-description">
-                <h5 className="m-0">Jose's Fake Corp.</h5>
+            <div>
+                <div className="clients-interface-company-description">
+                    <div>
+                        <img className="img-fluid" src="https://res.cloudinary.com/dxbcvuacb/image/upload/v1647108989/LogoDesign4_zrx29z.png" alt="CompanyLogo" />
+                    </div>
+
+                    <h5 className="m-0"><strong>Jose's Fake Corp.</strong></h5>
+                </div>
+
+                <div className="clients-interface-company-banner">
+                    <h4 className="m-2">Menú</h4>
+                    <hr />
+
+                    <p>Descripción de la empresa</p>
+                </div>
             </div>
 
-            <div className="clients-interface-company-banner">
-                <h4 className="m-2">Menú</h4>
-                <hr />
-                
-                <p>Descripción de la empresa</p>
-            </div>
-
-            <NewOrder company_id={9003} />
-            <NewOrderSummaryShortcutButton />
+            <main>
+                <NewOrder company_id={9003} />
+                <NewOrderSummaryShortcutButton />
+            </main>
         </div>
     );
 };
