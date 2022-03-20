@@ -20,6 +20,17 @@ export const ClientsInterface = () => {
             id="clients-interface"
             style={{ backgroundImage: `url(${clientsInterfaceBG})` }}
         >
+            <div className="clients-interface-company-description">
+                <h5 className="m-0">Jose's Fake Corp.</h5>
+            </div>
+
+            <div className="clients-interface-company-banner">
+                <h4 className="m-2">Menú</h4>
+                <hr />
+                
+                <p>Descripción de la empresa</p>
+            </div>
+
             <NewOrder company_id={9003} />
             <NewOrderSummaryShortcutButton />
         </div>

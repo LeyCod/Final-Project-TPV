@@ -1,0 +1,27 @@
+#clients-interface {
+  text-align: center;
+}
+
+.clients-interface-company-description {
+  padding: 0.7rem 0;
+  background-color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.clients-interface-company-banner {
+  padding: 1.5rem 0;
+  color: #ffffff;
+}
+
+.clients-interface-company-banner hr {
+    width: 35px;
+    height: 2.5px;
+    background-color: var(--theme-color);
+    margin: auto;
+    opacity: 1;    
+}
+
+.clients-interface-company-banner p {
+    margin: 1rem 0 0 0;
+}
