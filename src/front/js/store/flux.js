@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			selectedDashboardThemeColor: 0,
 			menuItems: {},
 			orderItems: {},
+			orderTable: {},
 			totalPrice: 0
 		},
 		actions: {
@@ -72,6 +73,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 				setStore({ ...store });
 				getActions().setTotalPrice();
+			},
+			setOrderTable: (tableID) => {
+				setStore({ ...getStore(), orderTable: tableID });				
 			},
 			setTotalPrice: () => {
 				const store = getStore();

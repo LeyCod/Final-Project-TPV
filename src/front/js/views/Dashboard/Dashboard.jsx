@@ -22,6 +22,7 @@ import { Orders } from "../../component/Dashboard/Orders/Orders.jsx";
 import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
 import { NewOrderButton } from "../../component/Dashboard/NewOrderButton/NewOrderButton.jsx";
 import { NewOrderSummaryShortcutButton } from "../../component/Dashboard/NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
+import { NewOrderSelectTable } from "../../component/Dashboard/Modal/NewOrderSelectTable/NewOrderSelectTable.jsx";
 import { Tables } from "../../component/Dashboard/Tables/Tables.jsx";
 import { MenuItemsConfiguration } from "../../component/Dashboard/MenuItemsConfiguration/MenuItemsConfiguration.jsx";
 import { UserConfiguration } from "../../component/Dashboard/UserConfiguration/UserConfiguration.jsx";
@@ -93,7 +94,7 @@ export const Dashboard = () => {
     const handleChangeView = (viewName) => { /* This handle helps to hide the responsive user top menu when a new view is clicked */
         setActualDashboardView(viewName);
         setActiveSidebar(viewName === "new_order" ? false : activeSidebar);
-        setResponsiveTopMenu(false);
+        setResponsiveTopMenu(false); // Hidding responsive top menu        
     }
 
     const dashboardViews = {
@@ -114,6 +115,8 @@ export const Dashboard = () => {
                 <div className="container-fluid">
 
                     {loading ? <Spinner /> : null}
+
+                    {Object.keys(store.orderTable).length === 0 && actualDashboardView === "new_order" ? <NewOrderSelectTable show={true} /> : null}
 
                     <div className={`row dashboard-theme-${store.dashBoardThemeColors[localStorage.getItem("dashboard-theme-color") !== null ? localStorage.getItem("dashboard-theme-color") : store.selectedDashboardThemeColor]}`} id="dashboard-wrapper">
                         <aside

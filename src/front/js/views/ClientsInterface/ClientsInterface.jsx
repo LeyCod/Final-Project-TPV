@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../../store/appContext";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -15,6 +16,8 @@ import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
 import { NewOrderSummaryShortcutButton } from "../../component/Dashboard/NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
 
 export const ClientsInterface = () => {
+    const { store, actions } = useContext(Context);
+    
     const { table_id } = useParams();
 
     const [loading, setLoading] = useState(true);
@@ -31,6 +34,7 @@ export const ClientsInterface = () => {
                 if (status === 200) {
                     setFetchError(false);
                     setTableCompanyData(data);
+                    actions.setOrderTable(table_id);
                 }
                 else {
                     console.error(status);

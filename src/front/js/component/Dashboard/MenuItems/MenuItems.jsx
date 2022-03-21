@@ -63,7 +63,7 @@ export const MenuItems = (props) => {
 };
 
 MenuItems.propTypes = {
-    company_id: PropTypes.number,
+    company_id: PropTypes.node,
     order_item_control: PropTypes.bool,
     edit_item_control: PropTypes.bool
 }
