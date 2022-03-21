@@ -42,7 +42,7 @@ def register_order(body, table_id):
         print(order, "order")
 
         if order is None:
-            new_order = Order(table=table_id,company_id= body["company_id"],total_price=total_price)
+            new_order = Order(table_id=table_id,company_id= body["company_id"],total_price=total_price)
             print(new_order)
             db.session.add(new_order)
             db.session.commit()
@@ -69,12 +69,7 @@ def register_order(body, table_id):
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde!!!", 500)
 
 
-# def update_order(body,table_id):
-#     try:
-#         if body is None:
-#             return error_response("Solicitud incorrecta", 400)
 
-#         table = Table.query.get(table_id)
 
         
         
