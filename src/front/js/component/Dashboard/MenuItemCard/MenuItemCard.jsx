@@ -6,6 +6,7 @@ import "./menu-item-card.css";
 
 // Component
 import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.jsx";
+import { MenuEditItemControl } from "../MenuEditItemControl/MenuEditItemControl.jsx";
 
 export const MenuItemCard = (props) => {
     return (
@@ -26,6 +27,12 @@ export const MenuItemCard = (props) => {
                     {
                         props.order_item_control
                             ? <NewOrderItemControl item_index={props.item_index} />
+                            : null
+                    }
+
+{
+                        props.item_edit_control
+                            ? <MenuEditItemControl item_index={props.item_index} />
                             : null
                     }
                 </div>

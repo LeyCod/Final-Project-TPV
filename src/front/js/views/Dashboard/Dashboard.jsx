@@ -23,7 +23,7 @@ import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
 import { NewOrderButton } from "../../component/Dashboard/NewOrderButton/NewOrderButton.jsx";
 import { NewOrderSummaryShortcutButton } from "../../component/Dashboard/NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
 import { Tables } from "../../component/Dashboard/Tables/Tables.jsx";
-import { Items } from "../../component/Dashboard/Items/Items.jsx";
+import { MenuItemsConfiguration } from "../../component/Dashboard/MenuItemsConfiguration/MenuItemsConfiguration.jsx";
 import { UserConfiguration } from "../../component/Dashboard/UserConfiguration/UserConfiguration.jsx";
 import { AdminConfiguration } from "../../component/Dashboard/AdminConfiguration/AdminConfiguration.jsx";
 
@@ -101,7 +101,7 @@ export const Dashboard = () => {
         "orders": { "title": "Pedidos", "component": <Orders /> },
         "new_order": { "title": "Nuevo pedido", "component": <NewOrder /> },
         "tables": { "title": "Mesas", "component": <Tables /> },
-        "items": { "title": "Carta", "component": <Items /> },
+        "items": { "title": "Carta", "component": <MenuItemsConfiguration /> },
         "user_configuration": { "title": "Configuración de usuario", "component": <UserConfiguration /> },
         "admin_configuration": { "title": "Configuración de administrador", "component": <AdminConfiguration /> }
     }
