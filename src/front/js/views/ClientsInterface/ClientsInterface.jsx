@@ -80,7 +80,7 @@ export const ClientsInterface = () => {
 
                     <div className="clients-interface-footer">
                         2022© By&nbsp;
-                        <Link to="/" target="_blank" className="text-decoration-none text-black fw-bold">
+                        <Link to="/" target="_blank" className="text-decoration-none text-dark fw-bold">
                             MasterGest
                         </Link>
                         &nbsp;| 4Geeks Academy

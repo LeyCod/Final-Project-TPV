@@ -37,6 +37,7 @@
 
 .clients-interface-company-description p {
   width: fit-content;
+  margin: auto;
   padding: .5rem .3rem;  
   font-family: "Raleway", sans-serif;
 }
@@ -50,6 +51,9 @@
   height: auto;
   padding: .5rem 0 .3rem 0;
   background: var(--gray);
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
+  font-weight: 300;
+  letter-spacing: .5px;
   text-align: center;
 }
