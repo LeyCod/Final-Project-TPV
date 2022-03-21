@@ -126,7 +126,7 @@ data = {
             "qr_url": "urlqr",
             "occupied": False,
             "is_active": False,
-            "company_id": 9002
+            "company_id": 9003
         }
     ], 
     "MenuItem":[

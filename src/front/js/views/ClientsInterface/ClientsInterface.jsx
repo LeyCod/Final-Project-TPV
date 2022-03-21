@@ -19,17 +19,18 @@ export const ClientsInterface = () => {
 
     const [loading, setLoading] = useState(true);
     const [fetchError, setFetchError] = useState(false);
+    const [companyID, setCompanyID] = useState(null);
 
     useEffect(() => {
         async function getTable() {
             try {
-                const response = await apiGetTable(table_id); console.log(response);
-                const data = await response.json(); console.log(data);
-                const status = response.status; console.log(status);
+                const response = await apiGetTable(table_id);
+                const data = await response.json();
+                const status = response.status;
 
                 if (status === 200) {
-                    console.log("perfe");
                     setFetchError(false);
+                    setCompanyID(data.company_id);
                 }
                 else {
                     console.error(status);
@@ -71,7 +72,7 @@ export const ClientsInterface = () => {
                     </div>
 
                     <main>
-                        <NewOrder company_id={9003} />
+                        <NewOrder company_id={companyID} />
                         <NewOrderSummaryShortcutButton />
                     </main>
 
