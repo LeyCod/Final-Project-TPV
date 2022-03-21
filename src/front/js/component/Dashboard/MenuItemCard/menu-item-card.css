@@ -8,6 +8,11 @@
   gap: 1rem;
 }
 
+.menu-item-card:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+
 .menu-item-card p {
   margin-bottom: 0;
 }
@@ -56,7 +61,7 @@
 @media (min-width: 576px) {
   .menu-item-card {
     flex-flow: column nowrap;
-    padding: .5rem;
+    padding: 0.5rem;
   }
 
   .menu-item-card > div:nth-child(1) {
@@ -68,5 +73,5 @@
     flex-grow: 1;
     gap: 1rem;
     width: 100%;
-  }    
+  }
 }
