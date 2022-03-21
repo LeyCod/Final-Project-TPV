@@ -19,7 +19,7 @@ export const ClientsInterface = () => {
 
     const [loading, setLoading] = useState(true);
     const [fetchError, setFetchError] = useState(false);
-    const [companyID, setCompanyID] = useState(null);
+    const [tableCompanyData, setTableCompanyData] = useState(null);
 
     useEffect(() => {
         async function getTable() {
@@ -30,7 +30,7 @@ export const ClientsInterface = () => {
 
                 if (status === 200) {
                     setFetchError(false);
-                    setCompanyID(data.company_id);
+                    setTableCompanyData(data);
                 }
                 else {
                     console.error(status);
@@ -67,12 +67,14 @@ export const ClientsInterface = () => {
 
                             <hr />
 
-                            <p>Descripción de la empresa</p>
+                            <div className="clients-interface-company-description">
+                                <p>{tableCompanyData.company_description}</p>
+                            </div>
                         </div>
                     </div>
 
                     <main>
-                        <NewOrder company_id={companyID} />
+                        <NewOrder company_id={tableCompanyData.company_id} />
                         <NewOrderSummaryShortcutButton />
                     </main>
 

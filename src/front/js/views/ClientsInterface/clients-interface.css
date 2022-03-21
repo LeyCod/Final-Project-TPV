@@ -22,10 +22,6 @@
   font-family: "Merriweather", serif;
 }
 
-.clients-interface-company-banner p {
-  font-family: "Raleway", sans-serif;
-}
-
 .clients-interface-company-banner hr {
   width: 35px;
   height: 2.5px;
@@ -34,8 +30,15 @@
   opacity: 1;
 }
 
-.clients-interface-company-banner p {
+.clients-interface-company-description {
   margin: 1rem 0 0 0;
+  padding: 0 1.8rem;
+}
+
+.clients-interface-company-description p {
+  width: fit-content;
+  padding: .5rem .3rem;  
+  font-family: "Raleway", sans-serif;
 }
 
 #clients-interface .clients-interface-footer {
