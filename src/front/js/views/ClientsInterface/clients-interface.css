@@ -1,7 +1,7 @@
 #clients-interface > div {
   height: 35vh;
   background: url(https://res.cloudinary.com/dxbcvuacb/image/upload/v1647804278/ClientsInteface-BG1_s8d1wc.png);    
-  background-size: 170%;
+  background-size: 180%;
   background-repeat: no-repeat;
   background-attachment: fixed;  
 }
@@ -44,7 +44,8 @@
 
 #clients-interface main {
   background-color: #f2f2f2;
-  box-shadow: 0px 17px 26px 7px rgb(0 0 0);
+  /* box-shadow: 0px 17px 26px 7px rgb(0 0 0); */
+  box-shadow: 0px -10px 20px -19px rgb(0 0 0);
 }
 
 #clients-interface .clients-interface-footer {
