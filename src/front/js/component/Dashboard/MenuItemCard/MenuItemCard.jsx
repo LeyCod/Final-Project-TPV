@@ -22,7 +22,7 @@ export const MenuItemCard = (props) => {
                 </div>
 
                 <div>
-                    <p>{props.price} €</p>
+                    <p>{props.price}€</p>
 
                     {
                         props.order_item_control

@@ -54,7 +54,8 @@
 }
 
 .menu-item-card > div:nth-child(2) > div:nth-child(2) p {
-  font-weight: 600;
+  color: #4d4d4d;
+  font-size: 15px;
 }
 
 /* -- Media Queries -- */
