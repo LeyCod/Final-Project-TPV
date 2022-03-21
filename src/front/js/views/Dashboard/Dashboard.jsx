@@ -30,7 +30,7 @@ import { AdminConfiguration } from "../../component/Dashboard/AdminConfiguration
 export const Dashboard = () => {
     const { store, actions } = useContext(Context);
 
-    const [loading, setLoading] = useState(true); // Loading spinner control
+    const [loading, setLoading] = useState(true);
     const [responsiveTopMenu, setResponsiveTopMenu] = useState(false);
 
     /* Sidebar control */

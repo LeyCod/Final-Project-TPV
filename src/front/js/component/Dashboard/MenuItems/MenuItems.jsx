@@ -7,13 +7,13 @@ import { apiGetMenuItems } from "../../../service/menu-item";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
-import { ErrorModal } from "../Modal/ErrorModal/ErrorModal.jsx";
+import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
 import { MenuItemCard } from "../MenuItemCard/MenuItemCard.jsx";
 
 export const MenuItems = (props) => {
     const { store, actions } = useContext(Context);
 
-    const [loading, setLoading] = useState(true); // Loading spinner control
+    const [loading, setLoading] = useState(true);
     const [fetchError, setFetchError] = useState(false);
 
     useEffect(() => {
