@@ -154,6 +154,21 @@ small {
   background-color: #ffffff59;
 }
 
+/* Custom grid system (inside a row) for cards */
+.cards-grid-system {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-gap: 0.5rem;
+}
+
+/* -- Media Queries -- */
+@media (min-width: 576px) {
+  .cards-grid-system {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  }
+}
+
 /* Animation */
 .rotate {
   animation: rotation 0.3s infinite linear;
