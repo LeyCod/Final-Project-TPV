@@ -12,6 +12,7 @@ import { Login } from "./views/Login/Login.jsx";
 import { RegisterCompany } from "./views/RegisterCompany/RegisterCompany.jsx";
 import { RegisterUser } from "./views/RegisterUser/RegisterUser.jsx";
 import { Dashboard } from "./views/Dashboard/Dashboard.jsx";
+import { ClientsInterface } from "./views/ClientsInterface/ClientsInterface.jsx";
 
 const AppRouter = () => {
 	// The basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -24,6 +25,9 @@ const AppRouter = () => {
 				<ScrollToTop>
 					<Layout>
 						<Switch>
+							<Route exact path="/clients/:table_id">
+								<ClientsInterface />
+							</Route>
 							<Route exact path="/">
 								<LandingPage />
 							</Route>

@@ -11,8 +11,8 @@ class Company(db.Model):
     address = db.Column(db.String(70))
     province = db.Column(db.Integer)
     postal_code = db.Column(db.Integer)    
-    external_url = db.Column(db.String(120))
-    logo_url = db.Column(db.String(120))
+    external_url = db.Column(db.String(150))
+    logo_url = db.Column(db.String(150))
     is_active = db.Column(db.Boolean(), default=True, nullable=False)
 
     def __repr__(self):

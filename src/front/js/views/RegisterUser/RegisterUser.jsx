@@ -113,7 +113,7 @@ export const RegisterUser = () => {
                                 <label className="form-label mb-1">NIF</label>
                                 <input
                                     type="text"
-                                    className="form-control shadow-sm"
+                                    className="form-control text-uppercase shadow-sm"
                                     autoComplete="off"
                                     autoFocus="on"
                                     maxLength={9}
@@ -149,7 +149,7 @@ export const RegisterUser = () => {
                                 <label className="form-label mb-1">Email</label>
                                 <input
                                     type="text"
-                                    className="form-control shadow-sm"
+                                    className="form-control text-lowercase shadow-sm"
                                     autoComplete="off"
                                     maxLength={60}
                                     onChange={(e) => actions.setUserRegisterData("email", e.target.value.trim())}
