@@ -23,9 +23,9 @@ export const ClientsInterface = () => {
     useEffect(() => {
         async function getTable() {
             try {
-                const response = await apiGetTable(table_id);
-                const data = await response.json();
-                const status = response.status;
+                const response = await apiGetTable(table_id); console.log(response);
+                const data = await response.json(); console.log(data);
+                const status = response.status; console.log(status);
 
                 if (status === 200) {
                     console.log("perfe");

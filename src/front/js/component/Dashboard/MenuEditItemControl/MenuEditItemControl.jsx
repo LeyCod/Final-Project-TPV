@@ -10,7 +10,7 @@ export const MenuEditItemControl = (props) => {
             <button
                 type="button"
                 className="btn btn-sm xs-button outline-theme-color-button shadow-none"
-                //onClick={() => } // Aquí en onclick debe abrirse un modal que permita modificar el menu item y también eliminarlo
+                //onClick={() => } // !! Aquí en onclick debe abrirse un modal que permita modificar el menu item y también eliminarlo
             >
                 <i class="fas fa-highlighter"></i>
             </button>
