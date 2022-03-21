@@ -1,5 +1,5 @@
 #clients-interface > div {
-  height: 30vh;
+  height: 35vh;
   background: url(https://res.cloudinary.com/dxbcvuacb/image/upload/v1647804278/ClientsInteface-BG1_s8d1wc.png);    
   background-size: 170%;
   background-repeat: no-repeat;
@@ -8,7 +8,7 @@
 
 .clients-interface-company-banner {
   width: 100%;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   color: #ffffff;
   text-align: center;
 }
@@ -36,4 +36,13 @@
 
 .clients-interface-company-banner p {
   margin: 1rem 0 0 0;
+}
+
+#clients-interface .clients-interface-footer {
+  height: auto;
+  margin-top: .5rem;
+  padding: .3rem 0;
+  background: var(--gray);
+  font-size: 15px;
+  text-align: center;
 }

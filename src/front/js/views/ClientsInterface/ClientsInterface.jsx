@@ -38,7 +38,7 @@ export const ClientsInterface = () => {
                 <NewOrderSummaryShortcutButton />
             </main>
 
-            <div className="h-auto py-3 bg-white bg-opacity-75 text-center">
+            <div className="clients-interface-footer">
                 2022© By&nbsp;
                 <Link to="/" target="_blank" className="text-decoration-none text-black fw-bold">
                     MasterGest
