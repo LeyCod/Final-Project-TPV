@@ -8,7 +8,7 @@ class OrderItem(db.Model):
     item_id = db.Column(db.Integer, db.ForeignKey("menu_item.id"), nullable=False)
     order_id = db.Column(db.Integer, db.ForeignKey("order.id"), nullable=False)
     item = db.relationship(MenuItem)    
-    order = db.relationship(Order)    
+    order = db.relationship(Order, backref="menu_item")    
 
     def __repr__(self):
         return "<OrderItem %r>" % self.id

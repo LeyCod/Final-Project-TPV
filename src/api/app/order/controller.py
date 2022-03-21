@@ -2,10 +2,10 @@ from api.shared.response import success_response, error_response
 from api.models.index import db, Order,OrderItem, User, Table, Company, MenuItem
 from flask_jwt_extended import create_access_token
 
-def get_order():
+def get_all_order():
     try:
 
-        order = db.session.query(Order)
+        order = db.session.query(Order).filter(company_id)
         
         return success_response("HOLA",200)
 
