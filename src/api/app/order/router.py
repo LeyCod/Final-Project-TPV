@@ -11,7 +11,7 @@ def validate_order(company_id):
     return get_all_orders (company_id)
 
 @orders.route("/<order_id>", methods=["GET"])
-def validate_order_item():
+def validate_order_item(order_id):
     return get_order_item(order_id)
 
 @orders.route("/register", methods=["POST"])
