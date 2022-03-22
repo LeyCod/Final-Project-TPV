@@ -94,6 +94,9 @@ def table_update(body, user_id):
         if body is None: 
             return error_response("Solicitud incorrecta", 400)
 
+        if "id" not in body:
+            return error_response("ID de mesa no encontrado en la petición.", 400)
+
         user = User.query.get(user_id)
         if user is None:
             return error_response("No estas autorizado", 401)
@@ -104,7 +107,7 @@ def table_update(body, user_id):
 
         table_update = Table.query.filter(Table.id == body["id"]).update(dict(body))
         if table_update is None: 
-            return error_response("Solicitud incorrecta", 400")
+            return error_response("Solicitud incorrecta2", 400)
 
         db.session.commit()
 
@@ -113,4 +116,4 @@ def table_update(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR UPDATE TABLE]: ", err)
-        return error_response("Solicitud incorrecta", 400) 
+        return error_response("Solicitud incorrecta3", 400) 
