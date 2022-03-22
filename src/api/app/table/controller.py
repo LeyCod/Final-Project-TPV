@@ -18,6 +18,27 @@ def get_all_tables(user_id):
         print ("Error in get tables", error)
         return error_response("internal server error")
 
+def get_table(id):
+    try:
+        table = Table.query.filter(Table.id == id).first()
+
+        if table is None:
+            return error_response("Mesa no encontrada", 404)
+
+        company = Company.query.filter(Company.id == table.company_id).first()
+
+        if company is None:
+            return error_response("Empresa no encontrada", 404)
+
+        table_data = table.serialize()
+        table_data["company_description"] = company.description
+
+        return success_response(table_data)
+
+    except Exception as error:
+        print("Error in get_table", error)
+        return error_response("Error interno del servidor")
+
 def register_table(body, user_id):
     try: 
         if body is None: 
@@ -92,8 +113,4 @@ def table_update(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR UPDATE TABLE]: ", err)
-        return error_response("Solicitud incorrecta 2", 400)
-
-
-
-#TODO Crear front de mesas con sus caracteristicas, crear, actualizar, borrar. 
+        return error_response("Solicitud incorrecta 2", 400) 

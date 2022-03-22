@@ -12,6 +12,10 @@ def validate_table():
     tables = get_all_tables(user_id["id"])
     return jsonify(tables), 200
 
+@tables.route("/<id>", methods=["GET"])
+def table_get(id):
+    return get_table(id)
+
 @tables.route("/register", methods=["POST"])
 @jwt_required()
 def create_table():
