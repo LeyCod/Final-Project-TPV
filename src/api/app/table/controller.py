@@ -54,7 +54,7 @@ def register_table(body, user_id):
         if user is None or user.is_admin == False :
             return error_response("No tienes autorizacion", 401)
 
-        new_table = Table(company_id=user.company_id, name=body["name"], capacity=body["capacity"], qr_url=body["qr_url"])
+        new_table = Table(company_id=user.company_id, name=body["name"], capacity=body["capacity"])
         db.session.add(new_table)
         db.session.commit()
 
@@ -92,19 +92,19 @@ def table_delete(body, user_id):
 def table_update(body, user_id):
     try:
         if body is None: 
-            return error_response("Solicitud incorrecta 1", 400)
+            return error_response("Solicitud incorrecta", 400)
 
         user = User.query.get(user_id)
         if user is None:
             return error_response("No estas autorizado", 401)
 
-        table = Table.query.get(table_id)
+        table = Table.query.get(body["id"])
         if table not in body:
             return error_response("Selecciona una mesa", 401)
 
-        table_update = Table.query.filter(Table.id == table_id).update(dict(body))
+        table_update = Table.query.filter(Table.id == body["id"]).update(dict(body))
         if table_update is None: 
-            return error_response("Aqui hay un error...")
+            return error_response("Solicitud incorrecta", 400")
 
         db.session.commit()
 
@@ -113,4 +113,4 @@ def table_update(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR UPDATE TABLE]: ", err)
-        return error_response("Solicitud incorrecta 2", 400) 
+        return error_response("Solicitud incorrecta", 400) 

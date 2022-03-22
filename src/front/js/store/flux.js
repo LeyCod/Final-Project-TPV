@@ -28,11 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			checkCompanyRegisterData: () => {
 				const store = getStore();
 
-<<<<<<< HEAD
-				return store.companyRegisterData.name.length !== 0 && store.companyRegisterData.cif.length !== 0 
-=======
 				return store.companyRegisterData.name.length !== 0 && store.companyRegisterData.cif.length !== 0
->>>>>>> develop
 					? true
 					: false;
 			},
