@@ -7,4 +7,3 @@ orders = Blueprint("orders", __name__)
 def create_order():
     body = request.get_json(force = True)
     return register_order(body)
-
