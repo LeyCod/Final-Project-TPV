@@ -18,15 +18,15 @@ export const OrdersTable = (props) => {
                     <tr>
                         <th>ID</th>
                         <th>Hora</th>
-                        <th>Mesa</th>                        
-                        <th>Estado</th>                        
+                        <th>Mesa</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>#4</td>
                         <td>22:10</td>
-                        <td>2</td>                        
+                        <td>2</td>
                         <td>
                             <button
                                 type="button"
@@ -34,12 +34,12 @@ export const OrdersTable = (props) => {
                             >
                                 Pendiente
                             </button>
-                        </td>                        
+                        </td>
                     </tr>
                     <tr>
                         <td>#3</td>
                         <td>21:05</td>
-                        <td>5</td>                        
+                        <td>5</td>
                         <td>
                             <button
                                 type="button"
@@ -47,12 +47,12 @@ export const OrdersTable = (props) => {
                             >
                                 Pagado
                             </button>
-                        </td>                        
+                        </td>
                     </tr>
                     <tr>
                         <td>#2</td>
                         <td>20:45</td>
-                        <td>1</td>                        
+                        <td>1</td>
                         <td>
                             <button
                                 type="button"
@@ -60,12 +60,12 @@ export const OrdersTable = (props) => {
                             >
                                 En espera
                             </button>
-                        </td>                        
+                        </td>
                     </tr>
                     <tr>
                         <td>#1</td>
                         <td>19:55</td>
-                        <td>5</td>                        
+                        <td>5</td>
                         <td>
                             <button
                                 type="button"
@@ -73,7 +73,7 @@ export const OrdersTable = (props) => {
                             >
                                 Eliminado
                             </button>
-                        </td>                        
+                        </td>
                     </tr>
                 </tbody>
             </Table>
@@ -82,5 +82,6 @@ export const OrdersTable = (props) => {
 };
 
 OrdersTable.proptypes = {
-    handleChangeView: PropTypes.func
+    handleChangeView: PropTypes.func,
+    viewAll: PropTypes.bool
 }

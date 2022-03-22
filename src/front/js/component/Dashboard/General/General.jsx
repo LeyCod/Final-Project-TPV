@@ -46,7 +46,7 @@ export const General = (props) => {
                         <hr />
 
                         <div>
-                            <OrdersTable />
+                            <OrdersTable viewAll={false} />
                         </div>
                     </div>
                 </div>
