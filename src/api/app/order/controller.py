@@ -2,16 +2,24 @@ from api.shared.response import success_response, error_response
 from api.models.index import db, Order,OrderItem, User, Table, Company, MenuItem
 from flask_jwt_extended import create_access_token
 
-def get_all_order():
+def get_all_orders(company_id):
     try:
 
-        order = db.session.query(Order).filter(company_id)
+        list_order = db.session.query(Order).join(OrderItem).filter(Order.company_id== company_id).all()
+        print (list_order)
+        for order in list_order:
+            print(order.serialize())
+            for row in order.order_item:
+                print(row)
         
         return success_response("HOLA",200)
 
     except Exception as error:
         print("Error in get order", error)
         return error_response("Error interno del servidor",500)
+
+def get_order_item(order_id):
+    pass
 
 def register_order(body, table_id):
     try:

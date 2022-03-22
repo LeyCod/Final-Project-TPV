@@ -19,8 +19,7 @@ class Order(db.Model):
     company_id = db.Column(db.Integer,db.ForeignKey("company.id"))    
     table = db.relationship(Table)    
     payment_method = db.relationship(PaymentMethod)
-    company = db.relationship("Company") 
-          
+    company = db.relationship("Company")    
 
     def __repr__(self):
         return "<Order %r>" % self.id
@@ -37,3 +36,4 @@ class Order(db.Model):
             "table_id": self.table_id,
             "payment_method_id": self.payment_method_id
         }
+
