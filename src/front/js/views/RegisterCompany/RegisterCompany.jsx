@@ -69,7 +69,7 @@ export const RegisterCompany = () => {
                                 <label className="form-label mb-1">CIF</label>
                                 <input
                                     type="text"
-                                    className="form-control shadow-sm"
+                                    className="form-control text-uppercase shadow-sm"
                                     autoComplete="off"
                                     maxLength={9}
                                     onChange={(e) => actions.setCompanyRegisterData("cif", e.target.value.trim() ) }
