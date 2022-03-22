@@ -1,22 +1,16 @@
-import React, { useContext } from "react";
-import { Context } from "../../../store/appContext";
+import React from "react";
 
 // Styles
-import "./new-order-summary.css";
+import "./order-summary.css";
 
-// Components
-import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.jsx";
-
-export const NewOrderSummary = () => {
-    const { store, actions } = useContext(Context);
-
+export const OrderSummary = () => {
     return (
-        <div id="new-order-summary-container">
-            <div className="new-order-summary">
-                <div className="new-order-summary-title">
+        <div id="order-summary-container">
+            <div className="order-summary">
+                <div className="order-summary-title">
                     <div>
-                        <h4>Resumen del pedido</h4>
-                        <p className="m-0">Detalle de los productos añadidos:</p>
+                        <h4>Datos del pedido</h4>
+                        <p className="m-0">-----------------------------------</p>
                     </div>
 
                     <div>
@@ -31,7 +25,7 @@ export const NewOrderSummary = () => {
 
                 <div className="order-summary-body scrollbar-custom-bg">
                     {Object.keys(store.orderItems).map(itemIndex =>
-                        <div key={itemIndex} className="new-order-summary-item">
+                        <div key={itemIndex} className="order-summary-item">
                             <div>
                                 <small className="text-nowrap">{store.orderItems[itemIndex]} uds</small>
                                 <p>
@@ -42,10 +36,6 @@ export const NewOrderSummary = () => {
 
                             <div>
                                 <p className="m-0 fw-normal">{Math.floor(store.menuItems[itemIndex].price * store.orderItems[itemIndex] * 100) / 100} €</p>
-
-                                <div className="text-nowrap">
-                                    <NewOrderItemControl key={itemIndex} item_index={itemIndex} />
-                                </div>
                             </div>
                         </div>
                     )}
@@ -53,16 +43,12 @@ export const NewOrderSummary = () => {
 
                 <hr />
 
-                <div id="new-order-summary-total">
+                <div id="order-summary-total">
                     <p className="h5 fw-normal">Total</p>
                     <p className="h5">{store.totalPrice} €</p>
                 </div>
 
                 <div className="d-flex flex-column gap-2 mt-4">
-                    <button type="button" title="Añadir estos elementos al pedido actual" className="btn outline-theme-color-button shadow-none">
-                        ENVIAR PEDIDO
-                    </button>
-
                     <button type="button" title="Finalizar el pedido actual" className="btn theme-color-button fw-bold shadow-sm">
                         FINALIZAR
                     </button>

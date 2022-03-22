@@ -10,8 +10,8 @@ export const General = (props) => {
     const { store, actions } = useContext(Context);
 
     return (
-        <div className="dashboard-view-content p-2 p-md-3 p-lg-4">
-            <h4 className="fw-normal">Bienvenid@, {store.loggedUserData.first_name}</h4>
+        <div className="dashboard-view-content p-3 p-lg-4">
+            <h4 className="fw-normal mb-2">Bienvenid@, {store.loggedUserData.first_name}</h4>
             
             <div className="row">
                 <div className="col-12 col-md-6">

@@ -31,6 +31,10 @@
   font-size: 15px;
 }
 
+#dashboard-wrapper p.view-description {
+  font-size: 16px;
+}
+
 #dashboard-wrapper h4 {
   margin: 0;
   font-family: "Poppins", sans-serif;

@@ -9,7 +9,7 @@ export const Orders = (props) => {
     const { store, actions } = useContext(Context);
 
     return (
-        <div className="dashboard-view-content p-2 p-md-3 p-lg-4">    
+        <div className="dashboard-view-content p-3 p-lg-4">    
             <div className="row">
                 <div className="col-12">
                     <div className="rounded-3 p-3 bg-white shadow-sm">
