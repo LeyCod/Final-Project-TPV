@@ -20,6 +20,3 @@ def create_order():
     print(body)
     return register_order(body,table_id=body["table_id"])
 
-
-
-
