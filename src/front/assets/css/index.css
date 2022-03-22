@@ -145,6 +145,15 @@ small {
   background-color: #ffffff59;
 }
 
+.scrollbar-custom-bg::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff59;
+}
+
+.scrollbar-custom-bg::-webkit-scrollbar-thumb {
+  background-color: #0000003d;
+}
+
 .scrollbar-custom-lg::-webkit-scrollbar {
   width: 13px;
   background-color: #0000003d;

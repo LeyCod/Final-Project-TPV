@@ -34,7 +34,7 @@ export const ClientsInterface = () => {
                 if (status === 200) {
                     setFetchError(false);
                     setTableCompanyData(data);
-                    actions.setOrderTable(table_id);
+                    actions.setActiveOrderTable(table_id);
                 }
                 else {
                     console.error(status);

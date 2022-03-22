@@ -29,7 +29,7 @@ export const NewOrderSummary = () => {
 
                 <hr />
 
-                <div className="order-summary-body">
+                <div className="order-summary-body scrollbar-custom-bg">
                     {Object.keys(store.orderItems).map(itemIndex =>
                         <div key={itemIndex} className="new-order-summary-item">
                             <div>
