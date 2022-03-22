@@ -1,6 +1,6 @@
 import os
 from flask_admin import Admin
-from api.models.index import db, Company, User, Table, MenuItem, Order, OrderItem, OrderStatus, PaymentMethod
+from api.models.index import db, Company, User, Table, MenuItem, Order, OrderItem, PaymentMethod
 from flask_admin.contrib.sqla import ModelView
 
 def setup_admin(app):
@@ -14,6 +14,5 @@ def setup_admin(app):
     admin.add_view(ModelView(Table, db.session))
     admin.add_view(ModelView(MenuItem, db.session))
     admin.add_view(ModelView(Order, db.session))
-    admin.add_view(ModelView(OrderItem, db.session))
-    admin.add_view(ModelView(OrderStatus, db.session))
+    admin.add_view(ModelView(OrderItem, db.session))    
     admin.add_view(ModelView(PaymentMethod, db.session))

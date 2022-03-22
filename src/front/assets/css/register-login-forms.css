@@ -6,7 +6,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .main-form.form-view > div {

@@ -10,11 +10,11 @@ export const General = (props) => {
     const { store, actions } = useContext(Context);
 
     return (
-        <>
+        <div className="dashboard-view-content p-2 p-md-3 p-lg-4">
             <h4 className="fw-normal">Bienvenid@, {store.loggedUserData.first_name}</h4>
-
-            <div className="row my-3">
-            <div className="col-12 col-md-6">
+            
+            <div className="row">
+                <div className="col-12 col-md-6">
                     <SummaryCard
                         counter={12}
                         title="Pedidos activos" icon="orders"
@@ -29,13 +29,13 @@ export const General = (props) => {
                 </div>
             </div>
 
-            <div className="row my-3">
+            <div className="row mt-3">
                 <div className="col-12">
                     <div className="rounded-3 p-3 bg-white shadow-sm">
                         <div className="d-flex justify-content-between align-items-center">
                             <h4 className="m-0 fw-bold">Pedidos recientes</h4>
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 className="btn theme-color-button shadow-none"
                                 onClick={() => props.handleChangeView("orders")}
                             >
@@ -51,7 +51,7 @@ export const General = (props) => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

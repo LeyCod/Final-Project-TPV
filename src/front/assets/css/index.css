@@ -50,6 +50,18 @@ small {
   filter: brightness(var(--hover-brightness));
 }
 
+.outline-theme-color-button {
+  border-color: var(--theme-color);
+  color: var(--theme-color);
+  font-weight: 500;
+}
+
+.outline-theme-color-button:hover {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: #ffffff;
+}
+
 .green-button {
   border-color: var(--green);
   background-color: var(--green);
@@ -114,8 +126,12 @@ small {
   color: #ffffff;
 }
 
+.xs-button {
+  padding: 0.15rem 0.4rem !important;
+}
+
 .rounded-button {
-  border-radius: 25px;
+  border-radius: 25px !important;
 }
 
 /* Custom scrollbar */
@@ -127,6 +143,30 @@ small {
 .scrollbar-custom::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #ffffff59;
+}
+
+.scrollbar-custom-lg::-webkit-scrollbar {
+  width: 13px;
+  background-color: #0000003d;
+}
+
+.scrollbar-custom-lg::-webkit-scrollbar-thumb {
+  background-color: #ffffff59;
+}
+
+/* Custom grid system (inside a row) for cards */
+.cards-grid-system {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-gap: 0.5rem;
+}
+
+/* -- Media Queries -- */
+@media (min-width: 576px) {
+  .cards-grid-system {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  }
 }
 
 /* Animation */

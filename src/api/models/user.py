@@ -12,7 +12,7 @@ class User(db.Model):
     email = db.Column(db.String(60), unique=True, nullable=False)
     phone = db.Column(db.Integer)
     password = db.Column(db.String(150), nullable=False)
-    image_url = db.Column(db.String(120))
+    image_url = db.Column(db.String(150))
     is_active = db.Column(db.Boolean(), default=True, nullable=False)
     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
     company = db.relationship(Company)
