@@ -101,31 +101,19 @@ data = {
         {
             "id": 7000,
             "name": "Mesa 1",
-            "outside": False,
-            "capacity": 4,
-            "qr_url": "urlqr",
-            "occupied": False,
-            "is_active": False,
+            "qr_url": "urlqr",            
             "company_id": 9000
         }, 
                 {
             "id": 7001,
-            "name": "Barra 1",
-            "outside": False,
-            "capacity": 1,
+            "name": "Barra 1",            
             "qr_url": "urlqr",
-            "occupied": False,
-            "is_active": False,
             "company_id": 9001
         }, 
                 {
             "id": 7002,
             "name": "Mesa 1",
-            "outside": False,
-            "capacity": 3,
             "qr_url": "urlqr",
-            "occupied": False,
-            "is_active": False,
             "company_id": 9003
         }
     ], 
