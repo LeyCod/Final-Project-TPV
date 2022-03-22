@@ -101,14 +101,7 @@ def table_update(body, user_id):
         if user is None:
             return error_response("No estas autorizado", 401)
 
-        table = Table.query.get(body["id"])
-        if table not in body:
-            return error_response("Selecciona una mesa", 401)
-
         table_update = Table.query.filter(Table.id == body["id"]).update(dict(body))
-        if table_update is None: 
-            return error_response("Solicitud incorrecta2", 400)
-
         db.session.commit()
 
         return success_response("Información actualizada correctamente", 201)

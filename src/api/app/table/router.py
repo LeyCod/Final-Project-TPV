@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.table.controller import register_table, get_all_tables, table_delete, table_update
+from api.app.table.controller import register_table, get_all_tables, get_table, table_delete, table_update
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
