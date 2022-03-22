@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // Styles
-import "./new-order-summary-modal.css";
+import "./order-summary-modal.css";
 
 // Components
 import Modal from "react-bootstrap/Modal";
 import { NewOrderSummary } from "../../NewOrderSummary/NewOrderSummary.jsx";
 
-export const NewOrderSummaryModal = (props) => {
+export const OrderSummaryModal = (props) => {
     return (
-        <Modal id="new-order-summary-modal"
+        <Modal id="order-summary-modal"
             show={props.show}
             onHide={() => props.setOrderSummaryOnModal(false)}
         >
@@ -22,7 +22,7 @@ export const NewOrderSummaryModal = (props) => {
     );
 };
 
-NewOrderSummaryModal.propTypes = {
+OrderSummaryModal.propTypes = {
     show: PropTypes.bool,
     setOrderSummaryOnModal: PropTypes.func
 };

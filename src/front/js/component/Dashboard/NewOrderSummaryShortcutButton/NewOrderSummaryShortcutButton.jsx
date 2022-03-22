@@ -5,7 +5,7 @@ import { Context } from "../../../store/appContext";
 import "./new-order-summary-shortcut-button.css";
 
 // Components
-import { NewOrderSummaryModal } from "../Modal/NewOrderSummaryModal/NewOrderSummaryModal.jsx";
+import { OrderSummaryModal } from "../Modal/OrderSummaryModal/OrderSummaryModal.jsx";
 
 export const NewOrderSummaryShortcutButton = () => {
     const { store, actions } = useContext(Context);
@@ -15,7 +15,7 @@ export const NewOrderSummaryShortcutButton = () => {
     return (
         <div className="new-order-summary-shortcut-button d-xl-none">
             {orderSummaryOnModal
-                ? <NewOrderSummaryModal show={orderSummaryOnModal} setOrderSummaryOnModal={setOrderSummaryOnModal} />
+                ? <OrderSummaryModal show={orderSummaryOnModal} setOrderSummaryOnModal={setOrderSummaryOnModal} />
                 : null
             }
 

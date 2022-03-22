@@ -3,7 +3,7 @@ import { Context } from "../../../store/appContext";
 import PropTypes from "prop-types"
 
 // Components
-import { SummaryCard } from "../SummaryCard/SummaryCard.jsx";
+import { GeneralSummaryCard } from "../GeneralSummaryCard/GeneralSummaryCard.jsx";
 import { OrdersTable } from "../OrdersTable/OrdersTable.jsx";
 
 export const General = (props) => {
@@ -15,13 +15,13 @@ export const General = (props) => {
             
             <div className="row">
                 <div className="col-12 col-md-6">
-                    <SummaryCard
+                    <GeneralSummaryCard
                         counter={12}
                         title="Pedidos activos" icon="orders"
                     />
                 </div>
                 <div className="col-12 col-md-6">
-                    <SummaryCard
+                    <GeneralSummaryCard
                         counter={6} title="Mesas libres"
                         icon="tables"
                         progress={65}
