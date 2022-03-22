@@ -1,18 +1,18 @@
 from api.shared.response import success_response, error_response
 from api.models.index import db, Order,OrderItem, User, Table, Company, MenuItem
 from flask_jwt_extended import create_access_token
+from sqlalchemy import text
 
 def get_all_orders(company_id):
     try:
-
-        list_order = db.session.query(Order).join(OrderItem).filter(Order.company_id== company_id).all()
-        print (list_order)
+        list_order = db.session.query(Order).filter(Order.company_id == company_id).all()
+        order_list = []
         for order in list_order:
-            print(order.serialize())
-            for row in order.order_item:
-                print(row)
-        
-        return success_response("HOLA",200)
+            order_json = order.serialize()
+            order_items = db.session.query(OrderItem).filter(OrderItem.order_id == order_json["id"]).all()
+            order_json["order_item"] = list(map(lambda item: item.serialize(), order_items))
+            order_list.append(order_json)
+        return success_response(order_list,200)
 
     except Exception as error:
         print("Error in get order", error)

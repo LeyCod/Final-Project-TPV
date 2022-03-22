@@ -65,7 +65,7 @@ data = {
             "phone": "123456789",
             "image_url": ""
         },
-                {
+        {
             "id": 8005,
             "company_id": 9002,
             "is_admin": True,
@@ -97,7 +97,7 @@ data = {
             "qr_url": "urlqr",
             "occupied": False,
             "is_active": False,
-            "company_id": 9001
+            "company_id": 9000
         }, 
                 {
             "id": 7002,
@@ -107,7 +107,7 @@ data = {
             "qr_url": "urlqr",
             "occupied": False,
             "is_active": False,
-            "company_id": 9002
+            "company_id": 9000
         }
     ], 
     "MenuItem":[
@@ -127,7 +127,7 @@ data = {
             "price": 12.0,
             "image_url": "",
             "is_active": True,
-            "company_id": 9001
+            "company_id": 9000
         },
         {
             "id": 6002,
@@ -136,7 +136,7 @@ data = {
             "price": 4.30,
             "image_url": "",
             "is_active": True,
-            "company_id": 9002
+            "company_id": 9000
         }
     ],
         "OrderStatus":[
@@ -181,30 +181,27 @@ data = {
             "ticket_url": "ticketURL",
             "total_price": 12.50,
             "is_active": True,
-            "user_id": 8001,
             "table_id": 7000,
-            "status_id": 1,
-            "payment_method_id": 2
+            "payment_method_id": 2,
+            "company_id": 9000
         },
         {
             "id": 5001,
             "ticket_url": "ticketURL",
             "total_price": 12.50,
             "is_active": True,
-            "user_id": 8003,
             "table_id": 7001,
-            "status_id": 1,
-            "payment_method_id": 2
+            "payment_method_id": 2,
+            "company_id": 9000
         },
         {
             "id": 5002,
             "ticket_url": "ticketURL",
             "total_price": 12.50,
             "is_active": True,
-            "user_id": 8005,
             "table_id": 7002,
-            "status_id": 1,
-            "payment_method_id": 2
+            "payment_method_id": 2,
+            "company_id": 9000
         }
     ],
     "OrderItem":[

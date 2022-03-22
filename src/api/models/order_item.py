@@ -18,7 +18,7 @@ class OrderItem(db.Model):
             "id": self.id,
             "quantity": self.quantity,
             "item_id": self.item_id,
-            "menu_item": self.menu_item.serialize()
+            "menu_item": self.item.serialize()
         }
 
     def to_json():
@@ -27,5 +27,5 @@ class OrderItem(db.Model):
             "quantity": self.quantity,
             "item_id": self.item_id,
             "order_id": self.order_id,
-            "menu_item": self.menu_item.serialize()
+            "menu_item": self.item.serialize()
         }
