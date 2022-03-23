@@ -3,6 +3,7 @@ from api.shared.validate_email import check_email
 from api.shared.response import success_response, error_response
 from api.models.index import db, User
 from flask_jwt_extended import create_access_token
+from cloudinary.uploader import upload
 
 def register_user(body):
     try:
@@ -110,13 +111,28 @@ def update_user(body):
     try:
         if body is None: 
             return error_response("Solicitud incorrecta", 400)
+
+        if "id" not in body:
+            return error_response("No se ha recibido ningún ID de usuario", 400)
+                
+        if "email" in body and check_email(body["email"]) == False:
+            return error_response("El email que has introducido no es válido", 400)
         
         update_user = User.query.filter(User.id == body["id"]).update(dict(body))
         db.session.commit()
 
-        return success_response("Información actualizada correctamente", 201)
+        return success_response("Datos actualizados correctamente")
 
     except Exception as err:
         db.session.rollback()
         print("[ERROR UPDATE USER]: ", err)
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
+
+def img_upload(img):
+    try:
+        img_url = upload(img)
+        return success_response({ "img_url": img_url["url"] })
+        
+    except Exception as err:
+        print("[ERROR IMG UPLOAD]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.")
