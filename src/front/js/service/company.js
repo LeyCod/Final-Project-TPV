@@ -7,6 +7,7 @@ export const apiCompanyRegister = (companyCredentials) =>
         body: JSON.stringify(companyCredentials)
     });
 
+// Get Company data
 export const apiCompanyGetData = () =>
     fetch(`${BASE_URL}/api/company/`, {
         method: "GET",
@@ -14,4 +15,15 @@ export const apiCompanyGetData = () =>
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("api-flask-token")
         }
+    });
+
+// Company Update
+export const apiUpdateCompany = (body) =>
+    fetch(`${BASE_URL}/api/company/update`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("api-flask-token")
+        },
+        body: body
     });

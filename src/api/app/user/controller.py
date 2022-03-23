@@ -121,7 +121,7 @@ def update_user(body):
         update_user = User.query.filter(User.id == body["id"]).update(dict(body))
         db.session.commit()
 
-        return success_response("Datos actualizados correctamente", 201)
+        return success_response("Datos actualizados correctamente")
 
     except Exception as err:
         db.session.rollback()

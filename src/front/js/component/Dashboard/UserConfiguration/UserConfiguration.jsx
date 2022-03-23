@@ -87,7 +87,7 @@ export const UserConfiguration = () => {
             console.log("data", data),
                 console.log("status", status);
 
-            if (status === 201) {
+            if (status === 200) {
                 location.reload();
             }
             else {
@@ -169,7 +169,7 @@ export const UserConfiguration = () => {
                 <div className="col-12">
                     <label htmlFor="img-file" className="label-file-button btn btn-sm btn-secondary mb-1 text-white">
                         <i className="far fa-file-image fa-lg"></i>
-                        Seleccionar imagen
+                        Seleccionar avatar
                     </label>
 
                     <input

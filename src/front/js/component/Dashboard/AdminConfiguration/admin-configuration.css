@@ -1,0 +1,34 @@
+/* #dashboard-sidebar,
+#dashboard-content-header,
+#dashboard-footer,
+.dashboard-view-title {
+  display: none !important;
+} */
+.company-logo {
+    display:  none;
+  }
+  
+  #admin-configuration label {
+    color: #000000;
+    font-weight: 400;
+  }
+  
+  #admin-configuration input {
+    font-family: "Roboto", sans-serif;
+  }
+  
+  #admin-configuration input:focus {
+    border: 1px solid #ced4da;
+  }
+  
+  #admin-configuration-img {
+    display: flex;
+    width: 143.3px;
+    max-height: 162.4px;
+  }
+  
+  #admin-configuration-img img {
+    object-fit: cover;
+    object-position: center;
+  }
+  
