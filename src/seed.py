@@ -24,8 +24,8 @@ def load_seed():
             except Exception as e:
 
                 print(f'ERROR: Inserting row {row} in "{table}". IGNORING')
-
                 print(e)
+                models.db.session.rollback()
 
 if __name__ == "__main__":
     app = Flask(__name__)

@@ -25,12 +25,12 @@ def get_company(token):
         user = User.query.get(token)
 
         if user is None:
-          return error_response("Usuario no encontrado", 404)
-          
+            return error_response("Usuario no encontrado", 404)
+        
         company = Company.query.get(user.company_id)
 
         if company is None:
-          return error_response("Compañía no encontrada", 404)
+            return error_response("Compañía no encontrada", 404)
 
         return success_response(company.serialize())
 

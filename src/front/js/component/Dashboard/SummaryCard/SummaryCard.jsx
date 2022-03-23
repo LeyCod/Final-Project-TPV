@@ -19,7 +19,7 @@ export const SummaryCard = (props) => {
     }
 
     return (
-        <div className="summary-card rounded-3 p-3 bg-white shadow-sm">
+        <div className="summary-card rounded-3 p-3 pb-0 bg-white shadow-sm">
             <div className="flex-grow-1">
                 <div className="d-flex justify-content-start align-items-start gap-4">
                     <div className="summary-card-icon align-self-center">

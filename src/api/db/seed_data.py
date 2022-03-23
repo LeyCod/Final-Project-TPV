@@ -13,7 +13,14 @@ data = {
         {
             "id": 9002,
             "name": "Reactive Frontend Corp.",
-            "cif": "B12345666"
+            "cif": "B12345566"
+        },
+        {
+            "id": 9003,
+            "name": "Jose's Fake Corp.",
+            "cif": "B12345666",
+            "logo_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647108989/LogoDesign4_zrx29z.png",
+            "description": "Comida tradicional casera: tapas y raciones, menú del día, menú especial, etc..."
         }
     ],
     "User":[
@@ -65,7 +72,7 @@ data = {
             "phone": "123456789",
             "image_url": ""
         },
-                {
+        {
             "id": 8005,
             "company_id": 9002,
             "is_admin": True,
@@ -76,85 +83,120 @@ data = {
             "password": "123456",
             "phone": "123456789",
             "image_url": ""
+        },
+        {
+            "id": 8006,
+            "company_id": 9003,
+            "is_admin": True,
+            "nif": "53700058A",
+            "first_name": "Jose Clemente",
+            "last_name":"Gacía Rodríguez",
+            "email": "jgarciar@fakemail.com",
+            "password": "666",
+            "phone": "612345667",
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647109076/me_uxx12h.jpg"
         }
     ],
     "Table":[
         {
             "id": 7000,
             "name": "Mesa 1",
-            "outside": False,
-            "capacity": 4,
-            "qr_url": "urlqr",
-            "occupied": False,
-            "is_active": False,
+            "qr_url": "urlqr",            
             "company_id": 9000
         }, 
                 {
             "id": 7001,
-            "name": "Barra 1",
-            "outside": False,
-            "capacity": 1,
+            "name": "Barra 1",            
             "qr_url": "urlqr",
-            "occupied": False,
-            "is_active": False,
             "company_id": 9001
         }, 
                 {
             "id": 7002,
             "name": "Mesa 1",
-            "outside": False,
-            "capacity": 3,
             "qr_url": "urlqr",
-            "occupied": False,
-            "is_active": False,
-            "company_id": 9002
+            "company_id": 9003
         }
     ], 
     "MenuItem":[
         {
-            "id": 6000,
-            "name": "tortilla",
-            "description": "huevo y patatas",
-            "price": 3.0,
-            "image_url": "",
-            "is_active": True,
-            "company_id": 9000
-        }, 
-        {
-            "id": 6001,
-            "name": "pabellon",
-            "description": "alubias negras, arroz, platano macho, carne mechada",
-            "price": 12.0,
-            "image_url": "",
-            "is_active": True,
-            "company_id": 9001
+            "id": 6003,
+            "name": "Cerveza",
+            "description": "Jarra de cerveza",
+            "price": 2.50,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647620179/www.cocinayvino.com-cervezas-e1626313339477-1200x900_q8is4f.jpg",
+            "company_id": 9003
         },
         {
-            "id": 6002,
-            "name": "pizza margarita",
-            "description": "pizza sencilla",
-            "price": 4.30,
-            "image_url": "",
-            "is_active": True,
-            "company_id": 9002
-        }
-    ],
-        "OrderStatus":[
-        {
-            "id": 1,
-            "name": "Pendiente"
+            "id": 6004,
+            "name": "Tabla de quesos y jamón",
+            "description": "Jamón ibérico, quesos, frutos secos y pan",
+            "price": 8.50,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619037/tabla-de-quesos-y-jamon_rmrazf.jpg",
+            "company_id": 9003
         },
         {
-            "id": 2,
-            "name": "En espera"
+            "id": 6005,
+            "name": "Hummus",
+            "description": "Crema de garbanzos con patatas",
+            "price": 2.10,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619037/taberna-el-sur-de-huertas_jkkpxl.jpg",
+            "company_id": 9003
         },
         {
-            "id": 3,
-            "name": "Pagado"
+            "id": 6006,
+            "name": "Huevos rotos",
+            "description": "Con jamón o chorizo y patatas",
+            "price": 7.50,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619037/taberna-el-sur-de-huertas_1_w48mub.jpg",
+            "company_id": 9003
         },
         {
-            "id": 4,
-            "name": "Eliminado"
+            "id": 6007,
+            "name": "Gambas al ajillo",
+            "description": "Con gambas, ajo y seguro que algo más",
+            "price": 7.30,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619037/taberna-el-sur-de-huertas_3_qhrvm0.jpg",
+            "company_id": 9003
+        },
+        {
+            "id": 6008,
+            "name": "Salmorejo",
+            "description": "Plato típico cordobés",
+            "price": 6.20,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619037/taberna-el-sur-de-huertas_2_ziudws.jpg",
+            "company_id": 9003
+        },
+        {
+            "id": 6009,
+            "name": "Gambas al pil pil",
+            "description": "Plato tradicional español con ajo, aceite de oliva y guindilla",
+            "price": 7.80,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619037/20181008-182036-largejpg_c2xumg.jpg",
+            "company_id": 9003
+        },
+        {
+            "id": 6010,
+            "name": "Croquetas caseras",
+            "description": "Diferentes recetas tradicionales",
+            "price": 8,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619493/taberna-el-sur-de-huertas_4_rpbryc.jpg",
+            "company_id": 9003
+        },
+        {
+            "id": 6011,
+            "name": "Tarta de queso",
+            "description": "Con queso y cosas",
+            "price": 4.20,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619467/humus_uch2xr.jpg",
+            "company_id": 9003
+        },
+        {
+            "id": 6012,
+            "name": "Sangría",
+            "description": "Bebida refrescante con frutas de temporada",
+            "price": 3.50,
+            "image_url": "https://res.cloudinary.com/dxbcvuacb/image/upload/v1647619037/photo0jpg_jjerf5.jpg",
+            "company_id": 9003
         }
     ],
     "PaymentMethod":[
@@ -181,9 +223,8 @@ data = {
             "ticket_url": "ticketURL",
             "total_price": 12.50,
             "is_active": True,
-            "user_id": 8001,
+            "company_id": 9003,
             "table_id": 7000,
-            "status_id": 1,
             "payment_method_id": 2
         },
         {
@@ -191,9 +232,8 @@ data = {
             "ticket_url": "ticketURL",
             "total_price": 12.50,
             "is_active": True,
-            "user_id": 8003,
+            "company_id": 9003,
             "table_id": 7001,
-            "status_id": 1,
             "payment_method_id": 2
         },
         {
@@ -201,9 +241,8 @@ data = {
             "ticket_url": "ticketURL",
             "total_price": 12.50,
             "is_active": True,
-            "user_id": 8005,
+            "company_id": 9003,
             "table_id": 7002,
-            "status_id": 1,
             "payment_method_id": 2
         }
     ],
@@ -211,19 +250,19 @@ data = {
         {
             "id": 4001,
             "quantity": 1,
-            "item_id": 6000,
+            "item_id": 6003,
             "order_id": 5000
         }, 
         {
             "id": 4002,
             "quantity": 1,
-            "item_id": 6001,
+            "item_id": 6004,
             "order_id": 5001
         },
         {
             "id": 4003,
             "quantity": 1,
-            "item_id": 6002,
+            "item_id": 6005,
             "order_id": 5002
         }
     ] 
