@@ -47,6 +47,9 @@ def update_company(body, user_id):
         if user.is_admin == False:
             return error_response("Acceso no autorizado", 401)
 
+        if "id" not in body:
+            return error_response("No se ha recibido ningún ID de empresa", 400)           
+
         update_company = Company.query.filter(Company.id == body["id"]).update(dict(body))
         db.session.commit() 
         
