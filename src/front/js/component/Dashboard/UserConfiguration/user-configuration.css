@@ -1,0 +1,33 @@
+/* #dashboard-sidebar,
+#dashboard-content-header,
+#dashboard-footer,
+.dashboard-view-title {
+  display: none !important;
+} */
+.company-logo {
+  display:  none;
+}
+
+#user-configuration label {
+  color: #000000;
+  font-weight: 400;
+}
+
+#user-configuration input {
+  font-family: "Roboto", sans-serif;
+}
+
+#user-configuration input:focus {
+  border: 1px solid #ced4da;
+}
+
+#user-configuration-img {
+  display: flex;
+  width: 162.4px;
+  max-height: 162.4px;
+}
+
+#user-configuration-img img {
+  object-fit: cover;
+  object-position: center;
+}
