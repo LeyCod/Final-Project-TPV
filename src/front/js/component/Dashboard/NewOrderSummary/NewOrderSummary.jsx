@@ -6,6 +6,7 @@ import "./new-order-summary.css";
 
 // Components
 import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.jsx";
+import { SubmitOrderButton } from "../SubmitOrderButton/SubmitOrderButton.jsx";
 
 export const NewOrderSummary = () => {
     const { store, actions } = useContext(Context);
@@ -58,15 +59,7 @@ export const NewOrderSummary = () => {
                     <p className="h5">{store.totalPrice} €</p>
                 </div>
 
-                <div className="d-flex flex-column gap-2 mt-4">
-                    <button type="button" title="Añadir estos elementos al pedido actual" className="btn outline-theme-color-button shadow-none">
-                        ENVIAR PEDIDO
-                    </button>
-
-                    <button type="button" title="Finalizar el pedido actual" className="btn theme-color-button fw-bold shadow-sm">
-                        FINALIZAR
-                    </button>
-                </div>
+                <SubmitOrderButton />
             </div>
         </div>
     );

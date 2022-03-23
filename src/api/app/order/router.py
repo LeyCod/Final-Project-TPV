@@ -18,5 +18,4 @@ def validate_order_item(order_id):
 def create_order():
     body = request.get_json(force = True)
     print(body)
-    return register_order(body,table_id=body["table_id"])
-
+    return register_order(body, table_id=body["table_id"])

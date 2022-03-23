@@ -35,7 +35,6 @@ def get_order_item(order_id):
 
 def register_order(body, table_id):
     try:
-        
         if body is None:
             return error_response("Solicitud incorrecta", 400)
 
@@ -49,8 +48,6 @@ def register_order(body, table_id):
         
         if table.company_id != body["company_id"]:
             return error_response("La compañia no coincide ", 400)
-        
-       
         
         total_price= 0
 
@@ -73,7 +70,6 @@ def register_order(body, table_id):
 
             db.session.commit()
             return success_response(new_order.serialize())
-
         else:
             for order_item in body["menu_items"]:
                 new_order_item= OrderItem(quantity=order_item["quantity"],order_id=order.id,item_id=order_item["menu_item_id"])
@@ -82,14 +78,7 @@ def register_order(body, table_id):
             db.session.commit()
             return success_response(order.serialize())
 
-
     except Exception as err:
         db.session.rollback()
         print("[ERROR REGISTER ORDER]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde!!!", 500)
-
-
-
-
-        
-        
