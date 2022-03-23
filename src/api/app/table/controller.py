@@ -1,5 +1,5 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, Table, User
+from api.models.index import db, Table, User, Company
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 

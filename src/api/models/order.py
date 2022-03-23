@@ -1,7 +1,6 @@
 from api.models.db import db
 from api.models.user import User
 from api.models.table import Table
-from api.models.order_status import OrderStatus
 from api.models.payment_method import PaymentMethod
 from datetime import datetime
 
