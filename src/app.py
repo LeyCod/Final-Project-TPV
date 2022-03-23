@@ -18,6 +18,8 @@ from api.app.order_item.router import order_items
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
 
+import cloudinary
+
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
@@ -34,6 +36,10 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours = 2)
+
+app.config["CLOUD_NAME"] = os.environ.get("CLOUD_NAME")
+app.config["CLOUD_API_KEY"] = os.environ.get("CLOUD_API_KEY")
+app.config["CLOUD_API_SECRET"] = os.environ.get("CLOUD_API_SECRET")
 
 MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
@@ -52,6 +58,13 @@ app.register_blueprint(tables, url_prefix="/api/table")
 app.register_blueprint(menu_items, url_prefix="/api/menu_item")
 app.register_blueprint(orders, url_prefix="/api/order")
 app.register_blueprint(order_items, url_prefix="/api/order_item")
+
+cloudinary.config( 
+  cloud_name = app.config["CLOUD_NAME"], 
+  api_key = app.config["CLOUD_API_KEY"], 
+  api_secret = app.config["CLOUD_API_SECRET"],
+  secure = True
+)
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
