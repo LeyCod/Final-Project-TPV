@@ -71,20 +71,18 @@ export const AdminConfiguration = () => {
         setNotifyMessage(false);
 
         try {
-            const body = JSON.stringify({
+            let body = {
                 "id": store.loggedUserCompanyData.id,
-                "logo_url": imgUrl,
-                "name": name.toUpperCase().trim(),
-                "description": description.toUpperCase().trim(),
-                "address": address.toLowerCase().trim()                
-            });
+                "logo_url": imgUrl             
+            };
 
-            const response = await apiUpdateCompany(body);
+            if (name.trim().length === 0) { body["name"] = name.toUpperCase() }
+            if (description.trim().length === 0) { body["description"] = description }
+            if (address.trim().length === 0) { body["address"] = address }
+
+            const response = await apiUpdateCompany(JSON.stringify(body));
             const data = await response.json();
             const status = response.status;
-
-            console.log("data", data),
-                console.log("status", status);
 
             if (status === 200) {
                 location.reload();

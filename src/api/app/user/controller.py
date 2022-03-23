@@ -114,6 +114,9 @@ def update_user(body):
 
         if "id" not in body:
             return error_response("No se ha recibido ningún ID de usuario", 400)
+                
+        if "email" not in body or len(body["email"]) == 0:
+            return error_response("Debes escribir un email", 400)
 
         if check_email(body["email"]) == False:
             return error_response("El email que has introducido no es válido", 400)

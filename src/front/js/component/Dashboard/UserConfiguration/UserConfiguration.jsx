@@ -71,21 +71,20 @@ export const UserConfiguration = () => {
         setNotifyMessage(false);
 
         try {
-            const body = JSON.stringify({
+            let body = {
                 "id": store.loggedUserData.id,
                 "image_url": imgUrl,
-                "first_name": firstName.toUpperCase().trim(),
-                "last_name": lastName.toUpperCase().trim(),
-                "email": email.toLowerCase().trim(),
-                "phone": phone
-            });
+                "email": email
+            }
+            
+            if (firstName.trim().length === 0) { body["first_name"] = firstName.toUpperCase() }
+            if (lastName.trim().length === 0) { body["last_name"] = lastName.toUpperCase() }
+            if (email.trim().length === 0) { body["email"] = email.toLowerCase() }
+            if (phone.length === 0) { body["phone"] = phone } 
 
-            const response = await apiUpdateUser(body);
+            const response = await apiUpdateUser(JSON.stringify(body));
             const data = await response.json();
             const status = response.status;
-
-            console.log("data", data),
-                console.log("status", status);
 
             if (status === 200) {
                 location.reload();
