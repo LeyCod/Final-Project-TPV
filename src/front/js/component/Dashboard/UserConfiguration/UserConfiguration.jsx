@@ -71,26 +71,37 @@ export const UserConfiguration = () => {
         setNotifyMessage(false);
 
         try {
-            let body = {
+            const body = {
                 "id": store.loggedUserData.id,
                 "image_url": imgUrl,
-                "email": email
-            }
-            
-            if (firstName.trim().length === 0) { body["first_name"] = firstName.toUpperCase() }
-            if (lastName.trim().length === 0) { body["last_name"] = lastName.toUpperCase() }
-            if (email.trim().length === 0) { body["email"] = email.toLowerCase() }
-            if (phone.length === 0) { body["phone"] = phone } 
+                "first_name": firstName.trim().toUpperCase(),
+                "last_name": lastName.trim().toUpperCase(),
+                "email": email.trim().toLowerCase(),
+                "phone": phone
+            };
 
-            const response = await apiUpdateUser(JSON.stringify(body));
-            const data = await response.json();
-            const status = response.status;
+            // Check data
+            let validData = true;
+            Object.keys(body).forEach(objKey => {
+                if (!body[objKey] || body[objKey].toString().trim().length === 0) {
+                    validData = false;
+                }
+            });
 
-            if (status === 200) {
-                location.reload();
+            if (!validData) {
+                setNotifyMessage("Completa correctamente todos los campos antes de continuar");
             }
             else {
-                setNotifyMessage(data);
+                const response = await apiUpdateUser(JSON.stringify(body));
+                const data = await response.json();
+                const status = response.status;
+
+                if (status === 200) {
+                    location.reload();
+                }
+                else {
+                    setNotifyMessage(data);
+                }
             }
         }
         catch (err) {
@@ -106,13 +117,13 @@ export const UserConfiguration = () => {
             <div className="row" id="user-configuration">
                 <div className="col-12 d-none d-md-block">
                     <p className="view-description">
-                        Introduce tus datos personales y tu imagen de perfil.
+                        Introduce tus datos personales y tu imagen de perfil. Todos los campos son obligatorios.
                     </p>
                 </div>
 
 
                 <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Nombre</label>
+                    <label className="form-label mb-1">Nombre</label>*
                     <input
                         type="text"
                         className="form-control shadow-sm"
@@ -125,7 +136,7 @@ export const UserConfiguration = () => {
                 </div>
 
                 <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Apellidos</label>
+                    <label className="form-label mb-1">Apellidos</label>*
                     <input
                         type="text"
                         className="form-control shadow-sm"
@@ -137,7 +148,7 @@ export const UserConfiguration = () => {
                 </div>
 
                 <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Email</label>
+                    <label className="form-label mb-1">Email</label>*
                     <input
                         type="text"
                         className="form-control shadow-sm"
@@ -146,10 +157,11 @@ export const UserConfiguration = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         defaultValue={email}
                     />
+                    <small className="text-muted">Debe ser un email válido</small>
                 </div>
 
                 <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Teléfono</label>
+                    <label className="form-label mb-1">Teléfono</label>*
                     <input
                         type="number"
                         className="form-control shadow-sm"

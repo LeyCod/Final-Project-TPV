@@ -20,7 +20,7 @@ export const AdminConfiguration = () => {
     const [name, setName] = useState(store.loggedUserCompanyData.name);
     const [description, setDescription] = useState(store.loggedUserCompanyData.description);
     const [address, setAddress] = useState(store.loggedUserCompanyData.address);
-    
+
     const [imgUrl, setImgUrl] = useState(store.loggedUserCompanyData.logo_url);
     const allowExtensions = ["jpg", "jpeg", "png"];
 
@@ -73,22 +73,34 @@ export const AdminConfiguration = () => {
         try {
             let body = {
                 "id": store.loggedUserCompanyData.id,
-                "logo_url": imgUrl             
+                "logo_url": imgUrl,
+                "name": name.toUpperCase(),
+                "description": description,
+                "address": address
             };
 
-            if (name.trim().length === 0) { body["name"] = name.toUpperCase() }
-            if (description.trim().length === 0) { body["description"] = description }
-            if (address.trim().length === 0) { body["address"] = address }
+            // Check data
+            let validData = true;
+            Object.keys(body).forEach(objKey => {
+                if (!body[objKey] || body[objKey].toString().trim().length === 0) {
+                    validData = false;
+                }
+            });
 
-            const response = await apiUpdateCompany(JSON.stringify(body));
-            const data = await response.json();
-            const status = response.status;
-
-            if (status === 200) {
-                location.reload();
+            if (!validData) {
+                setNotifyMessage("Completa correctamente todos los campos antes de continuar");
             }
             else {
-                setNotifyMessage(data);
+                const response = await apiUpdateCompany(JSON.stringify(body));
+                const data = await response.json();
+                const status = response.status;
+
+                if (status === 200) {
+                    location.reload();
+                }
+                else {
+                    setNotifyMessage(data);
+                }
             }
         }
         catch (err) {
@@ -104,13 +116,13 @@ export const AdminConfiguration = () => {
             <div className="row" id="admin-configuration">
                 <div className="col-12 d-none d-md-block">
                     <p className="view-description">
-                        Introduce los datos y el logo de tu empresa.
+                        Introduce los datos y el logo de tu empresa. Todos los campos son obligatorios.
                     </p>
                 </div>
 
 
                 <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Nombre de la empresa</label>
+                    <label className="form-label mb-1">Nombre de la empresa</label>*
                     <input
                         type="text"
                         className="form-control shadow-sm"
@@ -123,7 +135,7 @@ export const AdminConfiguration = () => {
                 </div>
 
                 <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Dirección completa</label>
+                    <label className="form-label mb-1">Dirección completa</label>*
                     <input
                         type="text"
                         className="form-control shadow-sm"
@@ -135,11 +147,9 @@ export const AdminConfiguration = () => {
                 </div>
 
                 <div className="col-12 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Descripción</label>
+                    <label className="form-label mb-1">Descripción</label>*
                     <textarea
-                        /* type="text" */
-                        className="form-control shadow-sm"
-                        /* autoComplete="off" */
+                        className="form-control shadow-sm"                        
                         maxLength={279}
                         onChange={(e) => setDescription(e.target.value)}
                         defaultValue={description}
