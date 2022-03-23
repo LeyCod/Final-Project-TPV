@@ -1,13 +1,3 @@
-/* #dashboard-sidebar,
-#dashboard-content-header,
-#dashboard-footer,
-.dashboard-view-title {
-  display: none !important;
-} */
-.company-logo {
-  display:  none;
-}
-
 #user-configuration label {
   color: #000000;
   font-weight: 400;
