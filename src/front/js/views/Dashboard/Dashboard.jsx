@@ -103,8 +103,8 @@ export const Dashboard = () => {
         "new_order": { "title": "Nuevo pedido", "component": <NewOrder /> },
         "tables": { "title": "Mesas", "component": <Tables /> },
         "items": { "title": "Carta", "component": <MenuItemsConfiguration /> },
-        "user_configuration": { "title": "Configuración de usuario", "component": <UserConfiguration /> },
-        "admin_configuration": { "title": "Configuración de administrador", "component": <AdminConfiguration /> }
+        "user_configuration": { "title": "Usuario", "component": <UserConfiguration /> },
+        "admin_configuration": { "title": "Administrador", "component": <AdminConfiguration /> }
     }
 
     return validatedUser === null
