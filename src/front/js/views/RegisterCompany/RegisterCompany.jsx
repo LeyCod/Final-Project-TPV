@@ -3,7 +3,7 @@ import { Context } from "../../store/appContext";
 import { Link, Redirect } from "react-router-dom";
 
 //Styles
-import "../../../assets/css/register-login-forms.css";
+import "../../../css/register-login-forms.css";
 import formBG from "../../../assets/img/formBG.jpg";
 import formBannerBG from "../../../assets/img/formBannerBG.png";
 import logoMasterGest from "../../../assets/img/logoMasterGest.png";
