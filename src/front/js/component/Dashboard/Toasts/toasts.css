@@ -1,0 +1,21 @@
+.toast  {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+    border: .5px solid var(--green);
+    cursor: default;
+    z-index: 1;
+}
+
+.toast-header {
+    justify-content: space-between;
+    border: 0;
+    background-color: #52ff004d;
+    font-weight: 400;    
+    color: var(--green);
+}
+
+.toast-header .btn-close {
+    color: var(--green);
+}
