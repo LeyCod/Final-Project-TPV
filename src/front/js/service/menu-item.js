@@ -10,11 +10,22 @@ export const apiManageItem = (new_item, body) => {
     const fetchMethod = new_item ? "POST" : "PUT";
 
     return fetch(fetchUrl, {
-            method: fetchMethod,
-            body: body,
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("api-flask-token")
-            }
-        });
+        method: fetchMethod,
+        body: body,
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("api-flask-token")
+        }
+    });
 }
+
+// Delete Menu item
+export const apiDeleteItem = (body) =>
+    fetch(`${BASE_URL}/api/menu_item/delete`, {
+        method: "DELETE",
+        body: body,
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("api-flask-token")
+        }
+    });

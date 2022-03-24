@@ -7,7 +7,7 @@ import "./menu-item-edition-modal.css";
 
 // Functions
 import { apiUploadImage } from "../../../../service/user";
-import { apiManageItem } from "../../../../service/menu-item";
+import { apiManageItem, apiDeleteItem } from "../../../../service/menu-item";
 
 // Components
 import Modal from "react-bootstrap/Modal";
@@ -18,7 +18,7 @@ export const MenuItemEditionModal = (props) => {
 
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
-    
+
     const [name, setName] = useState(props.new_item ? "" : store.menuItems[props.item_index].name);
     const [description, setDescription] = useState(props.new_item ? "" : store.menuItems[props.item_index].description);
     const [price, setPrice] = useState(props.new_item ? "" : store.menuItems[props.item_index].price);
@@ -70,7 +70,7 @@ export const MenuItemEditionModal = (props) => {
     };
 
     const handleSaveChanges = async (e) => {
-        setNotifyMessage(false);        
+        setNotifyMessage(false);
 
         try {
             let body = {
@@ -99,11 +99,36 @@ export const MenuItemEditionModal = (props) => {
                 const status = response.status;
 
                 if (status === 200 || status === 201) {
-                    props.setEditItem(false);                    
+                    props.setEditItem(false);
                 }
                 else {
                     setNotifyMessage(data);
                 }
+            }
+        }
+        catch (err) {
+            console.log(err);
+            setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
+        }
+    };
+
+    const handleDeleteItem = async (e) => {
+        setNotifyMessage(false);
+
+        try {
+            let body = {
+                "id": store.menuItems[props.item_index].id
+            };
+
+            const response = await apiDeleteItem(JSON.stringify(body));
+            const data = await response.json();
+            const status = response.status;
+
+            if (status === 200 || status === 201) {
+                props.setEditItem(false);
+            }
+            else {
+                setNotifyMessage(data);
             }
         }
         catch (err) {
@@ -187,14 +212,24 @@ export const MenuItemEditionModal = (props) => {
                     />
                 </div>
 
-                <div className="col-12 mb-3">
+                <div className="d-flex gap-3 col-12 mb-3">
                     <button
                         type="button"
                         className="btn btn-sm theme-color-button shadow-none"
                         onClick={handleSaveChanges}
                     >
-                        {!props.new_item ? "Guardar cambios" : "Crear elemento"}
+                        {!props.new_item ? "Actualizar elemento" : "Crear elemento"}
                     </button>
+
+                    {!props.new_item ?
+                        <button
+                            type="button"
+                            className="btn btn-sm red-button shadow-none"
+                            onClick={handleDeleteItem}
+                        >
+                            Eliminar elemento
+                        </button>
+                        : null}
                 </div>
 
                 <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
