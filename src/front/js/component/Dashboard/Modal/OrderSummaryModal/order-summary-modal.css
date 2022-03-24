@@ -2,7 +2,6 @@ body.modal-open #dashboard-sidebar {
   display: none;
 }
 
-#order-summary-modal .btn-close,
 #order-summary-modal .new-order-summary {
   box-shadow: none;
 }

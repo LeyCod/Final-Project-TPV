@@ -195,7 +195,7 @@ export const UserConfiguration = (props) => {
                 <div className="col-12 mb-3">
                     <button
                         type="button"
-                        className="btn btn-sm theme-color-button shadow-none"
+                        className="btn theme-color-button shadow-sm"
                         onClick={handleSaveChanges}
                     >
                         Guardar cambios

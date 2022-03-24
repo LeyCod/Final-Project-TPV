@@ -142,8 +142,8 @@ export const MenuItemEditionModal = (props) => {
             show={props.show}
             onHide={() => props.setEditItem(false)}
         >
-            <Modal.Header closeButton className="border-0 pb-0 shadow-none">
-                <h5>{!props.new_item ? `Actualizar elemento` : "Crear elemento"}</h5>                
+            <Modal.Header closeButton>
+                <h5>{!props.new_item ? `Actualizar elemento` : "Crear elemento"}</h5>
             </Modal.Header>
 
             <Modal.Body>
@@ -164,7 +164,7 @@ export const MenuItemEditionModal = (props) => {
                     </div>
 
                     <div className="col-4 mb-3">
-                        <label className="form-label mb-1">Precio</label>*
+                        <label className="form-label mb-1">Precio (€)</label>*
                         <input
                             type="number"
                             className="form-control shadow-sm"
@@ -208,31 +208,37 @@ export const MenuItemEditionModal = (props) => {
                     />
                 </div>
 
-                <div className="d-flex gap-3 col-12 mb-3">
-                    <button
-                        type="button"
-                        className="btn btn-sm theme-color-button shadow-none"
-                        onClick={handleSaveChanges}
-                    >
-                        {!props.new_item ? "Actualizar elemento" : "Crear elemento"}
-                    </button>
+                {/* <div className="d-flex gap-3 col-12 mb-3"> */}
 
-                    {!props.new_item ?
-                        <button
-                            type="button"
-                            className="btn btn-sm red-button shadow-none"
-                            onClick={handleDeleteItem}
-                        >
-                            Eliminar elemento
-                        </button>
-                        : null}
-                </div>
+                {/* </div> */}
 
                 <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
                     <i className="fas fa-exclamation-circle me-2"></i>
                     {notifyMessage}
                 </p>
             </Modal.Body>
+
+            <Modal.Footer>
+                <button
+                    type="button"
+                    className="btn btn-sm theme-color-button shadow-none"
+                    onClick={handleSaveChanges}
+                >
+                    <i class="fas fa-paper-plane me-2"></i>
+                    {!props.new_item ? "Actualizar elemento" : "Crear elemento"}
+                </button>
+
+                {!props.new_item ?
+                    <button
+                        type="button"
+                        className="btn btn-sm red-button shadow-none"
+                        onClick={handleDeleteItem}
+                    >
+                        <i class="fas fa-trash-alt me-2"></i>                       
+                        Eliminar elemento
+                    </button>
+                    : null}
+            </Modal.Footer>
         </Modal>
     );
 };

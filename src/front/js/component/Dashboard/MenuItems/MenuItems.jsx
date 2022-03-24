@@ -16,6 +16,8 @@ export const MenuItems = (props) => {
     const [loading, setLoading] = useState(true);
     const [fetchError, setFetchError] = useState(false);
 
+    const [reloadMenuItems, setReloadMenuItems] = useState(false); // Force getMenuItems()
+
     useEffect(() => {
         async function getMenuItems() {
             try {
@@ -42,7 +44,7 @@ export const MenuItems = (props) => {
         }
 
         getMenuItems();
-    }, []);
+    }, [reloadMenuItems]);
 
     return loading
         ? <Spinner />

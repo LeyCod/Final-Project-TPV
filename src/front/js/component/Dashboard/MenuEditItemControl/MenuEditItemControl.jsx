@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+// Styles
+import "../../../../assets/css/modal.css"
+
 // Components
 import { MenuItemEditionModal } from "../Modal/MenuItemEditionModal/MenuItemEditionModal.jsx";
 
