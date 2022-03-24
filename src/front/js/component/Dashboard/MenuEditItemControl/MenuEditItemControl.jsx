@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
-import { Context } from "../../../store/appContext";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+// Components
+import { MenuItemEditionModal } from "../Modal/MenuItemEditionModal/MenuItemEditionModal.jsx";
+
 export const MenuEditItemControl = (props) => {
-    const { store, actions } = useContext(Context);
+    const [editItem, setEditItem] = useState(false);
 
     return (
         <div className="edit-item-control">
+            {editItem ? <MenuItemEditionModal show={true} new_item={false} item_index={props.item_index} setEditItem={setEditItem} /> : null}
+            
             <button
                 type="button"
                 className="btn btn-sm xs-button outline-theme-color-button shadow-none"
-                //onClick={() => } // !! Aquí en onclick debe abrirse un modal que permita modificar el menu item y también eliminarlo
+                onClick={() => setEditItem(true)}
             >
                 <i className="fas fa-highlighter"></i>
             </button>

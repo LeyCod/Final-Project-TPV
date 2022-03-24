@@ -88,7 +88,7 @@ export const Dashboard = () => {
     }
 
     /* Dashboard contents definition and control */
-    const [actualDashboardView, setActualDashboardView] = useState("general");
+    const [actualDashboardView, setActualDashboardView] = useState("items");
 
     const handleChangeView = (viewName) => { /* This handle helps to hide the responsive user top menu when a new view is clicked */
         setActualDashboardView(viewName);
