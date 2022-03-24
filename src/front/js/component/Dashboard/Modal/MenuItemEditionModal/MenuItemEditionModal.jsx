@@ -143,15 +143,11 @@ export const MenuItemEditionModal = (props) => {
             onHide={() => props.setEditItem(false)}
         >
             <Modal.Header closeButton className="border-0 pb-0 shadow-none">
-                <h5>Gestión de elementos del menú</h5>
+                <h5>{!props.new_item ? `Actualizar elemento` : "Crear elemento"}</h5>                
             </Modal.Header>
 
             <Modal.Body>
                 {loading ? <Spinner /> : null}
-
-                <p>
-                    {!props.new_item ? `Introduce los nuevos datos del elemento ${store.menuItems[props.item_index].name}.` : "Introduce los datos del nuevo elemento."}
-                </p>
 
                 <div className="row">
                     <div className="col-8 mb-3">
