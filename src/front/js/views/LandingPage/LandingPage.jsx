@@ -20,7 +20,7 @@ export const LandingPage = () => {
           <Card
             title="Nuestra misión"
             subtitle="Mediante los medios tecnológicos agilizamos y promocionamos una mayor efectividad para los negocios."
-            img="https://3seis.com/wp-content/uploads/1_diseno_web_3.png"
+            img=""
           />
 
           <Card
