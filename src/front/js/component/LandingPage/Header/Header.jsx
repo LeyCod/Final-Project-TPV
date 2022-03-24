@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 // Styles
 import "./header.css";
-import logoMasterGest from "../../../../assets/img/LogoMG-45px.png";
+import logoMasterGest from "../../../../assets/img/logoMasterGest.png";
 
 export const Header = () => {
   return (
     <header className="navbar navbar-expand-lg navbar-light p-1 bg-light">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          <img src={logoMasterGest} alt="LogoMG" />
+          <img src={logoMasterGest} alt="logoMasterGest" />
         </Link>
 
         <button

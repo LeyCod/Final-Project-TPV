@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 // Styles 
 import "./dashboard.css";
-import defaultAvatarImage from "../../../assets/img/DefaultAvatar.png";
-import dashboardBG from "../../../assets/img/DashboardBG.jpg";
+import dashboardSidebarBG from "../../../assets/img/dashboardSidebarBG.jpg";
+import defaultAvatarImage from "../../../assets/img/defaultAvatarImage.png";
+import defaultCompanyLogo from "../../../assets/defaultCompanyLogo.png"
+
 
 // Functions
 import { apiUserValidation, apiUserLogout } from "../../service/user";
@@ -121,13 +123,13 @@ export const Dashboard = () => {
                         <aside
                             className={`col-auto p-0 ${activeSidebar ? "" : "inactive"} scrollbar-custom`}
                             id="dashboard-sidebar"
-                            style={{ backgroundImage: `url(${dashboardBG})` }}
+                            style={{ backgroundImage: `url(${dashboardSidebarBG})` }}
                         >
                             <div className="mx-2 my-3">
                                 <div>
                                     <div className="company-logo">
                                         <div className="logo">
-                                            <img className="img-fluid p-2" src={!store.loggedUserCompanyData.logo_url ? "https://res.cloudinary.com/dxbcvuacb/image/upload/v1648065053/DefaultLogo_crxtka.png" : store.loggedUserCompanyData.logo_url} alt="CompanyLogo" />
+                                            <img className="img-fluid p-2" src={!store.loggedUserCompanyData.logo_url ? defaultCompanyLogo : store.loggedUserCompanyData.logo_url} alt="CompanyLogo" />
                                         </div>
                                     </div>
                                     <ul className="navbar-nav mt-3">

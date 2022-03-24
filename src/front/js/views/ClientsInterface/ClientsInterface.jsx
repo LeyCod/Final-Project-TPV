@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 // Styles 
 import "./clients-interface.css";
+import defaultCompanyLogo from "../../../assets/img/defaultCompanyLogo.png"
+import clientsInterfaceBG from "../../../assets/img/clientsInterfaceBG.png";
 
 // Functions
 import { apiGetTable } from "../../service/table";
@@ -17,7 +19,7 @@ import { NewOrderSummaryShortcutButton } from "../../component/Dashboard/NewOrde
 
 export const ClientsInterface = () => {
     const { store, actions } = useContext(Context);
-    
+
     const { table_id } = useParams();
     actions.setActiveOrderTableID(table_id);
 
@@ -34,7 +36,7 @@ export const ClientsInterface = () => {
 
                 if (status === 200) {
                     setFetchError(false);
-                    setTableCompanyData(data);                    
+                    setTableCompanyData(data);
                 }
                 else {
                     console.error(status);
@@ -61,10 +63,13 @@ export const ClientsInterface = () => {
                 <div
                     id="clients-interface"
                 >
-                    <div>
+                    <div 
+                        className="clients-interface-banner-wrapper"
+                        style={{ backgroundImage: `url(${clientsInterfaceBG})` }}
+                    >
                         <div className="clients-interface-company-banner">
                             <div>
-                                <img className="img-fluid" src={tableCompanyData.logo_url ? tableCompanyData.logo_url : "https://res.cloudinary.com/dxbcvuacb/image/upload/v1648065053/DefaultLogo_crxtka.png"} alt="CompanyLogo" />
+                                <img className="img-fluid" src={tableCompanyData.logo_url ? tableCompanyData.logo_url : defaultCompanyLogo} alt="CompanyLogo" />
                             </div>
 
                             <h4 className="m-2">Nuestra <strong>carta</strong></h4>

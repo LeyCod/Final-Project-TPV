@@ -1,6 +1,5 @@
-#clients-interface > div {
+#clients-interface .clients-interface-banner-wrapper {
   height: 35vh;
-  background: url(https://res.cloudinary.com/dxbcvuacb/image/upload/v1647804278/ClientsInteface-BG1_s8d1wc.png);    
   background-size: 180%;
   background-repeat: no-repeat;
   background-attachment: fixed;  
@@ -49,7 +48,6 @@
 }
 
 #clients-interface .clients-interface-footer {
-  height: auto;
   padding: .5rem 0 .3rem 0;
   background: var(--gray);
   font-family: "Poppins", sans-serif;
