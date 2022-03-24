@@ -126,6 +126,15 @@ small {
   color: #ffffff;
 }
 
+.label-file-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  width: fit-content;
+  font-weight: 300;
+}
+
 .xs-button {
   padding: 0.15rem 0.4rem !important;
 }

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.user.controller import register_user, login_user, validate_user, delete_user, update_user
+from api.app.user.controller import register_user, login_user, validate_user, delete_user, update_user, img_upload
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
@@ -27,6 +27,11 @@ def user_delete():
     return delete_user(body)
 
 @users.route("/update", methods=["PUT"])
-def user_update():
-    body = request.get_json(force = True)
+def user_update():    
+    body = request.get_json(force = True)    
     return update_user(body)
+
+@users.route("/img", methods=["POST"])
+def upload_img():
+    img = request.files["img"]
+    return img_upload(img)
