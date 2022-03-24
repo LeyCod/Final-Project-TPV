@@ -22,7 +22,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			menuItems: {},
 			orderItems: {},
 			orderTable: {},
-			totalPrice: 0
+			totalPrice: 0, 
+			tableData: {}, 
+			tablesData: {}
+			
 		},
 		actions: {
 			checkCompanyRegisterData: () => {
@@ -90,6 +93,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				store.totalPrice = Math.floor(total * 100) / 100;
 				setStore({ ...store });
+			}, 
+			setTableData: (tableData) => {
+				getStore().tableData = tableData;
+			},
+			setTables: (tablesData) => {
+				getStore().tablesData = tablesData;
 			}
 		}
 	};
