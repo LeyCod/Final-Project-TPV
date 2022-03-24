@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./dashboard.css";
 import dashboardSidebarBG from "../../../assets/img/dashboardSidebarBG.jpg";
 import defaultAvatarImage from "../../../assets/img/defaultAvatarImage.png";
-import defaultCompanyLogo from "../../../assets/defaultCompanyLogo.png"
+import defaultCompanyLogo from "../../../assets/img/defaultCompanyLogo.png"
 
 
 // Functions
