@@ -178,7 +178,7 @@
   align-items: center;
   width: fit-content;
   background-color: #d3d3d3;
-  animation: fadeinrightfix 1.5s;
+  animation: fadeinrightfix .8s;
 }
 
 #dashboard-views-content .dashboard-view-title > div > .left-arrow {

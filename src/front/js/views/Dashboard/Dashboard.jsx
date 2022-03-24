@@ -39,6 +39,11 @@ export const Dashboard = () => {
 
     /* User validation */
     const [validatedUser, setValidatedUser] = useState(null);
+    const [revalidateUser, setRevalidateUser] = useState(false); // Force userValidation()
+
+    const handleRevalidateUser = () => {
+        setRevalidateUser(!revalidateUser);
+    }
 
     useEffect(() => {
         async function userValidation() {
@@ -62,7 +67,7 @@ export const Dashboard = () => {
         }
 
         userValidation();
-    }, []);
+    }, [revalidateUser]);
 
     /* Get user company data */
     const getUserCompanyData = async () => {
@@ -103,8 +108,8 @@ export const Dashboard = () => {
         "new_order": { "title": "Nuevo pedido", "component": <NewOrder /> },
         "tables": { "title": "Mesas", "component": <Tables /> },
         "items": { "title": "Carta", "component": <MenuItemsConfiguration /> },
-        "user_configuration": { "title": "Usuario", "component": <UserConfiguration /> },
-        "admin_configuration": { "title": "Administrador", "component": <AdminConfiguration /> }
+        "user_configuration": { "title": "Usuario", "component": <UserConfiguration handleRevalidateUser={handleRevalidateUser} /> },
+        "admin_configuration": { "title": "Administrador", "component": <AdminConfiguration handleRevalidateUser={handleRevalidateUser} /> }
     }
 
     return validatedUser === null

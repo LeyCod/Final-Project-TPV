@@ -63,10 +63,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Logged user data
 			setLoggedUserData: (userData) => {
-				getStore().loggedUserData = userData;
+				const store = getStore();
+				store.loggedUserData = userData;
+
+				setStore(store);				
 			},
 			setLoggedUserCompanyData: (companyData) => {
-				getStore().loggedUserCompanyData = companyData;
+				const store = getStore();
+				store.loggedUserCompanyData = companyData;
+
+				setStore(store);
 			},
 
 			// Dashboard theme color

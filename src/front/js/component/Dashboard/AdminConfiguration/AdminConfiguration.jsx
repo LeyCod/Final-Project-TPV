@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../../store/appContext";
+import PropTypes from "prop-types";
 
 // Styles
 import "./admin-configuration.css";
@@ -11,7 +12,7 @@ import { apiUpdateCompany } from "../../../service/company";
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
 
-export const AdminConfiguration = () => {
+export const AdminConfiguration = (props) => {
     const { store, actions } = useContext(Context);
 
     const [loading, setLoading] = useState(false);
@@ -96,7 +97,7 @@ export const AdminConfiguration = () => {
                 const status = response.status;
 
                 if (status === 200) {
-                    location.reload();
+                    props.handleRevalidateUser();
                 }
                 else {
                     setNotifyMessage(data);
@@ -194,3 +195,7 @@ export const AdminConfiguration = () => {
         </div>
     );
 };
+
+AdminConfiguration.propTypes = {
+    handleRevalidateUser: PropTypes.func
+}

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../../store/appContext";
+import PropTypes from "prop-types";
 
 // Styles
 import "./user-configuration.css";
@@ -10,7 +11,7 @@ import { apiUploadImage, apiUpdateUser } from "../../../service/user";
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
 
-export const UserConfiguration = () => {
+export const UserConfiguration = (props) => {
     const { store, actions } = useContext(Context);
 
     const [loading, setLoading] = useState(false);
@@ -97,7 +98,7 @@ export const UserConfiguration = () => {
                 const status = response.status;
 
                 if (status === 200) {
-                    location.reload();
+                    props.handleRevalidateUser();
                 }
                 else {
                     setNotifyMessage(data);
@@ -209,3 +210,7 @@ export const UserConfiguration = () => {
         </div>
     );
 };
+
+UserConfiguration.propTypes = {
+    handleRevalidateUser: PropTypes.func
+}
