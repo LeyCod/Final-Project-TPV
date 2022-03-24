@@ -11,19 +11,18 @@ export const Toasts = (props) => {
     const [show, setShow] = useState(true);
 
     return (
-        <Toast            
+        <Toast
             onClose={() => setShow(false)}
             show={show}
-            delay={2000}
+            delay={2500}
             autohide
         >
-            <Toast.Header>
-                Woohoo, you're reading this text in a Toast!
-            </Toast.Header>
+            <Toast.Header>{props.message}</Toast.Header>
         </Toast>
     );
 };
 
 Toasts.propTypes = {
-    show: PropTypes.bool
+    show: PropTypes.bool,
+    message: PropTypes.string
 };
