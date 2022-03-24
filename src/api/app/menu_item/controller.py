@@ -35,22 +35,25 @@ def register_menu_item(body, user_id):
             return error_response("Solicitud incorrecta ", 400)
 
         if "name" not in body or len(body["name"]) == 0:
-            return error_response("", 400)
+            return error_response("Debes introducir un nombre", 400)
 
-        if body["price"]is None:
-            return error_response("Solicitud incorrecta ", 400)
-
-        if body["price"]  == 0:
-            return error_response("Solicitud incorrecta ", 400)
+        if "price" not in body or body["price"] == 0:
+            return error_response("Debes introducir un precio", 400)
+        
+        if "description" not in body or len(body["description"]) == 0:
+            return error_response("Debes introducir una descripción", 400)
+        
+        if "image_url" not in body or len(body["image_url"]) == 0:
+            return error_response("Debes introducir una imagen", 400)
 
         user = User.query.get(user_id)
         
         company_id = user.company_id
-        print (user.serialize())
+        
         if user is None or user.is_admin == False:
             return error_response("No estas autorizado", 401)
 
-        new_menu_item = MenuItem(name=body["name"],price=body["price"], company_id=user.company_id)
+        new_menu_item = MenuItem(name=body["name"],price=body["price"], description=body["description"], image_url=body["image_url"], company_id=user.company_id)
 
         db.session.add(new_menu_item)
         db.session.commit()

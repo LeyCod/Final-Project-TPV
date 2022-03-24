@@ -18,13 +18,12 @@ export const MenuItemEditionModal = (props) => {
 
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
-    const [fetchResult, setFetchResult] = useState(false);
+    
+    const [name, setName] = useState(props.new_item ? "" : store.menuItems[props.item_index].name);
+    const [description, setDescription] = useState(props.new_item ? "" : store.menuItems[props.item_index].description);
+    const [price, setPrice] = useState(props.new_item ? "" : store.menuItems[props.item_index].price);
 
-    const [name, setName] = useState(store.menuItems[props.item_index].name);
-    const [description, setDescription] = useState(store.menuItems[props.item_index].description);
-    const [price, setPrice] = useState(store.menuItems[props.item_index].price);
-
-    const [imgUrl, setImgUrl] = useState(store.menuItems[props.item_index].image_url);
+    const [imgUrl, setImgUrl] = useState(props.new_item ? "" : store.menuItems[props.item_index].image_url);
     const allowExtensions = ["jpg", "jpeg", "png"];
 
     const handleImgChange = async (e) => {
@@ -71,12 +70,11 @@ export const MenuItemEditionModal = (props) => {
     };
 
     const handleSaveChanges = async (e) => {
-        setNotifyMessage(false);
-        setFetchResult(false);
+        setNotifyMessage(false);        
 
         try {
             let body = {
-                "id": store.menuItems[props.item_index].id,
+                "id": props.new_item ? "" : store.menuItems[props.item_index].id,
                 "image_url": imgUrl,
                 "name": name,
                 "description": description,
@@ -86,6 +84,7 @@ export const MenuItemEditionModal = (props) => {
             // Check data
             let validData = true;
             Object.keys(body).forEach(objKey => {
+                if (objKey === "id") { return; }
                 if (!body[objKey] || body[objKey].toString().trim().length === 0) {
                     validData = false;
                 }
@@ -100,8 +99,7 @@ export const MenuItemEditionModal = (props) => {
                 const status = response.status;
 
                 if (status === 200) {
-                    props.setEditItem(false);
-                    setFetchResult(true);
+                    props.setEditItem(false);                    
                 }
                 else {
                     setNotifyMessage(data);
@@ -152,7 +150,7 @@ export const MenuItemEditionModal = (props) => {
                             autoComplete="off"
                             autoFocus="on"
                             maxLength={69}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => setPrice(e.target.value)}
                             defaultValue={price}
                         />
                     </div>
@@ -199,7 +197,7 @@ export const MenuItemEditionModal = (props) => {
                     </button>
                 </div>
 
-                <p className={`${fetchResult ? "text-success" : "text-danger"} fw-normal ${!notifyMessage ? "d-none" : ""}`}>
+                <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
                     <i className="fas fa-exclamation-circle me-2"></i>
                     {notifyMessage}
                 </p>
