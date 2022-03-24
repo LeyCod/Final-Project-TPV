@@ -83,9 +83,9 @@ export const ClientsInterface = () => {
                     </div>
 
                     <main>
-                        <div className="p-1 text-center">
+                        {/* <div className="p-1 text-center">
                             Hay un pedido en curso de 30€. Pulsa aquí para finalizarlo.
-                        </div>
+                        </div> */}
 
                         <NewOrder company_id={tableCompanyData.company_id} />
                         <NewOrderSummaryShortcutButton />

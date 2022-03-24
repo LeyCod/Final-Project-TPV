@@ -14,7 +14,7 @@ export const OrderSummaryModal = (props) => {
             show={props.show}
             onHide={() => props.setOrderSummaryOnModal(false)}
         >
-            <Modal.Header closeButton />
+            <Modal.Header closeButton className="bg-white" />
             <Modal.Body className="pt-0">
                 <NewOrderSummary />
             </Modal.Body>
