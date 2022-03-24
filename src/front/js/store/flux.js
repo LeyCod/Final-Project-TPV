@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			// Company and user registration
 			companyRegisterData: {
 				name: "",
 				cif: ""
@@ -15,17 +16,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				is_admin: false
 			},
 			companyRegistered: false,
+			
+			// Logged user data
 			loggedUserData: {},
 			loggedUserCompanyData: {},
+			
+			// Dashboard theme color
 			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
 			selectedDashboardThemeColor: 0,
+			
+			// Menu items by company
 			menuItems: {},
+
+			// Items (item id and quantity) that haven't been registerd in the order yet and total price of them
 			orderItems: {},
-			activeOrder: {},
-			activeOrderTableID: "",
-			totalPrice: 0
+			totalPrice: 0,
+
+			// Active order data
+			activeOrder: {}, 
+
+			// Active order table id
+			activeOrderTableID: ""
 		},
 		actions: {
+			// Company and user registration
 			checkCompanyRegisterData: () => {
 				const store = getStore();
 
@@ -46,20 +60,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCompanyRegistered: () => {
 				getStore().companyRegistered = true;
 			},
+
+			// Logged user data
 			setLoggedUserData: (userData) => {
 				getStore().loggedUserData = userData;
 			},
 			setLoggedUserCompanyData: (companyData) => {
 				getStore().loggedUserCompanyData = companyData;
 			},
+
+			// Dashboard theme color
 			changeDashboardThemeColor: () => {
 				const nextIndex = getStore().selectedDashboardThemeColor + 1;
 				setStore({ ...getStore(), selectedDashboardThemeColor: !getStore().dashBoardThemeColors[nextIndex] ? 0 : nextIndex });
 				localStorage.setItem("dashboard-theme-color", getStore().selectedDashboardThemeColor);
 			},
+
+			// Menu items by company
 			setMenuItems: (menuItems) => {
 				getStore().menuItems = menuItems;
 			},
+
+			// Items (item id and quantity) that haven't been registerd in the order yet and total price of them
 			addOrderItem: (itemID, add) => { // add = true -> Add an item; add = false -> Remove an item
 				const store = getStore();
 				const itemCounter = store.orderItems[itemID];
@@ -75,9 +97,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store });
 				getActions().setTotalPrice();
 			},
-			setActiveOrder: (orderData) => {
-				setStore({ ...getStore(), activeOrder: orderData });
-			},
 			setTotalPrice: () => {
 				const store = getStore();
 				let total = 0;
@@ -92,16 +111,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.totalPrice = Math.floor(total * 100) / 100;
 				setStore({ ...store });
 			},
+
+			// Active order data
+			setActiveOrder: (orderData) => {
+				setStore({ ...getStore(), activeOrder: orderData });
+			},
+
+			// Active order table id
+			setActiveOrderTableID: (tableID) => {
+				getStore().activeOrderTableID =  tableID;
+			},
+			
+			// Reset items, quantity and total price after the order register
 			restartOrderItems: () => {
 				const store = getStore();
 				store.orderItems = {};
 				store.totalPrice = 0;
 
 				setStore(store);
-			},
-			setActiveOrderTableID: (tableID) => {
-				getStore().activeOrderTableID =  tableID;
-			}
+			}			
 		}
 	};
 };
