@@ -98,7 +98,7 @@ export const MenuItemEditionModal = (props) => {
                 const data = await response.json();
                 const status = response.status;
 
-                if (status === 200) {
+                if (status === 200 || status === 201) {
                     props.setEditItem(false);                    
                 }
                 else {

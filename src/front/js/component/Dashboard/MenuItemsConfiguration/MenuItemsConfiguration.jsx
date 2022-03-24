@@ -21,6 +21,7 @@ export const MenuItemsConfiguration = () => {
 
                     <button
                         type="button"
+                        className="btn border-1 border-secondary shadow-sm"
                         onClick={() => setEditItem(true)}
                     >
                         Crear elemento
