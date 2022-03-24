@@ -1,5 +1,5 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, MenuItem, User
+from api.models.index import db, MenuItem, User, OrderItem
 from flask_jwt_extended import create_access_token
 
 def get_menu_item(company_id):
@@ -98,6 +98,10 @@ def delete_menu_item(body,user_id):
         if user.is_admin == False:
             return error_response("Acceso no autorizado", 401)
 
+        check_menu_item = OrderItem.query.filter(OrderItem.item_id == body["id"]).first()
+        
+        if check_menu_item is not None:
+            return error_response("Este elemento está asignado a un pedido y no puede eliminarse", 400)
 
         delete_menu_item = MenuItem.query.filter(MenuItem.id == body["id"]).first()
 
