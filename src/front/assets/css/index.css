@@ -225,9 +225,9 @@ small {
 
 @keyframes fadeinrightfix {
   0% {
-    transform: translateX(350px);
+    transform: translateX(1800px);
   }
-  100% {
+  100% {    
     transform: translateX(0);
   }
 }

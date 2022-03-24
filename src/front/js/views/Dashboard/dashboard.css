@@ -178,21 +178,20 @@
   align-items: center;
   width: fit-content;
   background-color: #d3d3d3;
-  animation: fadeinrightfix .55s;
+  animation: fadeinrightfix 1.5s;
 }
 
 #dashboard-views-content .dashboard-view-title > div > .left-arrow {
   border-top: 18px solid #e6e6e6;
   border-right: 50px solid #d3d3d3;
   border-bottom: 18px solid #e6e6e6;
-  padding-right: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 #dashboard-views-content .dashboard-view-title > div > .right-arrow {
   border-top: 18px solid #e6e6e6;
   border-left: 18px solid #d3d3d3;
-  border-bottom: 18px solid #e6e6e6;
-  padding-left: 1.5rem;
+  border-bottom: 18px solid #e6e6e6;  
 }
 
 #dashboard-views-content .dashboard-view-title h4 {
