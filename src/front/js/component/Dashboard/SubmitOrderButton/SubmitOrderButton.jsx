@@ -1,25 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../../store/appContext";
 
 // Functions
-import { apiOrderSubmit } from "../../../service/order";
+import { apiGetActiveOrder, apiOrderSubmit } from "../../../service/order";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
-import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
-import { OrderSubmittedModal } from "../Modal/OrderSubmittedModal/OrderSubmittedModal.jsx";
 
 export const SubmitOrderButton = () => {
     const { store, actions } = useContext(Context);
 
     const [loading, setLoading] = useState(false);
-    const [fetchError, setFetchError] = useState(false);
-
-    const [submittedOrder, setSubmittedOrder] = useState(false);
+    const [notifyMessage, setNotifyMessage] = useState(false);
+    const [orderSubmitted, setOrderSubmitted] = useState(false);
 
     const handleSendOrder = async () => {
         setLoading(true);
-        setFetchError(false);
 
         let body = {
             "table_id": 7002,
@@ -42,20 +38,20 @@ export const SubmitOrderButton = () => {
             const data = await response.json();
             const status = response.status;
 
-            console.log(data);
-            console.log(status);
-
             if (status === 200) {
-                setSubmittedOrder(true);
+                setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.")
+                setOrderSubmitted(true);
+                actions.setActiveOrder(data);
+                actions.restartOrderItems();
             }
             else {
                 console.error(status);
-                setFetchError(true);
+                setNotifyMessage("Error interno del servidor.");
             }
         }
         catch (err) {
             console.error(err);
-            setFetchError(true);
+            setNotifyMessage("Error interno del servidor.");
         }
         finally {
             setLoading(false);
@@ -63,34 +59,63 @@ export const SubmitOrderButton = () => {
     }
 
     const handleCloseOrder = () => {
-        console.log("cierra mi rey");
+        console.log("zerramoh");
     }
 
-    return fetchError
-        ? <ErrorModal />
-        : (
-            <div className="d-flex flex-column gap-2 mt-4">
-                {loading ? <Spinner /> : null}
-                {submittedOrder ? <OrderSubmittedModal /> : null}
+    useEffect(() => {
+        async function getActiveOrder() {
+            try {
+                const response = await apiGetActiveOrder(store.activeOrderTableID);
+                const data = await response.json();
+                const status = response.status;
 
-                <button
-                    type="button"
-                    title="Añadir estos elementos al pedido actual"
-                    className="btn outline-theme-color-button shadow-none"
-                    onClick={handleSendOrder}
-                    disabled={Object.keys(store.orderItems).length === 0 ? true : false}
-                >
-                    ENVIAR PEDIDO
-                </button>
+                if (status === 200) {
+                    if (data.length !== 0) {
+                        actions.setActiveOrder(data);
+                        console.log(store);
+                    }
+                }
+                else {
+                    console.error(status);
+                    setNotifyMessage("Error interno del servidor.");
+                }
+            }
+            catch (err) {
+                console.error(err);
+                setNotifyMessage("Error interno del servidor.");
+            }
+            finally {
+                setLoading(false);
+            }
+        }
 
-                <button
-                    type="button"
-                    title="Finalizar el pedido actual"
-                    className="btn theme-color-button fw-bold shadow-sm"
-                    onClick={handleCloseOrder}
-                >
-                    FINALIZAR
-                </button>
-            </div>
-        );
+        getActiveOrder();
+    }, []);
+
+    return (
+        <div className="d-flex flex-column gap-2 mt-4">
+            {loading ? <Spinner /> : null}
+
+            <p className={`${orderSubmitted ? "text-success" : "text-danger"} ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
+
+            <button
+                type="button"
+                title="Añadir estos elementos al pedido actual"
+                className="btn outline-theme-color-button shadow-none"
+                onClick={handleSendOrder}
+                disabled={Object.keys(store.orderItems).length === 0 ? true : false}
+            >
+                {Object.keys(store.activeOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"}
+            </button>
+
+            <button
+                type="button"
+                title="Finalizar el pedido actual"
+                className="btn theme-color-button fw-bold shadow-sm"
+                onClick={handleCloseOrder}
+            >
+                FINALIZAR
+            </button>
+        </div>
+    );
 };

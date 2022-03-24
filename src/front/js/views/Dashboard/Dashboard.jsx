@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 // Styles 
 import "./dashboard.css";
-import defaultCompanyLogo from "../../../assets/img/DefaultLogo.png";
 import defaultAvatarImage from "../../../assets/img/DefaultAvatar.png";
 import dashboardBG from "../../../assets/img/DashboardBG.jpg";
 
@@ -116,7 +115,7 @@ export const Dashboard = () => {
 
                     {loading ? <Spinner /> : null}
 
-                    {Object.keys(store.activeOrderTable).length === 0 && actualDashboardView === "new_order" ? <NewOrderSelectTable show={true} /> : null}
+                    {/* {Object.keys(store.activeOrderTable).length === 0 && actualDashboardView === "new_order" ? <NewOrderSelectTable show={true} /> : null} */}
 
                     <div className={`row dashboard-theme-${store.dashBoardThemeColors[localStorage.getItem("dashboard-theme-color") !== null ? localStorage.getItem("dashboard-theme-color") : store.selectedDashboardThemeColor]}`} id="dashboard-wrapper">
                         <aside
@@ -128,7 +127,7 @@ export const Dashboard = () => {
                                 <div>
                                     <div className="company-logo">
                                         <div className="logo">
-                                            <img className="img-fluid p-2" src={!store.loggedUserCompanyData.logo_url ? defaultCompanyLogo : store.loggedUserCompanyData.logo_url} alt="CompanyLogo" />
+                                            <img className="img-fluid p-2" src={!store.loggedUserCompanyData.logo_url ? "https://res.cloudinary.com/dxbcvuacb/image/upload/v1648065053/DefaultLogo_crxtka.png" : store.loggedUserCompanyData.logo_url} alt="CompanyLogo" />
                                         </div>
                                     </div>
                                     <ul className="navbar-nav mt-3">

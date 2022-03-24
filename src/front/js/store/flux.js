@@ -21,7 +21,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			selectedDashboardThemeColor: 0,
 			menuItems: {},
 			orderItems: {},
-			activeOrderTable: {},
+			activeOrder: {},
+			activeOrderTableID: "",
 			totalPrice: 0
 		},
 		actions: {
@@ -74,8 +75,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store });
 				getActions().setTotalPrice();
 			},
-			setActiveOrderTable: (tableID) => {
-				setStore({ ...getStore(), activeOrderTable: tableID });				
+			setActiveOrder: (orderData) => {
+				setStore({ ...getStore(), activeOrder: orderData });
 			},
 			setTotalPrice: () => {
 				const store = getStore();
@@ -90,6 +91,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				store.totalPrice = Math.floor(total * 100) / 100;
 				setStore({ ...store });
+			},
+			restartOrderItems: () => {
+				const store = getStore();
+				store.orderItems = {};
+				store.totalPrice = 0;
+
+				setStore(store);
+			},
+			setActiveOrderTableID: (tableID) => {
+				getStore().activeOrderTableID =  tableID;
 			}
 		}
 	};

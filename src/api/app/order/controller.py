@@ -1,5 +1,5 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, Order,OrderItem, User, Table, Company, MenuItem
+from api.models.index import db, Order, OrderItem, User, Table, Company, MenuItem
 from flask_jwt_extended import create_access_token
 from sqlalchemy import text
 
@@ -31,7 +31,27 @@ def get_order_item(order_id):
 
     except Exception as error:
         print("Error in get order", error)
-        return error_response("Error interno del servidor",500)
+        return error_response("Error interno del servidor", 500)
+
+def get_order_by_table(table_id):
+    try:
+        order = Order.query.filter(Order.table_id == table_id).first()
+        
+        if order is None:
+            return success_response("", 200)
+
+        list_order_item = db.session.query(OrderItem).filter(OrderItem.order_id == order.id)
+        order_item_list = []
+        for order_item in list_order_item:
+            order_item_json = order_item.serialize()
+            menu_items = db.session.query(MenuItem).filter(MenuItem.id == order_item_json["id"])
+            order_item_json["menu_items"] = list(map(lambda item: item.serialize(), menu_items))
+            order_item_list.append(order_item_json)
+            return success_response(order_item_list,200)
+
+    except Exception as error:
+        print("Error in get order", error)
+        return error_response("Error interno del servidor", 500)
 
 def register_order(body, table_id):
     try:

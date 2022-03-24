@@ -31,6 +31,7 @@ def get_table(id):
             return error_response("Empresa no encontrada", 404)
 
         table_data = table.serialize()
+        table_data["logo_url"] = company.logo_url
         table_data["company_description"] = company.description
         return success_response(table_data)
 
