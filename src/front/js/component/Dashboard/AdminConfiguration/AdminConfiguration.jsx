@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../../store/appContext";
-import PropTypes from "prop-types";
 
 // Styles
 import "./admin-configuration.css";
@@ -12,7 +11,10 @@ import { apiUpdateCompany } from "../../../service/company";
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
 
-export const AdminConfiguration = (props) => {
+// Custom Hooks
+import { useFetchUser } from "../../CustomHooks/CustomHooks.jsx";
+
+export const AdminConfiguration = () => {
     const { store, actions } = useContext(Context);
 
     const [loading, setLoading] = useState(false);
@@ -97,7 +99,7 @@ export const AdminConfiguration = (props) => {
                 const status = response.status;
 
                 if (status === 200) {
-                    props.handleRevalidateUser();
+                    useFetchUser();
                 }
                 else {
                     setNotifyMessage(data);
@@ -112,7 +114,7 @@ export const AdminConfiguration = (props) => {
 
     return (
         <div className="dashboard-view-content p-3 p-lg-4">
-            {loading ? <Spinner /> : null}
+            {/* {loading ? <Spinner /> : null} */}
 
             <div className="row" id="admin-configuration">
                 <div className="col-12 d-none d-md-block">
@@ -195,7 +197,3 @@ export const AdminConfiguration = (props) => {
         </div>
     );
 };
-
-AdminConfiguration.propTypes = {
-    handleRevalidateUser: PropTypes.func
-}

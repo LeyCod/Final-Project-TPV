@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { Link } from "react-router-dom";
 
@@ -9,13 +9,11 @@ import defaultAvatarImage from "../../../assets/img/defaultAvatarImage.png";
 import defaultCompanyLogo from "../../../assets/img/defaultCompanyLogo.png"
 
 // Functions
-import { apiUserValidation, apiUserLogout } from "../../service/user";
-import { apiCompanyGetData } from "../../service/company";
+import { apiUserLogout } from "../../service/user";
 
 // Components
 import { Spinner } from "../../component/Spinner/Spinner.jsx";
 import { ExpiredSessionModal } from "../../component/Modal/ExpiredSessionModal.jsx";
-
 import { ViewTitle } from "../../component/Dashboard/ViewTitle/ViewTitle.jsx";
 import { General } from "../../component/Dashboard/General/General.jsx";
 import { Orders } from "../../component/Dashboard/Orders/Orders.jsx";
@@ -28,70 +26,19 @@ import { MenuItemsConfiguration } from "../../component/Dashboard/MenuItemsConfi
 import { UserConfiguration } from "../../component/Dashboard/UserConfiguration/UserConfiguration.jsx";
 import { AdminConfiguration } from "../../component/Dashboard/AdminConfiguration/AdminConfiguration.jsx";
 
+// Custom Hooks
+import { useFetchUser } from "../../component/CustomHooks/CustomHooks.jsx";
+
 export const Dashboard = () => {
     const { store, actions } = useContext(Context);
 
-    const [loading, setLoading] = useState(true);
     const [responsiveTopMenu, setResponsiveTopMenu] = useState(false);
 
     /* Sidebar control */
     const [activeSidebar, setActiveSidebar] = useState(true);
 
     /* User validation */
-    const [validatedUser, setValidatedUser] = useState(null);
-    const [revalidateUser, setRevalidateUser] = useState(false); // Force userValidation()
-
-    const handleRevalidateUser = () => {
-        setRevalidateUser(!revalidateUser);
-    }
-
-    useEffect(() => {
-        async function userValidation() {
-            try {
-                const response = await apiUserValidation();
-                const data = await response.json();
-                const status = response.status;
-
-                if (status === 200) {
-                    actions.setLoggedUserData(data); // Save user data in the store
-                    getUserCompanyData();
-                }
-                else {
-                    setValidatedUser(false);
-                }
-            }
-            catch (err) {
-                console.error(err);
-                setValidatedUser(false);
-            }
-        }
-
-        userValidation();
-    }, [revalidateUser]);
-
-    /* Get user company data */
-    const getUserCompanyData = async () => {
-        try {
-            const response = await apiCompanyGetData();
-            const data = await response.json();
-            const status = response.status;
-
-            if (status === 200) {
-                actions.setLoggedUserCompanyData(data); // Save company data in the store
-                setValidatedUser(true);
-            }
-            else {
-                setValidatedUser(false);
-            }
-        }
-        catch (err) {
-            console.error(err);
-            setValidatedUser(false);
-        }
-        finally {
-            setLoading(false);
-        }
-    }
+    const validatedUser = useFetchUser();
 
     /* Dashboard contents definition and control */
     const [actualDashboardView, setActualDashboardView] = useState("general");
@@ -108,8 +55,8 @@ export const Dashboard = () => {
         "new_order": { "title": "Nuevo pedido", "component": <NewOrder /> },
         "tables": { "title": "Mesas", "component": <Tables /> },
         "items": { "title": "Carta", "component": <MenuItemsConfiguration /> },
-        "user_configuration": { "title": "Usuario", "component": <UserConfiguration handleRevalidateUser={handleRevalidateUser} /> },
-        "admin_configuration": { "title": "Administrador", "component": <AdminConfiguration handleRevalidateUser={handleRevalidateUser} /> }
+        "user_configuration": { "title": "Usuario", "component": <UserConfiguration /> },
+        "admin_configuration": { "title": "Administrador", "component": <AdminConfiguration /> }
     }
 
     return validatedUser === null
@@ -117,10 +64,7 @@ export const Dashboard = () => {
         : !validatedUser
             ? <ExpiredSessionModal show={true} />
             : (
-                <div className="container-fluid">
-
-                    {loading ? <Spinner /> : null}
-
+                <div className="container-fluid">                
                     {/* {Object.keys(store.activeOrderTable).length === 0 && actualDashboardView === "new_order" ? <NewOrderSelectTable show={true} /> : null} */}
 
                     <div className={`row dashboard-theme-${store.dashBoardThemeColors[localStorage.getItem("dashboard-theme-color") !== null ? localStorage.getItem("dashboard-theme-color") : store.selectedDashboardThemeColor]}`} id="dashboard-wrapper">

@@ -224,7 +224,7 @@ export const MenuItemEditionModal = (props) => {
                     className="btn btn-sm theme-color-button shadow-none"
                     onClick={handleSaveChanges}
                 >
-                    <i class="fas fa-paper-plane me-2"></i>
+                    <i className="fas fa-paper-plane me-2"></i>
                     {!props.new_item ? "Actualizar elemento" : "Crear elemento"}
                 </button>
 
@@ -234,7 +234,7 @@ export const MenuItemEditionModal = (props) => {
                         className="btn btn-sm red-button shadow-none"
                         onClick={handleDeleteItem}
                     >
-                        <i class="fas fa-trash-alt me-2"></i>                       
+                        <i className="fas fa-trash-alt me-2"></i>                       
                         Eliminar elemento
                     </button>
                     : null}
