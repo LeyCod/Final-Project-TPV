@@ -23,33 +23,34 @@ export const AdminConfiguration = () => {
     const [reload, setReload] = useState(false);
     const { validateUser, error, loading } = useFetchUser(reload);
 
+    /* User data form */
     const [name, setName] = useState(store.loggedUserCompanyData.name);
     const [description, setDescription] = useState(store.loggedUserCompanyData.description);
     const [address, setAddress] = useState(store.loggedUserCompanyData.address);
     const [notifyMessage, setNotifyMessage] = useState(false);
 
-    const allowExtensions = ["jpg", "jpeg", "png"];
+    /* Form img */
+    const allowedImgExtensions = ["jpg", "jpeg", "png"];
     const [imgUrl, setImgUrl] = useState(store.loggedUserCompanyData.logo_url);
     const [imgLoading, setImgLoading] = useState(false);
 
     const handleImgChange = async (e) => {
-        setNotifyMessage(false);
-
         if (e.target.files) {
-            let img_file = e.target.files[0];
-            let filename = img_file.name;
-
-            let split = filename.split(".");
-            let extension = split[split.length - 1].toLowerCase();
-
-            if (!allowExtensions.includes(extension)) {
-                e.target.value = "";
-                setNotifyMessage("Formato de archivo no válido");
-                return false;
-            }
-
             try {
                 setImgLoading(true);
+                setNotifyMessage(false);
+
+                let img_file = e.target.files[0];
+                let filename = img_file.name;
+
+                let split = filename.split(".");
+                let extension = split[split.length - 1].toLowerCase();
+
+                if (!allowedImgExtensions.includes(extension)) {
+                    e.target.value = "";
+                    setNotifyMessage("Formato de imagen no válido.");
+                    return false;
+                }
 
                 const form = new FormData();
                 form.append("img", img_file);
@@ -79,7 +80,7 @@ export const AdminConfiguration = () => {
         setNotifyMessage(false);
 
         try {
-            let body = {
+            const body = {
                 "id": store.loggedUserCompanyData.id,
                 "logo_url": imgUrl,
                 "name": name.toUpperCase(),
@@ -96,7 +97,7 @@ export const AdminConfiguration = () => {
             });
 
             if (!validData) {
-                setNotifyMessage("Completa correctamente todos los campos antes de continuar");
+                setNotifyMessage("Completa correctamente todos los campos antes de continuar.");
             }
             else {
                 const response = await apiUpdateCompany(JSON.stringify(body));

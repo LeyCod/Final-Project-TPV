@@ -5,7 +5,7 @@ import { Context } from "../../store/appContext";
 import { apiUserValidation } from "../../service/user";
 import { apiCompanyGetData } from "../../service/company";
 
-export const useFetchUser = (fetch = true) => {
+export const useFetchUser = (fetch) => {
   const { store, actions } = useContext(Context);
 
   const [validateUser, setValidateUser] = useState(null);
