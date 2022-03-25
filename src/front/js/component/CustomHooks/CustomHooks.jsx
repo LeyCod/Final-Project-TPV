@@ -8,7 +8,7 @@ import { apiCompanyGetData } from "../../service/company";
 export const useFetchUser = () => {
   const { store, actions } = useContext(Context);
 
-  const [data, setData] = useState(null);
+  const [validateUser, setValidateUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -28,7 +28,7 @@ export const useFetchUser = () => {
       if (statusUser === 200 && statusCompany === 200) {
         actions.setLoggedUserData(dataUser); // Save user data in the store
         actions.setLoggedUserCompanyData(dataCompany); // Save company data in the store
-        setData(true);
+        setValidateUser(true);
       }
       else {
         setError(true);
@@ -47,5 +47,5 @@ export const useFetchUser = () => {
     userValidation();
   }, []);
 
-  return { data, error, loading }
+  return { validateUser, error, loading }
 }

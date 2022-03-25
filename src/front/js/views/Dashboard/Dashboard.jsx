@@ -22,7 +22,6 @@ import { Orders } from "../../component/Dashboard/Orders/Orders.jsx";
 import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
 import { NewOrderButton } from "../../component/Dashboard/NewOrderButton/NewOrderButton.jsx";
 import { NewOrderSummaryShortcutButton } from "../../component/Dashboard/NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
-import { NewOrderSelectTable } from "../../component/Dashboard/Modal/NewOrderSelectTable/NewOrderSelectTable.jsx";
 import { Tables } from "../../component/Dashboard/Tables/Tables.jsx";
 import { MenuItemsConfiguration } from "../../component/Dashboard/MenuItemsConfiguration/MenuItemsConfiguration.jsx";
 import { UserConfiguration } from "../../component/Dashboard/UserConfiguration/UserConfiguration.jsx";
@@ -40,7 +39,7 @@ export const Dashboard = () => {
     const [activeSidebar, setActiveSidebar] = useState(true);
 
     /* User validation */
-    const { data, error, loading } = useFetchUser();    
+    const { validateUser, error, loading } = useFetchUser();    
 
     /* Dashboard contents definition and control */
     const [actualDashboardView, setActualDashboardView] = useState("general");
@@ -65,12 +64,10 @@ export const Dashboard = () => {
         ? <Spinner />
         : error
             ? <ErrorModal show={true} />
-            : !data
+            : !validateUser
                 ? <ExpiredSessionModal show={true} />
                 : (
                     <div className="container-fluid">
-                        {/* {Object.keys(store.activeOrderTable).length === 0 && actualDashboardView === "new_order" ? <NewOrderSelectTable show={true} /> : null} */}
-
                         <div className={`row dashboard-theme-${store.dashBoardThemeColors[localStorage.getItem("dashboard-theme-color") !== null ? localStorage.getItem("dashboard-theme-color") : store.selectedDashboardThemeColor]}`} id="dashboard-wrapper">
                             <aside
                                 className={`col-auto p-0 ${activeSidebar ? "" : "inactive"} scrollbar-custom`}
