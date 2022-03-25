@@ -10,6 +10,8 @@ import { apiUpdateCompany } from "../../../service/company";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
+import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
+import { ExpiredSessionModal } from "../../Modal/ExpiredSessionModal.jsx";
 
 // Custom Hooks
 import { useFetchUser } from "../../CustomHooks/CustomHooks.jsx";
@@ -17,15 +19,18 @@ import { useFetchUser } from "../../CustomHooks/CustomHooks.jsx";
 export const AdminConfiguration = () => {
     const { store, actions } = useContext(Context);
 
-    const [loading, setLoading] = useState(false);
-    const [notifyMessage, setNotifyMessage] = useState(false);
+    /* User fetch data */
+    const [reload, setReload] = useState(false);
+    const { validateUser, error, loading } = useFetchUser(reload);
 
     const [name, setName] = useState(store.loggedUserCompanyData.name);
     const [description, setDescription] = useState(store.loggedUserCompanyData.description);
     const [address, setAddress] = useState(store.loggedUserCompanyData.address);
+    const [notifyMessage, setNotifyMessage] = useState(false);
 
-    const [imgUrl, setImgUrl] = useState(store.loggedUserCompanyData.logo_url);
     const allowExtensions = ["jpg", "jpeg", "png"];
+    const [imgUrl, setImgUrl] = useState(store.loggedUserCompanyData.logo_url);
+    const [imgLoading, setImgLoading] = useState(false);
 
     const handleImgChange = async (e) => {
         setNotifyMessage(false);
@@ -44,7 +49,7 @@ export const AdminConfiguration = () => {
             }
 
             try {
-                setLoading(true);
+                setImgLoading(true);
 
                 const form = new FormData();
                 form.append("img", img_file);
@@ -65,7 +70,7 @@ export const AdminConfiguration = () => {
                 setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
             }
             finally {
-                setLoading(false);
+                setImgLoading(false);
             }
         }
     };
@@ -99,7 +104,7 @@ export const AdminConfiguration = () => {
                 const status = response.status;
 
                 if (status === 200) {
-                    useFetchUser();
+                    setReload(!reload);
                 }
                 else {
                     setNotifyMessage(data);
@@ -110,90 +115,95 @@ export const AdminConfiguration = () => {
             console.log(err);
             setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
         }
-    }
+    };
 
-    return (
-        <div className="dashboard-view-content p-3 p-lg-4">
-            {/* {loading ? <Spinner /> : null} */}
+    return loading
+        ? null
+        : error
+            ? <ErrorModal show={true} />
+            : !validateUser
+                ? <ExpiredSessionModal show={true} />
+                : (
+                    <div className="dashboard-view-content p-3 p-lg-4">
+                        {imgLoading ? <Spinner /> : null}
 
-            <div className="row" id="admin-configuration">
-                <div className="col-12 d-none d-md-block">
-                    <p className="view-description">
-                        Introduce los datos y el logo de tu empresa. Todos los campos son obligatorios.
-                    </p>
-                </div>
+                        <div className="row" id="admin-configuration">
+                            <div className="col-12 d-none d-md-block">
+                                <p className="view-description">
+                                    Introduce los datos y el logo de tu empresa. Todos los campos son obligatorios.
+                                </p>
+                            </div>
 
+                            <div className="col-12 col-sm-6 col-xl-5 mb-3">
+                                <label className="form-label mb-1">Nombre de la empresa</label>*
+                                <input
+                                    type="text"
+                                    className="form-control shadow-sm"
+                                    autoComplete="off"
+                                    autoFocus="on"
+                                    maxLength={69}
+                                    onChange={(e) => setName(e.target.value)}
+                                    defaultValue={name}
+                                />
+                            </div>
 
-                <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Nombre de la empresa</label>*
-                    <input
-                        type="text"
-                        className="form-control shadow-sm"
-                        autoComplete="off"
-                        autoFocus="on"
-                        maxLength={69}
-                        onChange={(e) => setName(e.target.value)}
-                        defaultValue={name}
-                    />
-                </div>
+                            <div className="col-12 col-sm-6 col-xl-5 mb-3">
+                                <label className="form-label mb-1">Dirección completa</label>*
+                                <input
+                                    type="text"
+                                    className="form-control shadow-sm"
+                                    autoComplete="off"
+                                    maxLength={69}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    defaultValue={address}
+                                />
+                            </div>
 
-                <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Dirección completa</label>*
-                    <input
-                        type="text"
-                        className="form-control shadow-sm"
-                        autoComplete="off"
-                        maxLength={69}
-                        onChange={(e) => setAddress(e.target.value)}
-                        defaultValue={address}
-                    />
-                </div>
+                            <div className="col-12 col-xl-5 mb-3">
+                                <label className="form-label mb-1">Descripción</label>*
+                                <textarea
+                                    className="form-control shadow-sm"
+                                    maxLength={279}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    defaultValue={description}
+                                />
+                            </div>
 
-                <div className="col-12 col-xl-5 mb-3">
-                    <label className="form-label mb-1">Descripción</label>*
-                    <textarea
-                        className="form-control shadow-sm"                        
-                        maxLength={279}
-                        onChange={(e) => setDescription(e.target.value)}
-                        defaultValue={description}
-                    />
-                </div>
+                            <div className={`col-12 mb-2 ${imgUrl === "" ? "d-none" : ""}`}>
+                                <div id="admin-configuration-img">
+                                    <img className="img-fluid" src={imgUrl} />
+                                </div>
+                            </div>
 
-                <div className={`col-12 mb-2 ${imgUrl === "" ? "d-none" : ""}`}>
-                    <div id="admin-configuration-img">
-                        <img className="img-fluid" src={imgUrl} />
+                            <div className="col-12">
+                                <label htmlFor="img-file" className="label-file-button btn btn-sm btn-secondary mb-1 text-white">
+                                    <i className="far fa-file-image fa-lg"></i>
+                                    Seleccionar logo
+                                </label>
+
+                                <input
+                                    type="file"
+                                    className="invisible"
+                                    id="img-file"
+                                    onChange={handleImgChange}
+                                />
+                            </div>
+
+                            <div className="col-12 mb-3">
+                                <button
+                                    type="button"
+                                    className="btn theme-color-button shadow-sm"
+                                    onClick={handleSaveChanges}
+                                >
+                                    Guardar cambios
+                                </button>
+                            </div>
+
+                            <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
+                                <i className="fas fa-exclamation-circle me-2"></i>
+                                {notifyMessage}
+                            </p>
+                        </div>
                     </div>
-                </div>
-
-                <div className="col-12">
-                    <label htmlFor="img-file" className="label-file-button btn btn-sm btn-secondary mb-1 text-white">
-                        <i className="far fa-file-image fa-lg"></i>
-                        Seleccionar logo
-                    </label>
-
-                    <input
-                        type="file"
-                        className="invisible"
-                        id="img-file"
-                        onChange={handleImgChange}
-                    />
-                </div>
-
-                <div className="col-12 mb-3">
-                    <button
-                        type="button"
-                        className="btn theme-color-button shadow-sm"
-                        onClick={handleSaveChanges}
-                    >
-                        Guardar cambios
-                    </button>
-                </div>
-
-                <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
-                    <i className="fas fa-exclamation-circle me-2"></i>
-                    {notifyMessage}
-                </p>
-            </div>
-        </div>
-    );
+                );
 };

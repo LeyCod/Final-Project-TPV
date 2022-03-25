@@ -5,7 +5,7 @@ import { Context } from "../../store/appContext";
 import { apiUserValidation } from "../../service/user";
 import { apiCompanyGetData } from "../../service/company";
 
-export const useFetchUser = () => {
+export const useFetchUser = (fetch = true) => {
   const { store, actions } = useContext(Context);
 
   const [validateUser, setValidateUser] = useState(null);
@@ -13,7 +13,7 @@ export const useFetchUser = () => {
   const [loading, setLoading] = useState(false);
 
   /* Validating user and getting data */
-  const userValidation = async () => {
+  const userValidation = async () => {    
     try {
       setLoading(true);
 
@@ -45,7 +45,7 @@ export const useFetchUser = () => {
 
   useEffect(() => {
     userValidation();
-  }, []);
+  }, [fetch]);
 
   return { validateUser, error, loading }
 }
