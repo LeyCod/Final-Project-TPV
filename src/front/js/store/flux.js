@@ -30,6 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Active tables of the company
 			companyActiveTables: {},
+			totalAvailableTables: 0,
 			
 			// Menu items by company
 			menuItems: {},
@@ -100,9 +101,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCompanyActiveTables: (tablesData) => {
 				const store = getStore();
 				store.companyActiveTables = tablesData;
+				store.totalAvailableTables = tablesData.length - store.companyActiveOrders.length;
 
-				setStore(store);
-				console.log("storee", getStore());
+				setStore(store);				
 			},
 
 			// Menu items by company
