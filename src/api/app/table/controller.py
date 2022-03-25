@@ -6,12 +6,16 @@ from flask_jwt_extended import jwt_required
 def get_all_tables(user_id):
     try:
         user = User.query.get(user_id)
+
         if user is None: 
             return error_response("User not exist", 401)
+
         tables = db.session.query(Table).filter(Table.company_id == user.company_id)
+        
         list_tables = []
         for table in tables: 
             list_tables.append(table.serialize())
+        
         return list_tables
         
     except Exception as error: 

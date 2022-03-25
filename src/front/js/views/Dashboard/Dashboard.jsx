@@ -101,7 +101,7 @@ export const Dashboard = () => {
                                                     <div className="d-flex flex-nowrap align-items-center gap-2">
                                                         Pedidos
 
-                                                        {/* <div className="user-notifications-number d-flex justify-content-center align-items-center">6</div> */}
+                                                        <div className="user-notifications-number d-flex justify-content-center align-items-center">{store.companyActiveOrders.length}</div>
                                                     </div>
                                                 </a>
                                             </li>

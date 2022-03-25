@@ -4,7 +4,7 @@ import { BASE_URL } from "./index";
 export const apiGetMenuItems = (companyID) =>
     fetch(`${BASE_URL}/api/menu_item/${companyID}`);
 
-// Register / Update Menu item
+// Register / Update menu item
 export const apiManageItem = (new_item, body) => {
     const fetchUrl = new_item ? `${BASE_URL}/api/menu_item/register` : `${BASE_URL}/api/menu_item/update`;
     const fetchMethod = new_item ? "POST" : "PUT";
@@ -19,7 +19,7 @@ export const apiManageItem = (new_item, body) => {
     });
 }
 
-// Delete Menu item
+// Delete menu item
 export const apiDeleteItem = (body) =>
     fetch(`${BASE_URL}/api/menu_item/delete`, {
         method: "DELETE",

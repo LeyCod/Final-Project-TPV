@@ -1,20 +1,20 @@
 import { BASE_URL } from "./index";
 
-// User Login
+// User login
 export const apiUserLogin = (userCredentials) =>
     fetch(`${BASE_URL}/api/user/login`, {
         method: "POST",
         body: JSON.stringify(userCredentials)
     });
 
-// User Register
+// User register
 export const apiUserRegister = (userCredentials) =>
     fetch(`${BASE_URL}/api/user/register`, {
         method: "POST",
         body: JSON.stringify(userCredentials)
     });
 
-// User Validation
+// User validation
 export const apiUserValidation = () =>
     fetch(`${BASE_URL}/api/user/validate`, {
         method: "GET",
@@ -24,14 +24,14 @@ export const apiUserValidation = () =>
         }
     });
 
-// User Update
+// User update
 export const apiUpdateUser = (body) =>
     fetch(`${BASE_URL}/api/user/update`, {
         method: "PUT",
         body: body
     });
 
-// User Logout
+// User logout
 export const apiUserLogout = () => localStorage.removeItem("api-flask-token");
 
 // Upload img

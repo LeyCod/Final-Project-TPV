@@ -4,6 +4,8 @@ import { Context } from "../../store/appContext";
 // Functions 
 import { apiUserValidation } from "../../service/user";
 import { apiCompanyGetData } from "../../service/company";
+import { apiGetActiveOrders } from "../../service/order";
+import { apiGetTables } from "../../service/table";
 
 export const useFetchUser = (fetch) => {
   const { store, actions } = useContext(Context);
@@ -12,7 +14,6 @@ export const useFetchUser = (fetch) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  /* Validating user and getting data */
   const userValidation = async () => {    
     try {
       setLoading(true);
@@ -26,8 +27,8 @@ export const useFetchUser = (fetch) => {
       const statusCompany = responseCompany.status;
 
       if (statusUser === 200 && statusCompany === 200) {
-        actions.setLoggedUserData(dataUser); // Save user data in the store
-        actions.setLoggedUserCompanyData(dataCompany); // Save company data in the store
+        actions.setLoggedUserData(dataUser);
+        actions.setLoggedUserCompanyData(dataCompany);
         setValidateUser(true);
       }
       else {
@@ -48,4 +49,48 @@ export const useFetchUser = (fetch) => {
   }, [fetch]);
 
   return { validateUser, error, loading }
+}
+
+export const useFetchOrdersTables = (fetch) => {
+  const { store, actions } = useContext(Context);
+
+  const [fetchOrderTableResult, setFetchOrderTableResult] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const getActiveOrders = async () => {    
+    try {
+      setLoading(true);
+
+      const responseOrder = await apiGetActiveOrders(store.loggedUserCompanyData.id);
+      const dataOrder = await responseOrder.json();
+      const statusOrder = responseOrder.status;
+
+      const responseTable = await apiGetTables();
+      const dataTable = await responseTable.json();
+      const statusTable = responseTable.status;
+
+      if (statusOrder === 200 && statusTable === 200) {
+        actions.setCompanyActiveOrders(dataOrder);
+        actions.setCompanyActiveTables(dataTable);
+        setFetchOrderTableResult(true);
+      }
+      else {
+        setError(true);
+      }
+    }
+    catch (err) {
+      console.error(err);
+      setError(true);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getActiveOrders();
+  }, [fetch]);
+
+  return { fetchOrderTableResult, error, loading }
 }

@@ -24,6 +24,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Dashboard theme color
 			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
 			selectedDashboardThemeColor: 0,
+
+			// Active orders of the company
+			companyActiveOrders: {},
+
+			// Active tables of the company
+			companyActiveTables: {},
 			
 			// Menu items by company
 			menuItems: {},
@@ -80,6 +86,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const nextIndex = getStore().selectedDashboardThemeColor + 1;
 				setStore({ ...getStore(), selectedDashboardThemeColor: !getStore().dashBoardThemeColors[nextIndex] ? 0 : nextIndex });
 				localStorage.setItem("dashboard-theme-color", getStore().selectedDashboardThemeColor);
+			},
+
+			// Active orders of the company
+			setCompanyActiveOrders: (ordersData) => {
+				const store = getStore();
+				store.companyActiveOrders = ordersData;
+
+				setStore(store);
+			},
+
+			// Active tables of the company
+			setCompanyActiveTables: (tablesData) => {
+				const store = getStore();
+				store.companyActiveTables = tablesData;
+
+				setStore(store);
+				console.log("storee", getStore());
 			},
 
 			// Menu items by company
