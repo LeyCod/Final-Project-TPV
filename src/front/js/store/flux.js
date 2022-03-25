@@ -103,7 +103,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.companyActiveTables = tablesData;
 				store.totalAvailableTables = tablesData.length - store.companyActiveOrders.length;
 
-				setStore(store);				
+				setStore(store);	
+				console.log("storeee", getStore());			
 			},
 
 			// Menu items by company

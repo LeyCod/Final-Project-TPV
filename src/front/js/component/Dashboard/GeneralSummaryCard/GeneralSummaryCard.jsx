@@ -37,7 +37,15 @@ export const GeneralSummaryCard = (props) => {
 
                 {props.progress
                     ? <ProgressBar animated label={`${props.progress}%`} now={props.progress} />
-                    : <div> <i className="fas fa-user-check"></i> <small className="ms-2"><span>5</span> asignados</small></div>
+                    : <div>
+                        <button
+                            type="button"
+                            className="d-flex align-items-center px-2 btn btn-sm theme-color-button shadow-none"
+                            onClick={() => props.handleChangeView("orders")}
+                        >
+                            <i className="fas fa-paper-plane me-2"></i> <p className="h5 m-0 text-white">Ver todo</p>
+                        </button>
+                    </div>
                 }
             </div>
         </div>
@@ -48,5 +56,6 @@ GeneralSummaryCard.propTypes = {
     counter: PropTypes.number,
     title: PropTypes.string,
     icon: PropTypes.string,
-    progress: PropTypes.number
+    progress: PropTypes.number,
+    handleChangeView: PropTypes.func
 };

@@ -17,69 +17,50 @@ export const OrdersTable = (props) => {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Hora</th>
-                        <th>Mesa</th>
+                        <th>Fecha, Hora</th>
+                        <th>ID Mesa</th>
                         <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#4</td>
-                        <td>22:10</td>
-                        <td>2</td>
-                        <td>
-                            <button
-                                type="button"
-                                className="btn btn-sm green-button shadow-none"
-                            >
-                                Pendiente
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>21:05</td>
-                        <td>5</td>
-                        <td>
-                            <button
-                                type="button"
-                                className="btn btn-sm blue-button shadow-none"
-                            >
-                                Pagado
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#2</td>
-                        <td>20:45</td>
-                        <td>1</td>
-                        <td>
-                            <button
-                                type="button"
-                                className="btn btn-sm yellow-button shadow-none"
-                            >
-                                En espera
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#1</td>
-                        <td>19:55</td>
-                        <td>5</td>
-                        <td>
-                            <button
-                                type="button"
-                                className="btn btn-sm red-button shadow-none"
-                            >
-                                Eliminado
-                            </button>
-                        </td>
-                    </tr>
+                    {
+                        Object.keys(store.companyActiveOrders).map(objKey => {
+                            if (!props.viewAll && objKey > 1) { return false; } // Only two orders in the "recents orders" table
+
+                            let date = store.companyActiveOrders[objKey].created_at;
+                            date = new Date(date);
+                            date = date.toLocaleString();
+
+                            return <tr key={objKey}>
+                                <td>#{store.companyActiveOrders[objKey].id}</td>
+                                <td>{date}</td>
+                                <td>{store.companyActiveOrders[objKey].table_id}</td>
+                                <td>
+                                    {
+                                        store.companyActiveOrders[objKey].is_active
+                                            ? <button
+                                                type="button"
+                                                className="btn btn-sm yellow-button shadow-none"
+                                            >
+                                                Activo
+                                            </button>
+                                            : <button
+                                                type="button"
+                                                className="btn btn-sm green-button shadow-none"
+                                            >
+                                                Finalizado
+                                            </button>
+                                    }
+                                </td>
+                            </tr>
+                        })
+                    }
                 </tbody>
             </Table>
         </div>
     );
 };
+
 
 OrdersTable.proptypes = {
     handleChangeView: PropTypes.func,
