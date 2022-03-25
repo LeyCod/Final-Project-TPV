@@ -7,47 +7,39 @@ import { apiCompanyGetData } from "../../service/company";
 
 export const useFetchUser = () => {
   const { store, actions } = useContext(Context);
-  const [userData, setUserData] = useState(null);
 
-  /* Validating user and getting user data */
-  const userValidation = async () => { console.log("Cargando datos de usuario...");
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  /* Validating user and getting data */
+  const userValidation = async () => {
     try {
-      const response = await apiUserValidation();
-      const data = await response.json();
-      const status = response.status;
+      setLoading(true);
 
-      if (status === 200) {
-        actions.setLoggedUserData(data); // Save user data in the store
-        getUserCompanyData();
+      const responseUser = await apiUserValidation();
+      const dataUser = await responseUser.json();
+      const statusUser = responseUser.status;
+
+      const responseCompany = await apiCompanyGetData();
+      const dataCompany = await responseCompany.json();
+      const statusCompany = responseCompany.status;
+
+      if (statusUser === 200 && statusCompany === 200) {
+        actions.setLoggedUserData(dataUser); // Save user data in the store
+        actions.setLoggedUserCompanyData(dataCompany); // Save company data in the store
+        setData(true);
       }
       else {
-        setUserData(false);
+        setError(true);
       }
     }
     catch (err) {
       console.error(err);
-      setUserData(false);
+      setError(true);
     }
-  }
-
-  /* Get user company data */
-  const getUserCompanyData = async () => {
-    try {
-      const response = await apiCompanyGetData();
-      const data = await response.json();
-      const status = response.status;
-
-      if (status === 200) {
-        actions.setLoggedUserCompanyData(data); // Save company data in the store
-        setUserData(true);
-      }
-      else {
-        setUserData(false);
-      }
-    }
-    catch (err) {
-      console.error(err);
-      setUserData(false);
+    finally {
+      setLoading(false);
     }
   }
 
@@ -55,5 +47,5 @@ export const useFetchUser = () => {
     userValidation();
   }, []);
 
-  return userData;
+  return { data, error, loading }
 }
