@@ -3,6 +3,7 @@
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
+    border-bottom: 0;
     padding: .7rem 1rem;
     background-color: #e6e6e6;
 }

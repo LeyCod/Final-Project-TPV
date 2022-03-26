@@ -12,6 +12,8 @@ export const NewOrderSummaryShortcutButton = () => {
 
     const [orderSummaryOnModal, setOrderSummaryOnModal] = useState(false);
 
+    const orderItems = store.storedOrders[store.activeTable.id].items;
+
     return (
         <div className="new-order-summary-shortcut-button d-xl-none">
             {orderSummaryOnModal
@@ -22,12 +24,12 @@ export const NewOrderSummaryShortcutButton = () => {
             <button
                 title="Ver pedido actual"
                 type="button"
-                /* className={`rounded-button ${Object.keys(store.orderItems).length === 0 ? "d-none" : ""}`} */
+                className={`rounded-button ${Object.keys(orderItems).length === 0 ? "d-none" : ""}`}
                 onClick={() => setOrderSummaryOnModal(true)}
             >
                 <div>
                     <p className="fw-normal">Ver pedido</p>
-                    <p><strong>{store.totalPrice} €</strong></p>
+                    <p><strong>{store.storedOrders[store.activeTable.id].totalPrice} €</strong></p>
                 </div>
             </button>
         </div>

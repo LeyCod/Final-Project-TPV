@@ -19,11 +19,11 @@ export const NewOrderSelectTable = (props) => {
     /* Fetch company orders and tables */
     const { fetchOrderTableResult, error, loading } = useFetchOrdersTables();
 
-    const handleTableSelection = (select) => {
+    const handleTableSelection = (name, id) => {
         props.setShowTableSelection(false);
 
-        if (select) {
-            actions.setActiveTableID(select);
+        if (name) {
+            actions.setActiveTable(name, id);
             props.handleChangeView("new_order");
         }
         else {
@@ -69,11 +69,11 @@ export const NewOrderSelectTable = (props) => {
                                         <div
                                             key={objKey}
                                             className="selectable-table shadow-sm"
-                                            onClick={() => handleTableSelection(store.companyTables[objKey].id)}
+                                            onClick={() => handleTableSelection(store.companyTables[objKey].name, store.companyTables[objKey].id)}
                                         >
                                             <button
                                                 type="button"
-                                                className="btn btn-sm btn-secondary w-100"
+                                                className="btn btn-sm theme-color-button w-100"
                                             >
                                                 <i className="fas fa-th-large me-3"></i>
 

@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			*/
 			storedOrders: {},
-			activeTableID: null,
+			activeTable: null,
 			// #endregion orders
 
 			// #region clients
@@ -119,9 +119,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// #endregion menu items
 
 			// #region orders
-			setActiveTableID: (id) => {
+			setActiveTable: (name, id) => {
 				const store = getStore();	
-				store.activeTableID = id;
+				store.activeTable = {
+					name: name,
+					id: id
+				};
 
 				if (!store.storedOrders.hasOwnProperty(id)) {
 					store.storedOrders[id] = {
@@ -135,7 +138,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addOrderItem: (itemID, add) => { // add = true -> Add an item; add = false -> Remove an item
 				const store = getStore();
 
-				const orderItems = store.storedOrders[store.activeTableID].items;
+				const orderItems = store.storedOrders[store.activeTable.id].items;
 				const itemCounter = orderItems[itemID];
 
 				itemCounter === undefined
@@ -152,7 +155,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setTotalPrice: () => {
 				const store = getStore();
 				
-				const orderItems = store.storedOrders[store.activeTableID].items;
+				const orderItems = store.storedOrders[store.activeTable.id].items;
 				let total = 0;
 
 				Object.keys(orderItems).forEach(itemIndex => {
@@ -162,7 +165,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					total += item_total_price;
 				});
 
-				store.storedOrders[store.activeTableID].totalPrice = Math.floor(total * 100) / 100;
+				store.storedOrders[store.activeTable.id].totalPrice = Math.floor(total * 100) / 100;
 				setStore(store);				
 			},
 			// #endregion orders

@@ -11,7 +11,7 @@ import { SubmitOrderButton } from "../SubmitOrderButton/SubmitOrderButton.jsx";
 export const OrderSummary = () => {
     const { store, actions } = useContext(Context);
 
-    const orderItems = store.storedOrders[store.activeTableID].items;
+    const orderItems = store.storedOrders[store.activeTable.id].items;
 
     return (
         <div id="order-summary-container">
@@ -19,7 +19,10 @@ export const OrderSummary = () => {
                 <div className="order-summary-title">
                     <div>
                         <h4>Resumen del pedido</h4>
-                        <p className="m-0">Detalle de los productos añadidos:</p>
+                        <p className="m-0">
+                            {store.activeTable.name === "" ? null : <span className="d-block fw-normal fst-italic">- {store.activeTable.name} -</span>}
+                            Detalle de los productos añadidos:
+                        </p>
                     </div>
 
                     <div>
@@ -58,7 +61,7 @@ export const OrderSummary = () => {
 
                 <div id="order-summary-total">
                     <p className="h5 fw-normal">Total</p>
-                    <p className="h5">{store.storedOrders[store.activeTableID].totalPrice} €</p>
+                    <p className="h5">{store.storedOrders[store.activeTable.id].totalPrice} €</p>
                 </div>
 
                 {/* <SubmitOrderButton /> */}

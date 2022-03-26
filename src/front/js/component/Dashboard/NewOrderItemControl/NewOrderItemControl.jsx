@@ -8,7 +8,7 @@ import "./new-order-item-control.css";
 export const NewOrderItemControl = (props) => {
     const { store, actions } = useContext(Context);
 
-    const orderItems = store.storedOrders[store.activeTableID].items;
+    const orderItems = store.storedOrders[store.activeTable.id].items;
 
     return (
         <div className="new-order-item-control">
