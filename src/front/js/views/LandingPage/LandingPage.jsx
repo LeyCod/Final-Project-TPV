@@ -20,19 +20,19 @@ export const LandingPage = () => {
           <Card
             title="Nuestra misión"
             subtitle="Mediante los medios tecnológicos agilizamos y promocionamos una mayor efectividad para que tu negocio siempre esté un paso por delante en lo que al mercado se refiere."
-            img_src="https://res.cloudinary.com/da5uckicu/image/upload/v1648238675/Innovation_p1apa9.jpg"
+            img_src="https://res.cloudinary.com/da5uckicu/image/upload/v1648155571/Feature1_wggxi1.png"
           />
 
           <Card
             title="Nuestra visión"
             subtitle="Ser la herramienta de mayor importancia a la hora de resolver la problemática de los clientes, siendo los aliados tecnológicos de cualquier establecimiento."
-            img_src="https://res.cloudinary.com/da5uckicu/image/upload/v1648238485/Wavy_Bus-18_Single-11_rwibfk.jpg"
+            img_src="https://res.cloudinary.com/da5uckicu/image/upload/v1648235036/business-meeting-in-cafe-3949849-3272557_wdilvr.png"
           />
 
           <Card
             title="Nuestros valores"
             subtitle="Adaptación, eficiéncia, simplicidad , rapidez y social-friendly. Nuestro compromiso es seguir creciendo para poder seguir el camino de nuestros clientes."
-            img_src="https://res.cloudinary.com/da5uckicu/image/upload/v1648154853/Nuestros_valores_sect4f.jpg"
+            img_src="https://res.cloudinary.com/da5uckicu/image/upload/v1648286497/Teamwork_and_engineering_vector_illustration_mps6ii.jpg"
           />
         </div>
 
@@ -40,7 +40,7 @@ export const LandingPage = () => {
 
         <Features
           title="
-          Ahorra tiempo automatizando tarreas."
+          Ahorra tiempo automatizando tareas."
           text="Mejora la atención al cliente, tus procesos internos y la gestión. MasterGest añade más funcionalidades a tu sistema para aumentar la capacidad de gestión de tu negocio y el crecimiento , siempre adelantandose a  las necesidades de tus clientes. "
           img="https://res.cloudinary.com/da5uckicu/image/upload/v1648239394/restaurant-management-software_mryiye.jpg"
           reverse={false}
