@@ -2,8 +2,8 @@
     display: flex;
     flex-flow: row nowrap;
     border-radius: 0.8rem;
+    border: solid 2px var(--theme-color);
     padding: 0.3rem;
-    /*background-color: #ffffff;*/
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     gap: 1rem;
   }
@@ -13,61 +13,28 @@
     transform: scale(1.01);
   }
   
-  /*.table-card p {
-    margin-bottom: 0;
-  }*/
-  
-  /*.table-card > div:nth-child(1) {
-    width: 25%;
-  }*/
-
-  .btn-close {
-    color: var(--theme-color); 
-  }
-  
-  .table-card > div:nth-child(2) {
-    width: 75%;
+  .table-card > div:nth-child(1) {
+    width: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     gap: 0.5rem;
   }
-  
-  .table-card > div:nth-child(2) > div:nth-child(1) {
-    flex-grow: 1;
+
+  .btn-border-color:hover {
+    border: solid 2px var(--theme-color);
   }
-  
-  /*.table-card > div:nth-child(2) > div:nth-child(1) p:nth-child(2) {
-    font-size: 14px !important;
-  }*/
-  
-  .table-card > div:nth-child(2) > div:nth-child(2) {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /*.table-card > div:nth-child(2) > div:nth-child(2) p {
-    color: #4d4d4d;
-    font-size: 15px;
-  }*/
-  
+
   /* -- Media Queries -- */
-  @media (min-width: 576px) {
+  @media (min-width: 412px) {
     .table-card {
       flex-flow: column nowrap;
       padding: 0.5rem;
     }
-  
-    .table-card > div:nth-child(1) {
-      width: 100%;
-    }
-  
+
     .table-card > div:nth-child(1) {
       flex-grow: 1;
       gap: 1rem;
       width: 100%;
     }
   }
-  
