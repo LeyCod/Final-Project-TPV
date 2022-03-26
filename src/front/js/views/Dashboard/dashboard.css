@@ -96,13 +96,14 @@
 }
 
 #dashboard-sidebar .user-notifications-number {
-  width: 19px;
-  height: 19px;
+  width: 21px;
+  height: 21px;
   border-radius: 50%;
   background-color: var(--red);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-align: center;
   color: #ffffff;
+  box-shadow: 0 0.125rem 0.25rem #0000004f;
 }
 
 #dashboard-sidebar hr {
