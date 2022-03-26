@@ -7,14 +7,14 @@ import "./menu-item-edition-modal.css";
 
 // Functions
 import { apiUploadImage } from "../../../../service/user";
-import { apiManageItem, apiDeleteItem } from "../../../../service/menu-item";
+import { apiManageItem } from "../../../../service/menu-item";
 
 // Components
 import { Spinner } from "../../../Spinner/Spinner.jsx";
 import Modal from "react-bootstrap/Modal";
 
 export const MenuItemEditionModal = (props) => {
-    const { store, actions } = useContext(Context);  
+    const { store, actions } = useContext(Context);
 
     /* Menu item data form */
     const [name, setName] = useState(props.new_item ? "" : store.menuItems[props.item_index].name);

@@ -18,7 +18,7 @@ export const MenuItemCard = (props) => {
             <div>
                 <div>
                     <p className="fw-bold mb-0">{props.title}</p>
-                    <p className="mb-0">{props.description}</p>
+                    <p className="mb-0 menu-item-card-description">{props.description}</p>
                 </div>
 
                 <div>
@@ -27,13 +27,9 @@ export const MenuItemCard = (props) => {
                     {
                         props.order_item_control
                             ? <NewOrderItemControl item_index={props.item_index} />
-                            : null
-                    }
-
-{
-                        props.item_edit_control
-                            ? <MenuEditItemControl item_index={props.item_index} />
-                            : null
+                            : props.item_edit_control
+                                ? <MenuEditItemControl item_index={props.item_index} />
+                                : null
                     }
                 </div>
             </div>

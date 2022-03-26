@@ -119,108 +119,106 @@ export const UserConfiguration = () => {
         }
     }
 
-    return loading
-        ? null
-        : error
-            ? <ErrorModal show={true} />
-            : !validateUser
-                ? <ExpiredSessionModal show={true} />
-                : (
-                    <div className="dashboard-view-content p-3 p-lg-4">
-                        {imgLoading ? <Spinner /> : null}
+    return error
+        ? <ErrorModal show={true} />
+        : !validateUser
+            ? <ExpiredSessionModal show={true} />
+            : (
+                <div className="dashboard-view-content p-3 p-lg-4">
+                    {imgLoading ? <Spinner /> : null}
 
-                        <div className="row" id="user-configuration">
-                            <div className="col-12 d-none d-md-block">
-                                <p className="view-description">
-                                    Introduce tus datos personales y tu imagen de perfil. Todos los campos son obligatorios.
-                                </p>
-                            </div>
-
-
-                            <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                                <label className="form-label mb-1">Nombre</label>*
-                                <input
-                                    type="text"
-                                    className="form-control shadow-sm"
-                                    autoComplete="off"
-                                    autoFocus="on"
-                                    maxLength={29}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                    defaultValue={firstName}
-                                />
-                            </div>
-
-                            <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                                <label className="form-label mb-1">Apellidos</label>*
-                                <input
-                                    type="text"
-                                    className="form-control shadow-sm"
-                                    autoComplete="off"
-                                    maxLength={49}
-                                    onChange={(e) => setLastName(e.target.value)}
-                                    defaultValue={lastName}
-                                />
-                            </div>
-
-                            <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                                <label className="form-label mb-1">Email</label>*
-                                <input
-                                    type="text"
-                                    className="form-control shadow-sm"
-                                    autoComplete="off"
-                                    maxLength={59}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    defaultValue={email}
-                                />
-                                <small className="text-muted">Debe ser un email válido</small>
-                            </div>
-
-                            <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                                <label className="form-label mb-1">Teléfono</label>*
-                                <input
-                                    type="number"
-                                    className="form-control shadow-sm"
-                                    autoComplete="off"
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    defaultValue={phone}
-                                />
-                            </div>
-
-                            <div className={`col-12 mb-2 ${imgUrl === "" ? "d-none" : ""}`}>
-                                <div id="user-configuration-img">
-                                    <img className="img-fluid" src={imgUrl} />
-                                </div>
-                            </div>
-
-                            <div className="col-12">
-                                <label htmlFor="img-file" className="label-file-button btn btn-sm btn-secondary mb-1 text-white">
-                                    <i className="far fa-file-image fa-lg"></i>
-                                    Seleccionar avatar
-                                </label>
-
-                                <input
-                                    type="file"
-                                    className="invisible"
-                                    id="img-file"
-                                    onChange={handleImgChange}
-                                />
-                            </div>
-
-                            <div className="col-12 mb-3">
-                                <button
-                                    type="button"
-                                    className="btn theme-color-button shadow-sm"
-                                    onClick={handleSaveChanges}
-                                >
-                                    Guardar cambios
-                                </button>
-                            </div>
-
-                            <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
-                                <i className="fas fa-exclamation-circle me-2"></i>
-                                {notifyMessage}
+                    <div className="row" id="user-configuration">
+                        <div className="col-12 d-none d-md-block">
+                            <p className="view-description">
+                                Introduce tus datos personales y tu imagen de perfil. Todos los campos son obligatorios.
                             </p>
                         </div>
+
+
+                        <div className="col-12 col-sm-6 col-xl-5 mb-3">
+                            <label className="form-label mb-1">Nombre</label>*
+                            <input
+                                type="text"
+                                className="form-control shadow-sm"
+                                autoComplete="off"
+                                autoFocus="on"
+                                maxLength={29}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                defaultValue={firstName}
+                            />
+                        </div>
+
+                        <div className="col-12 col-sm-6 col-xl-5 mb-3">
+                            <label className="form-label mb-1">Apellidos</label>*
+                            <input
+                                type="text"
+                                className="form-control shadow-sm"
+                                autoComplete="off"
+                                maxLength={49}
+                                onChange={(e) => setLastName(e.target.value)}
+                                defaultValue={lastName}
+                            />
+                        </div>
+
+                        <div className="col-12 col-sm-6 col-xl-5 mb-3">
+                            <label className="form-label mb-1">Email</label>*
+                            <input
+                                type="text"
+                                className="form-control shadow-sm"
+                                autoComplete="off"
+                                maxLength={59}
+                                onChange={(e) => setEmail(e.target.value)}
+                                defaultValue={email}
+                            />
+                            <small className="text-muted">Debe ser un email válido</small>
+                        </div>
+
+                        <div className="col-12 col-sm-6 col-xl-5 mb-3">
+                            <label className="form-label mb-1">Teléfono</label>*
+                            <input
+                                type="number"
+                                className="form-control shadow-sm"
+                                autoComplete="off"
+                                onChange={(e) => setPhone(e.target.value)}
+                                defaultValue={phone}
+                            />
+                        </div>
+
+                        <div className={`col-12 mb-2 ${imgUrl === "" ? "d-none" : ""}`}>
+                            <div id="user-configuration-img">
+                                <img className="img-fluid" src={imgUrl} />
+                            </div>
+                        </div>
+
+                        <div className="col-12">
+                            <label htmlFor="img-file" className="label-file-button btn btn-sm btn-secondary mb-1 text-white">
+                                <i className="far fa-file-image fa-lg"></i>
+                                Seleccionar avatar
+                            </label>
+
+                            <input
+                                type="file"
+                                className="invisible"
+                                id="img-file"
+                                onChange={handleImgChange}
+                            />
+                        </div>
+
+                        <div className="col-12 mb-3">
+                            <button
+                                type="button"
+                                className="btn theme-color-button shadow-sm"
+                                onClick={handleSaveChanges}
+                            >
+                                Guardar cambios
+                            </button>
+                        </div>
+
+                        <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
+                            <i className="fas fa-exclamation-circle me-2"></i>
+                            {notifyMessage}
+                        </p>
                     </div>
-                );
+                </div>
+            );
 };

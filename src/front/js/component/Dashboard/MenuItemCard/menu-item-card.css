@@ -58,6 +58,13 @@
   font-size: 15px;
 }
 
+.menu-item-card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 /* -- Media Queries -- */
 @media (min-width: 576px) {
   .menu-item-card {

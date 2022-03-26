@@ -18,14 +18,3 @@ export const apiManageItem = (new_item, body) => {
         }
     });
 }
-
-// Delete menu item
-export const apiDeleteItem = (body) =>
-    fetch(`${BASE_URL}/api/menu_item/delete`, {
-        method: "DELETE",
-        body: body,
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("api-flask-token")
-        }
-    });

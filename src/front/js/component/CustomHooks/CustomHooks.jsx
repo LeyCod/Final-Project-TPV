@@ -103,7 +103,7 @@ export const useFetchMenuItems = (fetch) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const getActiveOrders = async () => {    
+  const getMenuItems = async () => {    
     try {
       setLoading(true);
 
@@ -129,7 +129,7 @@ export const useFetchMenuItems = (fetch) => {
   }
 
   useEffect(() => {
-    getActiveOrders();
+    getMenuItems();
   }, [fetch]);
 
   return { fetchMenuItemResult, error, loading }
