@@ -4,8 +4,8 @@ import { Context } from "../../store/appContext";
 // Functions 
 import { apiUserValidation } from "../../service/user";
 import { apiCompanyGetData } from "../../service/company";
-import { apiGetActiveOrders } from "../../service/order";
-import { apiGetTables } from "../../service/table";
+import { apiGetActiveOrders, apiGetActiveOrder } from "../../service/order";
+import { apiGetTables, apiGetTable } from "../../service/table";
 import { apiGetMenuItems } from "../../service/menu-item";
 
 export const useFetchUser = (fetch) => {
@@ -133,4 +133,50 @@ export const useFetchMenuItems = (fetch) => {
   }, [fetch]);
 
   return { fetchMenuItemResult, error, loading }
+}
+
+export const useFetchTableOrder = (table_id) => {
+  const { store, actions } = useContext(Context);
+
+  const [fetchResult, setFetchResult] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const getActiveOrder = async () => {    
+    try {
+      setLoading(true);
+
+      const responseTable = await apiGetTable(table_id);
+      const dataTable = await responseTable.json();
+      const statusTable = responseTable.status;
+
+      const responseOrder = await apiGetActiveOrder(table_id);
+      const dataOrder = await responseOrder.json();
+      const statusOrder = responseOrder.status;
+
+      if (statusTable === 200 && statusOrder === 200) {
+        actions.setActiveCompanyID(dataTable.company_id);
+        actions.setClientData(dataTable, dataOrder);
+                
+        //actions.setMenuItems(data);
+        setFetchResult(true);
+      }
+      else {
+        setError(true);
+      }
+    }
+    catch (err) {
+      console.error(err);
+      setError(true);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getActiveOrder();
+  }, [table_id]);
+
+  return { fetchResult, error, loading }
 }

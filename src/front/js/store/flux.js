@@ -17,16 +17,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			companyRegistered: false,
 
+			// Dashboard theme color
+			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
+			selectedDashboardThemeColor: 0,
+
 			// Logged user data
 			loggedUserData: {},
 			loggedUserCompanyData: {},
 
 			// Active company id
 			activeCompanyID: null,
-
-			// Dashboard theme color
-			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
-			selectedDashboardThemeColor: 0,
 
 			// Active orders of the company
 			companyActiveOrders: {},
@@ -39,7 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			menuItems: {},
 			menuItemEdition: false,
 
-			// Items (item id and quantity) that haven't been registerd in the order yet and total price of them
+			// Items (item id and quantity) that haven't been registerd in a order yet and total price of them
 			orderItems: {},
 			totalPrice: 0,
 
@@ -47,7 +47,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			activeOrder: {},
 
 			// Active order table id
-			activeOrderTableID: ""
+			activeOrderTableID: "",
+
+			// Clients
+			clientCompanyData: {},
+			clientOrderData: {}
 		},
 		actions: {
 			// Company and user registration
@@ -72,6 +76,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getStore().companyRegistered = true;
 			},
 
+			// Dashboard theme color
+			changeDashboardThemeColor: () => {
+				const nextIndex = getStore().selectedDashboardThemeColor + 1;
+				setStore({ ...getStore(), selectedDashboardThemeColor: !getStore().dashBoardThemeColors[nextIndex] ? 0 : nextIndex });
+				localStorage.setItem("dashboard-theme-color", getStore().selectedDashboardThemeColor);
+			},
+
 			// Logged user data
 			setLoggedUserData: (userData) => {
 				const store = getStore();
@@ -82,16 +93,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setLoggedUserCompanyData: (companyData) => {
 				const store = getStore();
 				store.loggedUserCompanyData = companyData;
-				store.activeCompanyID = companyData.id;
-
+			
 				setStore(store);
+				getActions().setActiveCompanyID(companyData.id);				
 			},
-
-			// Dashboard theme color
-			changeDashboardThemeColor: () => {
-				const nextIndex = getStore().selectedDashboardThemeColor + 1;
-				setStore({ ...getStore(), selectedDashboardThemeColor: !getStore().dashBoardThemeColors[nextIndex] ? 0 : nextIndex });
-				localStorage.setItem("dashboard-theme-color", getStore().selectedDashboardThemeColor);
+			setActiveCompanyID: (id) => {
+				setStore({...getStore(), activeCompanyID: id});
 			},
 
 			// Active orders of the company
@@ -135,7 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					delete store.orderItems[itemID];
 				}
 
-				setStore({ ...store });
+				setStore(store);
 				getActions().setTotalPrice();
 			},
 			setTotalPrice: () => {
@@ -150,7 +157,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 
 				store.totalPrice = Math.floor(total * 100) / 100;
-				setStore({ ...store });
+				setStore(store);
 			},
 
 			// Active order data
@@ -160,7 +167,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Active order table id
 			setActiveOrderTableID: (tableID) => {
-				getStore().activeOrderTableID = tableID;
+				const store = getStore();
+				setStore({...store, activeOrderTableID: tableID});				
 			},
 
 			// Reset items, quantity and total price after the order register
@@ -170,6 +178,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.totalPrice = 0;
 
 				setStore(store);
+			},
+
+			// Clients
+			setClientData: (company, order) => {
+				const store = getStore();
+				store.clientCompanyData = company;
+				store.clientOrderData = order;
+
+				setStore(store);
+				console.log(getStore());
 			}
 		}
 	};
