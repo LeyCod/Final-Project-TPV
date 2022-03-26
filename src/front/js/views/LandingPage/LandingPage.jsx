@@ -32,7 +32,7 @@ export const LandingPage = () => {
           <Card
             title="Nuestros valores"
             subtitle="Adaptación, eficiéncia, simplicidad , rapidez y social-friendly. Nuestro compromiso es seguir creciendo para poder seguir el camino de nuestros clientes."
-            img_src="https://res.cloudinary.com/da5uckicu/image/upload/v1648286497/Teamwork_and_engineering_vector_illustration_mps6ii.jpg"
+            img_src="https://res.cloudinary.com/da5uckicu/image/upload/v1648323222/friends-opinion-exchange-flat-young-woman-friends-makes-opinion-exchange-concept-businesswoman-girl-characters-workplace-148420057_qen6lj.jpg"
           />
         </div>
 
