@@ -6,7 +6,7 @@ import "./new-order.css";
 
 // Components
 import { MenuItems } from "../MenuItems/MenuItems.jsx";
-import { NewOrderSummary } from "../NewOrderSummary/NewOrderSummary.jsx";
+import { OrderSummary } from "../OrderSummary/OrderSummary.jsx";
 
 export const NewOrder = (props) => {
     return (
@@ -15,7 +15,7 @@ export const NewOrder = (props) => {
                 <MenuItems order_item_control={true} />
 
                 <div className="d-none d-xl-block col-xl-3 flex-grow-1 ps-0">
-                    {/* <NewOrderSummary /> */}
+                    <OrderSummary />
                 </div>
             </div>
         </div>

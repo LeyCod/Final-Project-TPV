@@ -6,7 +6,7 @@ import "./order-summary-modal.css";
 
 // Components
 import Modal from "react-bootstrap/Modal";
-import { NewOrderSummary } from "../../NewOrderSummary/NewOrderSummary.jsx";
+import { OrderSummary } from "../../OrderSummary/OrderSummary.jsx";
 
 export const OrderSummaryModal = (props) => {
     return (
@@ -16,7 +16,7 @@ export const OrderSummaryModal = (props) => {
         >
             <Modal.Header closeButton className="bg-white" />
             <Modal.Body className="pt-0">
-                <NewOrderSummary />
+                <OrderSummary />
             </Modal.Body>
         </Modal>
     );

@@ -115,6 +115,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setOrderItemsTableID: (id) => {
 				setStore({ ...getStore(), orderItemsTableID: id });				
 			},
+			addOrderItem: (itemID, add) => { // add = true -> Add an item; add = false -> Remove an item
+				const store = getStore();
+				const itemCounter = store.orderItems[itemID];
+
+				itemCounter === undefined
+					? store.orderItems[itemID] = 1
+					: store.orderItems[itemID] = add ? itemCounter + 1 : itemCounter - 1;
+
+				if (store.orderItems[itemID] === 0) { // Delete item in case of 0
+					delete store.orderItems[itemID];
+				}
+
+				setStore(store);
+				getActions().setTotalPrice();
+			},
+			setTotalPrice: () => {
+				const store = getStore();
+				let total = 0;
+
+				Object.keys(store.orderItems).forEach(itemIndex => {
+					const item_count = store.orderItems[itemIndex];
+					const item_total_price = item_count * store.menuItems[itemIndex].price;
+
+					total += item_total_price;
+				});
+
+				store.totalPrice = Math.floor(total * 100) / 100;
+				setStore(store);
+			},
 			// #endregion orders
 
 			// #region clients

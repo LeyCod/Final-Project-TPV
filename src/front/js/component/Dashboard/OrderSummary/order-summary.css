@@ -24,7 +24,7 @@
 
 #order-summary-container .order-summary-body {
   max-height: 48vh;
-  padding-right: .7rem;
+  padding-right: 0.7rem;
   overflow: auto;
 }
 
@@ -35,6 +35,13 @@
 .order-summary-item small {
   font-family: "Poppins", sans-serif;
   color: #000000;
+}
+
+.order-summary-item-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .order-summary-item,
@@ -75,7 +82,7 @@
     padding: 1rem;
   }
 
-  #order-summary-container .order-summary-body {    
+  #order-summary-container .order-summary-body {
     max-height: 50vh;
   }
 }
