@@ -10,20 +10,23 @@ import { Spinner } from "../../Spinner/Spinner.jsx";
 export const SubmitOrderButton = () => {
     const { store, actions } = useContext(Context);
 
+    const orderItems = store.storedOrders[store.activeTable.id].items;
+    const [activeOrder, setActiveOrder] = useState(false);
+
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
     const [orderSubmitted, setOrderSubmitted] = useState(false);
 
     const handleSendOrder = async () => {
-        setLoading(true);
+        /* setLoading(true);
 
         let body = {
-            "table_id": 7002,
-            "company_id": 9003,
+            "table_id": store.activeTable.id,
+            "company_id": store.companyID,
             "menu_items": []
         }
 
-        Object.keys(store.orderItems).forEach(menuItemID => {
+        Object.keys(orderItems).forEach(menuItemID => {
             let menuItemData = {
                 "menu_item_id": store.menuItems[menuItemID].id,
                 "price": store.menuItems[menuItemID].price,
@@ -55,7 +58,7 @@ export const SubmitOrderButton = () => {
         }
         finally {
             setLoading(false);
-        }
+        } */
     }
 
     const handleCloseOrder = () => {
@@ -65,14 +68,15 @@ export const SubmitOrderButton = () => {
     useEffect(() => {
         async function getActiveOrder() {
             try {
-                const response = await apiGetActiveOrder(store.activeOrderTableID);
+                setLoading(true);
+
+                const response = await apiGetActiveOrder(store.activeTable.id);
                 const data = await response.json();
                 const status = response.status;
 
                 if (status === 200) {
                     if (data.length !== 0) {
-                        actions.setActiveOrder(data);
-                        console.log(store);
+                        setActiveOrder(true);
                     }
                 }
                 else {
@@ -103,9 +107,11 @@ export const SubmitOrderButton = () => {
                 title="Añadir estos elementos al pedido actual"
                 className="btn outline-theme-color-button shadow-none"
                 onClick={handleSendOrder}
-                disabled={Object.keys(store.orderItems).length === 0 ? true : false}
+                disabled={Object.keys(orderItems).length === 0 ? true : false}
             >
-                {Object.keys(store.activeOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"}
+                {
+                    Object.keys(activeOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"
+                }
             </button>
 
             <button

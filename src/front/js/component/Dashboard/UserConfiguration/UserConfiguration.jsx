@@ -121,10 +121,10 @@ export const UserConfiguration = () => {
 
     return loading
         ? null
-        : error
-            ? <ErrorModal show={true} />
-            : !validateUser
-                ? <ExpiredSessionModal show={true} />
+        : !validateUser
+            ? <ExpiredSessionModal show={true} />
+            : error
+                ? <ErrorModal show={true} />
                 : (
                     <div className="dashboard-view-content p-3 p-lg-4">
                         {imgLoading ? <Spinner /> : null}

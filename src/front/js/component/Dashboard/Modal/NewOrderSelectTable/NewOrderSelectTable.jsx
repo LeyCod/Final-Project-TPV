@@ -73,9 +73,9 @@ export const NewOrderSelectTable = (props) => {
                                         >
                                             <button
                                                 type="button"
-                                                className="btn btn-sm theme-color-button w-100"
+                                                className="btn btn-sm theme-color-button w-100 shadow-sm"
                                             >
-                                                <i className="fas fa-th-large me-3"></i>
+                                                <i className="fas fa-th-large me-2"></i>
 
                                                 {store.companyTables[objKey].name}
                                             </button>

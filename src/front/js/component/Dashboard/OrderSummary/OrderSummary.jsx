@@ -64,7 +64,7 @@ export const OrderSummary = () => {
                     <p className="h5">{store.storedOrders[store.activeTable.id].totalPrice} €</p>
                 </div>
 
-                {/* <SubmitOrderButton /> */}
+                <SubmitOrderButton />
             </div>
         </div>
     );

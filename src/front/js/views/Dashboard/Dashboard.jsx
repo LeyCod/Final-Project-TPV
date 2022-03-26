@@ -38,7 +38,7 @@ export const Dashboard = () => {
     const [activeSidebar, setActiveSidebar] = useState(true);
 
     /* User validation */
-    const { validateUser, error, loading } = useFetchUser();    
+    const { validateUser, error, loading } = useFetchUser();
 
     /* Dashboard contents definition and control */
     const [actualDashboardView, setActualDashboardView] = useState("general");
@@ -61,10 +61,10 @@ export const Dashboard = () => {
 
     return loading
         ? <Spinner />
-        : error
-            ? <ErrorModal show={true} />
-            : !validateUser
-                ? <ExpiredSessionModal show={true} />
+        : !validateUser
+            ? <ExpiredSessionModal show={true} />
+            : error
+                ? <ErrorModal show={true} />
                 : (
                     <div className="container-fluid">
                         <div className={`row dashboard-theme-${store.dashBoardThemeColors[localStorage.getItem("dashboard-theme-color") !== null ? localStorage.getItem("dashboard-theme-color") : store.selectedDashboardThemeColor]}`} id="dashboard-wrapper">
@@ -266,7 +266,7 @@ export const Dashboard = () => {
                                     </div>
                                 </main>
 
-                                <NewOrderButton handleChangeView={handleChangeView} />                                
+                                <NewOrderButton handleChangeView={handleChangeView} />
                             </div>
                         </div>
                     </div>
