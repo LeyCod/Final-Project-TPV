@@ -10,40 +10,40 @@ import { apiUploadImage } from "../../../../service/user";
 import { apiManageItem, apiDeleteItem } from "../../../../service/menu-item";
 
 // Components
-import Modal from "react-bootstrap/Modal";
 import { Spinner } from "../../../Spinner/Spinner.jsx";
+import Modal from "react-bootstrap/Modal";
 
 export const MenuItemEditionModal = (props) => {
-    const { store, actions } = useContext(Context);
+    const { store, actions } = useContext(Context);  
 
-    const [loading, setLoading] = useState(false);
-    const [notifyMessage, setNotifyMessage] = useState(false);
-
+    /* Menu item data form */
     const [name, setName] = useState(props.new_item ? "" : store.menuItems[props.item_index].name);
     const [description, setDescription] = useState(props.new_item ? "" : store.menuItems[props.item_index].description);
     const [price, setPrice] = useState(props.new_item ? "" : store.menuItems[props.item_index].price);
+    const [notifyMessage, setNotifyMessage] = useState(false);
 
+    /* Form img */
+    const allowedImgExtensions = ["jpg", "jpeg", "png"];
     const [imgUrl, setImgUrl] = useState(props.new_item ? "" : store.menuItems[props.item_index].image_url);
-    const allowExtensions = ["jpg", "jpeg", "png"];
+    const [imgLoading, setImgLoading] = useState(false);
 
     const handleImgChange = async (e) => {
-        setNotifyMessage(false);
-
         if (e.target.files) {
-            let img_file = e.target.files[0];
-            let filename = img_file.name;
-
-            let split = filename.split(".");
-            let extension = split[split.length - 1].toLowerCase();
-
-            if (!allowExtensions.includes(extension)) {
-                e.target.value = "";
-                setNotifyMessage("Formato de archivo no válido");
-                return false;
-            }
-
             try {
-                setLoading(true);
+                setImgLoading(true);
+                setNotifyMessage(false);
+
+                let img_file = e.target.files[0];
+                let filename = img_file.name;
+
+                let split = filename.split(".");
+                let extension = split[split.length - 1].toLowerCase();
+
+                if (!allowedImgExtensions.includes(extension)) {
+                    e.target.value = "";
+                    setNotifyMessage("Formato de imagen no válido.");
+                    return false;
+                }
 
                 const form = new FormData();
                 form.append("img", img_file);
@@ -64,7 +64,7 @@ export const MenuItemEditionModal = (props) => {
                 setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
             }
             finally {
-                setLoading(false);
+                setImgLoading(false);
             }
         }
     };
@@ -91,7 +91,7 @@ export const MenuItemEditionModal = (props) => {
             });
 
             if (!validData) {
-                setNotifyMessage("Completa correctamente todos los campos antes de continuar");
+                setNotifyMessage("Completa correctamente todos los campos antes de continuar.");
             }
             else {
                 const response = await apiManageItem(props.new_item, JSON.stringify(body));
@@ -112,31 +112,6 @@ export const MenuItemEditionModal = (props) => {
         }
     };
 
-    const handleDeleteItem = async (e) => {
-        setNotifyMessage(false);
-
-        try {
-            let body = {
-                "id": store.menuItems[props.item_index].id
-            };
-
-            const response = await apiDeleteItem(JSON.stringify(body));
-            const data = await response.json();
-            const status = response.status;
-
-            if (status === 200 || status === 201) {
-                props.setEditItem(false);
-            }
-            else {
-                setNotifyMessage(data);
-            }
-        }
-        catch (err) {
-            console.log(err);
-            setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
-        }
-    };
-
     return (
         <Modal id="menu-item-edition"
             show={props.show}
@@ -147,7 +122,7 @@ export const MenuItemEditionModal = (props) => {
             </Modal.Header>
 
             <Modal.Body>
-                {loading ? <Spinner /> : null}
+                {imgLoading ? <Spinner /> : null}
 
                 <div className="row">
                     <div className="col-8 mb-3">
@@ -208,10 +183,6 @@ export const MenuItemEditionModal = (props) => {
                     />
                 </div>
 
-                {/* <div className="d-flex gap-3 col-12 mb-3"> */}
-
-                {/* </div> */}
-
                 <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
                     <i className="fas fa-exclamation-circle me-2"></i>
                     {notifyMessage}
@@ -227,17 +198,6 @@ export const MenuItemEditionModal = (props) => {
                     <i className="fas fa-paper-plane me-2"></i>
                     {!props.new_item ? "Actualizar elemento" : "Crear elemento"}
                 </button>
-
-                {!props.new_item ?
-                    <button
-                        type="button"
-                        className="btn btn-sm red-button shadow-none"
-                        onClick={handleDeleteItem}
-                    >
-                        <i className="fas fa-trash-alt me-2"></i>                       
-                        Eliminar elemento
-                    </button>
-                    : null}
             </Modal.Footer>
         </Modal>
     );

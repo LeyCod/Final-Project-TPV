@@ -2,53 +2,23 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../../store/appContext";
 import { PropTypes } from "prop-types";
 
-// Functions
-import { apiGetMenuItems } from "../../../service/menu-item";
-
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
 import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
 import { MenuItemCard } from "../MenuItemCard/MenuItemCard.jsx";
 
+// Custom Hooks
+import { useFetchMenuItems } from "../../CustomHooks/CustomHooks.jsx";
+
 export const MenuItems = (props) => {
     const { store, actions } = useContext(Context);
 
-    const [loading, setLoading] = useState(true);
-    const [fetchError, setFetchError] = useState(false);
-
-    const [reloadMenuItems, setReloadMenuItems] = useState(false); // Force getMenuItems()
-
-    useEffect(() => {
-        async function getMenuItems() {
-            try {
-                const response = await apiGetMenuItems(props.company_id ? props.company_id : store.loggedUserCompanyData.id);
-                const data = await response.json();
-                const status = response.status;
-
-                if (status === 200) {
-                    actions.setMenuItems(data);
-                    setFetchError(false);
-                }
-                else {
-                    console.error(status);
-                    setFetchError(true);
-                }
-            }
-            catch (err) {
-                console.error(err);
-                setFetchError(true);
-            }
-            finally {
-                setLoading(false);
-            }
-        }
-
-        getMenuItems();
-    }, [reloadMenuItems]);
+    /* Fetch company menu items */
+    const { fetchMenuItemResult, error, loading } = useFetchMenuItems();
 
     return loading
         ? <Spinner />
-        : fetchError
+        : error
             ? <ErrorModal show={true} />
             : Object.keys(store.menuItems).map(menuItemIndex =>
                 <MenuItemCard

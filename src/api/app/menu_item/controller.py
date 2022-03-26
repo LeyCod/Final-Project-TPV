@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token
 def get_menu_item(company_id):
     try:
         
-        menu_item = db.session.query(MenuItem).filter(MenuItem.company_id == company_id)
+        menu_item = db.session.query(MenuItem).filter(MenuItem.company_id == company_id).order_by(MenuItem.id.desc())
         list_menu_item = []
         for menu in menu_item:
             list_menu_item.append(menu.serialize())

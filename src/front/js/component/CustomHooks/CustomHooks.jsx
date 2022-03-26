@@ -6,6 +6,7 @@ import { apiUserValidation } from "../../service/user";
 import { apiCompanyGetData } from "../../service/company";
 import { apiGetActiveOrders } from "../../service/order";
 import { apiGetTables } from "../../service/table";
+import { apiGetMenuItems } from "../../service/menu-item";
 
 export const useFetchUser = (fetch) => {
   const { store, actions } = useContext(Context);
@@ -93,4 +94,43 @@ export const useFetchOrdersTables = (fetch) => {
   }, [fetch]);
 
   return { fetchOrderTableResult, error, loading }
+}
+
+export const useFetchMenuItems = (fetch) => {
+  const { store, actions } = useContext(Context);
+
+  const [fetchMenuItemResult, setFetchMenuItemResult] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const getActiveOrders = async () => {    
+    try {
+      setLoading(true);
+
+      const response = await apiGetMenuItems(store.activeCompanyID);
+      const data = await response.json();
+      const status = response.status;
+
+      if (status === 200) {
+        actions.setMenuItems(data);
+        setFetchMenuItemResult(true);
+      }
+      else {
+        setError(true);
+      }
+    }
+    catch (err) {
+      console.error(err);
+      setError(true);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getActiveOrders();
+  }, [fetch]);
+
+  return { fetchMenuItemResult, error, loading }
 }

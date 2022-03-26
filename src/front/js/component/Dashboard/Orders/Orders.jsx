@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
-import PropTypes from "prop-types"
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
@@ -40,7 +39,3 @@ export const Orders = (props) => {
                 </div>
             );
 };
-
-Orders.proptypes = {
-    /* handleChangeView: PropTypes.func */
-}

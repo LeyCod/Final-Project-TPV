@@ -20,6 +20,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Logged user data
 			loggedUserData: {},
 			loggedUserCompanyData: {},
+
+			// Active company id
+			activeCompanyID: null,
 			
 			// Dashboard theme color
 			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
@@ -78,6 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setLoggedUserCompanyData: (companyData) => {
 				const store = getStore();
 				store.loggedUserCompanyData = companyData;
+				store.activeCompanyID = companyData.id;
 
 				setStore(store);
 			},
@@ -109,7 +113,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Menu items by company
 			setMenuItems: (menuItems) => {
-				getStore().menuItems = menuItems;
+				const store = getStore();
+				store.menuItems = menuItems;
+
+				setStore(store);
 			},
 
 			// Items (item id and quantity) that haven't been registerd in the order yet and total price of them
