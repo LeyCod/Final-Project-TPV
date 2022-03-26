@@ -51,6 +51,8 @@ export const TablesWrapper = (props) => {
             : Object.keys(store.tableData).map(tableDataIndex =>
                 <TableCard
                     key={tableDataIndex}
+                    table_index={tableDataIndex}
+                    id={store.tableData[tableDataIndex].id}
                     name={store.tableData[tableDataIndex].name}
                     qr_url={store.tableData[tableDataIndex].image_url}
                 />
