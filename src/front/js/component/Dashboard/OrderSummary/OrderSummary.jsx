@@ -11,6 +11,8 @@ import { SubmitOrderButton } from "../SubmitOrderButton/SubmitOrderButton.jsx";
 export const OrderSummary = () => {
     const { store, actions } = useContext(Context);
 
+    const orderItems = store.storedOrders[store.activeTableID].items;
+
     return (
         <div id="order-summary-container">
             <div className="order-summary">
@@ -31,10 +33,10 @@ export const OrderSummary = () => {
                 <hr />
 
                 <div className="order-summary-body scrollbar-custom-bg">
-                    {Object.keys(store.orderItems).map(itemIndex =>
+                    {Object.keys(orderItems).map(itemIndex =>
                         <div key={itemIndex} className="order-summary-item">
                             <div>
-                                <small className="text-nowrap">{store.orderItems[itemIndex]} uds</small>
+                                <small className="text-nowrap">{orderItems[itemIndex]} uds</small>
                                 <p>
                                     {store.menuItems[itemIndex].name} <br />
                                     <small className="text-muted order-summary-item-description">{store.menuItems[itemIndex].description}</small>
@@ -42,7 +44,7 @@ export const OrderSummary = () => {
                             </div>
 
                             <div>
-                                <p className="m-0 fw-normal">{Math.floor(store.menuItems[itemIndex].price * store.orderItems[itemIndex] * 100) / 100} €</p>
+                                <p className="m-0 fw-normal">{Math.floor(store.menuItems[itemIndex].price * orderItems[itemIndex] * 100) / 100} €</p>
 
                                 <div className="text-nowrap">
                                     <NewOrderItemControl key={itemIndex} item_index={itemIndex} />
@@ -56,7 +58,7 @@ export const OrderSummary = () => {
 
                 <div id="order-summary-total">
                     <p className="h5 fw-normal">Total</p>
-                    <p className="h5">{store.totalPrice} €</p>
+                    <p className="h5">{store.storedOrders[store.activeTableID].totalPrice} €</p>
                 </div>
 
                 {/* <SubmitOrderButton /> */}

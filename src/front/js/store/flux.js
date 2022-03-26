@@ -38,10 +38,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// #endregion menu items
 
 			// #region orders
-			// ID and quantity of menu items that haven't been registered in a order yet, the ID of the assigned table and the total price of them
-			orderItems: {},
-			orderItemsTableID: null,
-			totalPrice: 0,
+			// storedOrders format:
+			/*
+				storedOrders: { 				
+					table_id: {
+						items: {}, // ID and quantity of the added menu items
+						totalPrice: 0 // Total price of the added menu items
+					}
+				}
+			*/
+			storedOrders: {},
+			activeTableID: null,
 			// #endregion orders
 
 			// #region clients
@@ -112,19 +119,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// #endregion menu items
 
 			// #region orders
-			setOrderItemsTableID: (id) => {
-				setStore({ ...getStore(), orderItemsTableID: id });				
+			setActiveTableID: (id) => {
+				const store = getStore();	
+				store.activeTableID = id;
+
+				if (!store.storedOrders.hasOwnProperty(id)) {
+					store.storedOrders[id] = {
+						items: {},
+						totalPrice: 0
+					}
+				}
+
+				setStore(store);								
 			},
 			addOrderItem: (itemID, add) => { // add = true -> Add an item; add = false -> Remove an item
 				const store = getStore();
-				const itemCounter = store.orderItems[itemID];
+
+				const orderItems = store.storedOrders[store.activeTableID].items;
+				const itemCounter = orderItems[itemID];
 
 				itemCounter === undefined
-					? store.orderItems[itemID] = 1
-					: store.orderItems[itemID] = add ? itemCounter + 1 : itemCounter - 1;
+					? orderItems[itemID] = 1
+					: orderItems[itemID] = add ? itemCounter + 1 : itemCounter - 1;
 
-				if (store.orderItems[itemID] === 0) { // Delete item in case of 0
-					delete store.orderItems[itemID];
+				if (orderItems[itemID] === 0) { // Delete item in case of 0
+					delete orderItems[itemID];
 				}
 
 				setStore(store);
@@ -132,17 +151,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setTotalPrice: () => {
 				const store = getStore();
+				
+				const orderItems = store.storedOrders[store.activeTableID].items;
 				let total = 0;
 
-				Object.keys(store.orderItems).forEach(itemIndex => {
-					const item_count = store.orderItems[itemIndex];
+				Object.keys(orderItems).forEach(itemIndex => {
+					const item_count = orderItems[itemIndex];
 					const item_total_price = item_count * store.menuItems[itemIndex].price;
 
 					total += item_total_price;
 				});
 
-				store.totalPrice = Math.floor(total * 100) / 100;
-				setStore(store);
+				store.storedOrders[store.activeTableID].totalPrice = Math.floor(total * 100) / 100;
+				setStore(store);				
 			},
 			// #endregion orders
 
@@ -151,8 +172,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				store.clientInfo.company = companyData;
 
-				setStore(store);
-				console.log(getStore());
+				setStore(store);				
 			}
 			// #endregion clients
 		}

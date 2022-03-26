@@ -23,7 +23,7 @@ export const NewOrderSelectTable = (props) => {
         props.setShowTableSelection(false);
 
         if (select) {
-            actions.setOrderItemsTableID(select);
+            actions.setActiveTableID(select);
             props.handleChangeView("new_order");
         }
         else {

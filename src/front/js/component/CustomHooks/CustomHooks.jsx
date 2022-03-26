@@ -151,7 +151,7 @@ export const useFetchClients = (table_id) => {
       const statusTable = responseTable.status;
 
       if (statusTable === 200) {
-        actions.setOrderItemsTableID(table_id);
+        actions.setActiveTableID(table_id);
         actions.setCompanyID(dataTable.company_id);
         actions.setClientInfo(dataTable);
         setFetchResult(true);
