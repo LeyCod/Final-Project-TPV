@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../../../store/appContext";
-import PropTypes from "prop-types";
 
 // Styles
 import "./menu-item-edition-modal.css";
@@ -13,18 +12,21 @@ import { apiManageItem } from "../../../../service/menu-item";
 import { Spinner } from "../../../Spinner/Spinner.jsx";
 import Modal from "react-bootstrap/Modal";
 
-export const MenuItemEditionModal = (props) => {
+export const MenuItemEditionModal = () => {
     const { store, actions } = useContext(Context);
 
+    const new_item = store.menuItemEdition;
+    const item_index = store.menuItemEdition;
+
     /* Menu item data form */
-    const [name, setName] = useState(props.new_item ? "" : store.menuItems[props.item_index].name);
-    const [description, setDescription] = useState(props.new_item ? "" : store.menuItems[props.item_index].description);
-    const [price, setPrice] = useState(props.new_item ? "" : store.menuItems[props.item_index].price);
+    const [name, setName] = useState(new_item === "" ? new_item : store.menuItems[item_index].name);
+    const [description, setDescription] = useState(new_item === "" ? new_item : store.menuItems[item_index].description);
+    const [price, setPrice] = useState(new_item === "" ? new_item : store.menuItems[item_index].price);
     const [notifyMessage, setNotifyMessage] = useState(false);
 
     /* Form img */
     const allowedImgExtensions = ["jpg", "jpeg", "png"];
-    const [imgUrl, setImgUrl] = useState(props.new_item ? "" : store.menuItems[props.item_index].image_url);
+    const [imgUrl, setImgUrl] = useState(new_item === "" ? new_item : store.menuItems[item_index].image_url);
     const [imgLoading, setImgLoading] = useState(false);
 
     const handleImgChange = async (e) => {
@@ -74,7 +76,7 @@ export const MenuItemEditionModal = (props) => {
 
         try {
             let body = {
-                "id": props.new_item ? "" : store.menuItems[props.item_index].id,
+                "id": new_item === "" ? new_item : store.menuItems[item_index].id,
                 "image_url": imgUrl,
                 "name": name,
                 "description": description,
@@ -94,12 +96,12 @@ export const MenuItemEditionModal = (props) => {
                 setNotifyMessage("Completa correctamente todos los campos antes de continuar.");
             }
             else {
-                const response = await apiManageItem(props.new_item, JSON.stringify(body));
+                const response = await apiManageItem(new_item === "" ? true : false, JSON.stringify(body));
                 const data = await response.json();
                 const status = response.status;
 
                 if (status === 200 || status === 201) {
-                    props.setEditItem(false);
+                    actions.setMenuItemEdition(false);
                 }
                 else {
                     setNotifyMessage(data);
@@ -114,11 +116,11 @@ export const MenuItemEditionModal = (props) => {
 
     return (
         <Modal id="menu-item-edition"
-            show={props.show}
-            onHide={() => props.setEditItem(false)}
+            show={true}
+            onHide={() => actions.setMenuItemEdition(false)}
         >
             <Modal.Header closeButton>
-                <h5>{!props.new_item ? `Actualizar elemento` : "Crear elemento"}</h5>
+                <h5>{new_item !== "" ? `Actualizar elemento` : "Crear elemento"}</h5>
             </Modal.Header>
 
             <Modal.Body>
@@ -196,15 +198,9 @@ export const MenuItemEditionModal = (props) => {
                     onClick={handleSaveChanges}
                 >
                     <i className="fas fa-paper-plane me-2"></i>
-                    {!props.new_item ? "Actualizar elemento" : "Crear elemento"}
+                    {new_item !== "" ? "Actualizar" : "Crear"}
                 </button>
             </Modal.Footer>
         </Modal>
     );
-};
-
-MenuItemEditionModal.propTypes = {
-    new_item: PropTypes.bool,
-    item_index: PropTypes.string,
-    setEditItem: PropTypes.func
 };

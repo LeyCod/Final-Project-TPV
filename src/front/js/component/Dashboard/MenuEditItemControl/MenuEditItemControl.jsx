@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { Context } from "../../../store/appContext";
 import PropTypes from "prop-types";
 
 // Styles
 import "../../../../css/modal.css"
 
-// Components
-import { MenuItemEditionModal } from "../Modal/MenuItemEditionModal/MenuItemEditionModal.jsx";
-
 export const MenuEditItemControl = (props) => {
-    const [editItem, setEditItem] = useState(false);
+    const { store, actions } = useContext(Context);
 
     return (
         <div className="edit-item-control">
-            {editItem ? <MenuItemEditionModal show={true} new_item={false} item_index={props.item_index} setEditItem={setEditItem} /> : null}
-
             <button
                 type="button"
                 className="btn btn-sm xs-button outline-theme-color-button shadow-none"
-                onClick={() => setEditItem(true)}
+                onClick={() => actions.setMenuItemEdition(props.item_index)}
             >
                 <i className="fas fa-highlighter"></i>
             </button>

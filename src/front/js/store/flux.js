@@ -16,14 +16,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				is_admin: false
 			},
 			companyRegistered: false,
-			
+
 			// Logged user data
 			loggedUserData: {},
 			loggedUserCompanyData: {},
 
 			// Active company id
 			activeCompanyID: null,
-			
+
 			// Dashboard theme color
 			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
 			selectedDashboardThemeColor: 0,
@@ -34,16 +34,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Active tables of the company
 			companyActiveTables: {},
 			totalAvailableTables: 0,
-			
+
 			// Menu items by company
 			menuItems: {},
+			menuItemEdition: false,
 
 			// Items (item id and quantity) that haven't been registerd in the order yet and total price of them
 			orderItems: {},
 			totalPrice: 0,
 
 			// Active order data
-			activeOrder: {}, 
+			activeOrder: {},
 
 			// Active order table id
 			activeOrderTableID: ""
@@ -76,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				store.loggedUserData = userData;
 
-				setStore(store);				
+				setStore(store);
 			},
 			setLoggedUserCompanyData: (companyData) => {
 				const store = getStore();
@@ -107,8 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.companyActiveTables = tablesData;
 				store.totalAvailableTables = tablesData.length - store.companyActiveOrders.length;
 
-				setStore(store);	
-				console.log("storeee", getStore());			
+				setStore(store);
 			},
 
 			// Menu items by company
@@ -117,6 +117,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.menuItems = menuItems;
 
 				setStore(store);
+			},
+			setMenuItemEdition: (value) => {
+				setStore({ ...getStore(), menuItemEdition: value });
 			},
 
 			// Items (item id and quantity) that haven't been registerd in the order yet and total price of them
@@ -131,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (store.orderItems[itemID] === 0) { // delete item in case of 0
 					delete store.orderItems[itemID];
 				}
-				
+
 				setStore({ ...store });
 				getActions().setTotalPrice();
 			},
@@ -157,9 +160,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Active order table id
 			setActiveOrderTableID: (tableID) => {
-				getStore().activeOrderTableID =  tableID;
+				getStore().activeOrderTableID = tableID;
 			},
-			
+
 			// Reset items, quantity and total price after the order register
 			restartOrderItems: () => {
 				const store = getStore();
@@ -167,7 +170,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.totalPrice = 0;
 
 				setStore(store);
-			}			
+			}
 		}
 	};
 };
