@@ -1,0 +1,13 @@
+#new-order-select-table .selectable-table {
+    margin-bottom: .5rem;
+    padding: .2rem;
+    background-color: var(--dark-gray);
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#new-order-select-table .selectable-table button {
+    font-size: 16px;
+}

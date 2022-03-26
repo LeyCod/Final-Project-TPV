@@ -207,6 +207,9 @@
 }
 
 #dashboard-footer {
+  position: absolute;  
+  bottom: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -229,6 +232,12 @@
 }
 
 /* -- Media Queries -- */
+@media (max-width: 992px) {
+  body.modal-open #dashboard-sidebar {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   #dashboard-sidebar {
     width: 123px;

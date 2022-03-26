@@ -13,7 +13,7 @@ export const MenuEditItemControl = (props) => {
             <button
                 type="button"
                 className="btn btn-sm xs-button outline-theme-color-button shadow-none"
-                onClick={() => actions.setMenuItemEdition(props.item_index)}
+                onClick={() => actions.setActiveItemEdition(props.item_index)}
             >
                 <i className="fas fa-highlighter"></i>
             </button>

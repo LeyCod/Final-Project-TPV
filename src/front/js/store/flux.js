@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			// Company and user registration
+			// #region user register
 			companyRegisterData: {
 				name: "",
 				cif: ""
@@ -16,45 +16,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 				is_admin: false
 			},
 			companyRegistered: false,
+			// #endregion user register
 
-			// Dashboard theme color
-			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
-			selectedDashboardThemeColor: 0,
-
-			// Logged user data
+			// #region user data
 			loggedUserData: {},
 			loggedUserCompanyData: {},
+			dashBoardThemeColors: ["orange", "yellow", "red", "green"],
+			selectedDashboardThemeColor: 0,
+			// #endregion user data
 
-			// Active company id
-			activeCompanyID: null,
+			// #region company data
+			companyID: null,
+			companyOrders: {},
+			companyTables: {},
+			companyAvailableTables: null,
+			// #endregion company data
 
-			// Active orders of the company
-			companyActiveOrders: {},
-
-			// Active tables of the company
-			companyActiveTables: {},
-			totalAvailableTables: 0,
-
-			// Menu items by company
+			// #region menu items
 			menuItems: {},
-			menuItemEdition: false,
+			activeItemEdition: false,
+			// #endregion menu items
 
-			// Items (item id and quantity) that haven't been registerd in a order yet and total price of them
+			// #region orders
+			// ID and quantity of menu items that haven't been registered in a order yet, the ID of the assigned table and the total price of them
 			orderItems: {},
+			orderItemsTableID: null,
 			totalPrice: 0,
+			// #endregion orders
 
-			// Active order data
-			activeOrder: {},
-
-			// Active order table id
-			activeOrderTableID: "",
-
-			// Clients
-			clientCompanyData: {},
-			clientOrderData: {}
+			// #region clients
+			clientInfo: {
+				company: null,
+				order: null
+			}
+			// #endregion clients
 		},
 		actions: {
-			// Company and user registration
+			// #region user register
 			checkCompanyRegisterData: () => {
 				const store = getStore();
 
@@ -75,120 +73,59 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCompanyRegistered: () => {
 				getStore().companyRegistered = true;
 			},
+			// #endregion user register
 
-			// Dashboard theme color
+			// #region user data
+			setLoggedUserData: (userData) => {
+				setStore({ ...getStore(), loggedUserData: userData });
+			},
+			setLoggedUserCompanyData: (companyData) => {
+				setStore({ ...getStore(), loggedUserCompanyData: companyData });
+				getActions().setCompanyID(companyData.id);
+			},
 			changeDashboardThemeColor: () => {
 				const nextIndex = getStore().selectedDashboardThemeColor + 1;
 				setStore({ ...getStore(), selectedDashboardThemeColor: !getStore().dashBoardThemeColors[nextIndex] ? 0 : nextIndex });
 				localStorage.setItem("dashboard-theme-color", getStore().selectedDashboardThemeColor);
 			},
+			// #endregion user data
 
-			// Logged user data
-			setLoggedUserData: (userData) => {
+			// #region company data
+			setCompanyID: (id) => {
+				setStore({ ...getStore(), companyID: id });
+			},
+			setCompanyOrders: (data) => {
+				setStore({ ...getStore(), companyOrders: data });
+			},
+			setCompanyTables: (data) => {
+				setStore({ ...getStore(), companyTables: data, companyAvailableTables: data.length - getStore().companyOrders.length });				
+			},
+			// #endregion company data
+
+			// #region menu items
+			setMenuItems: (data) => {
+				setStore({ ...getStore(), menuItems: data });
+			},
+			setActiveItemEdition: (value) => {
+				setStore({ ...getStore(), activeItemEdition: value });
+			},
+			// #endregion menu items
+
+			// #region orders
+			setOrderItemsTableID: (id) => {
+				setStore({ ...getStore(), orderItemsTableID: id });				
+			},
+			// #endregion orders
+
+			// #region clients
+			setClientInfo: (companyData) => {
 				const store = getStore();
-				store.loggedUserData = userData;
-
-				setStore(store);
-			},
-			setLoggedUserCompanyData: (companyData) => {
-				const store = getStore();
-				store.loggedUserCompanyData = companyData;
-			
-				setStore(store);
-				getActions().setActiveCompanyID(companyData.id);				
-			},
-			setActiveCompanyID: (id) => {
-				setStore({...getStore(), activeCompanyID: id});
-			},
-
-			// Active orders of the company
-			setCompanyActiveOrders: (ordersData) => {
-				const store = getStore();
-				store.companyActiveOrders = ordersData;
-
-				setStore(store);
-			},
-
-			// Active tables of the company
-			setCompanyActiveTables: (tablesData) => {
-				const store = getStore();
-				store.companyActiveTables = tablesData;
-				store.totalAvailableTables = tablesData.length - store.companyActiveOrders.length;
-
-				setStore(store);
-			},
-
-			// Menu items by company
-			setMenuItems: (menuItems) => {
-				const store = getStore();
-				store.menuItems = menuItems;
-
-				setStore(store);
-			},
-			setMenuItemEdition: (value) => {
-				setStore({ ...getStore(), menuItemEdition: value });
-			},
-
-			// Items (item id and quantity) that haven't been registerd in the order yet and total price of them
-			addOrderItem: (itemID, add) => { // add = true -> Add an item; add = false -> Remove an item
-				const store = getStore();
-				const itemCounter = store.orderItems[itemID];
-
-				itemCounter === undefined
-					? store.orderItems[itemID] = 1
-					: store.orderItems[itemID] = add ? itemCounter + 1 : itemCounter - 1;
-
-				if (store.orderItems[itemID] === 0) { // delete item in case of 0
-					delete store.orderItems[itemID];
-				}
-
-				setStore(store);
-				getActions().setTotalPrice();
-			},
-			setTotalPrice: () => {
-				const store = getStore();
-				let total = 0;
-
-				Object.keys(store.orderItems).forEach(itemIndex => {
-					const item_count = store.orderItems[itemIndex];
-					const item_total_price = item_count * store.menuItems[itemIndex].price;
-
-					total += item_total_price;
-				});
-
-				store.totalPrice = Math.floor(total * 100) / 100;
-				setStore(store);
-			},
-
-			// Active order data
-			setActiveOrder: (orderData) => {
-				setStore({ ...getStore(), activeOrder: orderData });
-			},
-
-			// Active order table id
-			setActiveOrderTableID: (tableID) => {
-				const store = getStore();
-				setStore({...store, activeOrderTableID: tableID});				
-			},
-
-			// Reset items, quantity and total price after the order register
-			restartOrderItems: () => {
-				const store = getStore();
-				store.orderItems = {};
-				store.totalPrice = 0;
-
-				setStore(store);
-			},
-
-			// Clients
-			setClientData: (company, order) => {
-				const store = getStore();
-				store.clientCompanyData = company;
-				store.clientOrderData = order;
+				store.clientInfo.company = companyData;
 
 				setStore(store);
 				console.log(getStore());
 			}
+			// #endregion clients
 		}
 	};
 };

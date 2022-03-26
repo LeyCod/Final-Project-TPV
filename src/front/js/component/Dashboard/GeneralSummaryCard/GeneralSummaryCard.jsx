@@ -7,7 +7,9 @@ import "./general-summary-card.css";
 // Components
 import ProgressBar from "react-bootstrap/ProgressBar";
 
-export const GeneralSummaryCard = (props) => {
+export const GeneralSummaryCard = (props) => {    
+    const progressValue = isNaN(props.progress) ? 100 : props.progress;
+
     const cardIcons = {
         "orders": <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" fill="currentColor" className="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
             <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z" />
@@ -28,15 +30,14 @@ export const GeneralSummaryCard = (props) => {
 
                     <div>
                         <h3 className="m-0 fw-bold">{props.counter}</h3>
-
                         <h6 className="m-0 fw-normal">{props.title}</h6>
                     </div>
                 </div>
 
                 <hr />
 
-                {props.progress
-                    ? <ProgressBar animated label={`${props.progress}%`} now={props.progress} />
+                {progressValue
+                    ? <ProgressBar animated label={`${progressValue}%`} now={progressValue} />
                     : <div>
                         <button
                             type="button"

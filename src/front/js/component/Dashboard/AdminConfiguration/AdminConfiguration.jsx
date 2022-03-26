@@ -118,91 +118,93 @@ export const AdminConfiguration = () => {
         }
     };
 
-    return error
-        ? <ErrorModal show={true} />
-        : !validateUser
-            ? <ExpiredSessionModal show={true} />
-            : (
-                <div className="dashboard-view-content p-3 p-lg-4">
-                    {imgLoading ? <Spinner /> : null}
+    return loading
+        ? null
+        : error
+            ? <ErrorModal show={true} />
+            : !validateUser
+                ? <ExpiredSessionModal show={true} />
+                : (
+                    <div className="dashboard-view-content p-3 p-lg-4">
+                        {imgLoading ? <Spinner /> : null}
 
-                    <div className="row" id="admin-configuration">
-                        <div className="col-12 d-none d-md-block">
-                            <p className="view-description">
-                                Introduce los datos y el logo de tu empresa. Todos los campos son obligatorios.
+                        <div className="row" id="admin-configuration">
+                            <div className="col-12 d-none d-md-block">
+                                <p className="view-description">
+                                    Introduce los datos y el logo de tu empresa. Todos los campos son obligatorios.
+                                </p>
+                            </div>
+
+                            <div className="col-12 col-sm-6 col-xl-5 mb-3">
+                                <label className="form-label mb-1">Nombre de la empresa</label>*
+                                <input
+                                    type="text"
+                                    className="form-control shadow-sm"
+                                    autoComplete="off"
+                                    autoFocus="on"
+                                    maxLength={69}
+                                    onChange={(e) => setName(e.target.value)}
+                                    defaultValue={name}
+                                />
+                            </div>
+
+                            <div className="col-12 col-sm-6 col-xl-5 mb-3">
+                                <label className="form-label mb-1">Dirección completa</label>*
+                                <input
+                                    type="text"
+                                    className="form-control shadow-sm"
+                                    autoComplete="off"
+                                    maxLength={69}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    defaultValue={address}
+                                />
+                            </div>
+
+                            <div className="col-12 col-xl-5 mb-3">
+                                <label className="form-label mb-1">Descripción</label>*
+                                <textarea
+                                    className="form-control shadow-sm"
+                                    maxLength={279}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    defaultValue={description}
+                                />
+                            </div>
+
+                            <div className={`col-12 mb-2 ${imgUrl === "" ? "d-none" : ""}`}>
+                                <div id="admin-configuration-img">
+                                    <img className="img-fluid" src={imgUrl} />
+                                </div>
+                            </div>
+
+                            <div className="col-12">
+                                <label htmlFor="img-file" className="label-file-button btn btn-sm btn-secondary mb-1 text-white">
+                                    <i className="far fa-file-image fa-lg"></i>
+                                    Seleccionar logo
+                                </label>
+
+                                <input
+                                    type="file"
+                                    className="invisible"
+                                    id="img-file"
+                                    onChange={handleImgChange}
+                                />
+                            </div>
+
+                            <div className="col-12 mb-3">
+                                <button
+                                    type="button"
+                                    className="btn theme-color-button shadow-sm"
+                                    onClick={handleSaveChanges}
+                                >
+                                    Guardar cambios
+                                </button>
+                            </div>
+
+                            <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
+                                <i className="fas fa-exclamation-circle me-2"></i>
+                                {notifyMessage}
                             </p>
                         </div>
-
-                        <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                            <label className="form-label mb-1">Nombre de la empresa</label>*
-                            <input
-                                type="text"
-                                className="form-control shadow-sm"
-                                autoComplete="off"
-                                autoFocus="on"
-                                maxLength={69}
-                                onChange={(e) => setName(e.target.value)}
-                                defaultValue={name}
-                            />
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-xl-5 mb-3">
-                            <label className="form-label mb-1">Dirección completa</label>*
-                            <input
-                                type="text"
-                                className="form-control shadow-sm"
-                                autoComplete="off"
-                                maxLength={69}
-                                onChange={(e) => setAddress(e.target.value)}
-                                defaultValue={address}
-                            />
-                        </div>
-
-                        <div className="col-12 col-xl-5 mb-3">
-                            <label className="form-label mb-1">Descripción</label>*
-                            <textarea
-                                className="form-control shadow-sm"
-                                maxLength={279}
-                                onChange={(e) => setDescription(e.target.value)}
-                                defaultValue={description}
-                            />
-                        </div>
-
-                        <div className={`col-12 mb-2 ${imgUrl === "" ? "d-none" : ""}`}>
-                            <div id="admin-configuration-img">
-                                <img className="img-fluid" src={imgUrl} />
-                            </div>
-                        </div>
-
-                        <div className="col-12">
-                            <label htmlFor="img-file" className="label-file-button btn btn-sm btn-secondary mb-1 text-white">
-                                <i className="far fa-file-image fa-lg"></i>
-                                Seleccionar logo
-                            </label>
-
-                            <input
-                                type="file"
-                                className="invisible"
-                                id="img-file"
-                                onChange={handleImgChange}
-                            />
-                        </div>
-
-                        <div className="col-12 mb-3">
-                            <button
-                                type="button"
-                                className="btn theme-color-button shadow-sm"
-                                onClick={handleSaveChanges}
-                            >
-                                Guardar cambios
-                            </button>
-                        </div>
-
-                        <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
-                            <i className="fas fa-exclamation-circle me-2"></i>
-                            {notifyMessage}
-                        </p>
                     </div>
-                </div>
-            );
+                );
 };

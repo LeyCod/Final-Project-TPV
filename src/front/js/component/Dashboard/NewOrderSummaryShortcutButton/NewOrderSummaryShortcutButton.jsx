@@ -22,7 +22,7 @@ export const NewOrderSummaryShortcutButton = () => {
             <button
                 title="Ver pedido actual"
                 type="button"
-                className={`rounded-button ${Object.keys(store.orderItems).length === 0 ? "d-none" : ""}`}
+                /* className={`rounded-button ${Object.keys(store.orderItems).length === 0 ? "d-none" : ""}`} */
                 onClick={() => setOrderSummaryOnModal(true)}
             >
                 <div>

@@ -101,7 +101,7 @@ export const Dashboard = () => {
                                                     <div className="d-flex flex-nowrap align-items-center gap-2">
                                                         Pedidos
 
-                                                        <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">{store.companyActiveOrders.length}</div>
+                                                        <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">0{/* {store.companyActiveOrders.length} */}</div>
                                                     </div>
                                                 </a>
                                             </li>
@@ -246,7 +246,7 @@ export const Dashboard = () => {
                                             <ViewTitle title={dashboardViews[actualDashboardView].title} />
                                             {dashboardViews[actualDashboardView].component}
 
-                                            <footer className="py-1 px-3" id="dashboard-footer">
+                                            <footer className="pt-2 px-3" id="dashboard-footer">
                                                 <div>2022. © By&nbsp;
                                                     <Link to="/" target="_blank">
                                                         MasterGest

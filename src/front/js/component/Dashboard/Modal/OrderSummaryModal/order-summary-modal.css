@@ -1,7 +1,3 @@
-body.modal-open #dashboard-sidebar {
-  display: none;
-}
-
 #order-summary-modal .new-order-summary {
   box-shadow: none;
 }

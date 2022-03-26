@@ -27,18 +27,19 @@ export const General = (props) => {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <GeneralSummaryCard
-                            counter={store.companyActiveOrders.length}
-                            title="Pedidos activos" 
+                            counter={store.companyOrders.length}
+                            title="Pedidos activos"
                             icon="orders"
-                            handleChangeView={props.handleChangeView}                            
+                            progress={null}
+                            handleChangeView={props.handleChangeView}
                         />
                     </div>
                     <div className="col-12 col-md-6">
                         <GeneralSummaryCard
-                            counter={store.totalAvailableTables} 
+                            counter={store.companyAvailableTables}
                             title="Mesas libres"
                             icon="tables"
-                            progress={Math.round((store.totalAvailableTables * 100) / store.companyActiveTables.length)}
+                            progress={Math.round((store.companyAvailableTables * 100) / store.companyTables.length)}
                         />
                     </div>
                 </div>
@@ -47,7 +48,7 @@ export const General = (props) => {
                     <div className="col-12">
                         <div className="rounded-3 p-3 bg-white shadow-sm">
                             <div>
-                                <h4 className="m-0 fw-bold">Pedidos recientes</h4>                                
+                                <h4 className="m-0 fw-bold">Pedidos recientes</h4>
                             </div>
 
                             <hr />

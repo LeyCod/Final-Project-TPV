@@ -15,18 +15,18 @@ import Modal from "react-bootstrap/Modal";
 export const MenuItemEditionModal = () => {
     const { store, actions } = useContext(Context);
 
-    const new_item = store.menuItemEdition;
-    const item_index = store.menuItemEdition;
+    const new_item = store.activeItemEdition.length === 0 ? true : false;
+    const item_index = store.activeItemEdition;
 
     /* Menu item data form */
-    const [name, setName] = useState(new_item === "" ? new_item : store.menuItems[item_index].name);
-    const [description, setDescription] = useState(new_item === "" ? new_item : store.menuItems[item_index].description);
-    const [price, setPrice] = useState(new_item === "" ? new_item : store.menuItems[item_index].price);
+    const [name, setName] = useState(new_item ? "" : store.menuItems[item_index].name);
+    const [description, setDescription] = useState(new_item ? "" : store.menuItems[item_index].description);
+    const [price, setPrice] = useState(new_item ? "" : store.menuItems[item_index].price);
     const [notifyMessage, setNotifyMessage] = useState(false);
 
     /* Form img */
     const allowedImgExtensions = ["jpg", "jpeg", "png"];
-    const [imgUrl, setImgUrl] = useState(new_item === "" ? new_item : store.menuItems[item_index].image_url);
+    const [imgUrl, setImgUrl] = useState(new_item ? "" : store.menuItems[item_index].image_url);
     const [imgLoading, setImgLoading] = useState(false);
 
     const handleImgChange = async (e) => {
@@ -76,7 +76,7 @@ export const MenuItemEditionModal = () => {
 
         try {
             let body = {
-                "id": new_item === "" ? new_item : store.menuItems[item_index].id,
+                "id": new_item ? "" : store.menuItems[item_index].id,
                 "image_url": imgUrl,
                 "name": name,
                 "description": description,
@@ -96,12 +96,12 @@ export const MenuItemEditionModal = () => {
                 setNotifyMessage("Completa correctamente todos los campos antes de continuar.");
             }
             else {
-                const response = await apiManageItem(new_item === "" ? true : false, JSON.stringify(body));
+                const response = await apiManageItem(new_item ? true : false, JSON.stringify(body));
                 const data = await response.json();
                 const status = response.status;
 
                 if (status === 200 || status === 201) {
-                    actions.setMenuItemEdition(false);
+                    actions.setActiveItemEdition(false);
                 }
                 else {
                     setNotifyMessage(data);
@@ -117,10 +117,10 @@ export const MenuItemEditionModal = () => {
     return (
         <Modal id="menu-item-edition"
             show={true}
-            onHide={() => actions.setMenuItemEdition(false)}
+            onHide={() => actions.setActiveItemEdition(false)}
         >
             <Modal.Header closeButton>
-                <h5>{new_item !== "" ? `Actualizar elemento` : "Crear elemento"}</h5>
+                <h5>{new_item ? "Crear elemento" : "Actualizar elemento"}</h5>
             </Modal.Header>
 
             <Modal.Body>
@@ -198,7 +198,7 @@ export const MenuItemEditionModal = () => {
                     onClick={handleSaveChanges}
                 >
                     <i className="fas fa-paper-plane me-2"></i>
-                    {new_item !== "" ? "Actualizar" : "Crear"}
+                    {new_item ? "Crear" : "Actualizar"}
                 </button>
             </Modal.Footer>
         </Modal>

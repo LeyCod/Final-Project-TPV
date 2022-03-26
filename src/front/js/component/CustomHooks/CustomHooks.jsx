@@ -59,21 +59,21 @@ export const useFetchOrdersTables = (fetch) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const getActiveOrders = async () => {    
+  const getActiveOrdersTables = async () => {    
     try {
       setLoading(true);
-
-      const responseOrder = await apiGetActiveOrders(store.loggedUserCompanyData.id);
-      const dataOrder = await responseOrder.json();
-      const statusOrder = responseOrder.status;
 
       const responseTable = await apiGetTables();
       const dataTable = await responseTable.json();
       const statusTable = responseTable.status;
 
+      const responseOrder = await apiGetActiveOrders(store.loggedUserCompanyData.id);
+      const dataOrder = await responseOrder.json();
+      const statusOrder = responseOrder.status;      
+
       if (statusOrder === 200 && statusTable === 200) {
-        actions.setCompanyActiveOrders(dataOrder);
-        actions.setCompanyActiveTables(dataTable);
+        actions.setCompanyOrders(dataOrder);
+        actions.setCompanyTables(dataTable);
         setFetchOrderTableResult(true);
       }
       else {
@@ -90,7 +90,7 @@ export const useFetchOrdersTables = (fetch) => {
   }
 
   useEffect(() => {
-    getActiveOrders();
+    getActiveOrdersTables();
   }, [fetch]);
 
   return { fetchOrderTableResult, error, loading }
@@ -107,7 +107,7 @@ export const useFetchMenuItems = (fetch) => {
     try {
       setLoading(true);
 
-      const response = await apiGetMenuItems(store.activeCompanyID);
+      const response = await apiGetMenuItems(store.companyID);
       const data = await response.json();
       const status = response.status;
 
@@ -135,7 +135,50 @@ export const useFetchMenuItems = (fetch) => {
   return { fetchMenuItemResult, error, loading }
 }
 
-export const useFetchTableOrder = (table_id) => {
+export const useFetchClients = (table_id) => {
+  const { store, actions } = useContext(Context);
+
+  const [fetchResult, setFetchResult] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const getClientInfo = async () => {    
+    try {
+      setLoading(true);
+
+      const responseTable = await apiGetTable(table_id);
+      const dataTable = await responseTable.json();
+      const statusTable = responseTable.status;
+
+      if (statusTable === 200) {
+        actions.setOrderItemsTableID(table_id);
+        actions.setCompanyID(dataTable.company_id);
+        actions.setClientInfo(dataTable);
+        setFetchResult(true);
+      }
+      else {
+        setError(true);
+      }
+    }
+    catch (err) {
+      console.error(err);
+      setError(true);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getClientInfo();
+  }, [table_id]);
+
+  return { fetchResult, error, loading }
+}
+
+
+
+/* export const useFetchTableOrder = (table_id) => {
   const { store, actions } = useContext(Context);
 
   const [fetchResult, setFetchResult] = useState(null);
@@ -180,3 +223,4 @@ export const useFetchTableOrder = (table_id) => {
 
   return { fetchResult, error, loading }
 }
+ */
