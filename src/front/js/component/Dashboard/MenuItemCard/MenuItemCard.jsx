@@ -20,7 +20,7 @@ export const MenuItemCard = (props) => {
 
             <div>
                 <div>
-                    <p className="fw-bold mb-0">{store.menuItems[props.item_index].name}</p>
+                    <p className="mb-0 fw-bold menu-item-card-title">{store.menuItems[props.item_index].name}</p>
                     <p className="mb-0 menu-item-card-description">{store.menuItems[props.item_index].description}</p>
                 </div>
 

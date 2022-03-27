@@ -17,7 +17,7 @@ export const NewOrder = () => {
             <div className="row justify-content-start gap-1" id="new-order-wrapper">
                 <div className="col-12 d-none d-md-block">
                     <p className="view-description">
-                        Añade productos la mesa <span className="fw-bold">{store.activeTable.name}</span>
+                        Añade productos a la mesa <span className="fw-bold">{store.activeTable.name}</span>.
                     </p>
                 </div>
 

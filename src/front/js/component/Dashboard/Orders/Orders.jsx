@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
+import PropTypes from "prop-types";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
@@ -31,7 +32,7 @@ export const Orders = (props) => {
                                 <hr />
 
                                 <div>
-                                    <OrdersTable viewAll={true} />
+                                    <OrdersTable viewAll={true} handleChangeView={props.handleChangeView} />
                                 </div>
                             </div>
                         </div>
@@ -39,3 +40,7 @@ export const Orders = (props) => {
                 </div>
             );
 };
+
+Orders.propTypes = {
+    handleChangeView: PropTypes.func
+}

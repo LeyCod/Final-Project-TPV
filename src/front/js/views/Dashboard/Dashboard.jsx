@@ -51,8 +51,8 @@ export const Dashboard = () => {
 
     const dashboardViews = {
         "general": { "title": "General", "component": <General handleChangeView={handleChangeView} /> },
-        "orders": { "title": "Pedidos", "component": <Orders /> },
-        "new_order": { "title": "Nuevo pedido", "component": <NewOrder /> },
+        "orders": { "title": "Pedidos", "component": <Orders handleChangeView={handleChangeView} /> },
+        "new_order": { "title": "Crear pedido", "component": <NewOrder /> },
         "tables": { "title": "Mesas", "component": <Tables /> },
         "items": { "title": "Carta", "component": <MenuItemsConfiguration /> },
         "user_configuration": { "title": "Usuario", "component": <UserConfiguration /> },

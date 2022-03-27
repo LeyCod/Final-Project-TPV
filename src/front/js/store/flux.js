@@ -37,16 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			activeItemEdition: false,
 			// #endregion menu items
 
-			// #region orders
-			// storedOrders format:
-			/*
-				storedOrders: { 				
-					table_id: {
-						items: {}, // ID and quantity of the added menu items
-						totalPrice: 0 // Total price of the added menu items
-					}
-				}
-			*/
+			// #region orders			
 			storedOrders: {},
 			activeTable: null,
 			activeTableOrder: {},
@@ -172,6 +163,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setActiveTableOrder: (data) => {
 				setStore({ ...getStore(), activeTableOrder: data });
 				console.log(getStore());
+			},
+			restartStoredOrders: () => {
+				setStore({...getStore(), storedOrders: {}});				
 			},
 			// #endregion orders
 

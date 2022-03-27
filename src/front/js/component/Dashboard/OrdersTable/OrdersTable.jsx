@@ -11,6 +11,11 @@ import Table from "react-bootstrap/Table";
 export const OrdersTable = (props) => {
     const { store, actions } = useContext(Context);
 
+    const handleViewOrder = (name, id) => {
+        actions.setActiveTable(name, id);
+        props.handleChangeView("new_order");
+    }
+
     return (
         <div id="orders-table">
             {
@@ -19,9 +24,10 @@ export const OrdersTable = (props) => {
                         <i className="far fa-frown-open fa-2x me-2"></i>
                         Aún no se ha registrado ningún pedido.
                     </p>
-                    : <Table hover responsive>
+                    : <Table responsive>
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>ID</th>
                                 <th>Fecha, Hora</th>
                                 <th>Mesa</th>
@@ -39,6 +45,17 @@ export const OrdersTable = (props) => {
                                     date = date.toLocaleString();
 
                                     return <tr key={objKey}>
+                                        <td className="text-center">
+                                            <button
+                                                type="button"
+                                                className="d-flex justify-content-center align-items-center gap-2 m-auto btn btn-sm outline-theme-color-button shadow-sm"
+                                                onClick={() => handleViewOrder(store.companyOrders[objKey].table_name, store.companyOrders[objKey].table_id)}
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" className="bi bi-arrow-up-right-square-fill" viewBox="0 0 16 16">
+                                                    <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707z" />
+                                                </svg> <span className="fw-bold">Ver</span>
+                                            </button>
+                                        </td>
                                         <td>#{store.companyOrders[objKey].id}</td>
                                         <td>{date}</td>
                                         <td>{store.companyOrders[objKey].table_name}</td>
@@ -48,13 +65,13 @@ export const OrdersTable = (props) => {
                                                 store.companyOrders[objKey].is_active
                                                     ? <button
                                                         type="button"
-                                                        className="btn btn-sm yellow-button shadow-none"
+                                                        className="btn btn-sm xs-button yellow-button pe-none shadow-none"
                                                     >
                                                         Activo
                                                     </button>
                                                     : <button
                                                         type="button"
-                                                        className="btn btn-sm green-button shadow-none"
+                                                        className="btn btn-sm xs-button green-button pe-none shadow-none"
                                                     >
                                                         Finalizado
                                                     </button>
@@ -66,11 +83,14 @@ export const OrdersTable = (props) => {
                         </tbody>
                     </Table>
             }
+
+            <hr />
         </div>
     );
 };
 
 
 OrdersTable.proptypes = {
-    viewAll: PropTypes.bool
+    viewAll: PropTypes.bool,
+    handleChangeView: PropTypes.func
 }

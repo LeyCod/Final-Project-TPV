@@ -47,7 +47,7 @@ def get_order_by_table(table_id):
         order = Order.query.filter(Order.table_id == table_id, Order.is_active==True).first()        
         
         if order is None:
-            return success_response([])
+            return success_response({})
 
         grouped_items = db.session.query(OrderItem.item_id, func.count(OrderItem.item_id)).filter(OrderItem.order_id == order.id).group_by(OrderItem.item_id).all()
                         

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../../store/appContext";
 
 // Functions
-import { apiGetActiveOrder, apiOrderSubmit } from "../../../service/order";
+import { apiOrderSubmit } from "../../../service/order";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
@@ -11,8 +11,7 @@ export const SubmitOrderButton = () => {
     const { store, actions } = useContext(Context);
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
-    const [activeOrder, setActiveOrder] = useState(false);
-
+    
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
     const [orderSubmitted, setOrderSubmitted] = useState(false);
@@ -42,11 +41,9 @@ export const SubmitOrderButton = () => {
             const status = response.status;
 
             if (status === 200) {
-                setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.")
-                setOrderSubmitted(true);
-                console.log(data);
-                /* setActiveOrder(data); */
-                /* actions.restartOrderItems(); */
+                setOrderSubmitted(true);              
+                actions.restartStoredOrders();
+                setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.");                
             }
             else {
                 console.error(status);
@@ -82,7 +79,7 @@ export const SubmitOrderButton = () => {
                     disabled={Object.keys(orderItems).length === 0 ? true : false}
                 >
                     {
-                        Object.keys(activeOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"
+                        Object.keys(store.activeTableOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"
                     }
                 </button>
 
@@ -92,7 +89,7 @@ export const SubmitOrderButton = () => {
                     className="btn theme-color-button fw-bold shadow-sm"
                     onClick={handleCloseOrder}
                 >
-                    FINALIZAR
+                    FINALIZAR PEDIDO
                 </button>
             </div>
         );
