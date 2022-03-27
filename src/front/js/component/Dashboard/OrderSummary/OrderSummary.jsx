@@ -53,7 +53,7 @@ export const OrderSummary = () => {
                                     <div>
                                         <small className="text-nowrap">{orderItems[itemIndex]} uds</small>
                                         <p>
-                                            {store.menuItems[itemIndex].name} <br />
+                                            {store.menuItems[itemIndex].name} <small>({store.menuItems[itemIndex].price}€)</small><br />
                                             <small className="text-muted order-summary-item-description">{store.menuItems[itemIndex].description}</small>
                                         </p>
                                     </div>

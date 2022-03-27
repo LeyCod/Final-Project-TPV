@@ -134,7 +134,7 @@ export const MenuItemEditionModal = () => {
                             className="form-control shadow-sm"
                             autoComplete="off"
                             autoFocus="on"
-                            maxLength={69}
+                            maxLength={59}
                             onChange={(e) => setName(e.target.value)}
                             defaultValue={name}
                         />
@@ -146,8 +146,7 @@ export const MenuItemEditionModal = () => {
                             type="number"
                             className="form-control shadow-sm"
                             autoComplete="off"
-                            autoFocus="on"
-                            maxLength={69}
+                            autoFocus="on"                            
                             onChange={(e) => setPrice(e.target.value)}
                             defaultValue={price}
                         />
