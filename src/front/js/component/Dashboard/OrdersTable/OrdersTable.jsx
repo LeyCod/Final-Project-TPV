@@ -28,7 +28,7 @@ export const OrdersTable = (props) => {
                         <thead>
                             <tr>
                                 <th>Mesa</th>                                
-                                <th className="d-none d-md-block">Fecha, Hora</th>                                
+                                <th className="d-none d-md-table-cell">Fecha, Hora</th>                                
                                 <th>Importe</th>
                                 <th>Estado</th>
                                 <th></th>
@@ -44,8 +44,8 @@ export const OrdersTable = (props) => {
                                     date = date.toLocaleString();
 
                                     return <tr key={objKey}>                                        
-                                        <td><strong>{store.companyOrders[objKey].table_name}</strong></td>
-                                        <td className="d-none d-md-block">{date}</td>                                        
+                                        <td><strong>{store.companyOrders[objKey].table_name} (#{store.companyOrders[objKey].table_id})</strong></td>
+                                        <td className="d-none d-md-table-cell">{date}</td>                                        
                                         <td>{store.companyOrders[objKey].total_price} €</td>
                                         <td>
                                             {

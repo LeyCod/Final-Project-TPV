@@ -1,0 +1,58 @@
+#pending-order-alert-container hr {
+  margin: 1rem 0;
+  background-color: #ddd;
+}
+
+#pending-order-alert-body {
+  max-height: 48vh;
+  padding-right: 0.7rem;
+  overflow: auto;
+}
+
+.pending-order-alert-item {
+  margin-bottom: 0.8rem;
+}
+
+.pending-order-alert-item * {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+
+.pending-order-alert-item small {
+  width: 25px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.pending-order-alert-item p {
+  margin: 0;
+}
+
+.pending-order-alert-item,
+#pending-order-alert-total {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pending-order-alert-item > div:nth-child(1) {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+
+#pending-order-alert-total p {
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+/* -- Media Queries -- */
+@media (min-width: 1200px) {
+  #pending-order-alert-container .pending-order-alert-body {
+    max-height: 50vh;
+  }
+}

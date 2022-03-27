@@ -2,6 +2,9 @@ import React, { useState, useContext } from "react";
 import { Context } from "../../../../store/appContext";
 import PropTypes from "prop-types";
 
+// Styles
+import "./pending-order-alert.css";
+
 // Components
 import Modal from "react-bootstrap/Modal";
 
@@ -12,7 +15,7 @@ export const PendingOrderAlert = (props) => {
 
     return Object.keys(store.activeTableOrder).length !== 0
         ? (
-            <Modal id="new-order-select-table"
+            <Modal id="pending-order-alert-container"
                 show={true}
                 onHide={() => props.setShowPendingOrderAlert(false)}
             >
@@ -24,33 +27,43 @@ export const PendingOrderAlert = (props) => {
                     <p>Ya hay un pedido creado en esta mesa. Recuerda que puedes seguir añadiendo productos al mismo antes <i>finalizar y pagar</i>.</p>
 
                     <div>
-                        <p className=" bg-secondary bg-opacity-25 text-center">Lo que llevas consumido hasta el momento:</p>
-                        {Object.keys(processedItems).map(itemIndex =>
-                            <div key={itemIndex} className="order-summary-item">
-                                <div>
-                                    <small className="text-nowrap">{processedItems[itemIndex]} x</small>
+                        <p className="bg-secondary bg-opacity-25 text-center">Lo que llevas consumido hasta el momento:</p>
 
-                                    {store.menuItems[itemIndex] === undefined ? "" : store.menuItems[itemIndex].name}
+                        <div className="pending-order-alert-body">
+                            {
+                                Object.keys(processedItems).map(itemIndex =>
+                                    <div key={itemIndex} className="pending-order-alert-item">
+                                        <div>
+                                            <small className="text-nowrap">{processedItems[itemIndex]}x</small>
+                                            <p>{store.menuItems[itemIndex] === undefined ? "" : store.menuItems[itemIndex].name}</p>
+                                        </div>
 
-                                </div>
+                                        <div>
+                                            <p className="m-0 fw-normal text-nowrap">{Math.floor(store.menuItems[itemIndex].price * processedItems[itemIndex] * 100) / 100} €</p>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        </div>
 
-                                <div>
-                                    <p className="m-0 fw-normal text-nowrap">{Math.floor(store.menuItems[itemIndex].price * processedItems[itemIndex] * 100) / 100} €</p>
-                                </div>
-                            </div>
-                        )}
+                        <hr />
+
+                        <div id="pending-order-alert-total">
+                            <p className="h5 fw-normal">Total</p>
+                            <p className="h5">{store.activeTableOrder.totalPrice} €</p>
+                        </div>
+
+                        <div className="mt-3 text-center">
+                            <button
+                                type="button"
+                                className="btn btn-sm theme-color-button shadow-none"
+                                onClick={() => props.setShowPendingOrderAlert(false)}
+                            >
+                                Entendido
+                            </button>
+                        </div>
                     </div>
                 </Modal.Body>
-
-                <Modal.Footer className="justify-content-center">
-                    <button
-                        type="button"
-                        className="btn btn-sm theme-color-button shadow-none"
-                        onClick={() => props.setShowPendingOrderAlert(false)}
-                    >
-                        Entendido
-                    </button>
-                </Modal.Footer>
             </Modal >
         )
         : null;

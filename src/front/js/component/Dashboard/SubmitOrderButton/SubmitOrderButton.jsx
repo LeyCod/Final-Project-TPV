@@ -1,11 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../../../store/appContext";
+
+// Styles
+import "react-toastify/dist/ReactToastify.css";
 
 // Functions
 import { apiOrderSubmit } from "../../../service/order";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
+import { ToastContainer, toast, Flip } from "react-toastify";
 
 export const SubmitOrderButton = () => {
     const { store, actions } = useContext(Context);
@@ -14,7 +18,20 @@ export const SubmitOrderButton = () => {
 
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
-    const [orderSubmitted, setOrderSubmitted] = useState(false);
+
+    const notify = () => {
+        toast("Pedido realizado correctamente", {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            type: "success"
+        });
+    }
 
     const handleSendOrder = async () => {
         setLoading(true);
@@ -41,10 +58,9 @@ export const SubmitOrderButton = () => {
             const status = response.status;
 
             if (status === 200) {
-                actions.restartStoredOrders();                
-                setOrderSubmitted(true);
-                setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.");               
+                actions.restartStoredOrders();
                 actions.setActiveTable(store.activeTable.name, store.activeTable.id);
+                notify();
             }
             else {
                 console.error(status);
@@ -69,8 +85,9 @@ export const SubmitOrderButton = () => {
         : (
             <div className="d-flex flex-column gap-2 mt-4">
                 {loading ? <Spinner /> : null}
+                <ToastContainer transition={Flip} />
 
-                <p className={`fw-normal ${orderSubmitted ? "text-success" : "text-danger"} ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
+                <p className={`fw-normal text-danger ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
 
                 {
                     Object.keys(orderItems).length !== 0
