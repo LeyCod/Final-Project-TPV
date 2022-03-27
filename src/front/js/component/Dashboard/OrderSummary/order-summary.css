@@ -3,6 +3,11 @@
   background-color: #ddd;
 }
 
+#order-summary-container h4 {
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+}
+
 .order-summary {
   padding: 1rem 0;
   background-color: #ffffff;
@@ -10,16 +15,7 @@
 }
 
 .order-summary-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-#order-summary-container .order-summary-title h4 {
-  margin-bottom: 0.5rem;
-  font-size: 20px;
+  margin-bottom: 1rem;
 }
 
 #order-summary-container .order-summary-body {

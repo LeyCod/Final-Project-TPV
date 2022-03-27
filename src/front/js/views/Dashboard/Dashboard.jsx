@@ -52,7 +52,7 @@ export const Dashboard = () => {
     const dashboardViews = {
         "general": { "title": "General", "component": <General handleChangeView={handleChangeView} /> },
         "orders": { "title": "Pedidos", "component": <Orders handleChangeView={handleChangeView} /> },
-        "new_order": { "title": "Crear pedido", "component": <NewOrder /> },
+        "new_order": { "title": "Gestionar pedido", "component": <NewOrder /> },
         "tables": { "title": "Mesas", "component": <Tables /> },
         "items": { "title": "Carta", "component": <MenuItemsConfiguration /> },
         "user_configuration": { "title": "Usuario", "component": <UserConfiguration /> },
@@ -245,7 +245,7 @@ export const Dashboard = () => {
                                             <ViewTitle title={dashboardViews[actualDashboardView].title} />
                                             {dashboardViews[actualDashboardView].component}
 
-                                            <footer className="pt-2 px-3" id="dashboard-footer">
+                                            <footer className="py-1 px-3" id="dashboard-footer">
                                                 <div>2022. © By&nbsp;
                                                     <Link to="/" target="_blank">
                                                         MasterGest

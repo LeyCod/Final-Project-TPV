@@ -11,7 +11,7 @@ export const SubmitOrderButton = () => {
     const { store, actions } = useContext(Context);
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
-    
+
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
     const [orderSubmitted, setOrderSubmitted] = useState(false);
@@ -41,9 +41,9 @@ export const SubmitOrderButton = () => {
             const status = response.status;
 
             if (status === 200) {
-                setOrderSubmitted(true);              
+                setOrderSubmitted(true);
                 actions.restartStoredOrders();
-                setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.");                
+                setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.");
             }
             else {
                 console.error(status);
@@ -71,26 +71,33 @@ export const SubmitOrderButton = () => {
 
                 <p className={`${orderSubmitted ? "text-success" : "text-danger"} ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
 
-                <button
-                    type="button"
-                    title="Añadir estos elementos al pedido actual"
-                    className="btn outline-theme-color-button shadow-none"
-                    onClick={handleSendOrder}
-                    disabled={Object.keys(orderItems).length === 0 ? true : false}
-                >
-                    {
-                        Object.keys(store.activeTableOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"
-                    }
-                </button>
+                {
+                    Object.keys(orderItems).length !== 0
+                        ? <button
+                            type="button"
+                            title="Añadir estos elementos al pedido actual"
+                            className="btn outline-theme-color-button shadow-none"
+                            onClick={handleSendOrder}
+                            disabled={Object.keys(orderItems).length === 0 ? true : false}
+                        >
+                            {
+                                Object.keys(store.activeTableOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"
+                            }
+                        </button>
+                        : null
+                }
 
-                <button
-                    type="button"
-                    title="Finalizar el pedido actual"
-                    className="btn theme-color-button fw-bold shadow-sm"
-                    onClick={handleCloseOrder}
-                >
-                    FINALIZAR PEDIDO
-                </button>
+                {Object.keys(store.activeTableOrder).length !== 0 || Object.keys(orderItems).length !== 0
+                    ? <button
+                        type="button"
+                        title="Finalizar el pedido actual"
+                        className="btn theme-color-button fw-bold shadow-sm"
+                        onClick={handleCloseOrder}
+                    >
+                        FINALIZAR Y PAGAR
+                    </button>
+                    : null
+                }
             </div>
         );
 };

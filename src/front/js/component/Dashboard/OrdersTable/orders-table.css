@@ -14,14 +14,14 @@
 
 #orders-table table tr th:first-child,
 #orders-table table tr td:first-child {
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
 }
 
 #orders-table table tr th:last-child,
 #orders-table table tr td:last-child {
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
 }
 
 #orders-table table tbody:before {

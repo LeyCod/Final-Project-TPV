@@ -23,7 +23,7 @@ export const NewOrderButton = (props) => {
                 showTableSelection
                     ? <NewOrderSelectTable setShowTableSelection={setShowTableSelection} handleChangeView={props.handleChangeView} />
                     : <button
-                        title="Crear nuevo pedido"
+                        title="Gestionar pedido"
                         type="button"
                         onClick={handleNewOrder}
                     >

@@ -23,6 +23,12 @@ export const Orders = (props) => {
             : (
                 <div className="dashboard-view-content p-3 p-lg-4">
                     <div className="row">
+                        <div className="col-12 d-none d-md-block">
+                            <p className="view-description">
+                                Listado de todos los pedidos activos actualmente.
+                            </p>
+                        </div>
+
                         <div className="col-12">
                             <div className="rounded-3 p-3 bg-white shadow-sm">
                                 <div>

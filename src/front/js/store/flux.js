@@ -162,7 +162,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setActiveTableOrder: (data) => {
 				setStore({ ...getStore(), activeTableOrder: data });
-				console.log(getStore());
 			},
 			restartStoredOrders: () => {
 				setStore({...getStore(), storedOrders: {}});				
