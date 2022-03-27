@@ -104,13 +104,31 @@ data = {
             "qr_url": "urlqr",            
             "company_id": 9000
         }, 
-                {
+        {
+            "id": 7100,
+            "name": "Mesa 2",
+            "qr_url": "urlqr",            
+            "company_id": 9000
+        }, 
+        {
+            "id": 7200,
+            "name": "Mesa 3",
+            "qr_url": "urlqr",            
+            "company_id": 9000
+        },
+        {
+            "id": 7300,
+            "name": "Barra 1",
+            "qr_url": "urlqr",            
+            "company_id": 9000
+        },  
+        {
             "id": 7001,
             "name": "Barra 1",            
             "qr_url": "urlqr",
             "company_id": 9001
         }, 
-                {
+        {
             "id": 7002,
             "name": "Mesa 1",
             "qr_url": "urlqr",

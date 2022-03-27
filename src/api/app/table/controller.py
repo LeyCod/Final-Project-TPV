@@ -1,5 +1,5 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, Table, User
+from api.models.index import db, Table, User, Order
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
@@ -54,7 +54,7 @@ def register_table(body, user_id):
         if user is None or user.is_admin == False :
             return error_response("No tienes autorizacion", 401)
 
-        new_table = Table(company_id=user.company_id, name=body["name"], capacity=body["capacity"])
+        new_table = Table(company_id=user.company_id, name=body["name"])
         db.session.add(new_table)
         db.session.commit()
 
@@ -74,6 +74,10 @@ def table_delete(body, user_id):
         if user is None or user.is_admin == False :
             return error_response("No tienes autorizacion", 401)
         
+        check_order = Order.query.filter((Oder.table_id == body["id"])).first()
+        if check_order is not None:
+            return error_response("Esta mesa tiene un pedido asignado", 400)
+
         table_delete = Table.query.filter((Table.id == body["id"])).first()
 
         if table_delete is None:

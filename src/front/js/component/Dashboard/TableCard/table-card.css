@@ -1,0 +1,40 @@
+.table-card {
+    display: flex;
+    flex-flow: row nowrap;
+    border-radius: 0.8rem;
+    border: solid 2px var(--theme-color);
+    padding: 0.3rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    gap: 1rem;
+  }
+  
+  .table-card:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+  }
+  
+  .table-card > div:nth-child(1) {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .btn-border-color:hover {
+    border: solid 2px var(--theme-color);
+  }
+
+  /* -- Media Queries -- */
+  @media (min-width: 412px) {
+    .table-card {
+      flex-flow: column nowrap;
+      padding: 0.5rem;
+    }
+
+    .table-card > div:nth-child(1) {
+      flex-grow: 1;
+      gap: 1rem;
+      width: 100%;
+    }
+  }
