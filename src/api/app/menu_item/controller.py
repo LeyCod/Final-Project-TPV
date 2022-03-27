@@ -12,7 +12,7 @@ def get_menu_item(company_id):
         return success_response(list_menu_item)
 
     except Exception as error:
-        print("Error in get menu_item", error)
+        print("ERROR GET MENU ITEM", error)
         return error_response("Error interno del servidor",500)
 
 def get_item(id):
@@ -25,7 +25,7 @@ def get_item(id):
         return success_response(item.serialize())
 
     except Exception as error:
-        print("Error in get item", error)
+        print("ERROR GET ITEM", error)
         return error_response("Error interno del servidor", 500)
 
 
@@ -61,7 +61,7 @@ def register_menu_item(body, user_id):
         return success_response(new_menu_item.serialize(),201)
     except Exception as err:
         db.session.rollback()
-        print("[ERROR REGISTER MENU_ITEM]:",err)
+        print("[ERROR REGISTER MENU ITEM]:",err)
         return error_response("Error interno del servidor", 500)
 
 def update_menu_item(body, user_id):
@@ -83,7 +83,7 @@ def update_menu_item(body, user_id):
 
     except Exception as err:
         db.session.rollback()
-        print("[ERRPR UPDATE MENU_ITEM]", err)
+        print("[ERROR UPDATE MENU ITEM]", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.", 500)
 
 def delete_menu_item(body,user_id):
@@ -115,5 +115,5 @@ def delete_menu_item(body,user_id):
 
     except Exception as err:
         db.session.rollback()
-        print("[ERROR DELETE MENU_ITEM]:", err )
+        print("[ERROR DELETE MENU ITEM]:", err )
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.", 500)

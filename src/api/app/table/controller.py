@@ -19,8 +19,8 @@ def get_all_tables(user_id):
         return list_tables
         
     except Exception as error: 
-        print ("Error in get tables", error)
-        return error_response("internal server error")
+        print ("ERROR GET ALL TABLES", error)
+        return error_response("Error interno del servidor")
 
 def get_table(id):
     try:
@@ -40,7 +40,7 @@ def get_table(id):
         return success_response(table_data)
 
     except Exception as error:
-        print("Error in get_table", error)
+        print("ERROR GET TABLE", error)
         return error_response("Error interno del servidor")
 
 def register_table(body, user_id):
@@ -67,7 +67,7 @@ def register_table(body, user_id):
     except Exception as err: 
         db.session.rollback()
         print("[ERROR REGISTER TABLE]: ", err)
-        return error_response("Solicitud incorrecta", 500)
+        return error_response("Error interno del servidor", 500)
 
 def table_delete(body, user_id):
     try:
@@ -91,7 +91,7 @@ def table_delete(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR DELETE TABLE]: ", err)
-        return error_response("Solicitud incorrecta", 400)
+        return error_response("Error interno del servidor", 400)
 
 def table_update(body, user_id):
     try:
@@ -113,4 +113,4 @@ def table_update(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR UPDATE TABLE]: ", err)
-        return error_response("Solicitud incorrecta3", 400) 
+        return error_response("Error interno del servidor", 400) 
