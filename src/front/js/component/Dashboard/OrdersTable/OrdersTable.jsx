@@ -24,7 +24,8 @@ export const OrdersTable = (props) => {
                             <tr>
                                 <th>ID</th>
                                 <th>Fecha, Hora</th>
-                                <th>ID Mesa</th>
+                                <th>Mesa</th>
+                                <th>Importe</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
@@ -40,7 +41,8 @@ export const OrdersTable = (props) => {
                                     return <tr key={objKey}>
                                         <td>#{store.companyOrders[objKey].id}</td>
                                         <td>{date}</td>
-                                        <td>{store.companyOrders[objKey].table_id}</td>
+                                        <td>{store.companyOrders[objKey].table_name}</td>
+                                        <td>{store.companyOrders[objKey].total_price} €</td>
                                         <td>
                                             {
                                                 store.companyOrders[objKey].is_active

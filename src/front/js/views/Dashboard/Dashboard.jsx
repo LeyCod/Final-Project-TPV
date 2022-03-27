@@ -100,7 +100,7 @@ export const Dashboard = () => {
                                                     <div className="d-flex flex-nowrap align-items-center gap-2">
                                                         Pedidos
 
-                                                        <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">0{/* {store.companyActiveOrders.length} */}</div>
+                                                        <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">{store.companyOrders.length}</div>
                                                     </div>
                                                 </a>
                                             </li>

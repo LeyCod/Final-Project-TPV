@@ -48,6 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			*/
 			storedOrders: {},
+			createdOrders: {},
 			activeTable: null,
 			// #endregion orders
 
@@ -102,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...getStore(), companyID: id });
 			},
 			setCompanyOrders: (data) => {
-				setStore({ ...getStore(), companyOrders: data });
+				setStore({ ...getStore(), companyOrders: data });				
 			},
 			setCompanyTables: (data) => {
 				setStore({ ...getStore(), companyTables: data, companyAvailableTables: data.length - getStore().companyOrders.length });				
@@ -150,7 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 				setStore(store);
-				getActions().setTotalPrice();
+				getActions().setTotalPrice();				
 			},
 			setTotalPrice: () => {
 				const store = getStore();
@@ -167,6 +168,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				store.storedOrders[store.activeTable.id].totalPrice = Math.floor(total * 100) / 100;
 				setStore(store);				
+			},
+			setCreatedOrders: (data) => {
+				const store = getStore();
+
+				console.log("createdorders", data);
+
+				/* if (!store.createdOrders.hasOwnProperty(store.activeTable.id)) {
+					store.storedOrders[store.activeTable.id] = {
+						items: {},
+						totalPrice: 0
+					}
+				}
+
+				setStore(store); */
 			},
 			// #endregion orders
 

@@ -18,7 +18,7 @@ export const SubmitOrderButton = () => {
     const [orderSubmitted, setOrderSubmitted] = useState(false);
 
     const handleSendOrder = async () => {
-        /* setLoading(true);
+        setLoading(true);
 
         let body = {
             "table_id": store.activeTable.id,
@@ -30,7 +30,7 @@ export const SubmitOrderButton = () => {
             let menuItemData = {
                 "menu_item_id": store.menuItems[menuItemID].id,
                 "price": store.menuItems[menuItemID].price,
-                "quantity": store.orderItems[menuItemID]
+                "quantity": orderItems[menuItemID]
             }
 
             body.menu_items = [...body.menu_items, menuItemData];
@@ -44,8 +44,9 @@ export const SubmitOrderButton = () => {
             if (status === 200) {
                 setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.")
                 setOrderSubmitted(true);
-                actions.setActiveOrder(data);
-                actions.restartOrderItems();
+                console.log(data);
+                /* setActiveOrder(data); */
+                /* actions.restartOrderItems(); */
             }
             else {
                 console.error(status);
@@ -58,70 +59,41 @@ export const SubmitOrderButton = () => {
         }
         finally {
             setLoading(false);
-        } */
+        }
     }
 
     const handleCloseOrder = () => {
         console.log("zerramoh");
     }
 
-    useEffect(() => {
-        async function getActiveOrder() {
-            try {
-                setLoading(true);
+    return loading
+        ? <Spinner />
+        : (
+            <div className="d-flex flex-column gap-2 mt-4">
+                {loading ? <Spinner /> : null}
 
-                const response = await apiGetActiveOrder(store.activeTable.id);
-                const data = await response.json();
-                const status = response.status;
+                <p className={`${orderSubmitted ? "text-success" : "text-danger"} ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
 
-                if (status === 200) {
-                    if (data.length !== 0) {
-                        setActiveOrder(true);
+                <button
+                    type="button"
+                    title="Añadir estos elementos al pedido actual"
+                    className="btn outline-theme-color-button shadow-none"
+                    onClick={handleSendOrder}
+                    disabled={Object.keys(orderItems).length === 0 ? true : false}
+                >
+                    {
+                        Object.keys(activeOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"
                     }
-                }
-                else {
-                    console.error(status);
-                    setNotifyMessage("Error interno del servidor.");
-                }
-            }
-            catch (err) {
-                console.error(err);
-                setNotifyMessage("Error interno del servidor.");
-            }
-            finally {
-                setLoading(false);
-            }
-        }
+                </button>
 
-        getActiveOrder();
-    }, []);
-
-    return (
-        <div className="d-flex flex-column gap-2 mt-4">
-            {loading ? <Spinner /> : null}
-
-            <p className={`${orderSubmitted ? "text-success" : "text-danger"} ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
-
-            <button
-                type="button"
-                title="Añadir estos elementos al pedido actual"
-                className="btn outline-theme-color-button shadow-none"
-                onClick={handleSendOrder}
-                disabled={Object.keys(orderItems).length === 0 ? true : false}
-            >
-                {
-                    Object.keys(activeOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"
-                }
-            </button>
-
-            <button
-                type="button"
-                title="Finalizar el pedido actual"
-                className="btn theme-color-button fw-bold shadow-sm"
-                onClick={handleCloseOrder}
-            >
-                FINALIZAR
-            </button>
-        </div>
-    );
+                <button
+                    type="button"
+                    title="Finalizar el pedido actual"
+                    className="btn theme-color-button fw-bold shadow-sm"
+                    onClick={handleCloseOrder}
+                >
+                    FINALIZAR
+                </button>
+            </div>
+        );
 };

@@ -135,6 +135,45 @@ export const useFetchMenuItems = (fetch) => {
   return { fetchMenuItemResult, error, loading }
 }
 
+export const useFetchTableOrder = (fetch) => {
+  const { store, actions } = useContext(Context);
+
+  const [fetchActiveOrder, setFetchActiveOrder] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const getActiveOrder = async () => {
+    try {
+      setLoading(true);
+
+      const response = await apiGetActiveOrder(store.activeTable.id);
+      const data = await response.json();
+      const status = response.status;
+
+      if (status === 200) {
+        actions.setCreatedOrders(data);
+        setFetchActiveOrder(true);
+      }
+      else {
+        setError(true);
+      }
+    }
+    catch (err) {
+      console.error(err);
+      setError(true);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getActiveOrder();
+  }, [fetch]);
+
+  return { fetchActiveOrder, error, loading }
+}
+
 export const useFetchClients = (table_id) => {
   const { store, actions } = useContext(Context);
 
@@ -175,52 +214,3 @@ export const useFetchClients = (table_id) => {
 
   return { fetchResult, error, loading }
 }
-
-
-
-/* export const useFetchTableOrder = (table_id) => {
-  const { store, actions } = useContext(Context);
-
-  const [fetchResult, setFetchResult] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const getActiveOrder = async () => {    
-    try {
-      setLoading(true);
-
-      const responseTable = await apiGetTable(table_id);
-      const dataTable = await responseTable.json();
-      const statusTable = responseTable.status;
-
-      const responseOrder = await apiGetActiveOrder(table_id);
-      const dataOrder = await responseOrder.json();
-      const statusOrder = responseOrder.status;
-
-      if (statusTable === 200 && statusOrder === 200) {
-        actions.setActiveCompanyID(dataTable.company_id);
-        actions.setClientData(dataTable, dataOrder);
-                
-        //actions.setMenuItems(data);
-        setFetchResult(true);
-      }
-      else {
-        setError(true);
-      }
-    }
-    catch (err) {
-      console.error(err);
-      setError(true);
-    }
-    finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getActiveOrder();
-  }, [table_id]);
-
-  return { fetchResult, error, loading }
-}
- */
