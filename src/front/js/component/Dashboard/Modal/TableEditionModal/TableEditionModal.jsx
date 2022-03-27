@@ -18,7 +18,9 @@ export const TableEditionModal = (props) => {
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
 
+    const new_table = store.activeTableEdition.length === 0 ? true : false;
     const [name, setName] = useState(props.new_table ? "" : store.tableData[props.table_index].name);
+    
 
     const handleSaveChanges = async (e) => {
         setNotifyMessage(false);
@@ -28,7 +30,7 @@ export const TableEditionModal = (props) => {
                 "id": props.new_table ? "" : store.tableData[props.table_index].id,
                 "name": name
             };
-
+            console.log(body)
             // Check data
             let validData = true;
             Object.keys(body).forEach(objKey => {
@@ -42,7 +44,7 @@ export const TableEditionModal = (props) => {
                 setNotifyMessage("Completa correctamente todos los campos antes de continuar");
             }
             else {
-                const response = await apiManageTable(props.new_table, JSON.stringify(body));
+                const response = await apiManageTable(new_table ? true : false, JSON.stringify(body));
                 const data = await response.json();
                 const status = response.status;
 
@@ -66,7 +68,7 @@ export const TableEditionModal = (props) => {
             onHide={() => props.setEditTable(false)}
         >
             <Modal.Header closeButton>
-                <h5>{!props.new_table ? `Actualizar elemento` : "Crear elemento"}</h5>
+                <h5>{!props.new_table ? "Actualizar" : "Crear"}</h5>
             </Modal.Header>
 
             <Modal.Body>
@@ -87,10 +89,6 @@ export const TableEditionModal = (props) => {
                     </div>
                 </div>
 
-                {/* <div className="d-flex gap-3 col-12 mb-3"> */}
-
-                {/* </div> */}
-
                 <p className={`text-danger fw-normal ${!notifyMessage ? "d-none" : ""}`}>
                     <i className="fas fa-exclamation-circle me-2"></i>
                     {notifyMessage}
@@ -104,7 +102,7 @@ export const TableEditionModal = (props) => {
                     onClick={handleSaveChanges}
                 >
                     <i className="fas fa-paper-plane me-2"></i>
-                    {!props.new_table ? "Actualizar elemento" : "Crear elemento"}
+                    {!props.new_table ? "Actualizar" : "Crear"}
                 </button>
             </Modal.Footer>
         </Modal>
@@ -113,6 +111,6 @@ export const TableEditionModal = (props) => {
 
 TableEditionModal.propTypes = {
     new_table: PropTypes.bool,
-    table_index: PropTypes.string,
+    table_index: PropTypes.number,
     setEditTable: PropTypes.func
 };

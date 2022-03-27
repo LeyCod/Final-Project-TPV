@@ -8,7 +8,7 @@ export const Tables = () => {
         <div className="dashboard-view-content p-2 p-md-3 p-lg-4">
             <div className="row justify-content-start gap-1" id="menu-items-configuration">
                 <div className="col-12 col-lg-7 cards-grid-system">
-                    <TablesWrapper />
+                    <TablesWrapper edit_table_control={true}/>
                 </div>
             </div>
         </div>

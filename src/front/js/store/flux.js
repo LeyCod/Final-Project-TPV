@@ -24,7 +24,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			orderTable: {},
 			totalPrice: 0, 
 			tableData: {}, 
-			tablesData: {}
+			tablesData: {}, 
+			tableEdition: false
 			
 		},
 		actions: {
@@ -99,7 +100,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setTables: (tablesData) => {
 				getStore().tablesData = tablesData;
-			}
+			},
+			setTableEdition: (value) => {
+				setStore({ ...getStore(), activeTableEdition: value });
+			},
 		}
 	};
 };

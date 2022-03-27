@@ -19,7 +19,7 @@ import { BASE_URL } from "./index";
     
         return fetch(fetchUrl, {
             method: fetchMethod,
-            body: body,
+            body: JSON.stringify(body),
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("api-flask-token")
