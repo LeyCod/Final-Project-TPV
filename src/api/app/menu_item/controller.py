@@ -4,11 +4,13 @@ from flask_jwt_extended import create_access_token
 
 def get_menu_item(company_id):
     try:
-        
         menu_item = db.session.query(MenuItem).filter(MenuItem.company_id == company_id).order_by(MenuItem.id.desc())
-        list_menu_item = []
+
+        list_menu_item = {}
         for menu in menu_item:
-            list_menu_item.append(menu.serialize())
+            value = menu.serialize()            
+            list_menu_item[value["id"]] = value # Each key of the list_menu_item object matches with the id of the menu item
+        
         return success_response(list_menu_item)
 
     except Exception as error:
@@ -27,7 +29,6 @@ def get_item(id):
     except Exception as error:
         print("ERROR GET ITEM", error)
         return error_response("Error interno del servidor", 500)
-
 
 def register_menu_item(body, user_id):
     try:

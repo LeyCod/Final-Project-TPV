@@ -151,7 +151,7 @@ export const useFetchTableOrder = (fetch) => {
       const status = response.status;
 
       if (status === 200) {
-        actions.setCreatedOrders(data);
+        actions.setActiveTableOrder(data);
         setFetchActiveOrder(true);
       }
       else {

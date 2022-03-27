@@ -48,8 +48,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			*/
 			storedOrders: {},
-			createdOrders: {},
 			activeTable: null,
+			activeTableOrder: {},
 			// #endregion orders
 
 			// #region clients
@@ -103,10 +103,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...getStore(), companyID: id });
 			},
 			setCompanyOrders: (data) => {
-				setStore({ ...getStore(), companyOrders: data });				
+				setStore({ ...getStore(), companyOrders: data });
 			},
 			setCompanyTables: (data) => {
-				setStore({ ...getStore(), companyTables: data, companyAvailableTables: data.length - getStore().companyOrders.length });				
+				setStore({ ...getStore(), companyTables: data, companyAvailableTables: data.length - getStore().companyOrders.length });
 			},
 			// #endregion company data
 
@@ -121,7 +121,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// #region orders
 			setActiveTable: (name, id) => {
-				const store = getStore();	
+				const store = getStore();
 				store.activeTable = {
 					name: name,
 					id: id
@@ -134,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}
 
-				setStore(store);								
+				setStore(store);
 			},
 			addOrderItem: (itemID, add) => { // add = true -> Add an item; add = false -> Remove an item
 				const store = getStore();
@@ -151,11 +151,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 				setStore(store);
-				getActions().setTotalPrice();				
+				getActions().setTotalPrice();
 			},
 			setTotalPrice: () => {
 				const store = getStore();
-				
+
 				const orderItems = store.storedOrders[store.activeTable.id].items;
 				let total = 0;
 
@@ -167,21 +167,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 
 				store.storedOrders[store.activeTable.id].totalPrice = Math.floor(total * 100) / 100;
-				setStore(store);				
+				setStore(store);
 			},
-			setCreatedOrders: (data) => {
-				const store = getStore();
-
-				console.log("createdorders", data);
-
-				/* if (!store.createdOrders.hasOwnProperty(store.activeTable.id)) {
-					store.storedOrders[store.activeTable.id] = {
-						items: {},
-						totalPrice: 0
-					}
-				}
-
-				setStore(store); */
+			setActiveTableOrder: (data) => {
+				setStore({ ...getStore(), activeTableOrder: data });
+				console.log(getStore());
 			},
 			// #endregion orders
 
@@ -190,7 +180,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				store.clientInfo.company = companyData;
 
-				setStore(store);				
+				setStore(store);
 			}
 			// #endregion clients
 		}

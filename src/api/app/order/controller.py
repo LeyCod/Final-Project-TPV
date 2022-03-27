@@ -1,7 +1,7 @@
 from api.shared.response import success_response, error_response
 from api.models.index import db, Order, OrderItem, User, Table, Company, MenuItem
 from flask_jwt_extended import create_access_token
-from sqlalchemy import text
+from sqlalchemy import text, func
 
 def get_all_orders(company_id):
     try:
@@ -47,18 +47,11 @@ def get_order_by_table(table_id):
         order = Order.query.filter(Order.table_id == table_id, Order.is_active==True).first()        
         
         if order is None:
-            return success_response("No hay ningún pedido activo para la mesa", 200)
-    
-        list_order_item = db.session.query(OrderItem).filter(OrderItem.order_id == order.id)
+            return success_response([])
 
-        order_item_list = []
-        for order_item in list_order_item:
-            order_item_json = order_item.serialize()
-            menu_items = db.session.query(MenuItem).filter(MenuItem.id == order_item_json["id"])
-            #order_item_json["menu_items"] = list(map(lambda item: item.serialize(), menu_items))
-            order_item_list.append(order_item_json)
-        
-        return success_response({"item_list": order_item_list, "total_price": order.total_price})
+        grouped_items = db.session.query(OrderItem.item_id, func.count(OrderItem.item_id)).filter(OrderItem.order_id == order.id).group_by(OrderItem.item_id).all()
+                        
+        return success_response({"items": dict(grouped_items), "totalPrice": order.total_price})
 
     except Exception as error:
         print("ERROR GET ORDER BY TABLE", error)
