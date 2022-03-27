@@ -30,7 +30,7 @@ export const PendingOrderAlert = (props) => {
                                 <div>
                                     <small className="text-nowrap">{processedItems[itemIndex]} x</small>
 
-                                    {store.menuItems[itemIndex].name}
+                                    {store.menuItems[itemIndex] === undefined ? "" : store.menuItems[itemIndex].name}
 
                                 </div>
 

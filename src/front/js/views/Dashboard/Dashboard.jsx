@@ -100,7 +100,15 @@ export const Dashboard = () => {
                                                     <div className="d-flex flex-nowrap align-items-center gap-2">
                                                         Pedidos
 
-                                                        <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">{store.companyOrders.length}</div>
+                                                        <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-sm text-white rounded-circle"
+                                                            >
+                                                                {store.companyOrders.length}
+                                                            </button>
+
+                                                        </div>
                                                     </div>
                                                 </a>
                                             </li>

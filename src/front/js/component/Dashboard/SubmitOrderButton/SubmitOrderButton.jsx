@@ -41,9 +41,10 @@ export const SubmitOrderButton = () => {
             const status = response.status;
 
             if (status === 200) {
+                actions.restartStoredOrders();                
                 setOrderSubmitted(true);
-                actions.restartStoredOrders();
-                setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.");
+                setNotifyMessage("Gracias. El pedido ha sido enviado correctamente.");               
+                actions.setActiveTable(store.activeTable.name, store.activeTable.id);
             }
             else {
                 console.error(status);
@@ -69,7 +70,7 @@ export const SubmitOrderButton = () => {
             <div className="d-flex flex-column gap-2 mt-4">
                 {loading ? <Spinner /> : null}
 
-                <p className={`${orderSubmitted ? "text-success" : "text-danger"} ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
+                <p className={`fw-normal ${orderSubmitted ? "text-success" : "text-danger"} ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
 
                 {
                     Object.keys(orderItems).length !== 0

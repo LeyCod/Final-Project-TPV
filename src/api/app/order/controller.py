@@ -48,16 +48,21 @@ def get_order_by_table(table_id):
         
         if order is None:
             return success_response({})
-
-        grouped_items = db.session.query(OrderItem.item_id, func.count(OrderItem.item_id)).filter(OrderItem.order_id == order.id).group_by(OrderItem.item_id).all()
-                        
-        return success_response({"items": dict(grouped_items), "totalPrice": order.total_price})
+       
+        order_items = OrderItem.query.filter(OrderItem.order_id == order.id).all()
+        
+        items_order = {}
+        for item in order_items:
+            item_json = item.serialize()
+            items_order[item_json["item_id"]] = item_json["quantity"]
+            
+        return success_response({"items": items_order, "totalPrice": order.total_price})
 
     except Exception as error:
         print("ERROR GET ORDER BY TABLE", error)
         return error_response("Error interno del servidor", 500)
 
-def register_order(body, table_id):
+def register_order(body, table_id):   
     try:
         if body is None:
             return error_response("Solicitud incorrecta", 400)
@@ -81,7 +86,7 @@ def register_order(body, table_id):
 
         order= db.session.query(Order).filter(Order.table_id == table_id, Order.is_active==True).first()
         
-        if order is None:
+        if order is None: # register new order
             new_order = Order(table_id=table_id,company_id= body["company_id"],total_price=total_price)
             
             db.session.add(new_order)
@@ -93,10 +98,16 @@ def register_order(body, table_id):
 
             db.session.commit()
             return success_response(new_order.serialize())
-        else:
+        else: # update existing order
             for order_item in body["menu_items"]:
-                new_order_item= OrderItem(quantity=order_item["quantity"],order_id=order.id,item_id=order_item["menu_item_id"])
-                db.session.add(new_order_item)
+                check_order_item = db.session.query(OrderItem).filter(OrderItem.item_id == order_item["menu_item_id"], OrderItem.order_id == order.id).first()
+
+                if check_order_item is None:                         
+                    new_order_item= OrderItem(quantity=order_item["quantity"],order_id=order.id,item_id=order_item["menu_item_id"])
+                    db.session.add(new_order_item)
+                
+                else:
+                    update_order_item = db.session.query(OrderItem).filter(OrderItem.item_id == order_item["menu_item_id"], OrderItem.order_id == order.id).update(dict(quantity = check_order_item.quantity + order_item["quantity"]))
 
             update_order = Order.query.filter(Order.id == order.id).update(dict(total_price = total_price + order.total_price))
             db.session.commit()

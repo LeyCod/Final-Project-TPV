@@ -64,8 +64,7 @@
 }
 
 #dashboard-sidebar .company-logo {
-  text-align: center;
-  background-color: #ffffff21;
+  text-align: center;  
 }
 
 #dashboard-sidebar li {
@@ -96,8 +95,8 @@
 }
 
 #dashboard-sidebar .user-notifications-number {
-  width: 21px;
-  height: 21px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background-color: var(--red);
   font-size: 0.8rem;

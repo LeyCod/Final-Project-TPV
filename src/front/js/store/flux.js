@@ -164,7 +164,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...getStore(), activeTableOrder: data });
 			},
 			restartStoredOrders: () => {
-				setStore({...getStore(), storedOrders: {}});				
+				const store = getStore();
+				store.storedOrders[store.activeTable.id].items = {};
+				store.storedOrders[store.activeTable.id].totalPrice = 0;
+
+				setStore(store);				
 			},
 			// #endregion orders
 
