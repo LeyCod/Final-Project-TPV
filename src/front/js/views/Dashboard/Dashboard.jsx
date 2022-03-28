@@ -15,7 +15,7 @@ import { apiUserLogout } from "../../service/user";
 import { Spinner } from "../../component/Spinner/Spinner.jsx";
 import { ErrorModal } from "../../component/Modal/ErrorModal/ErrorModal.jsx";
 import { ExpiredSessionModal } from "../../component/Modal/ExpiredSessionModal.jsx";
-
+import { ToastContainer, Flip } from "react-toastify";
 import { ViewTitle } from "../../component/Dashboard/ViewTitle/ViewTitle.jsx";
 import { General } from "../../component/Dashboard/General/General.jsx";
 import { Orders } from "../../component/Dashboard/Orders/Orders.jsx";
@@ -274,6 +274,7 @@ export const Dashboard = () => {
                                     </div>
                                 </main>
 
+                                <ToastContainer transition={Flip} />
                                 <NewOrderButton handleChangeView={handleChangeView} />
                             </div>
                         </div>

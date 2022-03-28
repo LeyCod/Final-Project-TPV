@@ -9,7 +9,7 @@ import { apiOrderSubmit } from "../../../service/order";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
-import { ToastContainer, toast, Flip } from "react-toastify";
+import { toast } from "react-toastify";
 
 export const SubmitOrderButton = () => {
     const { store, actions } = useContext(Context);
@@ -21,7 +21,7 @@ export const SubmitOrderButton = () => {
 
     const notify = () => {      
         toast("Pedido realizado correctamente", {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 2500,
             hideProgressBar: true,
             closeOnClick: true,
@@ -86,8 +86,7 @@ export const SubmitOrderButton = () => {
         ? <Spinner />
         : (
             <div className="d-flex flex-column gap-2">
-                {loading ? <Spinner /> : null}
-                <ToastContainer transition={Flip} />
+                {loading ? <Spinner /> : null}                
 
                 <p className={`fw-normal text-danger ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
 
