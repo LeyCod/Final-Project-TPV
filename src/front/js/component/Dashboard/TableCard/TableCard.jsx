@@ -43,7 +43,12 @@ export const TableCard = (props) => {
                         className="btn btn-sm xs-button theme-color-button shadow-none"
                         onClick={() => handleTableSelection(props.name, props.table_index)}
                     >
-                        Pedido
+                        {
+                            checkTableOrder(props.table_index)
+                            ? "Ver"
+                            : "Crear"
+                        }
+                        
                     </button>
 
                     <button
