@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
-import { Context } from "../../../store/appContext";
-import { Link } from "react-router-dom";
+import React from "react";
+
+// Components
+import { TablesWrapper } from "../TablesWrapper/TablesWrapper.jsx";
 
 export const Tables = () => {
-    const { store, actions } = useContext(Context);
-
     return (
-        <h4 className="fw-normal">Mesas</h4>
+        <div className="dashboard-view-content p-2 p-md-3 p-lg-4">
+            <div className="row justify-content-start gap-1" id="menu-items-configuration">
+                <div className="col-12 col-lg-7 cards-grid-system">
+                    <TablesWrapper edit_table_control={true}/>
+                </div>
+            </div>
+        </div>
     );
 };

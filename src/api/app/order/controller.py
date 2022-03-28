@@ -40,7 +40,7 @@ def register_order(body, table_id):
             return error_response("Solicitud incorrecta", 400)
 
         if "company_id" not in body:
-             return error_response("Solicitud incorrecta 2", 400)
+            return error_response("Solicitud incorrecta 2", 400)
 
         table = Table.query.get(table_id)
         print(table, "table")
@@ -49,8 +49,6 @@ def register_order(body, table_id):
         
         if table.company_id != body["company_id"]:
             return error_response("La compañia no coincide ", 400)
-        
-       
         
         total_price= 0
 
@@ -87,9 +85,3 @@ def register_order(body, table_id):
         db.session.rollback()
         print("[ERROR REGISTER ORDER]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde!!!", 500)
-
-
-
-
-        
-        
