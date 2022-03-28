@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../../store/appContext";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,14 +8,10 @@ import "./clients-interface.css";
 import defaultCompanyLogo from "../../../assets/img/defaultCompanyLogo.png"
 import clientsInterfaceBG from "../../../assets/img/clientsInterfaceBG.png";
 
-// Functions
-import { apiGetTable } from "../../service/table";
-
 // Components
 import { Spinner } from "../../component/Spinner/Spinner.jsx";
 import { ErrorModal } from "../../component/Modal/ErrorModal/ErrorModal.jsx";
 import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
-import { NewOrderSummaryShortcutButton } from "../../component/Dashboard/NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
 
 // Custom Hooks
 import { useFetchClients } from "../../component/CustomHooks/CustomHooks.jsx";
@@ -45,7 +41,7 @@ export const ClientsInterface = () => {
                                 <img className="img-fluid" src={store.clientInfo.company ? store.clientInfo.company.logo_url : defaultCompanyLogo} alt="CompanyLogo" />
                             </div>
 
-                            <h4 className="m-2">Nuestra <strong>carta</strong></h4>
+                            <h4 className="m-2 mb-3">Nuestra <strong>carta</strong></h4>
 
                             <hr />
 
@@ -57,13 +53,6 @@ export const ClientsInterface = () => {
 
                     <main>
                         {store.clientInfo.company ? <NewOrder /> : null}
-                        
-                        {/* <div className="p-1 text-center">
-                            Hay un pedido en curso de 30€. Pulsa aquí para finalizarlo.
-                        </div> */}
-
-
-                        {/* <NewOrderSummaryShortcutButton /> */}
                     </main>
 
                     <div className="clients-interface-footer">
@@ -76,9 +65,3 @@ export const ClientsInterface = () => {
                 </div>
             );
 };
-/* 
-loading
-        ? <Spinner />
-        : fetchError
-            ? <ErrorModal show={true} />
-            :  */

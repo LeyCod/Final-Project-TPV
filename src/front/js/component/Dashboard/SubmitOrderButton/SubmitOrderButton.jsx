@@ -19,7 +19,7 @@ export const SubmitOrderButton = () => {
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
 
-    const notify = () => {
+    const notify = () => {      
         toast("Pedido realizado correctamente", {
             position: "top-center",
             autoClose: 2500,
@@ -27,10 +27,10 @@ export const SubmitOrderButton = () => {
             closeOnClick: true,
             pauseOnHover: false,
             draggable: true,
-            progress: undefined,
+            progress: false,
             theme: "colored",
             type: "success"
-        });
+        });        
     }
 
     const handleSendOrder = async () => {
@@ -57,9 +57,11 @@ export const SubmitOrderButton = () => {
             const data = await response.json();
             const status = response.status;
 
-            if (status === 200) {
+            if (status === 200) {                
                 actions.restartStoredOrders();
-                actions.setActiveTable(store.activeTable.name, store.activeTable.id);
+                actions.setOrderSummaryOnModal(false);
+                /* actions.setActiveTable(store.activeTable.name, store.activeTable.id); */
+                
                 notify();
             }
             else {

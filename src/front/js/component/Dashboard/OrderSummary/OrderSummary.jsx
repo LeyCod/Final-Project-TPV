@@ -21,7 +21,7 @@ export const OrderSummary = () => {
     const { fetchActiveOrder, error, loading } = useFetchTableOrder(store.activeTable);
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
-    const [showPendingOrderAlert, setShowPendingOrderAlert] = useState(true);
+    const [showPendingOrderAlert, setShowPendingOrderAlert] = useState(false);
 
     return loading
         ? <Spinner />

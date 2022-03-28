@@ -199,6 +199,7 @@
   padding-left: 10px;
   padding-right: 20px;
   font-size: 21px;
+  white-space: nowrap;
 }
 
 .dashboard-view-content {

@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import { Context } from "../../../../store/appContext";
 
 // Styles
 import "./order-summary-modal.css";
@@ -8,11 +8,13 @@ import "./order-summary-modal.css";
 import Modal from "react-bootstrap/Modal";
 import { OrderSummary } from "../../OrderSummary/OrderSummary.jsx";
 
-export const OrderSummaryModal = (props) => {
+export const OrderSummaryModal = () => {
+    const { store, actions } = useContext(Context);
+
     return (
         <Modal id="order-summary-modal"
-            show={props.show}
-            onHide={() => props.setOrderSummaryOnModal(false)}
+            show={store.orderSummaryOnModal}
+            onHide={() => actions.setOrderSummaryOnModal(false)}
         >
             <Modal.Header closeButton className="bg-white" />
             <Modal.Body className="pt-0">
@@ -20,9 +22,4 @@ export const OrderSummaryModal = (props) => {
             </Modal.Body>
         </Modal>
     );
-};
-
-OrderSummaryModal.propTypes = {
-    show: PropTypes.bool,
-    setOrderSummaryOnModal: PropTypes.func
 };
