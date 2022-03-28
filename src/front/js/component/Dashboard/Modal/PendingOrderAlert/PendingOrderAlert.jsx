@@ -56,7 +56,7 @@ export const PendingOrderAlert = (props) => {
                         <div className="mt-3 text-center">
                             <button
                                 type="button"
-                                className="btn btn-sm theme-color-button shadow-none"
+                                className="btn theme-color-button shadow-none"
                                 onClick={() => props.setShowPendingOrderAlert(false)}
                             >
                                 Entendido

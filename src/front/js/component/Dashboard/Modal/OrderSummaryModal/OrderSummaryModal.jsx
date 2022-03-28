@@ -14,7 +14,7 @@ export const OrderSummaryModal = () => {
     return (
         <Modal id="order-summary-modal"
             show={store.orderSummaryOnModal}
-            onHide={() => actions.setOrderSummaryOnModal(false)}
+            /* onHide={() => actions.setOrderSummaryOnModal(false)} */
         >
             <Modal.Header closeButton className="bg-white" />
             <Modal.Body className="pt-0">

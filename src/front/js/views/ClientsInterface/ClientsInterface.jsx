@@ -11,6 +11,7 @@ import clientsInterfaceBG from "../../../assets/img/clientsInterfaceBG.png";
 // Components
 import { Spinner } from "../../component/Spinner/Spinner.jsx";
 import { ErrorModal } from "../../component/Modal/ErrorModal/ErrorModal.jsx";
+import { ToastContainer, Flip } from "react-toastify";
 import { NewOrder } from "../../component/Dashboard/NewOrder/NewOrder.jsx";
 
 // Custom Hooks
@@ -62,6 +63,8 @@ export const ClientsInterface = () => {
                         </Link>
                         &nbsp;| 4Geeks Academy
                     </div>
+
+                    <ToastContainer transition={Flip} />
                 </div>
             );
 };

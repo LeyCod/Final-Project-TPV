@@ -167,9 +167,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			restartStoredOrders: () => {
 				const store = getStore();
 				store.storedOrders[store.activeTable.id].items = {};
-				store.storedOrders[store.activeTable.id].totalPrice = 0;
+				store.storedOrders[store.activeTable.id].totalPrice = 0;				
 
 				setStore(store);				
+				getActions().setOrderSummaryOnModal(false);
 			},
 			setOrderSummaryOnModal: (bool) => {
 				setStore({...getStore(), orderSummaryOnModal: bool})
