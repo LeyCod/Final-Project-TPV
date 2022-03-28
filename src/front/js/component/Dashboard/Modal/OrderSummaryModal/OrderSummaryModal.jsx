@@ -1,25 +1,26 @@
-import React, { useContext } from "react";
-import { Context } from "../../../../store/appContext";
+import React from "react";
 
 // Styles
 import "./order-summary-modal.css";
 
 // Components
-import Modal from "react-bootstrap/Modal";
 import { OrderSummary } from "../../OrderSummary/OrderSummary.jsx";
 
 export const OrderSummaryModal = () => {
-    const { store, actions } = useContext(Context);
-
     return (
-        <Modal id="order-summary-modal"
-            show={store.orderSummaryOnModal}
-            onHide={() => actions.setOrderSummaryOnModal(false)}
-        >
-            <Modal.Header closeButton className="bg-white" />
-            <Modal.Body className="pt-0">
-                <OrderSummary />
-            </Modal.Body>
-        </Modal>
+        <div className="modal fade" id="OrderSummaryModal">
+            <div className="modal-dialog" id="order-summary-modal">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5>Información</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div className="modal-body">
+                        <OrderSummary />
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };

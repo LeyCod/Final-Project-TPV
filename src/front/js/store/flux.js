@@ -41,7 +41,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			storedOrders: {},
 			activeTable: null,
 			activeTableOrder: {},
-			orderSummaryOnModal: false,
 			// #endregion orders
 
 			// #region clients
@@ -170,9 +169,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.storedOrders[store.activeTable.id].totalPrice = 0;
 
 				setStore(store);
-			},
-			setOrderSummaryOnModal: (bool) => {
-				setStore({ ...getStore(), orderSummaryOnModal: bool })
 			},
 			// #endregion orders
 

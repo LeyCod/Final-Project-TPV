@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
 
 // Styles
@@ -8,7 +8,6 @@ import "./order-summary.css";
 import { Spinner } from "../../Spinner/Spinner.jsx";
 import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
 import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.jsx";
-import { PendingOrderAlert } from "../Modal/PendingOrderAlert/PendingOrderAlert.jsx";
 import { SubmitOrderButton } from "../SubmitOrderButton/SubmitOrderButton.jsx";
 
 // Custom Hooks
@@ -21,7 +20,6 @@ export const OrderSummary = () => {
     const { fetchActiveOrder, error, loading } = useFetchTableOrder(store.activeTable);
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
-    const [showPendingOrderAlert, setShowPendingOrderAlert] = useState(false);
 
     return loading
         ? <Spinner />
@@ -34,12 +32,13 @@ export const OrderSummary = () => {
                             {
                                 Object.keys(store.activeTableOrder).length !== 0
                                     ? <div>
-                                        <h4>{store.activeTable.name === "" ? null : store.activeTable.name} - Resumen del pedido</h4>
+                                        <h4>{store.activeTable.name === "" ? null : store.activeTable.name} <span className="fw-normal">- Resumen del pedido</span></h4>
                                         <button
                                             type="button"
                                             title="Finalizar el pedido actual"
                                             className="d-flex justify-content-center align-items-center gap-2 mt-3 btn theme-color-button w-100 fw-bold shadow-sm"
-                                            onClick={() => setShowPendingOrderAlert(true)}
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#ActiveOrderData"
                                         >
                                             <span className="flex-grow-1">VER</span>
 
@@ -92,13 +91,6 @@ export const OrderSummary = () => {
                         </div>
 
                         <SubmitOrderButton />
-
-                        {
-                            showPendingOrderAlert
-                                ? <PendingOrderAlert setShowPendingOrderAlert={setShowPendingOrderAlert} />
-                                : null
-                        }
-
                     </div>
                 </div>
             );

@@ -4,9 +4,6 @@ import { Context } from "../../../store/appContext";
 // Styles 
 import "./new-order-summary-shortcut-button.css";
 
-// Components
-import { OrderSummaryModal } from "../Modal/OrderSummaryModal/OrderSummaryModal.jsx";
-
 export const NewOrderSummaryShortcutButton = () => {
     const { store, actions } = useContext(Context);
 
@@ -17,13 +14,12 @@ export const NewOrderSummaryShortcutButton = () => {
 
     return (
             <div className="new-order-summary-shortcut-button d-xl-none">
-                <OrderSummaryModal />
-
                 <button
                     title="Ver pedido actual"
                     type="button"
                     className={`rounded-button ${!existingOrder && !existingData ? "d-none" : ""}`}
-                    onClick={() => actions.setOrderSummaryOnModal(true)}
+                    data-bs-toggle="modal"
+                    data-bs-target="#OrderSummaryModal"
                 >
                     <div>
                         {

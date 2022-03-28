@@ -1,3 +1,7 @@
+body {
+  padding-right: 0 !important;
+}
+
 .modal-header {
   display: flex;
   flex-flow: row nowrap;
@@ -5,24 +9,25 @@
   align-items: center;
   gap: 1.7rem;
   border-bottom: 0;
-  padding: 1rem 1rem 0.5rem 1rem 1rem;
-  background-color: #e6e6e6;
+  padding: 0.5rem 1rem;
+  background-color: #ececec;  
 }
 
 .modal-header .btn-close {
   padding: 0.4rem 0.5rem;
-  font-size: 15px;
+  font-size: 14px;
   box-shadow: none;
 }
 
 .modal-header * {
   margin: 0;
-  padding: 0;
+  padding: 0;  
   font-size: 19.5px;
+  color: #000000;
 }
 
 .modal-body {
-  padding-bottom: 0%;
+  padding: 1rem;
 }
 
 .modal-footer {

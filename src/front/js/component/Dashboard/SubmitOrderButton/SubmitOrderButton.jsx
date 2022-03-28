@@ -16,11 +16,12 @@ export const SubmitOrderButton = () => {
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
 
-    const [loading, setLoading] = useState(false);
-    const [notifyMessage, setNotifyMessage] = useState(false);
+    const [loading, setLoading] = useState(false);    
 
-    const notify = () => {
-        toast("Pedido realizado correctamente", {
+    const notify = (result) => {
+        const text = result === "success" ? "Pedido realizado correctamente." : "Ha ocurrido un error. Inténtalo más tarde.";
+
+        toast(text, {
             position: "bottom-center",
             autoClose: 2000,
             hideProgressBar: true,
@@ -29,7 +30,7 @@ export const SubmitOrderButton = () => {
             draggable: true,
             progress: false,
             theme: "colored",
-            type: "success"
+            type: result
         });
     }
 
@@ -57,20 +58,19 @@ export const SubmitOrderButton = () => {
             const data = await response.json();
             const status = response.status;
 
-            if (status === 200) {
-                actions.setOrderSummaryOnModal(false);
+            if (status === 200) {                
                 actions.restartStoredOrders();
                 actions.setActiveTable(store.activeTable.name, store.activeTable.id);
-                notify();
+                notify("success");
             }
             else {
                 console.error(status);
-                setNotifyMessage("Error interno del servidor.");
+                notify("error");
             }
         }
         catch (err) {
             console.error(err);
-            setNotifyMessage("Error interno del servidor.");
+            notify("error");
         }
         finally {
             setLoading(false);
@@ -87,8 +87,6 @@ export const SubmitOrderButton = () => {
             <div className="d-flex flex-column gap-2">
                 {loading ? <Spinner /> : null}
 
-                <p className={`fw-normal text-danger ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
-
                 {
                     Object.keys(orderItems).length !== 0
                         ? <button
@@ -97,6 +95,7 @@ export const SubmitOrderButton = () => {
                             className="btn outline-theme-color-button shadow-none"
                             onClick={handleSendOrder}
                             disabled={Object.keys(orderItems).length === 0 ? true : false}
+                            data-bs-dismiss="modal"
                         >
                             {
                                 Object.keys(store.activeTableOrder).length === 0 ? "CREAR PEDIDO" : "ACTUALIZAR PEDIDO"
