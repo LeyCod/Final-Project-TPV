@@ -22,7 +22,7 @@ export const SubmitOrderButton = () => {
     const notify = () => {
         toast("Pedido realizado correctamente", {
             position: "bottom-center",
-            autoClose: 2500,
+            autoClose: 2000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: false,

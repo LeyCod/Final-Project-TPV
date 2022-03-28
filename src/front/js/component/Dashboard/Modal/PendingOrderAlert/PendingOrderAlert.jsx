@@ -23,11 +23,9 @@ export const PendingOrderAlert = (props) => {
                     <h5>Información</h5>
                 </Modal.Header>
 
-                <Modal.Body className="p-3">
-                    <p>Ya hay un pedido creado en esta mesa. Recuerda que puedes seguir añadiendo productos al mismo antes <i>finalizar y pagar</i>.</p>
-
+                <Modal.Body className="p-3">                    
                     <div>
-                        <p className="bg-secondary bg-opacity-25 text-center">Lo que llevas consumido hasta el momento:</p>
+                        <p className="bg-secondary bg-opacity-25 text-center">Productos consumidos hasta el momento:</p>
 
                         <div className="pending-order-alert-body">
                             {
