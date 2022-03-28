@@ -39,7 +39,7 @@ export const General = (props) => {
                             counter={store.companyAvailableTables}
                             title="Mesas libres"
                             icon="tables"
-                            progress={Math.round((store.companyAvailableTables * 100) / store.companyTables.length)}
+                            progress={Math.round((store.companyAvailableTables * 100) / Object.keys(store.companyTables).length)}
                         />
                     </div>
                 </div>

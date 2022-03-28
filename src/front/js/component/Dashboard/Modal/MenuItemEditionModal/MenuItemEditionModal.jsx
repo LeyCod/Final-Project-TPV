@@ -11,6 +11,7 @@ import { apiManageItem } from "../../../../service/menu-item";
 // Components
 import { Spinner } from "../../../Spinner/Spinner.jsx";
 import Modal from "react-bootstrap/Modal";
+import { toast } from "react-toastify";
 
 export const MenuItemEditionModal = () => {
     const { store, actions } = useContext(Context);
@@ -102,6 +103,7 @@ export const MenuItemEditionModal = () => {
 
                 if (status === 200 || status === 201) {
                     actions.setActiveItemEdition(false);
+                    notify("success");
                 }
                 else {
                     setNotifyMessage(data);
@@ -113,6 +115,22 @@ export const MenuItemEditionModal = () => {
             setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
         }
     };
+
+    const notify = (result) => {
+        const text = result === "success" ? `Elemento ${new_item ? "creado" : "actualizado"}` : "Ha ocurrido un error";
+
+        toast(text, {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: false,
+            theme: "colored",
+            type: result
+        });
+    }
 
     return (
         <Modal id="menu-item-edition"

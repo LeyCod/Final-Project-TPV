@@ -19,7 +19,7 @@ export const SubmitOrderButton = () => {
     const [loading, setLoading] = useState(false);    
 
     const notify = (result) => {
-        const text = result === "success" ? "Pedido realizado correctamente." : "Ha ocurrido un error. Inténtalo más tarde.";
+        const text = result === "success" ? "Pedido realizado correctamente" : "Ha ocurrido un error";
 
         toast(text, {
             position: "bottom-center",

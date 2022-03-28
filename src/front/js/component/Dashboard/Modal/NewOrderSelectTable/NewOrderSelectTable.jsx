@@ -40,7 +40,7 @@ export const NewOrderSelectTable = (props) => {
                     show={true}
                     onHide={() => props.setShowTableSelection(false)}
                 >
-                    {store.companyTables.length === 0
+                    {Object.keys(store.companyTables).length === 0
                         ? <div className="d-flex flex-column flex-nowrap gap-3 p-3 text-center">
                             <i className="far fa-meh fa-3x"></i>
 

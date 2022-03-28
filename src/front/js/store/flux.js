@@ -26,18 +26,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// #endregion user data
 
 			// #region company data
-			companyID: null,
-			companyOrders: {},
+			companyID: null,			
+			// #endregion company data
+
+			// #region tables
 			companyTables: {},
 			companyAvailableTables: null,
-			// #endregion company data
+			activeTableEdition: false,
+			// #endregion tables
 
 			// #region menu items
 			menuItems: {},
 			activeItemEdition: false,
 			// #endregion menu items
 
-			// #region orders			
+			// #region orders	
+			companyOrders: {},
 			storedOrders: {},
 			activeTable: null,
 			activeTableOrder: {},
@@ -93,13 +97,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCompanyID: (id) => {
 				setStore({ ...getStore(), companyID: id });
 			},
-			setCompanyOrders: (data) => {
-				setStore({ ...getStore(), companyOrders: data });
-			},
-			setCompanyTables: (data) => {
-				setStore({ ...getStore(), companyTables: data, companyAvailableTables: data.length - getStore().companyOrders.length });
-			},
 			// #endregion company data
+
+			// #region tables
+			setCompanyTables: (data) => {
+				setStore({ ...getStore(), companyTables: data, companyAvailableTables: Object.keys(data).length - getStore().companyOrders.length });
+			},
+			setActiveTableEdition: (value) => {
+				setStore({ ...getStore(), activeTableEdition: value });
+			},
+			// #endregion tables
 
 			// #region menu items
 			setMenuItems: (data) => {
@@ -111,6 +118,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// #endregion menu items
 
 			// #region orders
+			setCompanyOrders: (data) => {
+				setStore({ ...getStore(), companyOrders: data });
+			},
 			setActiveTable: (name, id) => {
 				const store = getStore();
 				store.activeTable = {

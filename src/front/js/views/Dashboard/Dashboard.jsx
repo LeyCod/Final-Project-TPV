@@ -41,7 +41,7 @@ export const Dashboard = () => {
     const { validateUser, error, loading } = useFetchUser();
 
     /* Dashboard contents definition and control */
-    const [actualDashboardView, setActualDashboardView] = useState("general");
+    const [actualDashboardView, setActualDashboardView] = useState("tables");
 
     const handleChangeView = (viewName) => { /* This handle helps to hide the responsive user top menu when a new view is clicked */
         setActualDashboardView(viewName);
@@ -53,7 +53,7 @@ export const Dashboard = () => {
         "general": { "title": "General", "component": <General handleChangeView={handleChangeView} /> },
         "orders": { "title": "Pedidos", "component": <Orders handleChangeView={handleChangeView} /> },
         "new_order": { "title": "Gestionar pedido", "component": <NewOrder /> },
-        "tables": { "title": "Mesas", "component": <Tables /> },
+        "tables": { "title": "Mesas", "component": <Tables handleChangeView={handleChangeView} /> },
         "items": { "title": "Carta", "component": <MenuItemsConfiguration /> },
         "user_configuration": { "title": "Usuario", "component": <UserConfiguration /> },
         "admin_configuration": { "title": "Administrador", "component": <AdminConfiguration /> }
@@ -103,7 +103,7 @@ export const Dashboard = () => {
                                                         <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">
                                                             <button
                                                                 type="button"
-                                                                className="btn btn-sm text-white rounded-circle"
+                                                                className="btn btn-sm text-white rounded-circle shadow-none"
                                                             >
                                                                 {store.companyOrders.length}
                                                             </button>

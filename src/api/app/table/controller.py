@@ -8,13 +8,14 @@ def get_all_tables(user_id):
         user = User.query.get(user_id)
 
         if user is None: 
-            return error_response("User not exist", 401)
+            return error_response("El usuario no existe", 401)
 
-        tables = db.session.query(Table).filter(Table.company_id == user.company_id)
+        tables = db.session.query(Table).filter(Table.company_id == user.company_id).order_by(Table.id.desc())
         
-        list_tables = []
+        list_tables = {}
         for table in tables: 
-            list_tables.append(table.serialize())
+            value = table.serialize()    
+            list_tables[value["id"]] = value # Each key of the list_tables object matches with the id of the table
         
         return list_tables
         
