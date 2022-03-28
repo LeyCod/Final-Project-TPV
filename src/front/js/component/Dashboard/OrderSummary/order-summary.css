@@ -1,3 +1,7 @@
+#order-summary-container .moda-header {
+  padding-top: 1rem;
+}
+
 #order-summary-container hr {
   margin: 1rem 0;
   background-color: #ddd;
