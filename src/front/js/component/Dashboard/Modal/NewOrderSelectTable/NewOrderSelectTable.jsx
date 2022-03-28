@@ -64,24 +64,26 @@ export const NewOrderSelectTable = (props) => {
                             </Modal.Header>
 
                             <Modal.Body className="p-4">
-                                {
-                                    Object.keys(store.companyTables).map(objKey =>
-                                        <div
-                                            key={objKey}
-                                            className="selectable-table shadow-sm"
-                                            onClick={() => handleTableSelection(store.companyTables[objKey].name, store.companyTables[objKey].id)}
-                                        >
-                                            <button
-                                                type="button"
-                                                className="btn btn-sm theme-color-button w-100 shadow-sm"
+                                <div>
+                                    {
+                                        Object.keys(store.companyTables).map(objKey =>
+                                            <div
+                                                key={objKey}
+                                                className="selectable-table"
+                                                onClick={() => handleTableSelection(store.companyTables[objKey].name, store.companyTables[objKey].id)}
                                             >
-                                                <i className="fas fa-th-large me-2"></i>
+                                                <button
+                                                    type="button"
+                                                    className="px-4 btn btn-sm theme-color-button shadow-sm"
+                                                >
+                                                    {store.companyTables[objKey].name}
 
-                                                {store.companyTables[objKey].name}
-                                            </button>
-                                        </div>
-                                    )
-                                }
+                                                    <i className="fas fa-th-large"></i>
+                                                </button>
+                                            </div>
+                                        )
+                                    }
+                                </div>
                             </Modal.Body>
                         </>
                     }
