@@ -19,7 +19,7 @@ export const SubmitOrderButton = () => {
     const [loading, setLoading] = useState(false);
     const [notifyMessage, setNotifyMessage] = useState(false);
 
-    const notify = () => {      
+    const notify = () => {
         toast("Pedido realizado correctamente", {
             position: "bottom-center",
             autoClose: 2500,
@@ -30,7 +30,7 @@ export const SubmitOrderButton = () => {
             progress: false,
             theme: "colored",
             type: "success"
-        });        
+        });
     }
 
     const handleSendOrder = async () => {
@@ -57,9 +57,9 @@ export const SubmitOrderButton = () => {
             const data = await response.json();
             const status = response.status;
 
-            if (status === 200) {                
-                /* actions.setOrderSummaryOnModal(false); */
-                /* actions.restartStoredOrders(); */
+            if (status === 200) {
+                actions.setOrderSummaryOnModal(false);
+                actions.restartStoredOrders();
                 actions.setActiveTable(store.activeTable.name, store.activeTable.id);
                 notify();
             }
@@ -85,7 +85,7 @@ export const SubmitOrderButton = () => {
         ? <Spinner />
         : (
             <div className="d-flex flex-column gap-2">
-                {loading ? <Spinner /> : null}                
+                {loading ? <Spinner /> : null}
 
                 <p className={`fw-normal text-danger ${!setNotifyMessage ? "d-none" : ""}`}>{notifyMessage}</p>
 
