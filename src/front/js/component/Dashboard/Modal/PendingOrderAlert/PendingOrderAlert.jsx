@@ -19,12 +19,10 @@ export const PendingOrderAlert = (props) => {
                 show={true}
                 onHide={() => props.setShowPendingOrderAlert(false)}
             >
-                <Modal.Header closeButton>
-                    <h5>Información</h5>
-                </Modal.Header>
+                <Modal.Header closeButton className="bg-white" />                    
 
-                <Modal.Body className="p-3">                    
-                    <div>
+                <Modal.Body className="p-2">                    
+                    <div className="pending-order-alert-wrapper">
                         <p className="bg-secondary bg-opacity-25 text-center">Productos consumidos hasta el momento:</p>
 
                         <div className="pending-order-alert-body">
@@ -57,7 +55,7 @@ export const PendingOrderAlert = (props) => {
                                 className="btn theme-color-button shadow-none"
                                 onClick={() => props.setShowPendingOrderAlert(false)}
                             >
-                                Entendido
+                                Cerrar
                             </button>
                         </div>
                     </div>

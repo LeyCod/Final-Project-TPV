@@ -3,6 +3,12 @@
   background-color: #ddd;
 }
 
+.pending-order-alert-wrapper {
+  padding: .5rem;
+  background-color: #e6e6e6a6;
+}
+
+
 #pending-order-alert-body {
   max-height: 48vh;
   padding-right: 0.7rem;
