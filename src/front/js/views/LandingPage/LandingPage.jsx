@@ -4,14 +4,12 @@ import React from "react";
 import "./landing-page.css";
 
 // Components
-import { Slide } from "../../component/LandingPage/Slide/Slide.jsx";
 import { Card } from "../../component/LandingPage/Card/Card.jsx";
 import { Features } from "../../component/LandingPage/Features/Features.jsx";
 
 export const LandingPage = () => {
   return (
     <main id="landing-page-wrapper">
-      <Slide />
 
       <div className="container">
         <div className="row flex-column flex-md-row gap-3 gap-md-0 my-5 py-3 pb-4">
@@ -39,8 +37,7 @@ export const LandingPage = () => {
         <hr />
 
         <Features
-          title="
-          Ahorra tiempo automatizando tareas."
+          title="Ahorra tiempo automatizando tareas."
           text="Mejora la atención al cliente, tus procesos internos y la gestión. MasterGest añade más funcionalidades a tu sistema para aumentar la capacidad de gestión de tu negocio y el crecimiento , siempre adelantandose a  las necesidades de tus clientes. "
           img="https://res.cloudinary.com/da5uckicu/image/upload/v1648239394/restaurant-management-software_mryiye.jpg"
           reverse={false}
