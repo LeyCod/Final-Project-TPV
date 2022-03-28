@@ -182,7 +182,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.clientInfo.company = companyData;
 
 				setStore(store);
-				console.log(store);
 			}
 			// #endregion clients
 		}

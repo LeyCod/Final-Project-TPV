@@ -15,16 +15,14 @@ export const NewOrderSummaryShortcutButton = () => {
     const existingOrder = Object.keys(store.activeTableOrder).length !== 0;
     const existingData = Object.keys(orderItems).length !== 0;
 
-    return !existingOrder && !existingData
-        ? null
-        : (
+    return (
             <div className="new-order-summary-shortcut-button d-xl-none">
                 <OrderSummaryModal />
 
                 <button
                     title="Ver pedido actual"
                     type="button"
-                    className="rounded-button"
+                    className={`rounded-button ${!existingOrder && !existingData ? "d-none" : ""}`}
                     onClick={() => actions.setOrderSummaryOnModal(true)}
                 >
                     <div>
