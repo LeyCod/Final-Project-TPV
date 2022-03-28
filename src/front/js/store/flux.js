@@ -169,8 +169,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.storedOrders[store.activeTable.id].items = {};
 				store.storedOrders[store.activeTable.id].totalPrice = 0;				
 
-				setStore(store);				
-				getActions().setOrderSummaryOnModal(false);
+				setStore(store);
 			},
 			setOrderSummaryOnModal: (bool) => {
 				setStore({...getStore(), orderSummaryOnModal: bool})

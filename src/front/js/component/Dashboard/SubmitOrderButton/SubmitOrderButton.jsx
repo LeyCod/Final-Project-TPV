@@ -58,10 +58,9 @@ export const SubmitOrderButton = () => {
             const status = response.status;
 
             if (status === 200) {                
-                actions.restartStoredOrders();
-                actions.setOrderSummaryOnModal(false);
-                /* actions.setActiveTable(store.activeTable.name, store.activeTable.id); */
-                
+                /* actions.setOrderSummaryOnModal(false); */
+                /* actions.restartStoredOrders(); */
+                actions.setActiveTable(store.activeTable.name, store.activeTable.id);
                 notify();
             }
             else {
@@ -100,7 +99,7 @@ export const SubmitOrderButton = () => {
                             disabled={Object.keys(orderItems).length === 0 ? true : false}
                         >
                             {
-                                Object.keys(store.activeTableOrder).length === 0 ? "ENVIAR PEDIDO" : "ACTUALIZAR PEDIDO"
+                                Object.keys(store.activeTableOrder).length === 0 ? "CREAR PEDIDO" : "ACTUALIZAR PEDIDO"
                             }
                         </button>
                         : null

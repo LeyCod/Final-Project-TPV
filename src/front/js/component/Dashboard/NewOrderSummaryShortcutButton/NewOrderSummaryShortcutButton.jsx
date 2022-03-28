@@ -12,7 +12,10 @@ export const NewOrderSummaryShortcutButton = () => {
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
 
-    return Object.keys(orderItems).length === 0 && Object.keys(store.activeTableOrder).length === 0
+    const existingOrder = Object.keys(store.activeTableOrder).length !== 0;
+    const existingData = Object.keys(orderItems).length !== 0;
+
+    return !existingOrder && !existingData
         ? null
         : (
             <div className="new-order-summary-shortcut-button d-xl-none">
@@ -25,7 +28,15 @@ export const NewOrderSummaryShortcutButton = () => {
                     onClick={() => actions.setOrderSummaryOnModal(true)}
                 >
                     <div>
-                        <p className="fw-normal"><strong>Ver</strong> pedido actual</p>                        
+                        {
+                            existingOrder && existingData
+                                ? <p className="fw-normal"><strong>Añadir</strong> al pedido por <strong>{store.storedOrders[store.activeTable.id].totalPrice} €</strong></p>
+                                : existingOrder && !existingData
+                                    ? <p className="fw-normal"><strong>Ver</strong> pedido actual de <strong>{store.activeTableOrder.totalPrice} €</strong></p>
+                                    : !existingOrder && existingData
+                                        ? <p className="fw-normal"><strong>Crear</strong> pedido por <strong>{store.storedOrders[store.activeTable.id].totalPrice} €</strong></p>
+                                        : null
+                        }
                     </div>
                 </button>
             </div>
