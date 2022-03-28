@@ -14,24 +14,25 @@ export const NewOrderSummaryShortcutButton = () => {
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
 
-    return (
-        <div className="new-order-summary-shortcut-button d-xl-none">
-            {orderSummaryOnModal
-                ? <OrderSummaryModal show={orderSummaryOnModal} setOrderSummaryOnModal={setOrderSummaryOnModal} />
-                : null
-            }
+    return Object.keys(orderItems).length === 0 && Object.keys(store.activeTableOrder).length === 0
+        ? null
+        : (
+            <div className="new-order-summary-shortcut-button d-xl-none">
+                {orderSummaryOnModal
+                    ? <OrderSummaryModal show={orderSummaryOnModal} setOrderSummaryOnModal={setOrderSummaryOnModal} />
+                    : null
+                }
 
-            <button
-                title="Ver pedido actual"
-                type="button"
-                className={`rounded-button ${Object.keys(orderItems).length === 0 ? "d-none" : ""}`}
-                onClick={() => setOrderSummaryOnModal(true)}
-            >
-                <div>
-                    <p className="fw-normal">Ver pedido</p>
-                    <p><strong>{store.storedOrders[store.activeTable.id].totalPrice} €</strong></p>
-                </div>
-            </button>
-        </div>
-    );
+                <button
+                    title="Ver pedido actual"
+                    type="button"
+                    className="rounded-button"
+                    onClick={() => setOrderSummaryOnModal(true)}
+                >
+                    <div>
+                        <p className="fw-normal"><strong>Ver</strong> pedido actual</p>                        
+                    </div>
+                </button>
+            </div>
+        );
 };

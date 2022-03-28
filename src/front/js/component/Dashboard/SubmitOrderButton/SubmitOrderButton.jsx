@@ -83,7 +83,7 @@ export const SubmitOrderButton = () => {
     return loading
         ? <Spinner />
         : (
-            <div className="d-flex flex-column gap-2 mt-4">
+            <div className="d-flex flex-column gap-2">
                 {loading ? <Spinner /> : null}
                 <ToastContainer transition={Flip} />
 

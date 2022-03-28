@@ -19,14 +19,6 @@
   filter: brightness(var(--hover-brightness));
 }
 
-.new-order-summary-shortcut-button button > div {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0rem;  
-}
-
 .new-order-summary-shortcut-button button > div > p {
   margin: 0;
   font-size: 17px;  
