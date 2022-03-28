@@ -5,10 +5,10 @@ header {
 
 .roll_effect {
     width: 100%;
-    height: 500px
+    height: 450px
 }
 
-@media (min-width: 360px) {
+@media (min-width: 360px) and (max-width: 755px) {
 .roll_effect {
     height: 192px;
 }
