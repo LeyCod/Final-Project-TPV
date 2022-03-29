@@ -73,7 +73,7 @@ export const PaymentMethodSelect = () => {
                     notify("success");
 
                     setTimeout(() => {
-                        location.reload();    
+                        location.reload();
                     }, 3000);
                 }
                 else {
@@ -97,7 +97,7 @@ export const PaymentMethodSelect = () => {
             ? <ErrorModal show={true} />
             : (
                 <div className="modal fade" id="PaymentMethodSelect">
-                    <div className="modal-dialog" id="payment-method-select">                        
+                    <div className="modal-dialog" id="payment-method-select">
                         <div className={`modal-content ${showStripePayments ? "ending-pay" : ""}`} >
                             <div className="modal-header">
                                 <h5>{showStripePayments ? "Efectuar pago" : "Seleccionar método de pago"}</h5>
@@ -106,7 +106,20 @@ export const PaymentMethodSelect = () => {
                             <div className="modal-body">
                                 {
                                     showStripePayments
-                                        ? <StripePayments />
+                                        ? <div>
+                                            <StripePayments />
+                                            <div className="mt-3">
+                                                <a
+                                                    className="d-flex justify-content-end align-items-center text-decoration-none text-black"
+                                                    href="#"
+                                                    onClick={()=>setShowStripePayments(false)}                                                    
+                                                >
+                                                    <i class="fas fa-exchange-alt me-2"></i>
+
+                                                    <span>Seleccionar <strong>otro método</strong></span>
+                                                </a>
+                                            </div>
+                                        </div>
                                         : <div>
                                             {
                                                 Object.keys(store.paymentMethods).map(objKey =>
