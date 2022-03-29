@@ -100,7 +100,7 @@ export const SubmitOrderButton = () => {
                         : null
                 }
 
-                {Object.keys(store.activeTableOrder).length !== 0
+                {Object.keys(store.activeTableOrder).length !== 0 && Object.keys(orderItems).length === 0
                     ? <button
                         type="button"
                         title="Finalizar el pedido actual"
