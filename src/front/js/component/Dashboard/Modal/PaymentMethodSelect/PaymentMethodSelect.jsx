@@ -95,8 +95,8 @@ export const PaymentMethodSelect = () => {
             ? <ErrorModal show={true} />
             : (
                 <div className="modal fade" id="PaymentMethodSelect">
-                    <div className="modal-dialog" id="payment-method-select">
-                        <div className="modal-content">
+                    <div className="modal-dialog" id="payment-method-select">                        
+                        <div className={`modal-content ${showStripePayments ? "ending-pay" : ""}`} >
                             <div className="modal-header">
                                 <h5>{showStripePayments ? "Efectuar pago" : "Seleccionar método de pago"}</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal"></button>

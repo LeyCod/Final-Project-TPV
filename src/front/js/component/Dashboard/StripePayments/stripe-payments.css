@@ -12,7 +12,6 @@
 }
 
 #payment-submit-form .card-element-input {
-    width: 340px; 
     margin-bottom: 1rem;
     padding: .5rem;    
     border: 1px solid rgba(172, 172, 172, 0.226);  

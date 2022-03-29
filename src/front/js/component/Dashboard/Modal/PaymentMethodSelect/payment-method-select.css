@@ -3,6 +3,10 @@
   margin: auto;
 }
 
+#payment-method-select .modal-content.ending-pay {
+  width: auto;
+}
+
 #payment-method-select .modal-body > div {
   display: flex;
   flex-flow: column nowrap;
