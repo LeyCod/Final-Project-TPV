@@ -68,13 +68,9 @@ export const PaymentMethodSelect = () => {
 
                 if (status === 201) {
                     console.log("perfe mira!");
-                    /* actions.restartStoredOrders();
-                    actions.setActiveTable(store.activeTable.name, store.activeTable.id); */
+                    actions.restartStoredOrders();
+                    actions.setActiveTableOrder({});                    
                     notify("success");
-
-                    setTimeout(() => {
-                        location.reload();
-                    }, 3000);
                 }
                 else {
                     console.error(status);
@@ -127,6 +123,7 @@ export const PaymentMethodSelect = () => {
                                                         key={objKey}
                                                         className="payment-method-option"
                                                         onClick={() => handleCloseOrder(objKey)}
+                                                        data-bs-dismiss="modal"
                                                     >
                                                         <button
                                                             type="button"
