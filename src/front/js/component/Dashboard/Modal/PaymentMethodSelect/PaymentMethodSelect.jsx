@@ -10,6 +10,7 @@ import { apiOrderClose } from "../../../../service/order";
 // Components
 import { Spinner } from "../../../Spinner/Spinner.jsx";
 import { ErrorModal } from "../../../Modal/ErrorModal/ErrorModal.jsx";
+import { StripePayments } from "../../StripePayments/StripePayments.jsx";
 import { toast } from "react-toastify";
 
 // Custom Hooks
@@ -20,8 +21,9 @@ export const PaymentMethodSelect = () => {
 
     /* Fetch payment methods */
     const { fetchResult, error, loading } = useFetchPaymentMethods(store.activeTable);
-    
+
     const [paymentLoading, setPaymentLoading] = useState(false);
+    const [showStripePayments, setShowStripePayments] = useState(false);
 
     const notify = (result) => {
         const text = result === "success" ? "Pedido finalizado correctamente" : "Ha ocurrido un error";
@@ -49,36 +51,41 @@ export const PaymentMethodSelect = () => {
     const handleCloseOrder = async (selectedMethod) => {
         console.log(selectedMethod);
 
-        setPaymentLoading(true);
-
-        let body = {
-            "id": store.activeTableOrder.order_id,
-            "payment_method_id": selectedMethod,
-            "is_active": false
+        if (selectedMethod === "2") {
+            setShowStripePayments(true);
         }
+        else {
+            setPaymentLoading(true);
 
-        try {
-            const response = await apiOrderClose(body);
-            const data = await response.json();
-            const status = response.status;
-
-            if (status === 201) {
-                console.log("perfe mira!");
-                /* actions.restartStoredOrders();
-                actions.setActiveTable(store.activeTable.name, store.activeTable.id); */
-                notify("success");
+            let body = {
+                "id": store.activeTableOrder.order_id,
+                "payment_method_id": selectedMethod,
+                "is_active": false
             }
-            else {
-                console.error(status);
+
+            try {
+                const response = await apiOrderClose(body);
+                const data = await response.json();
+                const status = response.status;
+
+                if (status === 201) {
+                    console.log("perfe mira!");
+                    /* actions.restartStoredOrders();
+                    actions.setActiveTable(store.activeTable.name, store.activeTable.id); */
+                    notify("success");
+                }
+                else {
+                    console.error(status);
+                    notify("error");
+                }
+            }
+            catch (err) {
+                console.error(err);
                 notify("error");
             }
-        }
-        catch (err) {
-            console.error(err);
-            notify("error");
-        }
-        finally {
-            setPaymentLoading(false);
+            finally {
+                setPaymentLoading(false);
+            }
         }
     }
 
@@ -91,29 +98,33 @@ export const PaymentMethodSelect = () => {
                     <div className="modal-dialog" id="payment-method-select">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5>Seleccionar método de pago</h5>
+                                <h5>{showStripePayments ? "Efectuar pago" : "Seleccionar método de pago"}</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div className="modal-body">
-                                <div>
-                                    {
-                                        Object.keys(store.paymentMethods).map(objKey =>
-                                            <div
-                                                key={objKey}
-                                                className="payment-method-option"
-                                                onClick={() => handleCloseOrder(objKey)}
-                                            >
-                                                <button
-                                                    type="button"
-                                                    className="px-4 btn btn-sm text-capitalize shadow-sm"
-                                                >
-                                                    {store.paymentMethods[objKey].name}
-                                                    {paymentMethodIcons[objKey]}
-                                                </button>
-                                            </div>
-                                        )
-                                    }
-                                </div>
+                                {
+                                    showStripePayments
+                                        ? <StripePayments />
+                                        : <div>
+                                            {
+                                                Object.keys(store.paymentMethods).map(objKey =>
+                                                    <div
+                                                        key={objKey}
+                                                        className="payment-method-option"
+                                                        onClick={() => handleCloseOrder(objKey)}
+                                                    >
+                                                        <button
+                                                            type="button"
+                                                            className="px-4 btn btn-sm text-capitalize shadow-sm"
+                                                        >
+                                                            {store.paymentMethods[objKey].name}
+                                                            {paymentMethodIcons[objKey]}
+                                                        </button>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                }
                             </div>
                         </div>
                     </div>

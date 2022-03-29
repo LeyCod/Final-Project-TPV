@@ -44,7 +44,7 @@ export const OrdersTable = (props) => {
                                     date = date.toLocaleString();
 
                                     return <tr key={objKey}>
-                                        <td><strong>{store.companyOrders[objKey].table_name} (#{store.companyOrders[objKey].table_id})</strong></td>
+                                        <td><strong>{store.companyOrders[objKey].table_name}</strong></td>
                                         <td className="d-none d-md-table-cell">{date}</td>
                                         <td>{store.companyOrders[objKey].total_price} €</td>
                                         <td>
@@ -52,15 +52,15 @@ export const OrdersTable = (props) => {
                                                 store.companyOrders[objKey].is_active
                                                     ? <button
                                                         type="button"
-                                                        className="btn btn-sm xs-button yellow-button pe-none shadow-none"
+                                                        className="btn btn-sm xs-button yellow-button px-0 shadow-none"
                                                     >
                                                         Activo
                                                     </button>
                                                     : <button
                                                         type="button"
-                                                        className="btn btn-sm xs-button green-button pe-none shadow-none"
+                                                        className="btn btn-sm xs-button green-button px-0 shadow-none"
                                                     >
-                                                        Finalizado
+                                                        Pagado
                                                     </button>
                                             }
                                         </td>

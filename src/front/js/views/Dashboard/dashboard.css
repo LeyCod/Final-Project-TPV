@@ -228,13 +228,11 @@
   color: #ffffff;
 }
 
-/* -- Media Queries -- */
-@media (max-width: 992px) {
-  body.modal-open #dashboard-sidebar {
-    display: none;
-  }
+body.modal-open #dashboard-sidebar {
+  display: none !important;
 }
 
+/* -- Media Queries -- */
 @media (max-width: 768px) {
   #dashboard-sidebar {
     width: 123px;
