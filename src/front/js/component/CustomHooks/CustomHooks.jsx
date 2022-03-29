@@ -7,6 +7,7 @@ import { apiCompanyGetData } from "../../service/company";
 import { apiGetActiveOrders, apiGetActiveOrder } from "../../service/order";
 import { apiGetTables, apiGetTable } from "../../service/table";
 import { apiGetMenuItems } from "../../service/menu-item";
+import { apiPaymentMethods } from "../../service/payment-method";
 
 export const useFetchUser = (fetch) => {
   const { store, actions } = useContext(Context);
@@ -211,6 +212,45 @@ export const useFetchClients = (table_id) => {
   useEffect(() => {
     getClientInfo();
   }, [table_id]);
+
+  return { fetchResult, error, loading }
+}
+
+export const useFetchPaymentMethods = (fetch) => {
+  const { store, actions } = useContext(Context);
+
+  const [fetchResult, setFetchResult] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const getPaymentMethods = async () => {    
+    try {
+      setLoading(true);
+
+      const response = await apiPaymentMethods();
+      const data = await response.json();
+      const status = response.status;
+
+      if (status === 200) {
+        actions.setPaymentMethods(data);        
+        setFetchResult(true);
+      }
+      else {
+        setError(true);
+      }
+    }
+    catch (err) {
+      console.error(err);
+      setError(true);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getPaymentMethods();
+  }, [fetch]);
 
   return { fetchResult, error, loading }
 }

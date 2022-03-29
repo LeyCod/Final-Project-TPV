@@ -27,7 +27,7 @@ export const General = (props) => {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <GeneralSummaryCard
-                            counter={store.companyOrders.length}
+                            counter={store.activeOrdersNumber}
                             title="Pedidos activos"
                             icon="orders"
                             progress={null}

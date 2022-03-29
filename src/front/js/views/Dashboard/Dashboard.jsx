@@ -41,7 +41,7 @@ export const Dashboard = () => {
     const { validateUser, error, loading } = useFetchUser();
 
     /* Dashboard contents definition and control */
-    const [actualDashboardView, setActualDashboardView] = useState("tables");
+    const [actualDashboardView, setActualDashboardView] = useState("general");
 
     const handleChangeView = (viewName) => { /* This handle helps to hide the responsive user top menu when a new view is clicked */
         setActualDashboardView(viewName);
@@ -97,18 +97,20 @@ export const Dashboard = () => {
                                                     onClick={() => handleChangeView("orders")}
                                                 >
                                                     <i className="fas fa-clipboard-list"></i>
-                                                    <div className="d-flex flex-nowrap align-items-center gap-2">
+                                                    <div className="d-flex flex-nowrap align-items-center gap-1">
                                                         Pedidos
 
-                                                        <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">
-                                                            <button
-                                                                type="button"
-                                                                className="btn btn-sm text-white rounded-circle shadow-none"
-                                                            >
-                                                                {store.companyOrders.length}
-                                                            </button>
-
-                                                        </div>
+                                                        {store.activeOrdersNumber === 0
+                                                            ? null
+                                                            : <div className="user-notifications-number d-flex justify-content-center align-items-center shadow-sm">
+                                                                <button
+                                                                    type="button"
+                                                                    className="btn btn-sm text-white rounded-circle shadow-none"
+                                                                >
+                                                                    {store.activeOrdersNumber}
+                                                                </button>
+                                                            </div>
+                                                        }
                                                     </div>
                                                 </a>
                                             </li>

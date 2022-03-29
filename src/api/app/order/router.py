@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.order.controller import get_all_orders, get_order_item, register_order, get_order_by_table
+from api.app.order.controller import get_all_orders, get_order_item, register_order, get_order_by_table, order_update
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
@@ -21,3 +21,8 @@ def get_order(table_id):
 def create_order():
     body = request.get_json(force = True)    
     return register_order(body, table_id=body["table_id"])
+
+@orders.route("/update", methods=["POST"])
+def update_order():
+    body = request.get_json(force = True)    
+    return order_update(body)

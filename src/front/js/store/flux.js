@@ -26,7 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// #endregion user data
 
 			// #region company data
-			companyID: null,			
+			companyID: null,
+			paymentMethods: null,
 			// #endregion company data
 
 			// #region tables
@@ -42,6 +43,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// #region orders	
 			companyOrders: {},
+			activeOrdersNumber: 0,
 			storedOrders: {},
 			activeTable: null,
 			activeTableOrder: {},
@@ -97,11 +99,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCompanyID: (id) => {
 				setStore({ ...getStore(), companyID: id });
 			},
+			setPaymentMethods: (data) => {
+				setStore({ ...getStore(), paymentMethods: data });
+			},
 			// #endregion company data
 
 			// #region tables
 			setCompanyTables: (data) => {
-				setStore({ ...getStore(), companyTables: data, companyAvailableTables: Object.keys(data).length - getStore().companyOrders.length });
+				setStore({ ...getStore(), companyTables: data, companyAvailableTables: Object.keys(data).length - getStore().activeOrdersNumber });
 			},
 			setActiveTableEdition: (value) => {
 				setStore({ ...getStore(), activeTableEdition: value });
@@ -119,7 +124,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// #region orders
 			setCompanyOrders: (data) => {
-				setStore({ ...getStore(), companyOrders: data });
+				let count = 0;
+				Object.keys(data).forEach(objKey => {
+					count = data[objKey].is_active ? count + 1 : count;
+				});
+				
+				setStore({ ...getStore(), companyOrders: data, activeOrdersNumber: count });
 			},
 			setActiveTable: (name, id) => {
 				const store = getStore();

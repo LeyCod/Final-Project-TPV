@@ -25,14 +25,14 @@ export const Orders = (props) => {
                     <div className="row">
                         <div className="col-12 d-none d-md-block">
                             <p className="view-description">
-                                Listado de todos los pedidos activos actualmente.
+                                Listado de todos los pedidos realizados.
                             </p>
                         </div>
 
                         <div className="col-12">
                             <div className="rounded-3 p-3 bg-white shadow-sm">
                                 <div>
-                                    <h4 className="m-0 fw-bold">Pedidos activos</h4>
+                                    <h4 className="m-0 fw-bold">Pedidos realizados</h4>
                                 </div>
 
                                 <hr />

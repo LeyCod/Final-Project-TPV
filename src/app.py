@@ -15,6 +15,7 @@ from api.app.table.router import tables
 from api.app.menu_item.router import menu_items
 from api.app.order.router import orders
 from api.app.order_item.router import order_items
+from api.app.payment_method.router import payment_methods
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
 
@@ -58,6 +59,7 @@ app.register_blueprint(tables, url_prefix="/api/table")
 app.register_blueprint(menu_items, url_prefix="/api/menu_item")
 app.register_blueprint(orders, url_prefix="/api/order")
 app.register_blueprint(order_items, url_prefix="/api/order_item")
+app.register_blueprint(payment_methods, url_prefix="/api/payment_method")
 
 cloudinary.config( 
   cloud_name = app.config["CLOUD_NAME"], 

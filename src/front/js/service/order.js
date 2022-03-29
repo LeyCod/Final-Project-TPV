@@ -12,3 +12,10 @@ export const apiOrderSubmit = (orderData) =>
 
 // Get active order by table_id
 export const apiGetActiveOrder = (table_id) => fetch(`${BASE_URL}/api/order/table/${table_id}`);
+
+// Close order
+export const apiOrderClose = (closeData) =>
+    fetch(`${BASE_URL}/api/order/update`, {
+        method: "POST",
+        body: JSON.stringify(closeData)
+    });

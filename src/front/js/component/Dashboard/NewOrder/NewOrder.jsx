@@ -9,6 +9,7 @@ import { MenuItems } from "../MenuItems/MenuItems.jsx";
 import { OrderSummary } from "../OrderSummary/OrderSummary.jsx";
 import { OrderSummaryModal } from "../Modal/OrderSummaryModal/OrderSummaryModal.jsx";
 import { NewOrderSummaryShortcutButton } from "../NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
+import { PaymentMethodSelect } from "../Modal/PaymentMethodSelect/PaymentMethodSelect.jsx";
 import { ActiveOrderData } from "../Modal/ActiveOrderData/ActiveOrderData.jsx";
 
 export const NewOrder = () => {
@@ -18,6 +19,7 @@ export const NewOrder = () => {
         <div className="dashboard-view-content p-3 p-lg-4">
             <OrderSummaryModal />
             <ActiveOrderData />
+            <PaymentMethodSelect />
             
             <div className="row justify-content-start gap-1" id="new-order-wrapper">
                 <div className="col-12 d-none d-md-block">

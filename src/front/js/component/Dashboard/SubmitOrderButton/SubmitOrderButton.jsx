@@ -58,7 +58,7 @@ export const SubmitOrderButton = () => {
             const data = await response.json();
             const status = response.status;
 
-            if (status === 200) {                
+            if (status === 200) {
                 actions.restartStoredOrders();
                 actions.setActiveTable(store.activeTable.name, store.activeTable.id);
                 notify("success");
@@ -77,15 +77,11 @@ export const SubmitOrderButton = () => {
         }
     }
 
-    const handleCloseOrder = () => {
-        console.log("zerramoh");
-    }
-
     return loading
         ? <Spinner />
         : (
             <div className="d-flex flex-column gap-2">
-                {loading ? <Spinner /> : null}
+                {loading ? <Spinner /> : null}                
 
                 {
                     Object.keys(orderItems).length !== 0
@@ -104,12 +100,13 @@ export const SubmitOrderButton = () => {
                         : null
                 }
 
-                {Object.keys(store.activeTableOrder).length !== 0 || Object.keys(orderItems).length !== 0
+                {Object.keys(store.activeTableOrder).length !== 0
                     ? <button
                         type="button"
                         title="Finalizar el pedido actual"
                         className="btn theme-color-button fw-bold shadow-sm"
-                        onClick={handleCloseOrder}
+                        data-bs-toggle="modal" 
+                        data-bs-target="#PaymentMethodSelect"
                     >
                         FINALIZAR Y PAGAR
                     </button>

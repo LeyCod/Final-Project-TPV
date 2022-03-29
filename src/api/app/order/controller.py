@@ -56,7 +56,7 @@ def get_order_by_table(table_id):
             item_json = item.serialize()
             items_order[item_json["item_id"]] = item_json["quantity"]
             
-        return success_response({"items": items_order, "totalPrice": order.total_price})
+        return success_response({"order_id": order.id, "items": items_order, "totalPrice": order.total_price})
 
     except Exception as error:
         print("ERROR GET ORDER BY TABLE", error)
@@ -117,3 +117,21 @@ def register_order(body, table_id):
         db.session.rollback()
         print("[ERROR REGISTER ORDER]: ", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde", 500)
+
+def order_update(body):
+    try:
+        if body is None:
+            return error_response("Solicitud incorrecta", 400)
+
+        if "id" not in body:
+            return error_response("Solicitud incorrecta", 400)
+
+        update_order = Order.query.filter(Order.id == body["id"]).update(dict(body))
+        db.session.commit()
+
+        return success_response("Información actualizada correctamente", 201)
+
+    except Exception as err:
+        db.session.rollback()
+        print("[ERROR UPDATE MENU ITEM]", err)
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.", 500)
