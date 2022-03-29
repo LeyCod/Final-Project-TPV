@@ -1,0 +1,16 @@
+#payment-submit-form .total-detail {
+    border: 1px solid rgba(172, 172, 172, 0.226);  
+    padding: .5rem;
+    margin-bottom: 1rem;
+    background: #e6e6e6c5;
+    color: #000000; 
+    text-align: center; 
+}
+
+#payment-submit-form .total-detail h5 {
+    font-size: 25px;
+}
+
+#payment-submit-form .card-element-input {
+    margin-bottom: 1rem;   
+}

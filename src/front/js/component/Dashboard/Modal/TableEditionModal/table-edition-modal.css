@@ -1,0 +1,13 @@
+#table-edition label {
+    color: #000000;
+    font-weight: 400;
+  }
+  
+  #table-edition input {
+    font-family: "Roboto", sans-serif;
+  }
+  
+  #table-edition input:focus {
+    border: 1px solid #ced4da;
+  }
+  

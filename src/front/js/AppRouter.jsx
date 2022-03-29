@@ -1,14 +1,18 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop.jsx";
 import injectContext from "./store/appContext";
 
-// Views
-import { Home } from "./views/Home.jsx";
-import { Login } from "./views/Login/Login.jsx";
-
 // Layout
 import Layout from "./layout/Layout.jsx";
+
+// Views
+import { LandingPage } from "./views/LandingPage/LandingPage.jsx";
+import { Login } from "./views/Login/Login.jsx";
+import { RegisterCompany } from "./views/RegisterCompany/RegisterCompany.jsx";
+import { RegisterUser } from "./views/RegisterUser/RegisterUser.jsx";
+import { Dashboard } from "./views/Dashboard/Dashboard.jsx";
+import { ClientsInterface } from "./views/ClientsInterface/ClientsInterface.jsx";
 
 const AppRouter = () => {
 	// The basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -21,11 +25,23 @@ const AppRouter = () => {
 				<ScrollToTop>
 					<Layout>
 						<Switch>
+							<Route exact path="/clients/:table_id">
+								<ClientsInterface />
+							</Route>
 							<Route exact path="/">
-								<Home />
+								<LandingPage />
 							</Route>
 							<Route exact path="/login">
 								<Login />
+							</Route>
+							<Route exact path="/register-company">
+								<RegisterCompany />
+							</Route>
+							<Route exact path="/register-user">
+								<RegisterUser />
+							</Route>
+							<Route exact path="/dashboard">
+								<Dashboard />
 							</Route>
 							<Route>
 								<h1>Not found!</h1>

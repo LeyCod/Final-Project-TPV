@@ -1,0 +1,14 @@
+.tables-configuration-add {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    border: 1px solid #6c757d;
+}
+
+.tables-configuration-add:hover {
+    background-color: #e6e6e680;
+    cursor: pointer;
+    transform: scale(1.01);
+}

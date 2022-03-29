@@ -1,0 +1,25 @@
+#new-order-select-table .modal-content {
+  width: fit-content;
+  margin: auto;
+}
+
+#new-order-select-table .modal-body > div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: .7rem;
+}
+
+#new-order-select-table .selectable-table {
+  cursor: pointer;
+}
+
+#new-order-select-table .selectable-table button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;  
+}

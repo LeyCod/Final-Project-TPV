@@ -1,0 +1,55 @@
+.table-card {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.2rem;
+  border-radius: 0.3rem;
+  padding: 0.5rem;  
+  background-color: #ffffff;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.table-card:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+
+.table-card p {
+  margin-bottom: 0;
+}
+
+.table-card > div:nth-child(1) {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: .7rem;
+}
+
+.table-card > div:nth-child(1) > p {
+  order: 2;
+}
+
+.table-card > div:nth-child(1) > i {
+  order: 1;
+}
+
+.table-card > div:nth-child(2) {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* -- Media Queries -- */
+@media (max-width: 576px) {
+  .table-card {
+    flex-flow: row nowrap;
+    gap: .5rem;
+    padding: 0.3rem;
+  }
+
+  .table-card > div:nth-child(2) {
+    margin-left: auto;
+  }
+}

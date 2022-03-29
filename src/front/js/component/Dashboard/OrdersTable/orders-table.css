@@ -1,0 +1,54 @@
+#orders-table .table-responsive {
+  max-height: 320px;
+}
+
+#orders-table table > :not(:first-child) {
+  border-top: 0;
+}
+
+#orders-table table tr th,
+#orders-table table tr td {
+  text-align: center;
+}
+
+#orders-table table tr th {
+  border: 0;
+  background-color: #e4e4e4;
+}
+
+#orders-table table tr th:first-child,
+#orders-table table tr td:first-child {
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+#orders-table table tr th:last-child,
+#orders-table table tr td:last-child {
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+#orders-table table tbody:before {
+  content: "*";
+  display: block;
+  line-height: 10px;
+  color: #ffffff;
+  text-indent: -99999px;
+}
+
+#orders-table table tr td {
+  border: 0;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  background-color: #ffffff;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#orders-table table tbody tr:hover > td {
+  background-color: #f2780c17;
+}
+
+#orders-table table tr td button {
+  width: 70px;
+}

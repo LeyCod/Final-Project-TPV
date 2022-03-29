@@ -1,0 +1,66 @@
+#clients-interface {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+}
+
+#clients-interface .clients-interface-banner-wrapper {  
+  background-size: 180%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;   
+}
+
+.clients-interface-company-banner {
+  width: 100%;
+  padding: 1rem 0;
+  color: #ffffff;
+  text-align: center;   
+}
+
+.clients-interface-company-banner img {
+  max-width: 75px;
+  margin-bottom: .5rem;
+}
+
+.clients-interface-company-banner h4 {
+  font-family: "Merriweather", serif;  
+}
+
+.clients-interface-company-banner hr {
+  width: 35px;
+  height: 2.5px;
+  background-color: var(--theme-color);
+  margin: auto;
+  opacity: 1;
+}
+
+.clients-interface-company-description {
+  margin-top: 1rem;
+  padding: 0 1.5rem;
+}
+
+.clients-interface-company-description p {
+  font-family: "Raleway", sans-serif;
+  margin: auto;
+  padding: .5rem .3rem;  
+}
+
+#clients-interface main {
+  flex-grow: 1;
+  box-shadow: 0px -10px 20px -19px rgb(0 0 0);
+}
+
+#clients-interface main > .dashboard-view-content {
+  padding: .5rem !important;
+}
+
+#clients-interface .clients-interface-footer {
+  padding: .5rem 0 .3rem 0;
+  background-color: #f2f2f2;  
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: .5px;
+  text-align: center;
+}
