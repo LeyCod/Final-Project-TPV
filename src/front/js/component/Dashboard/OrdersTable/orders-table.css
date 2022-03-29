@@ -1,3 +1,7 @@
+#orders-table .table-responsive {
+  max-height: 320px;
+}
+
 #orders-table table > :not(:first-child) {
   border-top: 0;
 }

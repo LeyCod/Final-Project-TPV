@@ -26,7 +26,7 @@ export const OrderSummary = () => {
         : error
             ? <ErrorModal show={true} />
             : (
-                <div id="order-summary-container">
+                <div id="order-summary-container">                    
                     <div className="order-summary">
                         <div className="order-summary-title">
                             {
@@ -37,7 +37,7 @@ export const OrderSummary = () => {
                                             type="button"
                                             title="Finalizar el pedido actual"
                                             className="d-flex justify-content-center align-items-center gap-2 mt-3 btn theme-color-button w-100 fw-bold shadow-sm"
-                                            data-bs-toggle="modal" 
+                                            data-bs-toggle="modal"
                                             data-bs-target="#ActiveOrderData"
                                         >
                                             <span className="flex-grow-1">VER</span>

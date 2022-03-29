@@ -49,8 +49,6 @@ export const PaymentMethodSelect = () => {
     }
 
     const handleCloseOrder = async (selectedMethod) => {
-        console.log(selectedMethod);
-
         if (selectedMethod === "2") {
             setShowStripePayments(true);
         }
@@ -73,6 +71,10 @@ export const PaymentMethodSelect = () => {
                     /* actions.restartStoredOrders();
                     actions.setActiveTable(store.activeTable.name, store.activeTable.id); */
                     notify("success");
+
+                    setTimeout(() => {
+                        location.reload();    
+                    }, 3000);
                 }
                 else {
                     console.error(status);

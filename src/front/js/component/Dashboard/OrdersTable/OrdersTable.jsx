@@ -37,7 +37,7 @@ export const OrdersTable = (props) => {
                         <tbody>
                             {
                                 Object.keys(store.companyOrders).map(objKey => {
-                                    if (!props.viewAll && objKey > 1) { return false; } // Only two orders in the "recents orders" table
+                                    if (!props.viewAll && objKey > 2) { return false; } // Only three orders in the "recents orders" table
 
                                     let date = store.companyOrders[objKey].created_at;
                                     date = new Date(date);
