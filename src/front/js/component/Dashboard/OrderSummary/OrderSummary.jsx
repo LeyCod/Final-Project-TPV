@@ -50,7 +50,7 @@ export const OrderSummary = () => {
                                             </div>
                                         </button>
                                     </div>
-                                    : <h4>{store.activeTable.name === "" ? null : store.activeTable.name} - Crear nuevo pedido</h4>
+                                    : <h4 className="text-capitalize">{store.activeTable.name === "" ? null : store.activeTable.name} - Crear nuevo pedido</h4>
                             }
                         </div>
 

@@ -1,23 +1,13 @@
-#menu-item-edition label {
+#table-edition label {
     color: #000000;
     font-weight: 400;
-}
-
-#menu-item-edition input {
+  }
+  
+  #table-edition input {
     font-family: "Roboto", sans-serif;
-}
-
-#menu-item-edition input:focus {
+  }
+  
+  #table-edition input:focus {
     border: 1px solid #ced4da;
-}
-
-#menu-item-edition-img {
-    display: flex;
-    width: 143.3px;
-    max-height: 162.4px;
-}
-
-#menu-item-edition-img img {
-    object-fit: cover;
-    object-position: center;
-}
+  }
+  

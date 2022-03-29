@@ -21,7 +21,7 @@ def get_all_tables(user_id):
         
     except Exception as error: 
         print ("ERROR GET ALL TABLES", error)
-        return error_response("Error interno del servidor")
+        return error_response("Error interno del servidor.")
 
 def get_table(id):
     try:
@@ -42,7 +42,7 @@ def get_table(id):
 
     except Exception as error:
         print("ERROR GET TABLE", error)
-        return error_response("Error interno del servidor")
+        return error_response("Error interno del servidor.")
 
 def register_table(body, user_id):
     try: 
@@ -51,15 +51,12 @@ def register_table(body, user_id):
 
         if "name" not in body or len(body["name"]) == 0:
             return error_response("Debes escribir un nombre.", 400)
-        
-        if "capacity" not in body:
-            return error_response("Debes escribir una capacidad.", 400)
 
         user = User.query.get(user_id)
         if user is None or user.is_admin == False :
             return error_response("No tienes autorizacion", 401)
 
-        new_table = Table(company_id=user.company_id, name=body["name"], capacity=body["capacity"])
+        new_table = Table(company_id=user.company_id, name=body["name"])
         db.session.add(new_table)
         db.session.commit()
 
@@ -68,7 +65,7 @@ def register_table(body, user_id):
     except Exception as err: 
         db.session.rollback()
         print("[ERROR REGISTER TABLE]: ", err)
-        return error_response("Error interno del servidor", 500)
+        return error_response("Error interno del servidor.", 500)
 
 def table_delete(body, user_id):
     try:
@@ -92,7 +89,7 @@ def table_delete(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR DELETE TABLE]: ", err)
-        return error_response("Error interno del servidor", 400)
+        return error_response("Error interno del servidor.", 400)
 
 def table_update(body, user_id):
     try:
@@ -114,4 +111,4 @@ def table_update(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR UPDATE TABLE]: ", err)
-        return error_response("Error interno del servidor", 400) 
+        return error_response("Error interno del servidor.", 400) 

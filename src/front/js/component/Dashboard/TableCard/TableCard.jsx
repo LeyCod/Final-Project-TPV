@@ -32,7 +32,7 @@ export const TableCard = (props) => {
     return (
         <div className="table-card">
             <div>
-                <p className="fw-bold text-center">{props.name}</p>
+                <p className="fw-bold text-center text-capitalize">{props.name}</p>
                 <i className={`fas fa-circle ${checkTableOrder(props.table_index) ? "text-success" : "text-danger"}`}></i>
             </div>
 
@@ -43,12 +43,7 @@ export const TableCard = (props) => {
                         className="btn btn-sm xs-button theme-color-button shadow-none"
                         onClick={() => handleTableSelection(props.name, props.table_index)}
                     >
-                        {
-                            checkTableOrder(props.table_index)
-                            ? "Ver"
-                            : "Crear"
-                        }
-                        
+                        Pedido                        
                     </button>
 
                     <button
@@ -63,7 +58,7 @@ export const TableCard = (props) => {
                 <button
                     type="button"
                     className="btn btn-sm xs-button outline-theme-color-button shadow-none"
-                    onClick={() => actions.setActiveItemEdition(props.item_index)}
+                    onClick={() => actions.setActiveTableEdition(props.table_index)}
                 >
                     <i className="fas fa-highlighter"></i>
                 </button>
@@ -71,7 +66,7 @@ export const TableCard = (props) => {
 
             {
                 showQR
-                    ? <QRModal table_name={props.name} setShowQR={setShowQR} qr_url={`${window.location.host}/clients/${props.item_index}`} />
+                    ? <QRModal table_name={props.name} setShowQR={setShowQR} qr_url={`${window.location.host}/clients/${props.table_index}`} />
                     : null
             }
         </div>
