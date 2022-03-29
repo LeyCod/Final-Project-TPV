@@ -69,6 +69,8 @@
 
 #dashboard-sidebar li {
   margin-top: 0.8rem;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 #dashboard-sidebar li:hover {

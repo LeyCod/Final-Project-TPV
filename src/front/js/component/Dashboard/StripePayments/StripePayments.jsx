@@ -6,6 +6,7 @@ import "./stripe-payments.css";
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
 import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
+import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements, } from "@stripe/react-stripe-js";
 
@@ -17,50 +18,84 @@ const CheckoutPaymentForm = () => {
 
     const [loading, setLoading] = useState(false);
 
+    const notify = (result) => {
+        const text = result === "success" ? "Pago realizado correctamente" : "Ha ocurrido un error";
+
+        toast(text, {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: false,
+            theme: "colored",
+            type: result
+        });
+    }
+
     const handleSubmitPayment = async (e) => {
         e.preventDefault();
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: "card",
-            card: elements.getElement(CardElement),
-        });
+        try {
+            setLoading(true);
 
-        setLoading(true);
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+                type: "card",
+                card: elements.getElement(CardElement),
+            });
 
-        if (!error) {
-            // console.log(paymentMethod)
-            const { id } = paymentMethod;
-            try {
-                const { data } = await axios.post(
-                    "http://localhost:3001/api/checkout",
-                    {
-                        id,
-                        amount: 10000, //cents
-                    }
-                );
-                console.log(data);
+            if (!error) {                
+                const { id } = paymentMethod; // Transaction ID
 
-                elements.getElement(CardElement).clear();
-            } catch (error) {
-                console.log(error);
+                /* try {
+                    const { data } = await fetch("http://localhost:3001/api/checkout", {
+                        method: "POST",
+                        body: {
+                            id,
+                            amount: 10000, // cents
+                        }
+                    });
+
+                    console.log(data);
+
+                    //elements.getElement(CardElement).clear();
+                }
+                catch (error) {
+                    console.log(error);
+                    notify("error");
+                }
+                finally {
+                    setLoading(false);
+                } */
             }
+            else {
+                console.log("error", error);
+                notify("error");
+            }
+        }
+        catch (error) {
+            console.log(error);
+            notify("error");
+        }
+        finally {
             setLoading(false);
         }
     };
-
-    console.log("consolee", !stripe || loading);
 
     return loading
         ? <Spinner />
         : (
             <div>
-                <p className="m-0">Introduce los datos de tu tarjeta:</p>
+                <p className="m-0">Se va a efectuar un pago de:</p>
 
                 <form id="payment-submit-form" onSubmit={handleSubmitPayment}>
                     <div className="total-detail"><h5 className="m-0 fw-bold">100 €</h5></div>
 
-                    <div className="card-element-input shadow-sm">
-                        <CardElement />
+                    <p>Introduce los datos de tu tarjeta:</p>
+
+                    <div className="card-element-input">
+                        <CardElement className="form-control" />
                     </div>
 
                     <div className="d-grid">
