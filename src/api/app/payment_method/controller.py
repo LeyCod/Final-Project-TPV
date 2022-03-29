@@ -3,7 +3,7 @@ from api.models.index import db, PaymentMethod
 
 def get_payment_methods():
     try:
-        payment_method = db.session.query(PaymentMethod)
+        payment_method = db.session.query(PaymentMethod).filter(PaymentMethod.is_active == True)        
 
         payment_methods = {}
         for method in payment_method:
