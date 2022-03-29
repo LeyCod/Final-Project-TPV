@@ -1,16 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
+
+// Styles
+import "./tables.css";
 
 // Components
 import { TablesWrapper } from "../TablesWrapper/TablesWrapper.jsx";
 
-export const Tables = () => {
+export const Tables = (props) => {
     return (
-        <div className="dashboard-view-content p-2 p-md-3 p-lg-4">
-            <div className="row justify-content-start gap-1" id="menu-items-configuration">
-                <div className="col-12 col-lg-7 cards-grid-system">
-                    <TablesWrapper edit_table_control={true}/>
+        <div className="dashboard-view-content p-3 p-lg-4">
+            <div className="row" id="tables-configuration">
+                <div className="col-12 d-none d-md-block">
+                    <p className="view-description">
+                        Desde aquí puedes gestionar las mesas del local.
+                    </p>
                 </div>
+
+                <TablesWrapper handleChangeView={props.handleChangeView} />
             </div>
         </div>
     );
 };
+
+Tables.propTypes = {
+    handleChangeView: PropTypes.func
+}

@@ -31,6 +31,10 @@
   font-size: 15px;
 }
 
+#dashboard-wrapper p.view-description {
+  font-size: 16px;
+}
+
 #dashboard-wrapper h4 {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -60,12 +64,13 @@
 }
 
 #dashboard-sidebar .company-logo {
-  text-align: center;
-  background-color: #ffffff21;
+  text-align: center;  
 }
 
 #dashboard-sidebar li {
   margin-top: 0.8rem;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 #dashboard-sidebar li:hover {
@@ -96,9 +101,10 @@
   height: 19px;
   border-radius: 50%;
   background-color: var(--red);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-align: center;
   color: #ffffff;
+  box-shadow: 0 0.125rem 0.25rem #0000004f;
 }
 
 #dashboard-sidebar hr {
@@ -168,17 +174,26 @@
 }
 
 #dashboard-views-content .dashboard-view-title > div {
+  position: relative;
+  left: -68px;
   display: flex;
   align-items: center;
   width: fit-content;
-  padding-left: 1.5rem;
   background-color: #d3d3d3;
+  animation: fadeinrightfix .6s;
+}
+
+#dashboard-views-content .dashboard-view-title > div > .left-arrow {
+  border-top: 18px solid #e6e6e6;
+  border-right: 50px solid #d3d3d3;
+  border-bottom: 18px solid #e6e6e6;
+  margin-right: 1.5rem;
 }
 
 #dashboard-views-content .dashboard-view-title > div > .right-arrow {
   border-top: 18px solid #e6e6e6;
   border-left: 18px solid #d3d3d3;
-  border-bottom: 18px solid #e6e6e6;
+  border-bottom: 18px solid #e6e6e6;  
 }
 
 #dashboard-views-content .dashboard-view-title h4 {
@@ -186,6 +201,7 @@
   padding-left: 10px;
   padding-right: 20px;
   font-size: 21px;
+  white-space: nowrap;
 }
 
 .dashboard-view-content {
@@ -212,6 +228,10 @@
   border: 0;
   background: none;
   color: #ffffff;
+}
+
+body.modal-open #dashboard-sidebar {
+  display: none !important;
 }
 
 /* -- Media Queries -- */

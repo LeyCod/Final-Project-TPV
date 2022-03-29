@@ -1,22 +1,27 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, Table, User, Order
+from api.models.index import db, Table, User, Company
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
 def get_all_tables(user_id):
     try:
         user = User.query.get(user_id)
+
         if user is None: 
-            return error_response("User not exist", 401)
-        tables = db.session.query(Table).filter(Table.company_id == user.company_id)
-        list_tables = []
+            return error_response("El usuario no existe", 401)
+
+        tables = db.session.query(Table).filter(Table.company_id == user.company_id).order_by(Table.id.desc())
+        
+        list_tables = {}
         for table in tables: 
-            list_tables.append(table.serialize())
+            value = table.serialize()    
+            list_tables[value["id"]] = value # Each key of the list_tables object matches with the id of the table
+        
         return list_tables
         
     except Exception as error: 
-        print ("Error in get tables", error)
-        return error_response("internal server error")
+        print ("ERROR GET ALL TABLES", error)
+        return error_response("Error interno del servidor.")
 
 def get_table(id):
     try:
@@ -31,13 +36,13 @@ def get_table(id):
             return error_response("Empresa no encontrada", 404)
 
         table_data = table.serialize()
+        table_data["logo_url"] = company.logo_url
         table_data["company_description"] = company.description
-
         return success_response(table_data)
 
     except Exception as error:
-        print("Error in get_table", error)
-        return error_response("Error interno del servidor")
+        print("ERROR GET TABLE", error)
+        return error_response("Error interno del servidor.")
 
 def register_table(body, user_id):
     try: 
@@ -46,9 +51,6 @@ def register_table(body, user_id):
 
         if "name" not in body or len(body["name"]) == 0:
             return error_response("Debes escribir un nombre.", 400)
-        
-        if "capacity" not in body:
-            return error_response("Debes escribir una capacidad.", 400)
 
         user = User.query.get(user_id)
         if user is None or user.is_admin == False :
@@ -63,7 +65,7 @@ def register_table(body, user_id):
     except Exception as err: 
         db.session.rollback()
         print("[ERROR REGISTER TABLE]: ", err)
-        return error_response("Solicitud incorrecta", 500)
+        return error_response("Error interno del servidor.", 500)
 
 def table_delete(body, user_id):
     try:
@@ -74,10 +76,6 @@ def table_delete(body, user_id):
         if user is None or user.is_admin == False :
             return error_response("No tienes autorizacion", 401)
         
-        check_order = Order.query.filter((Oder.table_id == body["id"])).first()
-        if check_order is not None:
-            return error_response("Esta mesa tiene un pedido asignado", 400)
-
         table_delete = Table.query.filter((Table.id == body["id"])).first()
 
         if table_delete is None:
@@ -91,7 +89,7 @@ def table_delete(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR DELETE TABLE]: ", err)
-        return error_response("Solicitud incorrecta", 400)
+        return error_response("Error interno del servidor.", 400)
 
 def table_update(body, user_id):
     try:
@@ -113,4 +111,4 @@ def table_update(body, user_id):
     except Exception as err:
         db.session.rollback()
         print("[ERROR UPDATE TABLE]: ", err)
-        return error_response("Solicitud incorrecta3", 400) 
+        return error_response("Error interno del servidor.", 400) 

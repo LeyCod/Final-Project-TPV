@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
 import PropTypes from "prop-types";
 
+// Styles
+import "../../../../css/modal.css"
+
 export const MenuEditItemControl = (props) => {
     const { store, actions } = useContext(Context);
 
@@ -10,7 +13,7 @@ export const MenuEditItemControl = (props) => {
             <button
                 type="button"
                 className="btn btn-sm xs-button outline-theme-color-button shadow-none"
-                //onClick={() => } // !! Aquí en onclick debe abrirse un modal que permita modificar el menu item y también eliminarlo
+                onClick={() => actions.setActiveItemEdition(props.item_index)}
             >
                 <i className="fas fa-highlighter"></i>
             </button>

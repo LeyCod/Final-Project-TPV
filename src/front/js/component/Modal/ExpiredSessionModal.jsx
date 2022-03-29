@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 
 // Components
 import Modal from "react-bootstrap/Modal";
-import secondaryBackground from "../../../assets/img/FormsBG.jpg";
+import formBG from "../../../assets/img/formBG.jpg";
 
 export const ExpiredSessionModal = (props) => {
     return (
         <Modal 
             show={props.show}
-            style={{ backgroundImage: `url(${secondaryBackground})` }}
+            style={{ backgroundImage: `url(${formBG})` }}
         >
             <Modal.Body>
                 <p className="h4 text-center">¡Sesión expirada!</p> 

@@ -17,7 +17,7 @@ class MenuItem(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
+            "name": self.name.title(),
             "description": self.description,
             "price": self.price,
             "image_url": self.image_url,

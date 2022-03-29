@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // Styles
 import "./header.css";
-import logoMasterGest from "../../../../assets/img/LogoMG-45px.png";
+import logoMasterGest from "../../../../assets/img/logoMasterGest.png";
 
 export const Header = () => {
   return (

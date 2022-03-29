@@ -9,7 +9,7 @@ export const SuccessModalOnRegister = (props) => {
     return (
         <Modal show={props.show}>
             <Modal.Body>
-                <p className="h4 text-center">¡Tu registro ha sido completado satisfactoriamente!</p> 
+                <p className="h4 text-center">¡Registro completado!</p> 
                 <br/>
                 <p className="text-center">Muchas gracias por formar parte de <strong>MasterGest</strong>.<br /><br /> <i>Inicia sesión</i> para acceder a la plataforma y comienza ya a configurar tu negocio.</p>
             </Modal.Body>

@@ -1,13 +1,13 @@
 import { BASE_URL } from "./index";
 
-// Company Register
+// Company register
 export const apiCompanyRegister = (companyCredentials) =>
     fetch(`${BASE_URL}/api/company/register`, {
         method: "POST",
         body: JSON.stringify(companyCredentials)
     });
 
-// Get Company data
+// Get company data
 export const apiCompanyGetData = () =>
     fetch(`${BASE_URL}/api/company/`, {
         method: "GET",
@@ -17,7 +17,7 @@ export const apiCompanyGetData = () =>
         }
     });
 
-// Company Update
+// Company update
 export const apiUpdateCompany = (body) =>
     fetch(`${BASE_URL}/api/company/update`, {
         method: "PUT",

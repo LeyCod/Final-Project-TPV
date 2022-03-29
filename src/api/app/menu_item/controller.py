@@ -1,18 +1,20 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, MenuItem, User
+from api.models.index import db, MenuItem, User, OrderItem
 from flask_jwt_extended import create_access_token
 
 def get_menu_item(company_id):
     try:
-        
-        menu_item = db.session.query(MenuItem).filter(MenuItem.company_id == company_id)
-        list_menu_item = []
+        menu_item = db.session.query(MenuItem).filter(MenuItem.company_id == company_id).order_by(MenuItem.id.desc())
+
+        list_menu_item = {}
         for menu in menu_item:
-            list_menu_item.append(menu.serialize())
+            value = menu.serialize()            
+            list_menu_item[value["id"]] = value # Each key of the list_menu_item object matches with the id of the menu item
+        
         return success_response(list_menu_item)
 
     except Exception as error:
-        print("Error in get menu_item", error)
+        print("ERROR GET MENU ITEM", error)
         return error_response("Error interno del servidor",500)
 
 def get_item(id):
@@ -25,9 +27,8 @@ def get_item(id):
         return success_response(item.serialize())
 
     except Exception as error:
-        print("Error in get item", error)
+        print("ERROR GET ITEM", error)
         return error_response("Error interno del servidor", 500)
-
 
 def register_menu_item(body, user_id):
     try:
@@ -35,22 +36,25 @@ def register_menu_item(body, user_id):
             return error_response("Solicitud incorrecta ", 400)
 
         if "name" not in body or len(body["name"]) == 0:
-            return error_response("", 400)
+            return error_response("Debes introducir un nombre", 400)
 
-        if body["price"]is None:
-            return error_response("Solicitud incorrecta ", 400)
-
-        if body["price"]  == 0:
-            return error_response("Solicitud incorrecta ", 400)
+        if "price" not in body or body["price"] == 0:
+            return error_response("Debes introducir un precio", 400)
+        
+        if "description" not in body or len(body["description"]) == 0:
+            return error_response("Debes introducir una descripción", 400)
+        
+        if "image_url" not in body or len(body["image_url"]) == 0:
+            return error_response("Debes introducir una imagen", 400)
 
         user = User.query.get(user_id)
         
         company_id = user.company_id
-        print (user.serialize())
+        
         if user is None or user.is_admin == False:
             return error_response("No estas autorizado", 401)
 
-        new_menu_item = MenuItem(name=body["name"],price=body["price"], company_id=user.company_id)
+        new_menu_item = MenuItem(name=body["name"],price=body["price"], description=body["description"], image_url=body["image_url"], company_id=user.company_id)
 
         db.session.add(new_menu_item)
         db.session.commit()
@@ -58,7 +62,7 @@ def register_menu_item(body, user_id):
         return success_response(new_menu_item.serialize(),201)
     except Exception as err:
         db.session.rollback()
-        print("[ERROR REGISTER MENU_ITEM]:",err)
+        print("[ERROR REGISTER MENU ITEM]:",err)
         return error_response("Error interno del servidor", 500)
 
 def update_menu_item(body, user_id):
@@ -80,7 +84,7 @@ def update_menu_item(body, user_id):
 
     except Exception as err:
         db.session.rollback()
-        print("[ERRPR UPDATE MENU_ITEM]", err)
+        print("[ERROR UPDATE MENU ITEM]", err)
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.", 500)
 
 def delete_menu_item(body,user_id):
@@ -95,6 +99,10 @@ def delete_menu_item(body,user_id):
         if user.is_admin == False:
             return error_response("Acceso no autorizado", 401)
 
+        check_menu_item = OrderItem.query.filter(OrderItem.item_id == body["id"]).first()
+        
+        if check_menu_item is not None:
+            return error_response("Este elemento está asignado a un pedido y no puede eliminarse", 400)
 
         delete_menu_item = MenuItem.query.filter(MenuItem.id == body["id"]).first()
 
@@ -108,5 +116,5 @@ def delete_menu_item(body,user_id):
 
     except Exception as err:
         db.session.rollback()
-        print("[ERROR DELETE MENU_ITEM]:", err )
+        print("[ERROR DELETE MENU ITEM]:", err )
         return error_response("Error interno del servidor. Por favor, inténtalo más tarde.", 500)

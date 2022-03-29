@@ -10,38 +10,47 @@ import { apiUpdateCompany } from "../../../service/company";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
+import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
+import { ExpiredSessionModal } from "../../Modal/ExpiredSessionModal.jsx";
+
+// Custom Hooks
+import { useFetchUser } from "../../CustomHooks/CustomHooks.jsx";
 
 export const AdminConfiguration = () => {
     const { store, actions } = useContext(Context);
 
-    const [loading, setLoading] = useState(false);
-    const [notifyMessage, setNotifyMessage] = useState(false);
+    /* User fetch data */
+    const [reload, setReload] = useState(false);
+    const { validateUser, error, loading } = useFetchUser(reload);
 
+    /* User data form */
     const [name, setName] = useState(store.loggedUserCompanyData.name);
     const [description, setDescription] = useState(store.loggedUserCompanyData.description);
     const [address, setAddress] = useState(store.loggedUserCompanyData.address);
+    const [notifyMessage, setNotifyMessage] = useState(false);
 
+    /* Form img */
+    const allowedImgExtensions = ["jpg", "jpeg", "png"];
     const [imgUrl, setImgUrl] = useState(store.loggedUserCompanyData.logo_url);
-    const allowExtensions = ["jpg", "jpeg", "png"];
+    const [imgLoading, setImgLoading] = useState(false);
 
     const handleImgChange = async (e) => {
-        setNotifyMessage(false);
-
         if (e.target.files) {
-            let img_file = e.target.files[0];
-            let filename = img_file.name;
-
-            let split = filename.split(".");
-            let extension = split[split.length - 1].toLowerCase();
-
-            if (!allowExtensions.includes(extension)) {
-                e.target.value = "";
-                setNotifyMessage("Formato de archivo no válido");
-                return false;
-            }
-
             try {
-                setLoading(true);
+                setImgLoading(true);
+                setNotifyMessage(false);
+
+                let img_file = e.target.files[0];
+                let filename = img_file.name;
+
+                let split = filename.split(".");
+                let extension = split[split.length - 1].toLowerCase();
+
+                if (!allowedImgExtensions.includes(extension)) {
+                    e.target.value = "";
+                    setNotifyMessage("Formato de imagen no válido.");
+                    return false;
+                }
 
                 const form = new FormData();
                 form.append("img", img_file);
@@ -62,7 +71,7 @@ export const AdminConfiguration = () => {
                 setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
             }
             finally {
-                setLoading(false);
+                setImgLoading(false);
             }
         }
     };
@@ -71,7 +80,7 @@ export const AdminConfiguration = () => {
         setNotifyMessage(false);
 
         try {
-            let body = {
+            const body = {
                 "id": store.loggedUserCompanyData.id,
                 "logo_url": imgUrl,
                 "name": name.toUpperCase(),
@@ -88,7 +97,7 @@ export const AdminConfiguration = () => {
             });
 
             if (!validData) {
-                setNotifyMessage("Completa correctamente todos los campos antes de continuar");
+                setNotifyMessage("Completa correctamente todos los campos antes de continuar.");
             }
             else {
                 const response = await apiUpdateCompany(JSON.stringify(body));
@@ -96,7 +105,7 @@ export const AdminConfiguration = () => {
                 const status = response.status;
 
                 if (status === 200) {
-                    location.reload();
+                    setReload(!reload);
                 }
                 else {
                     setNotifyMessage(data);
@@ -107,11 +116,21 @@ export const AdminConfiguration = () => {
             console.log(err);
             setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
         }
-    }
+    };
 
     return (
         <div className="dashboard-view-content p-3 p-lg-4">
-            {loading ? <Spinner /> : null}
+            {
+                loading
+                    ? null
+                    : imgLoading
+                        ? <Spinner />
+                        : !validateUser
+                            ? <ExpiredSessionModal show={true} />
+                            : error
+                                ? <ErrorModal show={true} />
+                                : null
+            }
 
             <div className="row" id="admin-configuration">
                 <div className="col-12 d-none d-md-block">
@@ -119,7 +138,6 @@ export const AdminConfiguration = () => {
                         Introduce los datos y el logo de tu empresa. Todos los campos son obligatorios.
                     </p>
                 </div>
-
 
                 <div className="col-12 col-sm-6 col-xl-5 mb-3">
                     <label className="form-label mb-1">Nombre de la empresa</label>*
@@ -149,7 +167,7 @@ export const AdminConfiguration = () => {
                 <div className="col-12 col-xl-5 mb-3">
                     <label className="form-label mb-1">Descripción</label>*
                     <textarea
-                        className="form-control shadow-sm"                        
+                        className="form-control shadow-sm"
                         maxLength={279}
                         onChange={(e) => setDescription(e.target.value)}
                         defaultValue={description}
@@ -179,7 +197,7 @@ export const AdminConfiguration = () => {
                 <div className="col-12 mb-3">
                     <button
                         type="button"
-                        className="btn btn-sm theme-color-button shadow-none"
+                        className="btn theme-color-button shadow-sm"
                         onClick={handleSaveChanges}
                     >
                         Guardar cambios

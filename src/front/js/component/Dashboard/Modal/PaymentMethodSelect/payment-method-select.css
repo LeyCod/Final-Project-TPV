@@ -1,0 +1,35 @@
+#payment-method-select .modal-content {
+  width: fit-content;
+  margin: auto;
+}
+
+#payment-method-select .modal-content.ending-pay {
+  width: auto;
+}
+
+#payment-method-select .modal-body > div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.7rem;
+}
+
+#payment-method-select .payment-method-option {
+  cursor: pointer;
+}
+
+#payment-method-select .payment-method-option button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  background-color: #848b92;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+#payment-method-select .payment-method-option button i {
+  width: 45px;
+}

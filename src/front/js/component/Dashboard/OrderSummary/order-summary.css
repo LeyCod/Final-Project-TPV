@@ -1,0 +1,84 @@
+#order-summary-container hr {
+  margin: 1rem 0;
+  background-color: #ddd;
+}
+
+#order-summary-container h4 {
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+}
+
+.order-summary {
+  padding: 1rem 0;
+  background-color: #ffffff;  
+}
+
+.order-summary-title {
+  margin-bottom: 1rem;
+}
+
+#order-summary-container .order-summary-body {
+  max-height: 48vh;
+  padding-right: 0.7rem;
+  overflow: auto;
+}
+
+.order-summary-item {
+  margin-bottom: 1.5rem;
+}
+
+.order-summary-item small {
+  font-family: "Poppins", sans-serif;
+  color: #000000;
+}
+
+.order-summary-item-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.order-summary-item,
+#order-summary-total {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.order-summary-item > div:nth-child(1) {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.order-summary-item > div:nth-child(2) {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.order-summary-item > div:nth-child(1) > small {
+  font-weight: 500;
+}
+
+#order-summary-total p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* -- Media Queries -- */
+@media (min-width: 1200px) {
+  .order-summary {
+    padding: 1rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+
+  #order-summary-container .order-summary-body {
+    max-height: 50vh;
+  }
+}

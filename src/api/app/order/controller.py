@@ -1,7 +1,7 @@
 from api.shared.response import success_response, error_response
-from api.models.index import db, Order,OrderItem, User, Table, Company, MenuItem
+from api.models.index import db, Order, OrderItem, User, Table, Company, MenuItem
 from flask_jwt_extended import create_access_token
-from sqlalchemy import text
+from sqlalchemy import text, func
 
 def get_all_orders(company_id):
     try:
@@ -9,46 +9,74 @@ def get_all_orders(company_id):
         order_list = []
         for order in list_order:
             order_json = order.serialize()
+            
+            # add table name to the order_json
+            table_data = Table.query.filter(Table.id == order.table_id).first()
+            table_data = table_data.serialize()
+            order_json["table_name"] = table_data["name"]
+
             order_items = db.session.query(OrderItem).filter(OrderItem.order_id == order_json["id"]).all()
             order_json["order_item"] = list(map(lambda item: item.serialize(), order_items))
             order_list.append(order_json)
+            
         return success_response(order_list,200)
 
     except Exception as error:
-        print("Error in get order", error)
+        print("ERROR GET ALL ORDERS", error)
         return error_response("Error interno del servidor",500)
 
 def get_order_item(order_id):
     try:
         list_order_item = db.session.query(OrderItem).filter(OrderItem.order_id == order_id)
+        
         order_item_list = []
         for order_item in list_order_item:
             order_item_json = order_item.serialize()
             menu_items = db.session.query(MenuItem).filter(MenuItem.id == order_item_json["id"])
             order_item_json["menu_items"] = list(map(lambda item: item.serialize(), menu_items))
             order_item_list.append(order_item_json)
-            return success_response(order_item_list,200)
+        
+        return success_response(order_item_list,200)
 
     except Exception as error:
-        print("Error in get order", error)
-        return error_response("Error interno del servidor",500)
+        print("ERROR GET ORDER ITEM", error)
+        return error_response("Error interno del servidor", 500)
 
-def register_order(body, table_id):
+def get_order_by_table(table_id):     
     try:
+        order = Order.query.filter(Order.table_id == table_id, Order.is_active==True).first()        
         
+        if order is None:
+            return success_response({})
+       
+        order_items = OrderItem.query.filter(OrderItem.order_id == order.id).all()
+        
+        items_order = {}
+        for item in order_items:
+            item_json = item.serialize()
+            items_order[item_json["item_id"]] = item_json["quantity"]
+            
+        return success_response({"order_id": order.id, "items": items_order, "totalPrice": order.total_price})
+
+    except Exception as error:
+        print("ERROR GET ORDER BY TABLE", error)
+        return error_response("Error interno del servidor", 500)
+
+def register_order(body, table_id):   
+    try:
         if body is None:
             return error_response("Solicitud incorrecta", 400)
 
         if "company_id" not in body:
-            return error_response("Solicitud incorrecta 2", 400)
+             return error_response("No se ha recibido ningún ID de compañia", 400)
 
         table = Table.query.get(table_id)
-        print(table, "table")
+        
         if table is None:
             return error_response("La mesa no existe", 400)
         
         if table.company_id != body["company_id"]:
-            return error_response("La compañia no coincide ", 400)
+            return error_response("La compañia no coincide con el ID de mesa", 400)
         
         total_price= 0
 
@@ -56,32 +84,54 @@ def register_order(body, table_id):
             price = menu["quantity"] * menu["price"]
             total_price= total_price + price
 
-        order= db.session.query(Order).filter(Order.table_id== table_id,Order.is_active==True).first()
-        print(order, "order")
-
-        if order is None:
+        order= db.session.query(Order).filter(Order.table_id == table_id, Order.is_active==True).first()
+        
+        if order is None: # register new order
             new_order = Order(table_id=table_id,company_id= body["company_id"],total_price=total_price)
-            print(new_order)
+            
             db.session.add(new_order)
             db.session.commit()
-            print(new_order, "new_order")
+            
             for order_item in body["menu_items"]:
                 new_order_item= OrderItem(quantity=order_item["quantity"],order_id=new_order.id,item_id=order_item["menu_item_id"])
                 db.session.add(new_order_item)
 
             db.session.commit()
             return success_response(new_order.serialize())
-
-        else:
+        else: # update existing order
             for order_item in body["menu_items"]:
-                new_order_item= OrderItem(quantity=order_item["quantity"],order_id=order.id,item_id=order_item["menu_item_id"])
-                db.session.add(new_order_item)
+                check_order_item = db.session.query(OrderItem).filter(OrderItem.item_id == order_item["menu_item_id"], OrderItem.order_id == order.id).first()
 
+                if check_order_item is None:                         
+                    new_order_item= OrderItem(quantity=order_item["quantity"],order_id=order.id,item_id=order_item["menu_item_id"])
+                    db.session.add(new_order_item)
+                
+                else:
+                    update_order_item = db.session.query(OrderItem).filter(OrderItem.item_id == order_item["menu_item_id"], OrderItem.order_id == order.id).update(dict(quantity = check_order_item.quantity + order_item["quantity"]))
+
+            update_order = Order.query.filter(Order.id == order.id).update(dict(total_price = total_price + order.total_price))
             db.session.commit()
             return success_response(order.serialize())
-
 
     except Exception as err:
         db.session.rollback()
         print("[ERROR REGISTER ORDER]: ", err)
-        return error_response("Error interno del servidor. Por favor, inténtalo más tarde!!!", 500)
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde", 500)
+
+def order_update(body):
+    try:
+        if body is None:
+            return error_response("Solicitud incorrecta", 400)
+
+        if "id" not in body:
+            return error_response("Solicitud incorrecta", 400)
+
+        update_order = Order.query.filter(Order.id == body["id"]).update(dict(body))
+        db.session.commit()
+
+        return success_response("Información actualizada correctamente", 201)
+
+    except Exception as err:
+        db.session.rollback()
+        print("[ERROR UPDATE MENU ITEM]", err)
+        return error_response("Error interno del servidor. Por favor, inténtalo más tarde.", 500)

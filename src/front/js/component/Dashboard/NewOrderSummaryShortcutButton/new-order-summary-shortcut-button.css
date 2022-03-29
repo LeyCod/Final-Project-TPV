@@ -6,7 +6,6 @@
 }
 
 .new-order-summary-shortcut-button button {
-  min-width: 200px;
   padding: .8rem 1rem;
   border: none;
   background-color: var(--theme-color);
@@ -17,14 +16,6 @@
 
 .new-order-summary-shortcut-button button:hover {
   filter: brightness(var(--hover-brightness));
-}
-
-.new-order-summary-shortcut-button button > div {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0rem;  
 }
 
 .new-order-summary-shortcut-button button > div > p {

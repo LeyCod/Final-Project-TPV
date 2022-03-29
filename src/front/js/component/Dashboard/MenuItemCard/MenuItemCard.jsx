@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../../../store/appContext";
 import PropTypes from "prop-types";
 
 // Styles
@@ -9,31 +10,29 @@ import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.
 import { MenuEditItemControl } from "../MenuEditItemControl/MenuEditItemControl.jsx";
 
 export const MenuItemCard = (props) => {
+    const { store, actions } = useContext(Context);
+
     return (
         <div className="menu-item-card">
             <div>
-                <img className="img-fluid" src={props.image_url} alt={props.title} />
+                <img className="img-fluid" src={store.menuItems[props.item_index].image_url} alt={store.menuItems[props.item_index].name} />
             </div>
 
             <div>
                 <div>
-                    <p className="fw-bold mb-0">{props.title}</p>
-                    <p className="mb-0">{props.description}</p>
+                    <p className="mb-0 fw-bold menu-item-card-title">{store.menuItems[props.item_index].name}</p>
+                    <p className="mb-0 menu-item-card-description">{store.menuItems[props.item_index].description}</p>
                 </div>
 
                 <div>
-                    <p>{props.price}€</p>
+                    <p>{store.menuItems[props.item_index].price}€</p>
 
                     {
                         props.order_item_control
                             ? <NewOrderItemControl item_index={props.item_index} />
-                            : null
-                    }
-
-{
-                        props.item_edit_control
-                            ? <MenuEditItemControl item_index={props.item_index} />
-                            : null
+                            : props.item_edit_control
+                                ? <MenuEditItemControl item_index={props.item_index} />
+                                : null
                     }
                 </div>
             </div>
@@ -43,10 +42,6 @@ export const MenuItemCard = (props) => {
 
 MenuItemCard.propTypes = {
     item_index: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    price: PropTypes.number,
-    image_url: PropTypes.string,
     order_item_control: PropTypes.bool,
     item_edit_control: PropTypes.bool
 };

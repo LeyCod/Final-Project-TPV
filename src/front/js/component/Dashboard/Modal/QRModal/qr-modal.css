@@ -1,0 +1,7 @@
+#qr-modal.modal-dialog {
+    width: max-content;
+}
+
+#qr-modal .modal-body {
+    margin: auto;    
+}

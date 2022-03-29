@@ -1,8 +1,0 @@
-body.modal-open #dashboard-sidebar {
-  display: none;
-}
-
-#new-order-summary-modal .btn-close,
-#new-order-summary-modal .new-order-summary {
-  box-shadow: none;
-}

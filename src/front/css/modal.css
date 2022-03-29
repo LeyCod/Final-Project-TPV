@@ -1,0 +1,35 @@
+body {
+  padding-right: 0 !important;
+}
+
+.modal-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1.7rem;
+  border-bottom: 0;
+  padding: 0.5rem 1rem;
+  background-color: #ececec;  
+}
+
+.modal-header .btn-close {
+  padding: 0.4rem 0.5rem;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.modal-header * {
+  margin: 0;
+  padding: 0;  
+  font-size: 19.5px;
+  color: #000000;
+}
+
+.modal-body {
+  padding: 1rem;
+}
+
+.modal-footer {
+  flex-wrap: nowrap;
+}

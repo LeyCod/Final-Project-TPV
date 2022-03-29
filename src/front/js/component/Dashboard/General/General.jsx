@@ -3,56 +3,64 @@ import { Context } from "../../../store/appContext";
 import PropTypes from "prop-types"
 
 // Components
-import { SummaryCard } from "../SummaryCard/SummaryCard.jsx";
+import { Spinner } from "../../Spinner/Spinner.jsx";
+import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
+import { GeneralSummaryCard } from "../GeneralSummaryCard/GeneralSummaryCard.jsx";
 import { OrdersTable } from "../OrdersTable/OrdersTable.jsx";
+
+// Custom Hooks
+import { useFetchOrdersTables } from "../../CustomHooks/CustomHooks.jsx";
 
 export const General = (props) => {
     const { store, actions } = useContext(Context);
 
-    return (
-        <div className="dashboard-view-content p-2 p-md-3 p-lg-4">
-            <h4 className="fw-normal">Bienvenid@, {store.loggedUserData.first_name}</h4>
-            
-            <div className="row">
-                <div className="col-12 col-md-6">
-                    <SummaryCard
-                        counter={12}
-                        title="Pedidos activos" icon="orders"
-                    />
+    /* Fetch company orders and tables */
+    const { fetchOrderTableResult, error, loading } = useFetchOrdersTables();
+
+    return loading
+        ? <Spinner />
+        : error
+            ? <ErrorModal show={true} />
+            : (<div className="dashboard-view-content p-3 p-lg-4">
+                <h4 className="fw-normal mb-2">Bienvenid@, {store.loggedUserData.first_name}</h4>
+
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <GeneralSummaryCard
+                            counter={store.activeOrdersNumber}
+                            title="Pedidos activos"
+                            icon="orders"
+                            progress={null}
+                            handleChangeView={props.handleChangeView}
+                        />
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <GeneralSummaryCard
+                            counter={store.companyAvailableTables}
+                            title="Mesas libres"
+                            icon="tables"
+                            progress={Math.round((store.companyAvailableTables * 100) / Object.keys(store.companyTables).length)}
+                        />
+                    </div>
                 </div>
-                <div className="col-12 col-md-6">
-                    <SummaryCard
-                        counter={6} title="Mesas libres"
-                        icon="tables"
-                        progress={65}
-                    />
-                </div>
-            </div>
 
-            <div className="row mt-3">
-                <div className="col-12">
-                    <div className="rounded-3 p-3 bg-white shadow-sm">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <h4 className="m-0 fw-bold">Pedidos recientes</h4>
-                            <button
-                                type="button"
-                                className="btn theme-color-button shadow-none"
-                                onClick={() => props.handleChangeView("orders")}
-                            >
-                                <small>Ver todo</small>
-                            </button>
-                        </div>
+                <div className="row mt-3">
+                    <div className="col-12">
+                        <div className="rounded-3 p-3 bg-white shadow-sm">
+                            <div>
+                                <h4 className="m-0 fw-bold">Pedidos recientes</h4>
+                            </div>
 
-                        <hr />
+                            <hr />
 
-                        <div>
-                            <OrdersTable />
+                            <div>
+                                <OrdersTable viewAll={false} handleChangeView={props.handleChangeView} />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    );
+            );
 };
 
 General.proptypes = {

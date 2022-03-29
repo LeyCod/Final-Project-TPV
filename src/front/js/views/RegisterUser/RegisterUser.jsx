@@ -3,10 +3,10 @@ import { Context } from "../../store/appContext";
 import { Link, Redirect } from "react-router-dom";
 
 //Styles
-import "../../../assets/css/register-login-forms.css";
-import formBackground from "../../../assets/img/FormsBG.jpg";
-import formBanner from "../../../assets/img/FormLoginBanner-BG.png";
-import logoMasterGest from "../../../assets/img/LogoMG-45px.png";
+import "../../../css/register-login-forms.css";
+import formBG from "../../../assets/img/formBG.jpg";
+import formBannerBG from "../../../assets/img/formBannerBG.png";
+import logoMasterGest from "../../../assets/img/logoMasterGest.png";
 
 // Functions
 import { apiCompanyRegister } from "../../service/company.js";
@@ -85,13 +85,13 @@ export const RegisterUser = () => {
         : (
             <div
                 className="main-form form-view"
-                style={{ backgroundImage: `url(${formBackground})` }}
+                style={{ backgroundImage: `url(${formBG})` }}
             >
                 <div>
                     <div className="row justify-content-center align-items-center h-100 mx-2">
                         <div
                             className="form-content-left d-none d-md-flex col-md-4 col-lg-4 col-xxl-3 p-4 bg-white"
-                            style={{ backgroundImage: `url(${formBanner})` }}
+                            style={{ backgroundImage: `url(${formBannerBG})` }}
                         >
                             <div>
                                 <h1 className="mb-3 text-nowrap fw-bold">A tu medida</h1>
@@ -105,7 +105,7 @@ export const RegisterUser = () => {
                                     <h4>MasterGest</h4>
                                 </div>
                                 <Link to="/" title="MasterGest">
-                                    <img src={logoMasterGest} alt="LogoMG" className={loading ? "rotate" : null} />
+                                    <img src={logoMasterGest} alt="logoMasterGest" className={loading ? "rotate" : null} />
                                 </Link>
                             </div>
 

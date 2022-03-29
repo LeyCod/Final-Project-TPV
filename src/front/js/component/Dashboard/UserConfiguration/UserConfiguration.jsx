@@ -9,39 +9,48 @@ import { apiUploadImage, apiUpdateUser } from "../../../service/user";
 
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
+import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
+import { ExpiredSessionModal } from "../../Modal/ExpiredSessionModal.jsx";
+
+// Custom Hooks
+import { useFetchUser } from "../../CustomHooks/CustomHooks.jsx";
 
 export const UserConfiguration = () => {
     const { store, actions } = useContext(Context);
 
-    const [loading, setLoading] = useState(false);
-    const [notifyMessage, setNotifyMessage] = useState(false);
+    /* User fetch data */
+    const [reload, setReload] = useState(false);
+    const { validateUser, error, loading } = useFetchUser(reload);
 
+    /* User data form */
     const [firstName, setFirstName] = useState(store.loggedUserData.first_name);
     const [lastName, setLastName] = useState(store.loggedUserData.last_name);
     const [email, setEmail] = useState(store.loggedUserData.email);
     const [phone, setPhone] = useState(store.loggedUserData.phone);
+    const [notifyMessage, setNotifyMessage] = useState(false);
 
+    /* Form img */
+    const allowedImgExtensions = ["jpg", "jpeg", "png"];
     const [imgUrl, setImgUrl] = useState(store.loggedUserData.image_url);
-    const allowExtensions = ["jpg", "jpeg", "png"];
+    const [imgLoading, setImgLoading] = useState(false);
 
     const handleImgChange = async (e) => {
-        setNotifyMessage(false);
-
         if (e.target.files) {
-            let img_file = e.target.files[0];
-            let filename = img_file.name;
-
-            let split = filename.split(".");
-            let extension = split[split.length - 1].toLowerCase();
-
-            if (!allowExtensions.includes(extension)) {
-                e.target.value = "";
-                setNotifyMessage("Formato de archivo no válido");
-                return false;
-            }
-
             try {
-                setLoading(true);
+                setImgLoading(true);
+                setNotifyMessage(false);
+
+                let img_file = e.target.files[0];
+                let filename = img_file.name;
+
+                let split = filename.split(".");
+                let extension = split[split.length - 1].toLowerCase();
+
+                if (!allowedImgExtensions.includes(extension)) {
+                    e.target.value = "";
+                    setNotifyMessage("Formato de imagen no válido.");
+                    return false;
+                }
 
                 const form = new FormData();
                 form.append("img", img_file);
@@ -62,7 +71,7 @@ export const UserConfiguration = () => {
                 setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
             }
             finally {
-                setLoading(false);
+                setImgLoading(false);
             }
         }
     };
@@ -89,7 +98,7 @@ export const UserConfiguration = () => {
             });
 
             if (!validData) {
-                setNotifyMessage("Completa correctamente todos los campos antes de continuar");
+                setNotifyMessage("Completa correctamente todos los campos antes de continuar.");
             }
             else {
                 const response = await apiUpdateUser(JSON.stringify(body));
@@ -97,7 +106,7 @@ export const UserConfiguration = () => {
                 const status = response.status;
 
                 if (status === 200) {
-                    location.reload();
+                    setReload(!reload);
                 }
                 else {
                     setNotifyMessage(data);
@@ -112,7 +121,17 @@ export const UserConfiguration = () => {
 
     return (
         <div className="dashboard-view-content p-3 p-lg-4">
-            {loading ? <Spinner /> : null}
+            {
+                loading
+                    ? null
+                    : imgLoading
+                        ? <Spinner />
+                        : !validateUser
+                            ? <ExpiredSessionModal show={true} />
+                            : error
+                                ? <ErrorModal show={true} />
+                                : null
+            }
 
             <div className="row" id="user-configuration">
                 <div className="col-12 d-none d-md-block">
@@ -194,7 +213,7 @@ export const UserConfiguration = () => {
                 <div className="col-12 mb-3">
                     <button
                         type="button"
-                        className="btn btn-sm theme-color-button shadow-none"
+                        className="btn theme-color-button shadow-sm"
                         onClick={handleSaveChanges}
                     >
                         Guardar cambios
