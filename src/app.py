@@ -16,6 +16,7 @@ from api.app.menu_item.router import menu_items
 from api.app.order.router import orders
 from api.app.order_item.router import order_items
 from api.app.payment_method.router import payment_methods
+from api.app.stripe.router import stripes
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
 
@@ -42,6 +43,8 @@ app.config["CLOUD_NAME"] = os.environ.get("CLOUD_NAME")
 app.config["CLOUD_API_KEY"] = os.environ.get("CLOUD_API_KEY")
 app.config["CLOUD_API_SECRET"] = os.environ.get("CLOUD_API_SECRET")
 
+app.config["STRIPE_API_SECRET"] = os.environ.get("STRIPE_API_SECRET")
+
 MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 jwt = JWTManager(app)
@@ -60,6 +63,7 @@ app.register_blueprint(menu_items, url_prefix="/api/menu_item")
 app.register_blueprint(orders, url_prefix="/api/order")
 app.register_blueprint(order_items, url_prefix="/api/order_item")
 app.register_blueprint(payment_methods, url_prefix="/api/payment_method")
+app.register_blueprint(stripes, url_prefix="/api/stripe")
 
 cloudinary.config( 
   cloud_name = app.config["CLOUD_NAME"], 

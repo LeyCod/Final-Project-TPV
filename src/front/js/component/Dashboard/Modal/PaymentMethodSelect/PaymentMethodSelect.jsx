@@ -110,7 +110,7 @@ export const PaymentMethodSelect = () => {
                                                     href="#"
                                                     onClick={()=>setShowStripePayments(false)}                                                    
                                                 >
-                                                    <i class="fas fa-exchange-alt me-2"></i>
+                                                    <i className="fas fa-exchange-alt me-2"></i>
 
                                                     <span>Seleccionar <strong>otro método</strong></span>
                                                 </a>
@@ -123,7 +123,7 @@ export const PaymentMethodSelect = () => {
                                                         key={objKey}
                                                         className="payment-method-option"
                                                         onClick={() => handleCloseOrder(objKey)}
-                                                        data-bs-dismiss="modal"
+                                                        /* data-bs-dismiss="modal" */
                                                     >
                                                         <button
                                                             type="button"
