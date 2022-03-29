@@ -6,7 +6,7 @@ export const Card = (props) => {
     <div className="col-12 col-md-4">
       <div className="card border-0">
         <div className="text-center py-2 ">
-          <i className={`fa-4x fas fa-${props.icono}`}></i>
+          <img src={props.img_src} className="img-fluid"></img>
         </div>
 
         <div className="card-body text-center p-0 pt-2">
@@ -21,5 +21,5 @@ export const Card = (props) => {
 Card.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  icono: PropTypes.string,
+  img_src: PropTypes.string,
 };
