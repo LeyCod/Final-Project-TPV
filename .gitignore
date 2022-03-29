@@ -56,9 +56,6 @@ Thumbs.db
 # ignore node/grunt dependency directories
 node_modules/
 
-# migrations
-migrations/
-
 # webpack output
 dist/*
 public/
