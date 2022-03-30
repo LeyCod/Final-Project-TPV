@@ -1,27 +1,97 @@
-header {
-    box-shadow: 0px -24px 26px 7px rgb(0 0 0);
-    z-index: 1;
-}
-
 .roll_effect {
-    width: 100%;
-    height: 450px
+  height: 420px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.2rem;
+  background-image: url(https://res.cloudinary.com/dxbcvuacb/image/upload/v1648663070/pexels-elevate-1267697_zzdfri_zuw9y5.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  box-shadow: inset 0 -817px 21px 82px #3c290565;
 }
 
-@media (min-width: 360px) and (max-width: 755px) {
-.roll_effect {
-    height: 192px;
-}
+.roll_effect * {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 2px 2px 8px #000000;
 }
 
-@media (max-width: 576px) {
-    header.navbar-light, .nav-container {
-        background-color: rgb(255,255,255,0.2) !important;
-    }
-    a.nav-link{
-        color: black !important;
-    }
-    .nav-btn{
-        border-color: black !important;
-    }
+.roll_effect > div:nth-child(1) > a {
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.roll_effect > div:nth-child(1) > a:nth-child(1) {
+  background-color: #ffffff6e;
+  border: 1px solid #ffffff1a;
+}
+
+.roll_effect > div:nth-child(1) > a:nth-child(1):hover {
+  filter: brightness(var(--hover-brightness));
+}
+
+.roll_effect > div:nth-child(2) {
+  margin-bottom: 20px;
+}
+
+.roll_effect > div:nth-child(2) > h1 {
+  font-size: 47px;
+  font-weight: 500;
+  letter-spacing: 5px;
+}
+
+.roll_effect > div:nth-child(2) > img {
+  width: 85px;
+}
+
+.roll_effect > div:nth-child(3) > div > h1 {
+  margin-bottom: 1.2rem;
+  border-left: 10px solid var(--orange);
+  padding-left: 15px;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.roll_effect > div:nth-child(3) > div > h4 {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 32px;
+}
+
+/* -- Media Queries -- */
+@media (max-width: 1199.98px) {
+  .roll_effect {
+    height: 500px;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .roll_effect > div:nth-child(1) {
+    justify-content: center !important;
+    order: 3;
+  }
+
+  .roll_effect > div:nth-child(2) {
+    order: 1;
+  }
+
+  .roll_effect > div:nth-child(3) {
+    order: 2;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .roll_effect {
+    height: 520px;
+    gap: 2.2rem;
+  }
+}
+
+@media (max-width: 415.98px) {
+  .roll_effect {
+    height: 540px;
+    gap: 1.8rem;
+  }
 }

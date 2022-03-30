@@ -3,57 +3,31 @@ import { Link } from "react-router-dom";
 
 // Styles
 import "./header.css";
-import logoMasterGest from "../../../../assets/img/logoMasterGest.png";
 
 export const Header = () => {
   return (
-    <div className="roll_effect"> 
-    <header className="navbar navbar-expand-lg navbar-light p-1 bg-light">
-      <div className="container nav-container">
-        <Link to="/" className="navbar-brand">
-          <img src={logoMasterGest} alt="LogoMG" />
+    <div className="roll_effect p-4 p-lg-4 pt-3">
+      <div className="d-flex justify-content-end align-items-center gap-2 container-fluid">
+        <Link to="/register-company" className="btn outline-green-button rounded-button px-4 shadow-sm">
+          Registro
         </Link>
 
-        <button
-          className="navbar-toggler shadow-none nav-btn"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <Link to="/login" className="btn green-button rounded-button px-4 shadow-sm">
+          Iniciar sesión
+        </Link>
+      </div>
 
-        <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-            <li className="nav-item">
-              <a className="nav-link active" href="#Home">
-                Inicio
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#AboutUs">
-                Nosotros
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Contacto
-              </a>
-            </li>
-          </ul>
+      <div className="d-flex justify-content-center align-items-center gap-1">
+        <img src="https://res.cloudinary.com/dxbcvuacb/image/upload/v1648662827/Logo_Master_Gest-2-se-shadow_z585ax.png" alt="LogoMG" />
+        <h1>aster<strong>Gest</strong></h1>
+      </div>
 
-          <div className="d-flex gap-2">
-            <Link to="/register-company" className="btn outline-green-button rounded-button px-5 shadow-sm">
-              Registro
-            </Link>
-
-            <Link to="/login" className="btn green-button rounded-button px-4 shadow-sm">
-              Iniciar sesión
-            </Link>
-          </div>
+      <div className="d-flex flex-column flex-nowrap justify-content-center align-items-center gap-2 px-3">
+        <div>
+          <h1>TPV para bares y restaurantes</h1>
+          <h4>Implementación fácil y rápida.<br />Configura tus activos al instante y empieza a vender en unos minutos.</h4>
         </div>
       </div>
-    </header>
     </div>
   );
 };

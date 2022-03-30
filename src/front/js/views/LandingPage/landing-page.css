@@ -1,10 +1,17 @@
-#landing-page-wrapper {
-    min-height: 100vh;
-    background-color: #F8F9FA;
-    background-attachment: fixed;
+#landing-page-wrapper hr {
+  background-color: #969696bb;
 }
 
-body {
-    background: url(https://images.pexels.com/photos/1202074/pexels-photo-1202074.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat fixed;
-    background-size: 100%;
+#landing-page-wrapper .card img {
+  height: 210px;
+}
+
+#landing-page-wrapper .card-body > h6 {
+    margin-top: 1rem;
+    font-size: 20px;
+    letter-spacing: .5px;
+}
+
+#landing-page-wrapper .card-body > p {
+    line-height: 28px;
 }
