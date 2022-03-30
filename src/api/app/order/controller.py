@@ -5,7 +5,7 @@ from sqlalchemy import text, func
 
 def get_all_orders(company_id):
     try:
-        list_order = db.session.query(Order).filter(Order.company_id == company_id).all()
+        list_order = db.session.query(Order).filter(Order.company_id == company_id).order_by(Order.id.desc()).all()
         order_list = []
         for order in list_order:
             order_json = order.serialize()

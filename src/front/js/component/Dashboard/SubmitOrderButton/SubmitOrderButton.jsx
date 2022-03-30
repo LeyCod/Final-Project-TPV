@@ -10,13 +10,15 @@ import { apiOrderSubmit } from "../../../service/order";
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
 import { toast } from "react-toastify";
+import { PaymentMethodSelect } from "../Modal/PaymentMethodSelect/PaymentMethodSelect.jsx";
 
 export const SubmitOrderButton = () => {
     const { store, actions } = useContext(Context);
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
 
-    const [loading, setLoading] = useState(false);    
+    const [loading, setLoading] = useState(false);
+    const [showPaymentMethods, setShowPaymentMethods] = useState(false);
 
     const notify = (result) => {
         const text = result === "success" ? "Pedido realizado correctamente" : "Ha ocurrido un error";
@@ -81,7 +83,8 @@ export const SubmitOrderButton = () => {
         ? <Spinner />
         : (
             <div className="d-flex flex-column gap-2">
-                {loading ? <Spinner /> : null}                
+                {loading ? <Spinner /> : null}
+                {showPaymentMethods ? <PaymentMethodSelect show={true} setShowPaymentMethods={setShowPaymentMethods} /> : null}
 
                 {
                     Object.keys(orderItems).length !== 0
@@ -105,8 +108,7 @@ export const SubmitOrderButton = () => {
                         type="button"
                         title="Finalizar el pedido actual"
                         className="btn theme-color-button fw-bold shadow-sm"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#PaymentMethodSelect"
+                        onClick={() => setShowPaymentMethods(true)}
                     >
                         FINALIZAR Y PAGAR
                     </button>
