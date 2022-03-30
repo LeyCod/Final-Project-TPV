@@ -16,7 +16,7 @@ export const TableCard = (props) => {
         let found = false;
 
         Object.keys(store.companyOrders).forEach(objKey => {
-            if (store.companyOrders[objKey]["table_id"] === parseInt(id)) {
+            if (store.companyOrders[objKey]["table_id"] === parseInt(id) && store.companyOrders[objKey]["is_active"]) {
                 found = true;
             }
         })
