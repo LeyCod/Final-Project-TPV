@@ -1,3 +1,4 @@
+from sqlalchemy import func
 from api.shared.encrypt_password import encrypt_pass, check_pass
 from api.shared.validate_email import check_email
 from api.shared.response import success_response, error_response
@@ -15,7 +16,12 @@ def register_user(body):
         
         if "nif" not in body or len(body["nif"]) == 0:
             return error_response("Debes escribir tu NIF", 400)
+        
+        user = db.session.query(User).filter(func.lower(User.nif) == body["nif"].lower()).first()
 
+        if user is not None: 
+            return error_response("El nif que has introducido ya existe. Prueba con otro.", 400)
+        
         if "first_name" not in body or len(body["first_name"]) == 0:
             return error_response("Debes escribir tu nombre", 400)
 
@@ -27,6 +33,11 @@ def register_user(body):
 
         if check_email(body["email"]) == False:
             return error_response("El email que has introducido no es válido", 400)
+
+        user = db.session.query(User).filter(func.lower(User.email) == body["email"].lower()).first()
+
+        if user is not None: 
+            return error_response("El email que has introducido ya existe. Prueba con otro.", 400)
 
         if "password" not in body or len(body["password"]) == 0:
             return error_response("Debes escribir una contraseña", 400)
@@ -115,8 +126,14 @@ def update_user(body):
         if "id" not in body:
             return error_response("No se ha recibido ningún ID de usuario", 400)
                 
-        if "email" in body and check_email(body["email"]) == False:
-            return error_response("El email que has introducido no es válido", 400)
+        if "email" in body:
+            if check_email(body["email"]) == False:
+                return error_response("El email que has introducido no es válido", 400)
+            else:
+                user = db.session.query(User).filter(func.lower(User.email) == body["email"].lower(), User.id != body["id"]).first()
+
+                if user is not None: 
+                    return error_response("El email que has introducido ya existe. Prueba con otro.", 400)
         
         update_user = User.query.filter(User.id == body["id"]).update(dict(body))
         db.session.commit()

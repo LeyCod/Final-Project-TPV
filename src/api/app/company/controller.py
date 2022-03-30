@@ -1,3 +1,4 @@
+from sqlalchemy import func
 from api.shared.encrypt_password import encrypt_pass
 from api.shared.validate_email import check_email
 from api.shared.response import success_response, error_response
@@ -7,6 +8,17 @@ def register_company(body):
     try:
         if body is None: 
             return error_response("Solicitud incorrecta", 400)
+
+        if "name" not in body or len(body["name"]) == 0:
+            return error_response("Debes escribir un nombre de empresa", 400)
+        
+        if "cif" not in body or len(body["cif"]) == 0:
+            return error_response("Debes escribir un cif", 400)
+
+        company = db.session.query(Company).filter(func.lower(Company.cif) == body["cif"].lower()).first()
+
+        if company is not None: 
+            return error_response("El cif de empresa que has introducido ya existe. Prueba con otro.", 400)
 
         new_company = Company(name=body["name"].upper(), cif=body["cif"].upper())
 

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { Link, Redirect } from "react-router-dom";
 
@@ -67,6 +67,7 @@ export const RegisterUser = () => {
 
             if (status === 201) {
                 setRegisterCompleted(true);
+                actions.setRestartRegisterData();
             }
             else {
                 setNotifyMessage(data);

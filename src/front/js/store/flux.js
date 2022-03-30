@@ -78,6 +78,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCompanyRegistered: () => {
 				getStore().companyRegistered = true;
 			},
+			setRestartRegisterData: () => {
+				getStore().companyRegisterData = {
+					name: "",
+					cif: ""
+				};
+
+				getStore().userRegisterData = {
+					company_id: "",
+					nif: "",
+					first_name: "",
+					last_name: "",
+					email: "",
+					password: "",
+					is_admin: false
+				};
+
+				getStore().companyRegistered = false;
+			},
 			// #endregion user register
 
 			// #region user data
