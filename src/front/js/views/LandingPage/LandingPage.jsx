@@ -1,7 +1,7 @@
 import React from "react";
 
 // Styles
-import "./landing-page.css";
+//import "./landing-page.css";
 
 // Components
 import { Card } from "../../component/LandingPage/Card/Card.jsx";

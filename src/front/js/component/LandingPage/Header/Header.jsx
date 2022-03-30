@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Styles
-import "./header.css";
+//import "./header.css";
 import logoMasterGest from "../../../../assets/img/logoMasterGest.png";
 
 export const Header = () => {

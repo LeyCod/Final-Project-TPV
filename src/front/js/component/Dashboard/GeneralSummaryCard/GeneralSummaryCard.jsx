@@ -8,7 +8,7 @@ import "./general-summary-card.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 export const GeneralSummaryCard = (props) => {    
-    const progressValue = isNaN(props.progress) ? 100 : props.progress;
+    const progressValue = isNaN(props.progress) ? 100 : props.progress;    
 
     const cardIcons = {
         "orders": <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" fill="currentColor" className="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
@@ -36,17 +36,18 @@ export const GeneralSummaryCard = (props) => {
 
                 <hr />
 
-                {progressValue
-                    ? <ProgressBar animated label={`${progressValue}%`} now={progressValue} />
-                    : <div>
-                        <button
-                            type="button"
-                            className="d-flex align-items-center px-2 btn btn-sm theme-color-button shadow-none"
-                            onClick={() => props.handleChangeView("orders")}
-                        >
-                            <i className="fas fa-paper-plane me-2"></i> <p className="h5 m-0 text-white">Ver todo</p>
-                        </button>
-                    </div>
+                {
+                    props.icon === "tables"
+                        ? <ProgressBar animated label={`${progressValue}%`} now={progressValue} />
+                        : <div>
+                            <button
+                                type="button"
+                                className="d-flex align-items-center px-2 btn btn-sm theme-color-button shadow-none"
+                                onClick={() => props.handleChangeView("orders")}
+                            >
+                                <i className="fas fa-paper-plane me-2"></i> <p className="h5 m-0 text-white">Ver todo</p>
+                            </button>
+                        </div>
                 }
             </div>
         </div>

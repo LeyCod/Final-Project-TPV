@@ -67,7 +67,6 @@ export const PaymentMethodSelect = () => {
                 const status = response.status;
 
                 if (status === 201) {
-                    console.log("perfe mira!");
                     actions.restartStoredOrders();
                     actions.setActiveTableOrder({});                    
                     notify("success");
