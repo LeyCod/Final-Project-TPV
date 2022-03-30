@@ -3,13 +3,16 @@ from api.models.index import db, Order
 import stripe
 import os
 
-def set_payment(body):
+def set_payment(body):    
     try:
         if body is None: 
             return error_response("Solicitud incorrecta", 400)
 
         if "id" not in body:
             return error_response("Solicitud incorrecta. No se incluye el ID del pedido", 400)        
+
+        if "description" not in body:
+            return error_response("Solicitud incorrecta. No se incluye la descripción de la transacción", 400)
 
         if "id_payment" not in body:
             return error_response("Solicitud incorrecta. No se incluye id_payment", 400)
@@ -20,12 +23,16 @@ def set_payment(body):
         charge = stripe.Charge.create(
             amount=body["amount"],
             currency="eur",
-            description="Pago del pedido con ID" + body["id"],
-            idempotency=body["id"],
+            description=body["description"],
+            source="tok_visa",
+            idempotency_key=body["id_payment"],
             api_key=os.getenv("STRIPE_API_SECRET")
         )
+        
+        update_order = Order.query.filter(Order.id == body["id"]).update(is_active=False, payment_method_id=2)
+        db.session.commit()
 
-        return success_response("Pedido realizado")
+        return success_response({"data": charge})
 
     except stripe.error.StripeError as err:        
         print("[ERROR SET PAYMENT]: ", err)

@@ -48,31 +48,31 @@ const CheckoutPaymentForm = () => {
                 card: elements.getElement(CardElement),
             });
 
-            console.log("paymentMethod", paymentMethod);
-
             setLoading(true);
 
-            /* if (!error) {
+            if (!error) {
                 const { id } = paymentMethod; // Transaction ID
 
                 try {
                     const body = {
                         id: store.activeTableOrder.order_id,
                         id_payment: id,
-                        amount: store.activeTableOrder.totalPrice * 100
+                        amount: store.activeTableOrder.totalPrice * 100,
+                        description: "Pago del pedido con ID " + store.activeTableOrder.order_id
                     };
-
-                    console.log("enviooo", body);
 
                     const { data } = await fetch(`${BASE_URL}/api/stripe/payment/card/`, {
                         method: "POST",
-                        body: body
+                        body: JSON.stringify(body)
                     });
-
-                    console.log(data);                   
-
-                    elements.getElement(CardElement).clear();
+                    
+                    actions.restartStoredOrders();
+                    actions.setActiveTableOrder({});
                     notify("success");
+
+                    setTimeout(() => {
+                        props.setShowPaymentMethods(false);
+                    }, 10);
                 }
                 catch (error) {
                     console.log(error);
@@ -85,7 +85,7 @@ const CheckoutPaymentForm = () => {
             else {
                 console.log("error", error);
                 notify("error");
-            } */
+            }
         }
         catch (error) {
             console.log(error);
