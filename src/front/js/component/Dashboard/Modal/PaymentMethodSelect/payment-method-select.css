@@ -1,11 +1,6 @@
-#payment-method-select.modal-dialog {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.281);
+
+.fade.modal.show {
+  background-color: rgba(0, 0, 0, 0.281); 
 }
 
 #payment-method-select .modal-content {
