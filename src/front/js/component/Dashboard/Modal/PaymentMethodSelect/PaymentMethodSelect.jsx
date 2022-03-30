@@ -118,7 +118,9 @@ export const PaymentMethodSelect = () => {
                                         : <div>
                                             {
                                                 Object.keys(store.paymentMethods).map(objKey =>
-                                                    <div
+                                                    store.clientInfo.company && objKey === "1" // Hidding "Efectivo" in clients interface
+                                                    ? null
+                                                    : <div
                                                         key={objKey}
                                                         className="payment-method-option"
                                                         onClick={() => handleCloseOrder(objKey)}
