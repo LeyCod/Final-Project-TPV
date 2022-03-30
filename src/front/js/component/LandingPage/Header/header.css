@@ -3,11 +3,10 @@
   display: flex;
   flex-flow: column nowrap;
   gap: 1.2rem;
-  background-image: url(https://res.cloudinary.com/dxbcvuacb/image/upload/v1648663070/pexels-elevate-1267697_zzdfri_zuw9y5.jpg);
-  background-size: cover;
+  background-image: url(https://res.cloudinary.com/dxbcvuacb/image/upload/v1648663070/pexels-elevate-1267697_zzdfri_zuw9y5.jpg);  
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: top;
   box-shadow: inset 0 -817px 21px 82px #3c290565;
 }
 
