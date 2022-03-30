@@ -10,6 +10,7 @@ import { apiUploadImage, apiUpdateUser } from "../../../service/user";
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
 import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
+import { toast } from "react-toastify";
 import { ExpiredSessionModal } from "../../Modal/ExpiredSessionModal.jsx";
 
 // Custom Hooks
@@ -106,6 +107,7 @@ export const UserConfiguration = () => {
                 const status = response.status;
 
                 if (status === 200) {
+                    notify("success");
                     setReload(!reload);
                 }
                 else {
@@ -117,6 +119,22 @@ export const UserConfiguration = () => {
             console.log(err);
             setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
         }
+    }
+
+    const notify = (result) => {
+        const text = result === "success" ? "Datos actualizados" : "Ha ocurrido un error";
+
+        toast(text, {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: false,
+            theme: "colored",
+            type: result
+        });
     }
 
     return (
@@ -175,8 +193,7 @@ export const UserConfiguration = () => {
                         maxLength={59}
                         onChange={(e) => setEmail(e.target.value)}
                         defaultValue={email}
-                    />
-                    <small className="text-muted">Debe ser un email válido</small>
+                    />                    
                 </div>
 
                 <div className="col-12 col-sm-6 col-xl-5 mb-3">

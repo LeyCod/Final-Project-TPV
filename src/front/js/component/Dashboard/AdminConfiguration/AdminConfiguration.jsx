@@ -11,6 +11,7 @@ import { apiUpdateCompany } from "../../../service/company";
 // Components
 import { Spinner } from "../../Spinner/Spinner.jsx";
 import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
+import { toast } from "react-toastify";
 import { ExpiredSessionModal } from "../../Modal/ExpiredSessionModal.jsx";
 
 // Custom Hooks
@@ -105,6 +106,7 @@ export const AdminConfiguration = () => {
                 const status = response.status;
 
                 if (status === 200) {
+                    notify("success");
                     setReload(!reload);
                 }
                 else {
@@ -117,6 +119,22 @@ export const AdminConfiguration = () => {
             setNotifyMessage("Error interno del servidor. Por favor, inténtalo de nuevo.");
         }
     };
+
+    const notify = (result) => {
+        const text = result === "success" ? "Datos actualizados" : "Ha ocurrido un error";
+
+        toast(text, {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: false,
+            theme: "colored",
+            type: result
+        });
+    }
 
     return (
         <div className="dashboard-view-content p-3 p-lg-4">
