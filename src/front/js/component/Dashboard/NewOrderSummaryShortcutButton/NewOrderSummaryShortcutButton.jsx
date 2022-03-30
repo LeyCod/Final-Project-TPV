@@ -24,11 +24,11 @@ export const NewOrderSummaryShortcutButton = () => {
                     <div>
                         {
                             existingOrder && existingData
-                                ? <p className="fw-normal"><strong>Añadir</strong> al pedido por <strong>{store.storedOrders[store.activeTable.id].totalPrice} €</strong></p>
+                                ? <p className="fw-normal"><strong>Añadir</strong> al pedido por <strong>{Math.floor(store.storedOrders[store.activeTable.id].totalPrice * 100) / 100} €</strong></p>
                                 : existingOrder && !existingData
-                                    ? <p className="fw-normal"><strong>Ver</strong> pedido actual de <strong>{store.activeTableOrder.totalPrice} €</strong></p>
+                                    ? <p className="fw-normal"><strong>Ver</strong> pedido actual de <strong>{Math.floor(store.activeTableOrder.totalPrice * 100) / 100} €</strong></p>
                                     : !existingOrder && existingData
-                                        ? <p className="fw-normal"><strong>Crear</strong> pedido por <strong>{store.storedOrders[store.activeTable.id].totalPrice} €</strong></p>
+                                        ? <p className="fw-normal"><strong>Crear</strong> pedido por <strong>{Math.floor(store.storedOrders[store.activeTable.id].totalPrice * 100) / 100} €</strong></p>
                                         : null
                         }
                     </div>

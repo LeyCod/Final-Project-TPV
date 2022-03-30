@@ -46,7 +46,7 @@ export const OrdersTable = (props) => {
                                     return <tr key={objKey}>
                                         <td><strong>{store.companyOrders[objKey].table_name}</strong></td>
                                         <td className="d-none d-md-table-cell">{date}</td>
-                                        <td>{store.companyOrders[objKey].total_price} €</td>
+                                        <td>{Math.floor(store.companyOrders[objKey].total_price * 100) / 100} €</td>
                                         <td>
                                             {
                                                 store.companyOrders[objKey].is_active

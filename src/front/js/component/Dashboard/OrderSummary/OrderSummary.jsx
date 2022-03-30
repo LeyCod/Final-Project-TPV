@@ -87,7 +87,7 @@ export const OrderSummary = () => {
 
                         <div id="order-summary-total">
                             <p className="h5 fw-normal">Total</p>
-                            <p className="h5">{store.storedOrders[store.activeTable.id].totalPrice} €</p>
+                            <p className="h5">{Math.floor(store.storedOrders[store.activeTable.id].totalPrice * 100) / 100} €</p>
                         </div>
 
                         <SubmitOrderButton />

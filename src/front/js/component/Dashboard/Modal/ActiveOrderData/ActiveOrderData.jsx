@@ -43,7 +43,7 @@ export const ActiveOrderData = (props) => {
 
                             <div id="active-order-data-total">
                                 <p className="h5 fw-normal">Total</p>
-                                <p className="h5">{store.activeTableOrder.totalPrice} €</p>
+                                <p className="h5">{Math.floor(store.activeTableOrder.totalPrice * 100) / 100} €</p>
                             </div>
 
                             <hr />

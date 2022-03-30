@@ -81,7 +81,7 @@ export const MenuItemEditionModal = () => {
                 "image_url": imgUrl,
                 "name": name,
                 "description": description,
-                "price": price
+                "price": Math.floor(price * 100) / 100
             };
 
             // Check data
@@ -166,7 +166,7 @@ export const MenuItemEditionModal = () => {
                             autoComplete="off"
                             autoFocus="on"                            
                             onChange={(e) => setPrice(e.target.value)}
-                            defaultValue={price}
+                            defaultValue={Math.floor(price * 100) / 100}
                         />
                     </div>
                 </div>

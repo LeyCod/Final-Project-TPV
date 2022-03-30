@@ -25,7 +25,7 @@ export const MenuItemCard = (props) => {
                 </div>
 
                 <div>
-                    <p>{store.menuItems[props.item_index].price}€</p>
+                    <p>{Math.floor(store.menuItems[props.item_index].price * 100) / 100}€</p>
 
                     {
                         props.order_item_control

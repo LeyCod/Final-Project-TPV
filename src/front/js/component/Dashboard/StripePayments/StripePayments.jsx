@@ -103,7 +103,7 @@ const CheckoutPaymentForm = () => {
                 <p className="m-0">Se va a efectuar un pago de:</p>
 
                 <form id="payment-submit-form" onSubmit={handleSubmitPayment}>
-                    <div className="total-detail"><h5 className="m-0 fw-bold">{store.activeTableOrder.totalPrice} €</h5></div>
+                    <div className="total-detail"><h5 className="m-0 fw-bold">{Math.floor(store.activeTableOrder.totalPrice * 100) / 100} €</h5></div>
 
                     <p className="mb-1">Introduce los datos de tu tarjeta:</p>
 
