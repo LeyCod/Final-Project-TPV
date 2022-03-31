@@ -19,7 +19,13 @@ export const QRModal = (props) => {
             </Modal.Header>
 
             <Modal.Body>
-                <QRCode value={props.qr_url} size={150} level="M" />;
+                <div className="d-flex flex-column flex-nowrap justify-content-center align-items-center gap-3">
+                    <QRCode value={props.qr_url} size={150} level="M" />
+
+                    <a href={props.qr_url} target="_blank" className="d-flex align-items-center justify-content-center btn btn-secondary px-3 py-1 gap-2 shadow-none">
+                        <i className="fas fa-external-link-alt"></i> Ir
+                    </a>
+                </div>
             </Modal.Body>
         </Modal >
     );
