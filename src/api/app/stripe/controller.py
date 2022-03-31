@@ -29,7 +29,7 @@ def set_payment(body):
             api_key=os.getenv("STRIPE_API_SECRET")
         )
         
-        update_order = Order.query.filter(Order.id == body["id"]).update(is_active=False, payment_method_id=2)
+        update_order = Order.query.filter(Order.id == body["id"]).update({"is_active": False, "payment_method_id": 2})
         db.session.commit()
 
         return success_response({"data": charge})

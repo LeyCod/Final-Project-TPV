@@ -42,13 +42,13 @@ const CheckoutPaymentForm = () => {
     const handleSubmitPayment = async (e) => {
         e.preventDefault();
 
+        setLoading(true);
+
         try {
             const { error, paymentMethod } = await stripe.createPaymentMethod({
                 type: "card",
                 card: elements.getElement(CardElement),
-            });
-
-            setLoading(true);
+            });            
 
             if (!error) {
                 const { id } = paymentMethod; // Transaction ID
@@ -65,7 +65,7 @@ const CheckoutPaymentForm = () => {
                         method: "POST",
                         body: JSON.stringify(body)
                     });
-                    
+
                     actions.restartStoredOrders();
                     actions.setActiveTableOrder({});
                     notify("success");
@@ -96,29 +96,29 @@ const CheckoutPaymentForm = () => {
         }
     };
 
-    return loading
-        ? <Spinner />
-        : (
-            <div>
-                <p className="m-0">Se va a efectuar un pago de:</p>
+    return (
+        <div>
+            <p className="m-0">Se va a efectuar un pago de:</p>
 
-                <form id="payment-submit-form" onSubmit={handleSubmitPayment}>
-                    <div className="total-detail"><h5 className="m-0 fw-bold">{Math.floor(store.activeTableOrder.totalPrice * 100) / 100} €</h5></div>
+            <form id="payment-submit-form" onSubmit={handleSubmitPayment}>
+                <div className="total-detail"><h5 className="m-0 fw-bold">{Math.floor(store.activeTableOrder.totalPrice * 100) / 100} €</h5></div>
 
-                    <p className="mb-1">Introduce los datos de tu tarjeta:</p>
+                <p className="mb-1">Introduce los datos de tu tarjeta:</p>
 
-                    <div className="card-element-input">
-                        <CardElement className="form-control" />
-                    </div>
+                <div className="card-element-input">
+                    <CardElement className="form-control" />
+                </div>
 
-                    <div className="d-grid">
-                        <button disabled={!stripe} className="btn green-button text-center shadow-none">
-                            PAGAR
-                        </button>
-                    </div>                    
-                </form>
-            </div>
-        );
+                <div className="d-grid">
+                    <button disabled={!stripe} className="btn green-button text-center shadow-none">
+                        PAGAR
+                    </button>
+
+                    {loading ? <Spinner /> : null}
+                </div>
+            </form>
+        </div>
+    );
 };
 
 export const StripePayments = () => {
