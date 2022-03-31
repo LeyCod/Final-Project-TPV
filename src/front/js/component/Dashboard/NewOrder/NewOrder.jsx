@@ -10,15 +10,13 @@ import { OrderSummary } from "../OrderSummary/OrderSummary.jsx";
 import { OrderSummaryModal } from "../Modal/OrderSummaryModal/OrderSummaryModal.jsx";
 import { NewOrderSummaryShortcutButton } from "../NewOrderSummaryShortcutButton/NewOrderSummaryShortcutButton.jsx";
 import { PaymentMethodSelect } from "../Modal/PaymentMethodSelect/PaymentMethodSelect.jsx";
-import { ActiveOrderData } from "../Modal/ActiveOrderData/ActiveOrderData.jsx";
 
 export const NewOrder = () => {
     const { store, actions } = useContext(Context);
 
     return (
         <div className="dashboard-view-content p-3 p-lg-4">
-            <OrderSummaryModal />
-            <ActiveOrderData />
+            <OrderSummaryModal />            
             <PaymentMethodSelect />
             
             <div className="row justify-content-start gap-1" id="new-order-wrapper">

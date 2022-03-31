@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../../../store/appContext";
 
 // Styles
@@ -9,6 +9,7 @@ import { Spinner } from "../../Spinner/Spinner.jsx";
 import { ErrorModal } from "../../Modal/ErrorModal/ErrorModal.jsx";
 import { NewOrderItemControl } from "../NewOrderItemControl/NewOrderItemControl.jsx";
 import { SubmitOrderButton } from "../SubmitOrderButton/SubmitOrderButton.jsx";
+import { ActiveOrderData } from "../Modal/ActiveOrderData/ActiveOrderData.jsx";
 
 // Custom Hooks
 import { useFetchTableOrder } from "../../CustomHooks/CustomHooks.jsx";
@@ -20,13 +21,19 @@ export const OrderSummary = () => {
     const { fetchActiveOrder, error, loading } = useFetchTableOrder(store.activeTable);
 
     const orderItems = store.storedOrders[store.activeTable.id].items;
+    const [showDetails, setShowDetails] = useState(false);
 
     return loading
         ? <Spinner />
         : error
             ? <ErrorModal show={true} />
             : (
-                <div id="order-summary-container">                    
+                <div id="order-summary-container">
+                    {showDetails
+                        ? <ActiveOrderData show={true} setShowDetails={setShowDetails} />
+                        : null
+                    }
+
                     <div className="order-summary">
                         <div className="order-summary-title">
                             {
@@ -37,8 +44,7 @@ export const OrderSummary = () => {
                                             type="button"
                                             title="Finalizar el pedido actual"
                                             className="d-flex justify-content-center align-items-center gap-2 mt-3 btn theme-color-button w-100 fw-bold shadow-sm"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#ActiveOrderData"
+                                            onClick={() => setShowDetails(true)}
                                         >
                                             <span className="flex-grow-1">VER</span>
 
