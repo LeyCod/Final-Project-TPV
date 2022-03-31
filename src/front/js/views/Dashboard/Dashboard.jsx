@@ -25,6 +25,7 @@ import { Tables } from "../../component/Dashboard/Tables/Tables.jsx";
 import { MenuItemsConfiguration } from "../../component/Dashboard/MenuItemsConfiguration/MenuItemsConfiguration.jsx";
 import { UserConfiguration } from "../../component/Dashboard/UserConfiguration/UserConfiguration.jsx";
 import { AdminConfiguration } from "../../component/Dashboard/AdminConfiguration/AdminConfiguration.jsx";
+import { useSwipeable } from "react-swipeable";
 
 // Custom Hooks
 import { useFetchUser } from "../../component/CustomHooks/CustomHooks.jsx";
@@ -59,6 +60,13 @@ export const Dashboard = () => {
         "admin_configuration": { "title": "Administrador", "component": <AdminConfiguration /> }
     }
 
+    const handlers = useSwipeable({
+        onSwipedLeft: () => setActiveSidebar(false),
+        onSwipedRight: () => setActiveSidebar(true),
+        preventDefaultTouchmoveEvent: true,
+        trackMouse: true
+    });
+
     return loading
         ? <Spinner />
         : !validateUser
@@ -66,7 +74,7 @@ export const Dashboard = () => {
             : error
                 ? <ErrorModal show={true} />
                 : (
-                    <div className="container-fluid">
+                    <div className="container-fluid" {...handlers}>                        
                         <div className={`row dashboard-theme-${store.dashBoardThemeColors[localStorage.getItem("dashboard-theme-color") !== null ? localStorage.getItem("dashboard-theme-color") : store.selectedDashboardThemeColor]}`} id="dashboard-wrapper">
                             <aside
                                 className={`col-auto p-0 ${activeSidebar ? "" : "inactive"} scrollbar-custom`}
