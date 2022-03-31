@@ -66,7 +66,7 @@ export const TableCard = (props) => {
 
             {
                 showQR
-                    ? <QRModal table_name={props.name} setShowQR={setShowQR} qr_url={`${window.location.host}/clients/${props.table_index}`} />
+                    ? <QRModal table_name={props.name} setShowQR={setShowQR} qr_url={`${window.location.host}/clients/${props.table_index}`} qr_url_path={`clients/${props.table_index}`} />
                     : null
             }
         </div>
@@ -76,6 +76,5 @@ export const TableCard = (props) => {
 TableCard.propTypes = {
     table_index: PropTypes.string,
     name: PropTypes.string,
-    qr_url: PropTypes.string,
     handleChangeView: PropTypes.func
 };

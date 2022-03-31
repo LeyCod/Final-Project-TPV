@@ -42,7 +42,6 @@ export const TablesWrapper = (props) => {
                             key={tableIndex}
                             table_index={tableIndex}
                             name={store.companyTables[tableIndex].name}
-                            qr_url={`${window.location.host}/clients/${tableIndex}`}
                             handleChangeView={props.handleChangeView}
                         />
                     )}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // Styles
@@ -22,9 +23,9 @@ export const QRModal = (props) => {
                 <div className="d-flex flex-column flex-nowrap justify-content-center align-items-center gap-3">
                     <QRCode value={props.qr_url} size={150} level="M" />
 
-                    <a href={props.qr_url} target="_blank" className="d-flex align-items-center justify-content-center btn btn-secondary px-3 py-1 gap-2 shadow-none">
-                        <i className="fas fa-external-link-alt"></i> Ir
-                    </a>
+                    <Link to={props.qr_url_path} target="_blank" className="d-flex align-items-center justify-content-center btn btn-secondary px-3 py-1 gap-2 shadow-none">
+                        <i class="fas fa-external-link-alt"></i> Ir
+                    </Link>
                 </div>
             </Modal.Body>
         </Modal >
@@ -34,5 +35,6 @@ export const QRModal = (props) => {
 QRModal.propTypes = {
     table_name: PropTypes.string,
     setShowQR: PropTypes.func,
-    qr_url: PropTypes.string
+    qr_url: PropTypes.string,
+    qr_url_path: PropTypes.string
 }
