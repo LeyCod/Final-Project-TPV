@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const Features = (props) => {
   return (
-    <div className={`row ${!props.reverse ? "" : "flex-row-reverse"} justify-content-center gap-2 my-5 py-3`}>
+    <div className={`row ${!props.reverse ? "" : "flex-row-reverse"} justify-content-center gap-3 my-5 py-3`}>
       <div className="col-11 col-md-5">
         <img src={props.img} className="img-fluid" />
       </div>
