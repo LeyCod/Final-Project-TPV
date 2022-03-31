@@ -110,7 +110,7 @@ export const PaymentMethodSelect = (props) => {
                         {
                             showStripePayments
                                 ? <div>
-                                    <StripePayments />
+                                    <StripePayments setShowStripePayments={setShowStripePayments} setShowPaymentMethods={props.setShowPaymentMethods} />
                                     <div className="mt-3">
                                         <a
                                             className="d-flex justify-content-end align-items-center text-decoration-none text-black"

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../../store/appContext";
+import PropTypes from "prop-types";
 
 // Styles
 import "./stripe-payments.css";
@@ -14,6 +15,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements, } from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe("pk_test_51KiZb0EI8OE1SU1FOiYOYkw7Uu0IGpMijb4dGk1gPgKmRq9mdNmfNo1PdCTKheV8xCkPjzAv9NwrGWApigcpeCDn00dqnYdhJn");
+
+let showHideFunction;
+let showHideFunction2;
 
 const CheckoutPaymentForm = () => {
     const { store, actions } = useContext(Context);
@@ -69,10 +73,8 @@ const CheckoutPaymentForm = () => {
                     actions.restartStoredOrders();
                     actions.setActiveTableOrder({});
                     notify("success");
-
-                    setTimeout(() => {
-                        props.setShowPaymentMethods(false);
-                    }, 10);
+                    showHideFunction(false);                    
+                    showHideFunction2(false);
                 }
                 catch (error) {
                     console.log(error);
@@ -121,10 +123,18 @@ const CheckoutPaymentForm = () => {
     );
 };
 
-export const StripePayments = () => {
+export const StripePayments = (props) => {
+    showHideFunction = props.setShowStripePayments;
+    showHideFunction2 = props.setShowPaymentMethods;
+
     return (
         <Elements stripe={stripePromise}>
             <CheckoutPaymentForm />
         </Elements>
     );
+}
+
+StripePayments.propTypes = {
+    setShowStripePayments: PropTypes.func,
+    setShowPaymentMethods: PropTypes.func
 }
