@@ -14,8 +14,8 @@ export const LandingPage = () => {
     <div id="landing-page-wrapper">
       <Header />
 
-      <main className="container">
-        <div className="row flex-column flex-md-row gap-3 gap-md-0 my-5 py-3 pb-4 gap-3">
+      <div className="container">
+        <div className="row flex-column flex-lg-row gap-3 gap-md-0 gap-4 m-auto mt-2 pt-5">
           <h2 className="mb-5 text-center"><strong>Nuestros servicios</strong> de gestión</h2>
 
           <Card
@@ -32,22 +32,24 @@ export const LandingPage = () => {
 
           <Card
             title="Nuestros valores"
-            subtitle="Adaptación, eficiéncia, simplicidad , rapidez y social-friendly. Nuestro compromiso es seguir creciendo para poder seguir el camino de nuestros clientes."
+            subtitle="Adaptación, eficiéncia, simplicidad, rapidez y social-friendly. Nuestro compromiso es seguir creciendo para poder seguir el camino de nuestros clientes."
             img_src="https://res.cloudinary.com/dxbcvuacb/image/upload/v1648664682/icon-3_pxtbdc.png"
           />
         </div>
+      </div>
 
-        <hr />
+      <div className="container-fluid bg-custom-gray py-1">
+        <div className="container">
+          <Features
+            title="Ahorra tiempo automatizando tareas"
+            text="Mejora la atención al cliente, tus procesos internos y la gestión. MasterGest añade más funcionalidades a tu sistema para aumentar la capacidad de gestión de tu negocio y el crecimiento, siempre adelantandose a  las necesidades de tus clientes. "
+            img="https://res.cloudinary.com/da5uckicu/image/upload/v1648239394/restaurant-management-software_mryiye.jpg"
+            reverse={false}
+          ></Features>
+        </div>
+      </div>
 
-        <Features
-          title="Ahorra tiempo automatizando tareas"
-          text="Mejora la atención al cliente, tus procesos internos y la gestión. MasterGest añade más funcionalidades a tu sistema para aumentar la capacidad de gestión de tu negocio y el crecimiento, siempre adelantandose a  las necesidades de tus clientes. "
-          img="https://res.cloudinary.com/da5uckicu/image/upload/v1648239394/restaurant-management-software_mryiye.jpg"
-          reverse={false}
-        ></Features>
-
-        <hr />
-
+      <div className="container">
         <Features
           title="Adapta tu establecimiento a la nueva hostelería digital"
           text=
@@ -55,7 +57,7 @@ export const LandingPage = () => {
           img="https://res.cloudinary.com/da5uckicu/image/upload/v1648235045/business-people-meeting-in-cafe-3949860-3272567_ajmeo9.png"
           reverse={true}
         ></Features>
-      </main>
+      </div>
 
       <Footer />
     </div >

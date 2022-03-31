@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const Card = (props) => {
   return (
-    <div className="col-12 col-md-4">
+    <div className="col-12 col-lg-4 mb-4">
       <div className="card border-0">
         <div className="text-center py-2 ">
           <img src={props.img_src} className="img-fluid"></img>
